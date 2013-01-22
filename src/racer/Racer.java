@@ -43,6 +43,10 @@ public class Racer {
 		return finishTime - startTime;
 	}
 
+	/**
+	 * Returns the racer as a line of the format the Sorter wants.
+	 */
+	@Override
 	public String toString() {
 		return startNumber + "; " + getTotalTime() + "; " + startTime + "; " + finishTime;
 	}
