@@ -1,0 +1,49 @@
+package racer;
+
+/**
+ * A class representing a racer (aka driver) with a start number, start time and
+ * finish time.
+ */
+public class Racer {
+	private int startNumber;
+	private int startTime;
+	private int finishTime;
+
+	public Racer(int startNumber) {
+		this.startNumber = startNumber;
+		this.startTime = -1;
+		this.finishTime = -1;
+	}
+
+	public int getStartNumber() {
+		return startNumber;
+	}
+
+	public void setStartNumber(int startNumber) {
+		this.startNumber = startNumber;
+	}
+
+	public int getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(int startTime) {
+		this.startTime = startTime;
+	}
+
+	public int getFinishTime() {
+		return finishTime;
+	}
+
+	public void setFinishTime(int finishTime) {
+		this.finishTime = finishTime;
+	}
+	
+	public int getTotalTime() {
+		return finishTime - startTime;
+	}
+
+	public String toString() {
+		return startNumber + "; " + getTotalTime() + "; " + startTime + "; " + finishTime;
+	}
+}
