@@ -37,7 +37,6 @@ public class Register {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
 			writer.write(racer.getStartNumber() + "; ");
 			if (start) {
-				System.out.println(racer.getStartTime());
 				writer.write(Integer.toString(racer.getStartTime()));
 			} else {
 				writer.write(Integer.toString(racer.getFinishTime()));
@@ -45,7 +44,6 @@ public class Register {
 			writer.newLine();
 			writer.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
