@@ -42,10 +42,7 @@ public class Sorter {
 	
 
 	private void write() {
-		
-		ResultWriter writer = new ResultWriter(racers.toMap(), "result.txt");
-		writer.writeToFile();
-		
+		racers.writeToFile("result.txt");
 	}
 
 

@@ -59,9 +59,9 @@ public class RacerMap {
 		}
 		return totalTime;
 	}
-
-	public Map<Integer, Racer> toMap() {
-		return map;
+	
+	public void writeToFile(String filename) {
+		ResultWriter writer = new ResultWriter(map, filename);
+		writer.writeToFile();
 	}
-
 }
