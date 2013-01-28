@@ -1,4 +1,4 @@
-package registration;
+package sorting;
 
 import java.util.Map;
 import java.util.NoSuchElementException;

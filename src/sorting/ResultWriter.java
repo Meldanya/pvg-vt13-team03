@@ -1,4 +1,4 @@
-package registration;
+package sorting;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

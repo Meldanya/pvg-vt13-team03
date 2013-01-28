@@ -3,8 +3,6 @@ package sorting;
 import java.util.Map;
 
 import racer.Racer;
-import registration.RacerMap;
-import registration.ResultWriter;
 
 /**
  * A class representing a sorter. It reads start.txt and finish.txt and outputs
