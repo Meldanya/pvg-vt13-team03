@@ -8,11 +8,16 @@ public class Racer {
 	private int startNumber;
 	private int startTime;
 	private int finishTime;
+	private String name;
 
 	public Racer(int startNumber) {
 		this.startNumber = startNumber;
 		this.startTime = -1;
 		this.finishTime = -1;
+	}
+	
+	public void setName(String name){
+		this.name = name;
 	}
 
 	public int getStartNumber() {
@@ -48,7 +53,7 @@ public class Racer {
 	 */
 	@Override
 	public String toString() {
-		return startNumber + "; " + getTotalTime() + "; " + startTime + "; "
+		return startNumber + "; " + name +"; " + getTotalTime() + "; " + startTime + "; "
 				+ finishTime;
 	}
 

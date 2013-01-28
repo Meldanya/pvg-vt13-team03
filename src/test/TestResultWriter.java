@@ -34,8 +34,8 @@ public class TestResultWriter {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		filename = "test.txt";
-		header = "StartNr; Totaltid; Starttid; Måltid";
+		filename = "resultat.txt";
+		header = "StartNr; Namn; TotalTid; StartTider; Måltider";
 		map = new TreeMap<Integer, Racer>();
 		writer = new ResultWriter(map, filename);
 		
@@ -81,6 +81,7 @@ public class TestResultWriter {
 	@Test
 	public void testOneRacer() throws IOException {
 		Racer racer = new Racer(1);
+		racer.setName("Anders Asson");
 		
 		map.put(racer.getStartNumber(), racer);
 		writer.writeToFile();
@@ -91,12 +92,16 @@ public class TestResultWriter {
 	@Test
 	public void testMultipleRacers() throws IOException {
 		Racer racer1 = new Racer(1);
+		racer1.setName("Anders Asson");
 		Racer racer2 = new Racer(2);
+		racer2.setName("Bengt Bsson");
 		Racer racer3 = new Racer(3);
+		racer3.setName("Chris Csson");
 		String expected = header + "\n" +
 				racer1.toString() + "\n" +
 				racer2.toString() + "\n" +
 				racer3.toString() + "\n";
+
 
 		map.put(racer1.getStartNumber(), racer1);
 		map.put(racer3.getStartNumber(), racer3);
