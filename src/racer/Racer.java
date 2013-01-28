@@ -7,12 +7,12 @@ import java.util.ArrayList;
  * finish time.
  */
 public class Racer {
-	private int startNumber;
+	private String startNumber;
 	private ArrayList<RacerTime> startTimes;
 	private ArrayList<RacerTime> finishTimes;
 	private String name;
 
-	public Racer(int startNumber) {
+	public Racer(String startNumber) {
 		this.startNumber = startNumber;
 		this.startTimes = new ArrayList<RacerTime>();
 		this.finishTimes = new ArrayList<RacerTime>();
@@ -22,11 +22,11 @@ public class Racer {
 		this.name = name;
 	}
 
-	public int getStartNumber() {
+	public String getStartNumber() {
 		return startNumber;
 	}
 
-	public void setStartNumber(int startNumber) {
+	public void setStartNumber(String startNumber) {
 		this.startNumber = startNumber;
 	}
 
