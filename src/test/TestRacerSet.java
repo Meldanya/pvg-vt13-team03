@@ -34,6 +34,7 @@ public class TestRacerSet {
 		testRacer2 = new Racer(2);
 		testRacer3 = new Racer(3);
 		set = new RacerSet();
+
 	}
 
 	/**
@@ -49,20 +50,26 @@ public class TestRacerSet {
 	    }
 	@Test
 	public void testAddRacerToSet(){
+		
 		assertEquals(true, set.addRacerToSet(testRacer1));
 	}
 	
 	@Test
 	public void testAddStartTime() {
+		set.addRacerToSet(testRacer1);
 		assertEquals(true,set.addStartTime(1, 1000));
 	}
 	@Test
 	public void testAddFinishTime() {
+		set.addRacerToSet(testRacer1);
 		assertEquals(true, set.addFinishTime(1, 2000));
 		
 	}
 	@Test
 	public void testGetResult() {
+		set.addRacerToSet(testRacer1);
+		set.addStartTime(1, 1000);
+		set.addFinishTime(1, 2000);
 		assertEquals(1000,set.getResult(1));
 		
 	}
