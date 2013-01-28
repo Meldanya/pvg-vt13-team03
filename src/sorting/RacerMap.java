@@ -30,6 +30,17 @@ public class RacerMap {
 		return r;
 	}
 
+	public void setName(int id, String name) {
+
+		try{
+		Racer r = getRacer(id);
+		r.setName(name);
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+
+	}
+
 	public void addStartTime(int id, String startTime) {
 		try {
 			Racer r = getRacer(id);
@@ -56,10 +67,10 @@ public class RacerMap {
 		} catch (NoSuchElementException e) {
 			System.err.println("NoSuchElementException:3 " + e.getMessage());
 		}
-		
+
 		return "--.--.--";
 	}
-	
+
 	public void writeToFile(String filename) {
 		ResultWriter writer = new ResultWriter(map, filename);
 		writer.writeToFile();
