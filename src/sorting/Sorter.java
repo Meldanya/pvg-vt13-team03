@@ -3,6 +3,7 @@ package sorting;
 import java.util.Map;
 
 import racer.Racer;
+import racer.RacerTime;
 
 /**
  * A class representing a sorter. It reads start.txt and finish.txt and outputs
@@ -27,8 +28,8 @@ public class Sorter {
 		
 		for (String s : finish.keySet()) {
 			Racer racer = new Racer(Integer.parseInt(s));
-			racer.setFinishTime(Integer.parseInt(finish.get(s)));
-			racer.setStartTime(Integer.parseInt(start.get(s)));
+			racer.addFinishTime(new RacerTime(finish.get(s)));
+			racer.addStartTime(new RacerTime(start.get(s)));
 			racers.addRacerToMap(racer);
 		}
 

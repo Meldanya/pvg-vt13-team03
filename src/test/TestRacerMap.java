@@ -55,30 +55,29 @@ public class TestRacerMap {
 	@Test
 	public void testAddStartTime() {
 		map.addRacerToMap(testRacer1);
-		map.addStartTime(1, 1000);
-		assertEquals("Wrong start time", 1000, map.getRacer(1).getStartTime());
+		map.addStartTime(1, "10.10.10");
+		assertEquals("Wrong start time", "10.10.10", map.getRacer(1).getStartTime());
 	}
 
 	@Test
 	public void testAddFinishTime() {
 		map.addRacerToMap(testRacer1);
-		map.addFinishTime(1, 2000);
-		assertEquals("Wrong finish time", 2000, map.getRacer(1).getFinishTime());
-
+		map.addFinishTime(1, "20.20.20");
+		assertEquals("Wrong finish time", "20.20.20", map.getRacer(1).getFinishTime());
 	}
 
 	@Test
 	public void testGetResult() {
 		map.addRacerToMap(testRacer1);
-		map.addStartTime(1, 1000);
-		map.addFinishTime(1, 2000);
-		assertEquals("Wrong result", 1000, map.getResult(1));
+		map.addStartTime(1, "10.10.10");
+		map.addFinishTime(1, "20.20.20");
+		assertEquals("Wrong result", "10.10.10", map.getResult(1));
+		
 	}
-	
+
 	@Test
 	public void testGetRacer() {
 		map.addRacerToMap(testRacer1);
 		assertSame("Wrong racer returned", testRacer1, map.getRacer(1));
 	}
-
 }

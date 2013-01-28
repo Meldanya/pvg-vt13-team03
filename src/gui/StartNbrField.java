@@ -26,7 +26,7 @@ public class StartNbrField extends JTextField implements ActionListener{
 		if (text.equals("")){
 			
 		} else {
-			register.register(Integer.valueOf(text), (int) (System.currentTimeMillis() / 1000));
+			register.register(Integer.valueOf(text));
 		}
 	}
 	

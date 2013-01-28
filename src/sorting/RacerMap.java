@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 import java.util.TreeMap;
 
 import racer.Racer;
+import racer.RacerTime;
 
 public class RacerMap {
 	private TreeMap<Integer, Racer> map;
@@ -29,35 +30,34 @@ public class RacerMap {
 		return r;
 	}
 
-	public void addStartTime(int id, int startTime) {
+	public void addStartTime(int id, String startTime) {
 		try {
 			Racer r = getRacer(id);
-			r.setStartTime(startTime);
+			r.addStartTime(new RacerTime(startTime));
 		} catch (NoSuchElementException e) {
 			System.err.println("NoSuchElementException:1 " + e.getMessage());
 		}
 	}
 
-	public void addFinishTime(int id, int finishTime) {
+	public void addFinishTime(int id, String finishTime) {
 		try {
 			Racer r = getRacer(id);
-			r.setFinishTime(finishTime);
+			r.addFinishTime(new RacerTime(finishTime));
 		} catch (NoSuchElementException e) {
 			System.err.println("NoSuchElementException:2 " + e.getMessage());
 		}
 
 	}
 
-	public int getResult(int id) {
-
-		int totalTime = 0;
+	public String getResult(int id) {
 		try {
 			Racer r = getRacer(id);
-			totalTime = r.getTotalTime();
+			return r.getTotalTime();
 		} catch (NoSuchElementException e) {
 			System.err.println("NoSuchElementException:3 " + e.getMessage());
 		}
-		return totalTime;
+		
+		return "--.--.--";
 	}
 	
 	public void writeToFile(String filename) {

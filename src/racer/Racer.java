@@ -8,8 +8,6 @@ import java.util.ArrayList;
  */
 public class Racer {
 	private int startNumber;
-	private int startTime;
-	private int finishTime;
 	private ArrayList<RacerTime> startTimes;
 	private ArrayList<RacerTime> finishTimes;
 	private String name;

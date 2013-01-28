@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Observable;
 
 import racer.Racer;
+import racer.RacerTime;
 
 /**
  * A class representing a register (aka a program that registers racers at the
@@ -39,9 +40,9 @@ public class Register extends Observable {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,true));
 			String text = racer.getStartNumber() + "; ";
 			if (start) {
-				text += Integer.toString(racer.getStartTime());
+				text += racer.getStartTime();
 			} else {
-				text += Integer.toString(racer.getFinishTime());
+				text += racer.getFinishTime();
 			}
 			writer.append(text);
 
@@ -71,21 +72,38 @@ public class Register extends Observable {
 	 * 
 	 * @param startNumber
 	 *            The start number of the driver to register.
+	 */
+	public void register(int startNumber) {
+		racer = new Racer(startNumber);
+		if (start) {
+			racer.addStartTime(new RacerTime());
+			writeToFile("start.txt");
+		} else {
+			racer.addFinishTime(new RacerTime());
+			writeToFile("finish.txt");
+		}
+	}
+
+	/**
+	 * Registers a new time for a racer with the provided start number.
+	 * 
+	 * @param startNumber
+	 *            The start number of the driver to register.
 	 * @param time
 	 *            The time to register.
 	 */
-	public void register(int startNumber, int time) {
+	public void register(int startNumber, String time) {
 		racer = new Racer(startNumber);
 		if (start) {
-			racer.setStartTime(time);
+			racer.addStartTime(new RacerTime(time));
 			writeToFile("start.txt");
 		} else {
-			racer.setFinishTime(time);
+			racer.addFinishTime(new RacerTime(time));
 			writeToFile("finish.txt");
 		}
 	}
 	
 	public static void main(String[] args) {
-		new Register(false).register(1, (int) (System.currentTimeMillis() / 1000));
+		new Register(false).register(1);
 	}
 }
