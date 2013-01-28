@@ -2,10 +2,9 @@ package gui;
 
 import java.awt.BorderLayout;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+
+import registration.Register;
 
 public class RegisterFrame extends JFrame{
 	StartNbrField startNbrfield;
@@ -17,8 +16,10 @@ public class RegisterFrame extends JFrame{
 		setSize(640,480);
 		setLayout(new BorderLayout());
 		
+		Register register = new Register(false);
+		
 		statusArea = new StatusArea();
-		startNbrfield = new StartNbrField(statusArea);
+		startNbrfield = new StartNbrField(register, statusArea);
 		registerButton = new RegisterButton(startNbrfield);
 		
 		add(startNbrfield,BorderLayout.CENTER);
