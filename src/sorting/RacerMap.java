@@ -85,9 +85,17 @@ public class RacerMap {
 		for (String s : finish.keySet()) {
 			Racer racer = new Racer(s);
 			racer.addFinishTime(new RacerTime(finish.get(s)));
-			racer.addStartTime(new RacerTime(start.get(s)));
 			addRacerToMap(racer);
 		}
-
+		for (String s : start.keySet()) {
+			Racer racer;
+			if (map.containsKey(s)) {
+				racer = map.get(s);
+			} else {
+				racer = new Racer(s);
+				addRacerToMap(racer);
+			}
+			racer.addStartTime(new RacerTime(start.get(s)));
+		}
 	}
 }
