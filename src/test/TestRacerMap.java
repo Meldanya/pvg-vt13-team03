@@ -3,9 +3,7 @@
  */
 package test;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.Map;
+import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
@@ -16,13 +14,14 @@ import sorting.RacerMap;
 
 /**
  * @author dat11ge1
- *
+ * 
  */
 public class TestRacerMap {
 	private RacerMap map;
 	private Racer testRacer1;
 	private Racer testRacer2;
 	private Racer testRacer3;
+
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -41,39 +40,45 @@ public class TestRacerMap {
 	@After
 	public void tearDown() throws Exception {
 	}
-	
+
 	@Test
 	public void testEmptyMap() {
-		assertEquals(0, map.size());
-	    }
-	@Test
-	public void testAddRacerToMap(){
-		map.addRacerToMap(testRacer1);
-		assertEquals(1, map.size());
+		assertEquals("Map has wrong size", 0, map.size());
 	}
-	
+
+	@Test
+	public void testAddRacerToMap() {
+		map.addRacerToMap(testRacer1);
+		assertEquals("Map has wrong size", 1, map.size());
+	}
+
 	@Test
 	public void testAddStartTime() {
 		map.addRacerToMap(testRacer1);
 		map.addStartTime(1, 1000);
-		assertEquals(1000, map.getRacer(1).getStartTime());
+		assertEquals("Wrong start time", 1000, map.getRacer(1).getStartTime());
 	}
+
 	@Test
 	public void testAddFinishTime() {
 		map.addRacerToMap(testRacer1);
 		map.addFinishTime(1, 2000);
-		assertEquals(2000, map.getRacer(1).getFinishTime());
-		
+		assertEquals("Wrong finish time", 2000, map.getRacer(1).getFinishTime());
+
 	}
+
 	@Test
 	public void testGetResult() {
 		map.addRacerToMap(testRacer1);
 		map.addStartTime(1, 1000);
 		map.addFinishTime(1, 2000);
-		assertEquals(1000,map.getResult(1));
-		
+		assertEquals("Wrong result", 1000, map.getResult(1));
 	}
 	
-	
-	
+	@Test
+	public void testGetRacer() {
+		map.addRacerToMap(testRacer1);
+		assertSame("Wrong racer returned", testRacer1, map.getRacer(1));
 	}
+
+}
