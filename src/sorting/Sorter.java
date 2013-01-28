@@ -3,7 +3,7 @@ package sorting;
 import java.util.Map;
 
 import racer.Racer;
-import registration.RacerSet;
+import registration.RacerMap;
 import registration.ResultWriter;
 
 /**
@@ -12,10 +12,10 @@ import registration.ResultWriter;
  */
 public class Sorter {
 
-	private RacerSet racers;
+	private RacerMap racers;
 	
 	public Sorter() {
-		racers = new RacerSet();
+		racers = new RacerMap();
 		
 		read();
 		//sort();
@@ -31,7 +31,7 @@ public class Sorter {
 			Racer racer = new Racer(Integer.parseInt(s));
 			racer.setFinishTime(Integer.parseInt(finish.get(s)));
 			racer.setStartTime(Integer.parseInt(start.get(s)));
-			racers.addRacerToSet(racer);
+			racers.addRacerToMap(racer);
 		}
 
 	}

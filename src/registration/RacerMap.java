@@ -4,56 +4,53 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.TreeMap;
 
 import racer.Racer;
 import sorting.Reader;
 
-public class RacerSet {
-	private HashSet<Racer> set;
+public class RacerMap {
+	private TreeMap<Integer, Racer> map;
 
-	public RacerSet() {
-		set = new HashSet<Racer>();
+	public RacerMap() {
+		map = new TreeMap<Integer, Racer>();
 	}
 
 	public int size() {
-		// TODO Auto-generated method stub
-		return set.size();
+	
+		return map.size();
 	}
 
-	public boolean addRacerToSet(Racer racer) {
+	public void addRacerToMap(Racer racer) {
 		// TODO Auto-generated method stub
-		return set.add(racer);
+		map.put(racer.getStartNumber(), racer);
 	}
 
-	private Racer getRacer(int id) {
-		Racer r = new Racer(id);
-		for (Racer racer : set) {
-			if (r.equals(racer)) {
-				return racer;
-			}
+	public Racer getRacer(int id) {
+		Racer r = map.get(id);
+		if(r==null){
+			throw new NoSuchElementException();
 		}
-		throw new NoSuchElementException();
-
+		return r;
 	}
 
-	public boolean addStartTime(int id, int startTime) {
+	public void addStartTime(int id, int startTime) {
 		try {
 			Racer r = getRacer(id);
 			r.setStartTime(startTime);
 		} catch (NoSuchElementException e) {
 			System.err.println("NoSuchElementException:1 " + e.getMessage());
 		}
-		return true;
 	}
 
-	public boolean addFinishTime(int id, int finishTime) {
+	public void addFinishTime(int id, int finishTime) {
 		try {
 			Racer r = getRacer(id);
 			r.setFinishTime(finishTime);
 		} catch (NoSuchElementException e) {
 			System.err.println("NoSuchElementException:2 " + e.getMessage());
 		}
-		return true;
+
 	}
 
 	public int getResult(int id) {
@@ -69,11 +66,7 @@ public class RacerSet {
 	}
 
 	public Map<Integer, Racer> toMap() {
-		Map<Integer, Racer> map = new HashMap<Integer, Racer>();
-		for (Racer r : set) {
-			map.put(r.getStartNumber(), r);
-
-		}
+		
 		return map;
 	}
 
