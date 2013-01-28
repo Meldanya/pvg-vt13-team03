@@ -70,8 +70,26 @@ public class Racer {
 	 */
 	@Override
 	public String toString() {
-		return startNumber + "; " + name +"; " + getTotalTime() + "; " + getStartTime() + "; "
-				+ getFinishTime();
+		StringBuilder sb = new StringBuilder();
+		sb.append(startNumber);
+		sb.append("; ");
+		sb.append(name);
+		sb.append("; ");
+		sb.append(getTotalTime());
+		sb.append("; ");
+		sb.append(getStartTime());
+		sb.append("; ");
+		sb.append(getFinishTime());
+		
+		if (startTimes.size() > 1) {
+			sb.append("; Flera starttider?");
+			for(int i = 1; i < startTimes.size(); i++) {
+				sb.append(" ");
+				sb.append(startTimes.get(i));
+			}
+		}
+		
+		return sb.toString();
 	}
 
 	public boolean equals(Object obj) {
