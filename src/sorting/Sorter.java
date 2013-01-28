@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Map;
 
 import racer.Racer;
 
@@ -39,6 +40,10 @@ public class Sorter {
 
 		return null;
 	}
+	
+	public Map<String, String> readInputFile(String fileName){
+		return null;
+	}
 
 	/**
 	 * The method that performs the reading and sorting.
@@ -59,7 +64,7 @@ public class Sorter {
 			System.out.println("Couldn't find file: " + e.toString());
 			System.exit(-1);
 		} catch (IOException e) {
-			System.out.println("Filed while reading file: " + e.toString());
+			System.out.println("Failed while reading file: " + e.toString());
 			System.exit(-1);
 		}
 	}
