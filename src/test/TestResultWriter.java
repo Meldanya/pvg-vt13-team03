@@ -17,7 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import racer.Racer;
-import registration.ResultWriter;
+import sorting.ResultWriter;
 
 /**
  * @author dat11rla

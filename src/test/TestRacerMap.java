@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import racer.Racer;
-import registration.RacerMap;
+import sorting.RacerMap;
 
 /**
  * @author dat11ge1
