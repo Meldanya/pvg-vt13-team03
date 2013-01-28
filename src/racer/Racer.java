@@ -50,4 +50,13 @@ public class Racer {
 	public String toString() {
 		return startNumber + "; " + getTotalTime() + "; " + startTime + "; " + finishTime;
 	}
+	
+	public boolean equals(Object obj){
+		if(((Racer)obj).getStartNumber() == startNumber){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 }
