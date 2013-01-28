@@ -4,10 +4,8 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Map;
 
 import org.junit.After;
 import org.junit.Before;
@@ -72,6 +70,15 @@ public class TestRacerSet {
 		set.addFinishTime(1, 2000);
 		assertEquals(1000,set.getResult(1));
 		
+	}
+	
+	@Test
+	public void testToHashMap() {
+		set.addRacerToSet(testRacer1);
+		set.addRacerToSet(testRacer2);
+		set.addRacerToSet(testRacer3);
+		Map<Integer, Racer> map = set.toMap();
+		assertEquals(3, map.size());
 	}
 	
 	}

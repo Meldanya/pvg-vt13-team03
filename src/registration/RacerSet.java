@@ -2,6 +2,7 @@ package registration;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 import racer.Racer;
@@ -65,8 +66,13 @@ public class RacerSet {
 		return totalTime;
 	}
 
-	public HashMap<Integer, Racer> toHashMap() {
-		return null;
+	public Map<Integer, Racer> toMap() {
+		Map<Integer, Racer> map = new HashMap<Integer, Racer>();
+		for (Racer r : set) {
+			map.put(r.getStartNumber(), r);
+
+		}
+		return map;
 	}
 
 }
