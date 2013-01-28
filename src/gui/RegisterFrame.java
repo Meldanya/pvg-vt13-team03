@@ -6,6 +6,11 @@ import javax.swing.JFrame;
 
 import registration.Register;
 
+/**
+ * @author dat11ajo
+ *
+ * Main class that launches the GUI.
+ */
 public class RegisterFrame extends JFrame{
 	StartNbrField startNbrField;
 	StatusArea statusArea;
@@ -29,9 +34,6 @@ public class RegisterFrame extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		new RegisterFrame();
 	}

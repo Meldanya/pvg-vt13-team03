@@ -14,6 +14,7 @@ import racer.Racer;
 public class Register extends Observable {
 	private Racer racer;
 	private boolean start;
+	private String lastLine;
 
 	/**
 	 * Creates a new Register instance with the boolean parameter specifying
@@ -47,11 +48,22 @@ public class Register extends Observable {
 			writer.newLine();
 			writer.close();
 			
+			lastLine=text;
+			
 			setChanged();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		notifyObservers();
+	}
+	
+	/**
+	 * Returns the last written line
+	 * 
+	 * @return the last written line
+	 */
+	public String lastLine(){
+		return lastLine;
 	}
 
 	/**

@@ -9,10 +9,17 @@ import javax.swing.JTextArea;
 import registration.Register;
 
 
+/**
+ * @author dat11ajo
+ * 
+ * This class is used to give feedback to the user as to what has happened.
+ */
 public class StatusArea extends JScrollPane implements Observer{
 	JTextArea area;
 	StartNbrField field;
+	Register register;
 	public StatusArea(Register register, StartNbrField field){
+		this.register = register;
 		register.addObserver(this);
 		area = new JTextArea(4,0);
 		this.field = field;
@@ -20,17 +27,16 @@ public class StatusArea extends JScrollPane implements Observer{
 		this.setViewportView(area);
 	}
 	
-	protected void printStartNbr(String startNbr, long time){
-		println("Startnummer " + startNbr + " har fått tiden " + time + " registrerad.");
-	}
-	
+	/**
+	 * @param line the String that shall be written to the bottom of the text area
+	 */
 	private void println(String line){
 		area.append("\n" + line);
 	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		printStartNbr(field.getText(),System.currentTimeMillis() / 1000);
+		println(register.lastLine());
 		field.setText("");
 	}
 }
