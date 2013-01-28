@@ -26,7 +26,7 @@ public class Sorter {
 		Reader reader = new Reader();
 		Map<String, String> finish = reader.readFromFile("finish.txt");
 		Map<String, String> start = reader.readFromFile("start.txt");
-
+		
 		for (String s : finish.keySet()) {
 			Racer racer = new Racer(Integer.parseInt(s));
 			racer.setFinishTime(Integer.parseInt(finish.get(s)));
