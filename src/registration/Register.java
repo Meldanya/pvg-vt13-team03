@@ -3,6 +3,7 @@ package registration;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Observable;
 
 import racer.Racer;
 
@@ -10,7 +11,7 @@ import racer.Racer;
  * A class representing a register (aka a program that registers racers at the
  * start and finish line).
  */
-public class Register {
+public class Register extends Observable {
 	private Racer racer;
 	private boolean start;
 
@@ -43,9 +44,12 @@ public class Register {
 			}
 			writer.newLine();
 			writer.close();
+			
+			setChanged();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		notifyObservers();
 	}
 
 	/**

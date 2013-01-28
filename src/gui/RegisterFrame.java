@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import registration.Register;
 
 public class RegisterFrame extends JFrame{
-	StartNbrField startNbrfield;
+	StartNbrField startNbrField;
 	StatusArea statusArea;
 	RegisterButton registerButton;
 	
@@ -18,11 +18,11 @@ public class RegisterFrame extends JFrame{
 		
 		Register register = new Register(false);
 		
-		statusArea = new StatusArea();
-		startNbrfield = new StartNbrField(register, statusArea);
-		registerButton = new RegisterButton(startNbrfield);
+		startNbrField = new StartNbrField(register);
+		statusArea = new StatusArea(register, startNbrField);
+		registerButton = new RegisterButton(startNbrField);
 		
-		add(startNbrfield,BorderLayout.CENTER);
+		add(startNbrField,BorderLayout.CENTER);
 		add(statusArea,BorderLayout.PAGE_END);
 		add(registerButton,BorderLayout.LINE_END);
 		setVisible(true);
