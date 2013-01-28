@@ -26,7 +26,7 @@ public class StartNbrField extends JTextField implements ActionListener{
 		if (text.equals("")){
 			
 		} else {
-			register.register(Integer.valueOf(text));
+			register.register(text);
 		}
 	}
 	

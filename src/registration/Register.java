@@ -73,7 +73,7 @@ public class Register extends Observable {
 	 * @param startNumber
 	 *            The start number of the driver to register.
 	 */
-	public void register(int startNumber) {
+	public void register(String startNumber) {
 		racer = new Racer(startNumber);
 		if (start) {
 			racer.addStartTime(new RacerTime());
@@ -92,7 +92,7 @@ public class Register extends Observable {
 	 * @param time
 	 *            The time to register.
 	 */
-	public void register(int startNumber, String time) {
+	public void register(String startNumber, String time) {
 		racer = new Racer(startNumber);
 		if (start) {
 			racer.addStartTime(new RacerTime(time));
@@ -104,6 +104,6 @@ public class Register extends Observable {
 	}
 	
 	public static void main(String[] args) {
-		new Register(false).register(1);
+		new Register(false).register("1");
 	}
 }

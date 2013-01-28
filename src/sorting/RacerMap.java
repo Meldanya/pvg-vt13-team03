@@ -8,10 +8,10 @@ import racer.Racer;
 import racer.RacerTime;
 
 public class RacerMap {
-	private TreeMap<Integer, Racer> map;
+	private TreeMap<String, Racer> map;
 
 	public RacerMap() {
-		map = new TreeMap<Integer, Racer>();
+		map = new TreeMap<String, Racer>();
 	}
 
 	public int size() {
@@ -22,7 +22,7 @@ public class RacerMap {
 		map.put(racer.getStartNumber(), racer);
 	}
 
-	public Racer getRacer(int id) {
+	public Racer getRacer(String id) {
 		Racer r = map.get(id);
 		if (r == null) {
 			throw new NoSuchElementException();
@@ -30,7 +30,7 @@ public class RacerMap {
 		return r;
 	}
 
-	public void setName(int id, String name) {
+	public void setName(String id, String name) {
 
 		try{
 		Racer r = getRacer(id);
@@ -41,7 +41,7 @@ public class RacerMap {
 
 	}
 
-	public void addStartTime(int id, String startTime) {
+	public void addStartTime(String id, String startTime) {
 		try {
 			Racer r = getRacer(id);
 			r.addStartTime(new RacerTime(startTime));
@@ -50,7 +50,7 @@ public class RacerMap {
 		}
 	}
 
-	public void addFinishTime(int id, String finishTime) {
+	public void addFinishTime(String id, String finishTime) {
 		try {
 			Racer r = getRacer(id);
 			r.addFinishTime(new RacerTime(finishTime));
@@ -60,7 +60,7 @@ public class RacerMap {
 
 	}
 
-	public String getResult(int id) {
+	public String getResult(String id) {
 		try {
 			Racer r = getRacer(id);
 			return r.getTotalTime();
@@ -83,7 +83,7 @@ public class RacerMap {
 		Map<String, String> start = reader.readFromFile(startFilename);
 		
 		for (String s : finish.keySet()) {
-			Racer racer = new Racer(Integer.parseInt(s));
+			Racer racer = new Racer(s);
 			racer.addFinishTime(new RacerTime(finish.get(s)));
 			racer.addStartTime(new RacerTime(start.get(s)));
 			addRacerToMap(racer);

@@ -10,11 +10,11 @@ import java.util.TreeSet;
 import racer.Racer;
 
 public class ResultWriter {
-	private Map<Integer, Racer> data;
+	private Map<String, Racer> data;
 	private String filename;
 	private String header;
 	
-	public ResultWriter(Map<Integer, Racer> data, String filename) {
+	public ResultWriter(Map<String, Racer> data, String filename) {
 		this.data = data;
 		this.filename = filename;
 		this.header = "StartNr; Namn; TotalTid; StartTider; Måltider";
@@ -25,7 +25,7 @@ public class ResultWriter {
 	 * is found in Racer class.
 	 */
 	public void writeToFile() {
-		Set<Integer> keys = new TreeSet<Integer>(data.keySet());
+		Set<String> keys = new TreeSet<String>(data.keySet());
 		
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
@@ -33,7 +33,7 @@ public class ResultWriter {
 			writer.write(header);
 			writer.newLine();
 			
-			for (Integer key : keys) {
+			for (String key : keys) {
 				writer.write(data.get(key).toString());
 				writer.newLine();
 			}

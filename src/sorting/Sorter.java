@@ -31,7 +31,7 @@ public class Sorter {
 		names.remove("StartNo");
 		
 		for(String s : names.keySet()){
-			racers.setName(Integer.parseInt(s), names.get(s));
+			racers.setName(s, names.get(s));
 		}
 		
 	}
