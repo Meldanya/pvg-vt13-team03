@@ -35,13 +35,15 @@ public class Register extends Observable {
 	 */
 	public void writeToFile(String fileName) {
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-			writer.write(racer.getStartNumber() + "; ");
+			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,true));
+			String text = racer.getStartNumber() + "; ";
 			if (start) {
-				writer.write(Integer.toString(racer.getStartTime()));
+				text += Integer.toString(racer.getStartTime());
 			} else {
-				writer.write(Integer.toString(racer.getFinishTime()));
+				text += Integer.toString(racer.getFinishTime());
 			}
+			writer.append(text);
+
 			writer.newLine();
 			writer.close();
 			
