@@ -36,7 +36,7 @@ public class TestResultWriter {
 	@Before
 	public void setUp() throws Exception {
 		filename = "test.txt";
-		header = "StartNr; Totaltid; Starttid; Måltid\n";
+		header = "StartNr; Totaltid; Starttid; Måltid";
 		map = new HashMap<Integer, Racer>();
 		writer = new ResultWriter(map, filename);
 		
@@ -86,14 +86,32 @@ public class TestResultWriter {
 		map.put(racer.getStartNumber(), racer);
 		writer.writeToFile();
 		
-		assertEquals("Result doesn't match", header + racer.toString() + "\n", readFile());
+		assertEquals("Result doesn't match", header + "\n" + racer.toString() + "\n", readFile());
+	}
+
+	@Test
+	public void testMultipleRacers() throws IOException {
+		Racer racer1 = new Racer(1);
+		Racer racer2 = new Racer(2);
+		Racer racer3 = new Racer(3);
+		String expected = header + "\n" +
+				racer1.toString() + "\n" +
+				racer2.toString() + "\n" +
+				racer3.toString() + "\n";
+
+		map.put(racer1.getStartNumber(), racer1);
+		map.put(racer3.getStartNumber(), racer3);
+		map.put(racer2.getStartNumber(), racer2);
+		writer.writeToFile();
+
+		assertEquals("Result doesn't match", expected, readFile());
 	}
 
 	@Test
 	public void testEmpty() throws IOException {
 		writer.writeToFile();
 		
-		assertEquals("Result not empty", header, readFile());
+		assertEquals("Result not empty", header + "\n", readFile());
 	}
 
 }
