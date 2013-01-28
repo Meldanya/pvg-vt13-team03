@@ -10,84 +10,44 @@ import java.util.HashMap;
 import java.util.Map;
 
 import racer.Racer;
+import registration.RacerSet;
 
 /**
  * A class representing a sorter. It reads start.txt and finish.txt and outputs
  * result.txt but only for one driver.
  */
 public class Sorter {
-	private Racer racer;
-
-	/**
-	 * A private helper method for reading the first line of a file and split
-	 * the line on "; ".
-	 * 
-	 * @param fileName
-	 *            The file name to read
-	 * @return The first line split into a String array.
-	 */
-	private String[] readFile(String fileName) {
-		BufferedReader reader;
-		try {
-			reader = new BufferedReader(new FileReader(fileName));
-			String[] result = reader.readLine().split("; ");
-			reader.close();
-			return result;
-		} catch (FileNotFoundException e) {
-			System.out.println("Couldn't find " + fileName);
-		} catch (IOException e) {
-			System.out.println("Failed while reading " + fileName);
-		}
-
-		return null;
-	}
-	
-	public Map<String, String> readInputFile(String fileName){
-		
-		Map<String, String> map = new HashMap<String, String>();
-		BufferedReader reader;
-		try {
-			reader = new BufferedReader(new FileReader(fileName));
-			
-			String result = null;
-			while((result = reader.readLine()) != null){
-				String[] tempArray = result.split("; ");
-				map.put(tempArray[0], tempArray[1]);
-			}
-			
-			reader.close();
-			return map;
-		} catch (FileNotFoundException e) {
-			System.out.println("Couldn't find " + fileName);
-		} catch (IOException e) {
-			System.out.println("Failed while reading " + fileName);
-		}
-
-		return null;
-	}
 
 	/**
 	 * The method that performs the reading and sorting.
 	 */
 	public void sort() {
-		try {
-			String[] finishFileContent = readFile("finish.txt");
-			String[] startFileContent = readFile("start.txt");
 
-			racer = new Racer(Integer.parseInt(startFileContent[0]));
-			racer.setStartTime(Integer.parseInt(startFileContent[1]));
-			racer.setFinishTime(Integer.parseInt(finishFileContent[1]));
+		RacerSet racers = new RacerSet();
+		Reader reader = new Reader();
 
-			BufferedWriter resultWriter = new BufferedWriter(new FileWriter("result.txt"));
-			resultWriter.write(racer.toString());
-			resultWriter.close();
-		} catch (FileNotFoundException e) {
-			System.out.println("Couldn't find file: " + e.toString());
-			System.exit(-1);
-		} catch (IOException e) {
-			System.out.println("Failed while reading file: " + e.toString());
-			System.exit(-1);
+		Map<String, String> finish = reader.readFromFile("finish.txt");
+		Map<String, String> start = reader.readFromFile("start.txt");
+
+		for (String s : finish.keySet()) {
+			Racer racer = new Racer(Integer.parseInt(s));
+			racer.setFinishTime(Integer.parseInt(finish.get(s)));
+			racer.setStartTime(Integer.parseInt(start.get(s)));
+			racers.addRacerToSet(racer);
 		}
+
+
+		try {		
+			BufferedWriter resultWriter = new BufferedWriter(new FileWriter(
+				"result.txt"));
+			resultWriter.write("NYI");
+			resultWriter.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
 	}
 
 	public static void main(String[] args) {
