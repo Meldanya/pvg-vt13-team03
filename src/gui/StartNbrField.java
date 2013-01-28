@@ -17,7 +17,13 @@ public class StartNbrField extends JTextField implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		area.printStartNbr(this.getText(),System.currentTimeMillis());
+		String text = this.getText();
+		text = text.trim();
+		if (text.equals("")){
+			
+		} else {
+			area.printStartNbr(text,System.currentTimeMillis());
+		}
 		this.setText("");
 	}
 	
