@@ -23,17 +23,7 @@ public class Sorter {
 	}
 
 	private void read() {
-		Reader reader = new Reader();
-		Map<String, String> finish = reader.readFromFile("finish.txt");
-		Map<String, String> start = reader.readFromFile("start.txt");
-		
-		for (String s : finish.keySet()) {
-			Racer racer = new Racer(Integer.parseInt(s));
-			racer.addFinishTime(new RacerTime(finish.get(s)));
-			racer.addStartTime(new RacerTime(start.get(s)));
-			racers.addRacerToMap(racer);
-		}
-
+		racers.readFromFile("start.txt", "finish.txt");
 	}
 	
 	private void readNames(){
