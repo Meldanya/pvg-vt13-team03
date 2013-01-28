@@ -1,8 +1,5 @@
 package sorting;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.util.HashMap;
 import java.util.Map;
 
 import racer.Racer;
@@ -48,7 +45,7 @@ public class Sorter {
 
 	private void write() {
 		
-		ResultWriter writer = new ResultWriter(racers.toHashMap(), "result.txt");
+		ResultWriter writer = new ResultWriter(racers.toMap(), "result.txt");
 		writer.writeToFile();
 		
 	}

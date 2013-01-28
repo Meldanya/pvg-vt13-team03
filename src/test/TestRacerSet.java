@@ -73,7 +73,7 @@ public class TestRacerSet {
 	}
 	
 	@Test
-	public void testToHashMap() {
+	public void testToMap() {
 		set.addRacerToSet(testRacer1);
 		set.addRacerToSet(testRacer2);
 		set.addRacerToSet(testRacer3);
