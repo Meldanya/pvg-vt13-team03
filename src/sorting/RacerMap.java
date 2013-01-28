@@ -75,4 +75,27 @@ public class RacerMap {
 		ResultWriter writer = new ResultWriter(map, filename);
 		writer.writeToFile();
 	}
+	
+	public void readFromFile(String startFilename, String finishFilename) {
+
+		Reader reader = new Reader();
+		Map<String, String> finish = reader.readFromFile(finishFilename);
+		Map<String, String> start = reader.readFromFile(startFilename);
+		
+		for (String s : finish.keySet()) {
+			Racer racer = new Racer(s);
+			racer.addFinishTime(new RacerTime(finish.get(s)));
+			addRacerToMap(racer);
+		}
+		for (String s : start.keySet()) {
+			Racer racer;
+			if (map.containsKey(s)) {
+				racer = map.get(s);
+			} else {
+				racer = new Racer(s);
+				addRacerToMap(racer);
+			}
+			racer.addStartTime(new RacerTime(start.get(s)));
+		}
+	}
 }
