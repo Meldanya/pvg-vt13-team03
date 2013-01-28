@@ -15,6 +15,7 @@ public class TestRacer {
 	@Before
 	public void setUp() throws Exception {
 		racer = new Racer(1);
+		racer.setName("Kalle");
 	}
 
 	@After
@@ -31,7 +32,7 @@ public class TestRacer {
 	@Test
 	public void testTimeFormatting() {
 		racer.addStartTime(new RacerTime("11.12.13"));
-		assertEquals("Formatting is wrong", "1; --.--.--; 11.12.13; Sluttid?", racer.toString());
+		assertEquals("Formatting is wrong", "1; Kalle; --.--.--; 11.12.13; Sluttid?", racer.toString());
 	}
 
 	@Test
