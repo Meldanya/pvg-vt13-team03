@@ -53,16 +53,16 @@ public class TestRacerSet {
 	}
 	
 	@Test
-	public void testAddStartTime(int 1, int 1000) {
-		assertEquals(true,set.addStartTime(id, startTime));
+	public void testAddStartTime() {
+		assertEquals(true,set.addStartTime(1, 1000));
 	}
 	@Test
-	public void testAddFinishTime(int 1, int 2000) {
-		assertEquals(true, set.addFinishTime(id, finishTime));
+	public void testAddFinishTime() {
+		assertEquals(true, set.addFinishTime(1, 2000));
 		
 	}
 	@Test
-	public void testGetResult(int 1) {
+	public void testGetResult() {
 		assertEquals(1000,set.getResult(1));
 		
 	}
