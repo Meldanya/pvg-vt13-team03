@@ -9,6 +9,11 @@ import javax.swing.JTextArea;
 import registration.Register;
 
 
+/**
+ * @author dat11ajo
+ * 
+ * This class is used to give feedback to the user as to what has happened.
+ */
 public class StatusArea extends JScrollPane implements Observer{
 	JTextArea area;
 	StartNbrField field;
@@ -22,6 +27,9 @@ public class StatusArea extends JScrollPane implements Observer{
 		this.setViewportView(area);
 	}
 	
+	/**
+	 * @param line the String that shall be written to the bottom of the text area
+	 */
 	private void println(String line){
 		area.append("\n" + line);
 	}
