@@ -1,5 +1,7 @@
 package racer;
 
+import java.util.ArrayList;
+
 /**
  * A class representing a racer (aka driver) with a start number, start time and
  * finish time.
@@ -8,12 +10,14 @@ public class Racer {
 	private int startNumber;
 	private int startTime;
 	private int finishTime;
+	private ArrayList<RacerTime> startTimes;
+	private ArrayList<RacerTime> finishTimes;
 	private String name;
 
 	public Racer(int startNumber) {
 		this.startNumber = startNumber;
-		this.startTime = -1;
-		this.finishTime = -1;
+		this.startTimes = new ArrayList<RacerTime>();
+		this.finishTimes = new ArrayList<RacerTime>();
 	}
 	
 	public void setName(String name){
@@ -28,24 +32,39 @@ public class Racer {
 		this.startNumber = startNumber;
 	}
 
-	public int getStartTime() {
-		return startTime;
+	public String getStartTime() {
+		if (startTimes.size() > 0) {
+			return startTimes.get(0).toString();
+		}
+		
+		return "Starttid?";
 	}
 
-	public void setStartTime(int startTime) {
-		this.startTime = startTime;
+	public void addStartTime(RacerTime startTime) {
+		this.startTimes.add(startTime);
 	}
 
-	public int getFinishTime() {
-		return finishTime;
+	public String getFinishTime() {
+		if (finishTimes.size() > 0) {
+			return finishTimes.get(0).toString();
+		}
+
+		return "Sluttid?";
 	}
 
-	public void setFinishTime(int finishTime) {
-		this.finishTime = finishTime;
+	public void addFinishTime(RacerTime finishTime) {
+		this.finishTimes.add(finishTime);
 	}
 
-	public int getTotalTime() {
-		return finishTime - startTime;
+	public String getTotalTime() {
+		if (startTimes.size() < 1 || finishTimes.size() < 1) {
+			return "--.--.--";
+		}
+
+		RacerTime startTime = startTimes.get(0);
+		RacerTime finishTime = finishTimes.get(0);
+		
+		return startTime.getDifferenceTo(finishTime);
 	}
 
 	/**
@@ -53,16 +72,12 @@ public class Racer {
 	 */
 	@Override
 	public String toString() {
-		return startNumber + "; " + name +"; " + "--.--.--; " + startTime + "; "
-				+ finishTime;
+		return startNumber + "; " + name +"; " + getTotalTime() + "; " + getStartTime() + "; "
+				+ getFinishTime();
 	}
 
 	public boolean equals(Object obj) {
-		if (((Racer) obj).getStartNumber() == startNumber) {
-			return true;
-		} else {
-			return false;
-		}
+		return ((Racer) obj).startNumber == startNumber;
 	}
 
 }
