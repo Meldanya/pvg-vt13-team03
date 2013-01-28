@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 import racer.Racer;
+import sorting.Reader;
 
 public class RacerSet {
 	private HashSet<Racer> set;
@@ -56,6 +57,7 @@ public class RacerSet {
 	}
 
 	public int getResult(int id) {
+
 		int totalTime = 0;
 		try {
 			Racer r = getRacer(id);
