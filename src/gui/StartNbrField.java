@@ -6,6 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 import registration.Register;
 
+/**
+ * @author dat11ajo
+ * 
+ */
 public class StartNbrField extends JTextField implements ActionListener{
 	Register register;
 	public StartNbrField(Register register) {

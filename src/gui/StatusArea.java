@@ -12,16 +12,14 @@ import registration.Register;
 public class StatusArea extends JScrollPane implements Observer{
 	JTextArea area;
 	StartNbrField field;
+	Register register;
 	public StatusArea(Register register, StartNbrField field){
+		this.register = register;
 		register.addObserver(this);
 		area = new JTextArea(4,0);
 		this.field = field;
 		area.setEditable(false);
 		this.setViewportView(area);
-	}
-	
-	protected void printStartNbr(String startNbr, long time){
-		println("Startnummer " + startNbr + " har fått tiden " + time + " registrerad.");
 	}
 	
 	private void println(String line){
@@ -30,7 +28,7 @@ public class StatusArea extends JScrollPane implements Observer{
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		printStartNbr(field.getText(),System.currentTimeMillis() / 1000);
+		println(register.lastLine());
 		field.setText("");
 	}
 }
