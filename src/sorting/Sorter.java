@@ -28,7 +28,7 @@ public class Sorter {
 		Map<String, String> start = reader.readFromFile("start.txt");
 		
 		for (String s : finish.keySet()) {
-			Racer racer = new Racer(Integer.parseInt(s));
+			Racer racer = new Racer(s);
 			racer.addFinishTime(new RacerTime(finish.get(s)));
 			racer.addStartTime(new RacerTime(start.get(s)));
 			racers.addRacerToMap(racer);
@@ -41,7 +41,7 @@ public class Sorter {
 		names.remove("StartNo");
 		
 		for(String s : names.keySet()){
-			racers.setName(Integer.parseInt(s), names.get(s));
+			racers.setName(s, names.get(s));
 		}
 		
 	}

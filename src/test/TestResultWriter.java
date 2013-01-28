@@ -24,7 +24,7 @@ import sorting.ResultWriter;
  *
  */
 public class TestResultWriter {
-	private Map<Integer, Racer> map;
+	private Map<String, Racer> map;
 	private ResultWriter writer;
 	private String filename;
 	private String header;
@@ -36,7 +36,7 @@ public class TestResultWriter {
 	public void setUp() throws Exception {
 		filename = "resultat.txt";
 		header = "StartNr; Namn; TotalTid; StartTider; Måltider";
-		map = new TreeMap<Integer, Racer>();
+		map = new TreeMap<String, Racer>();
 		writer = new ResultWriter(map, filename);
 		
 		deleteTestFile();
@@ -80,7 +80,7 @@ public class TestResultWriter {
 
 	@Test
 	public void testOneRacer() throws IOException {
-		Racer racer = new Racer(1);
+		Racer racer = new Racer("1");
 		racer.setName("Anders Asson");
 		
 		map.put(racer.getStartNumber(), racer);
@@ -91,11 +91,11 @@ public class TestResultWriter {
 
 	@Test
 	public void testMultipleRacers() throws IOException {
-		Racer racer1 = new Racer(1);
+		Racer racer1 = new Racer("1");
 		racer1.setName("Anders Asson");
-		Racer racer2 = new Racer(2);
+		Racer racer2 = new Racer("2");
 		racer2.setName("Bengt Bsson");
-		Racer racer3 = new Racer(3);
+		Racer racer3 = new Racer("3");
 		racer3.setName("Chris Csson");
 		String expected = header + "\n" +
 				racer1.toString() + "\n" +

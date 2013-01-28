@@ -14,7 +14,7 @@ public class TestRacer {
 
 	@Before
 	public void setUp() throws Exception {
-		racer = new Racer(1);
+		racer = new Racer("1");
 		racer.setName("Kalle");
 	}
 
@@ -37,13 +37,13 @@ public class TestRacer {
 
 	@Test
 	public void testEquals() {
-		Racer racer2 = new Racer(1);
+		Racer racer2 = new Racer("1");
 		assertEquals("Racers not equal", racer, racer2);
 	}
 	
 	@Test
 	public void testNotEquals() {
-		Racer racer2 = new Racer(2);
+		Racer racer2 = new Racer("2");
 		assertFalse("Racers equal", racer.equals(racer2));
 	}
 }
