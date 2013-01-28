@@ -1,13 +1,10 @@
 package registration;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.TreeMap;
 
 import racer.Racer;
-import sorting.Reader;
 
 public class RacerMap {
 	private TreeMap<Integer, Racer> map;
@@ -17,18 +14,16 @@ public class RacerMap {
 	}
 
 	public int size() {
-	
 		return map.size();
 	}
 
 	public void addRacerToMap(Racer racer) {
-		// TODO Auto-generated method stub
 		map.put(racer.getStartNumber(), racer);
 	}
 
 	public Racer getRacer(int id) {
 		Racer r = map.get(id);
-		if(r==null){
+		if (r == null) {
 			throw new NoSuchElementException();
 		}
 		return r;
@@ -66,7 +61,6 @@ public class RacerMap {
 	}
 
 	public Map<Integer, Racer> toMap() {
-		
 		return map;
 	}
 

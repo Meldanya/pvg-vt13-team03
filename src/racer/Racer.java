@@ -38,7 +38,7 @@ public class Racer {
 	public void setFinishTime(int finishTime) {
 		this.finishTime = finishTime;
 	}
-	
+
 	public int getTotalTime() {
 		return finishTime - startTime;
 	}
@@ -48,13 +48,14 @@ public class Racer {
 	 */
 	@Override
 	public String toString() {
-		return startNumber + "; " + getTotalTime() + "; " + startTime + "; " + finishTime;
+		return startNumber + "; " + getTotalTime() + "; " + startTime + "; "
+				+ finishTime;
 	}
-	
-	public boolean equals(Object obj){
-		if(((Racer)obj).getStartNumber() == startNumber){
+
+	public boolean equals(Object obj) {
+		if (((Racer) obj).getStartNumber() == startNumber) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}

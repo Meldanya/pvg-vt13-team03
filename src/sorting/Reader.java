@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Reader {
-			
+
 	public Map<String, String> readFromFile(String fileName) {
 
 		Map<String, String> map = new HashMap<String, String>();
@@ -21,17 +21,17 @@ public class Reader {
 				String[] tempArray = result.split("; ");
 				map.put(tempArray[0], tempArray[1]);
 			}
-
 			reader.close();
 			return map;
 		} catch (FileNotFoundException e) {
 			System.out.println("Couldn't find " + fileName);
 		} catch (IOException e) {
 			System.out.println("Failed while reading " + fileName);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("File incorrectly formatted " + fileName);
 		}
 
 		return null;
 	}
-
 
 }

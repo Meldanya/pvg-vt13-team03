@@ -3,15 +3,14 @@
  */
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.junit.After;
 import org.junit.Before;
@@ -37,7 +36,7 @@ public class TestResultWriter {
 	public void setUp() throws Exception {
 		filename = "test.txt";
 		header = "StartNr; Totaltid; Starttid; Måltid";
-		map = new HashMap<Integer, Racer>();
+		map = new TreeMap<Integer, Racer>();
 		writer = new ResultWriter(map, filename);
 		
 		deleteTestFile();

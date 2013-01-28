@@ -34,7 +34,7 @@ public class TestSorterReader {
 	}
 
 	@Test
-	public void test() {
+	public void testReader() {
 		
 		Map<String, String> tempMap = new HashMap<String, String>();
 		tempMap.put("1", "1359359445");
@@ -43,11 +43,16 @@ public class TestSorterReader {
 		tempMap.put("4", "1359359448");
 	
 		Map<String, String> map = reader.readFromFile("teststart.txt");
-		
+
 		for(String s : map.keySet()){
 			assertEquals(tempMap.get(s), map.get(s));
 		}
 
+	}
+	
+	@Test
+	public void testIncorrectlyFormattedFile(){
+		assertEquals(reader.readFromFile("incorrectstart.txt"), null);
 	}
 
 }
