@@ -1,16 +1,13 @@
 package sorting;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import racer.Racer;
 import registration.RacerSet;
+import registration.ResultWriter;
 
 /**
  * A class representing a sorter. It reads start.txt and finish.txt and outputs
@@ -18,14 +15,18 @@ import registration.RacerSet;
  */
 public class Sorter {
 
-	/**
-	 * The method that performs the reading and sorting.
-	 */
-	public void sort() {
+	private RacerSet racers;
+	
+	public Sorter() {
+		racers = new RacerSet();
+		
+		read();
+		//sort();
+		write();
+	}
 
-		RacerSet racers = new RacerSet();
+	private void read() {
 		Reader reader = new Reader();
-
 		Map<String, String> finish = reader.readFromFile("finish.txt");
 		Map<String, String> start = reader.readFromFile("start.txt");
 
@@ -36,21 +37,24 @@ public class Sorter {
 			racers.addRacerToSet(racer);
 		}
 
-
-		try {		
-			BufferedWriter resultWriter = new BufferedWriter(new FileWriter(
-				"result.txt"));
-			resultWriter.write("NYI");
-			resultWriter.close();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-
 	}
 
+	/**
+	 * The method that performs the reading and sorting.
+	 */
+	private void sort() {
+	}
+	
+
+	private void write() {
+		
+		ResultWriter writer = new ResultWriter(racers.toHashMap(), "result.txt");
+		writer.writeToFile();
+		
+	}
+
+
 	public static void main(String[] args) {
-		new Sorter().sort();
+		new Sorter();
 	}
 }

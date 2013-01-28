@@ -14,7 +14,7 @@ public class ResultWriter {
 	private String filename;
 	private String header;
 	
-	public ResultWriter(Map data, String filename) {
+	public ResultWriter(Map<Integer, Racer> data, String filename) {
 		this.data = data;
 		this.filename = filename;
 		this.header = "StartNr; Totaltid; Starttid; Måltid";
