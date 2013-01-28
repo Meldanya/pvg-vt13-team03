@@ -17,6 +17,7 @@ public class Sorter {
 		racers = new RacerMap();
 		
 		read();
+		readNames();
 		//sort();
 		write();
 	}
@@ -33,6 +34,16 @@ public class Sorter {
 			racers.addRacerToMap(racer);
 		}
 
+	}
+	
+	private void readNames(){
+		Map<String, String> names = new Reader().readFromFile("namnfil.txt");
+		names.remove("StartNo");
+		
+		for(String s : names.keySet()){
+			racers.setName(Integer.parseInt(s), names.get(s));
+		}
+		
 	}
 
 	/**
