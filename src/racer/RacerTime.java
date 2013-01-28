@@ -27,22 +27,13 @@ public class RacerTime {
 		return format.format(time);
 	}
 	
-	/**
-	 * Has some strange behaviors, needs to be fixed
-	 * @param milliseconds
-	 * @return
-	 */
 	private String formatString(long milliseconds) {
-		int seconds;
-		int hours;
-		int minutes;
-		
-		seconds = (int)(milliseconds / 1000);
-		hours = seconds / 3600;
-		minutes = (seconds - hours * 60) / 60;
+		int seconds = (int)(milliseconds / 1000);
+		int hours = seconds / 3600;
+		int minutes = (seconds - hours * 3600) / 60;
 		seconds -= hours * 3600 + minutes * 60;
 		
-		return hours + "." + minutes + "." + seconds;
+		return String.format("%02d.%02d.%02d", hours, minutes, seconds);
 	}
 
 	public String getDifferenceTo(RacerTime compare) {
