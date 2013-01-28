@@ -1,4 +1,4 @@
 StartNr; Namn; TotalTid; StartTider; Måltider
-1; Anders Asson; 0; -1; -1
-2; Bengt Bsson; 0; -1; -1
-3; Chris Csson; 0; -1; -1
+1; Anders Asson; --.--.--; -1; -1
+2; Bengt Bsson; --.--.--; -1; -1
+3; Chris Csson; --.--.--; -1; -1

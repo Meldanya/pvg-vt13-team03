@@ -53,7 +53,7 @@ public class Racer {
 	 */
 	@Override
 	public String toString() {
-		return startNumber + "; " + name +"; " + getTotalTime() + "; " + startTime + "; "
+		return startNumber + "; " + name +"; " + "--.--.--; " + startTime + "; "
 				+ finishTime;
 	}
 
