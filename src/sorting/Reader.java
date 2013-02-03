@@ -9,6 +9,9 @@ import java.util.Map;
 
 public class Reader {
 
+    // TODO: klass utan tillstånd?
+    // TODO: ska Sorter eller RacerMap använda denna? Den första kräver att värdet är en sträng och 
+    // den andra att värdet är en lista av tider (formaterade som strängar)
 	public Map<String, String> readFromFile(String fileName) {
 
 		Map<String, String> map = new HashMap<String, String>();

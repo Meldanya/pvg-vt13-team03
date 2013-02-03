@@ -36,6 +36,7 @@ public class Register extends Observable {
 	 *            The file name to write to.
 	 */
 	public void writeToFile(String fileName) {
+	    // TODO: döp om till addResult eftersom den inte bara skriver till fil
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,true));
 			String text = racer.getStartNumber() + "; ";

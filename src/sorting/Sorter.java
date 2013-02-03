@@ -28,7 +28,8 @@ public class Sorter {
 	
 	private void readNames(){
 		Map<String, String> names = new Reader().readFromFile("namnfil.txt");
-		names.remove("StartNo");
+		names.remove("StartNo"); // TODO: kolla vad första raden innehåller istället.
+		// TODO: skicka in en Map<id, namn> till RacerMap istället
 		
 		for(String s : names.keySet()){
 			racers.setName(s, names.get(s));

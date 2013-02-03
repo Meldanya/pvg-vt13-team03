@@ -14,15 +14,19 @@ public class RacerMap {
 		map = new TreeMap<String, Racer>();
 	}
 
+	// TODO: används bara för test => ta bort. Hitta på nåt annat.
 	public int size() {
 		return map.size();
 	}
 
+	// TODO: döp om till addRacer
 	public void addRacerToMap(Racer racer) {
 		map.put(racer.getStartNumber(), racer);
 	}
 
+	// TODO: används bara internt och för test => private. Hitta på nåt annat för testen.
 	public Racer getRacer(String id) {
+	    // TODO: vem har sagt att vi ska ha felhantering här?
 		Racer r = map.get(id);
 		if (r == null) {
 			throw new NoSuchElementException();
@@ -31,11 +35,12 @@ public class RacerMap {
 	}
 
 	public void setName(String id, String name) {
-
+	    // TODO: ta emot Map<id, name> istället
 		try{
 		Racer r = getRacer(id);
 		r.setName(name);
 		} catch(Exception e){
+		    // TODO: varför catch Exception? Vad kan hända och vad kan inte hända?
 			e.printStackTrace();
 		}
 
@@ -46,6 +51,7 @@ public class RacerMap {
 			Racer r = getRacer(id);
 			r.addStartTime(new RacerTime(startTime));
 		} catch (NoSuchElementException e) {
+		    // TODO: varför felhantering här?
 			System.err.println("NoSuchElementException:1 " + e.getMessage());
 		}
 	}
@@ -55,6 +61,7 @@ public class RacerMap {
 			Racer r = getRacer(id);
 			r.addFinishTime(new RacerTime(finishTime));
 		} catch (NoSuchElementException e) {
+		    // TODO: varför felhantering här?
 			System.err.println("NoSuchElementException:2 " + e.getMessage());
 		}
 
@@ -65,6 +72,7 @@ public class RacerMap {
 			Racer r = getRacer(id);
 			return r.getTotalTime();
 		} catch (NoSuchElementException e) {
+		    // TODO: varför felhantering här?
 			System.err.println("NoSuchElementException:3 " + e.getMessage());
 		}
 
