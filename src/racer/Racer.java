@@ -7,6 +7,7 @@ import java.util.ArrayList;
  * finish time.
  */
 public class Racer {
+	private RacerClass classType;
 	private String startNumber;
 	private ArrayList<RacerTime> startTimes;
 	private ArrayList<RacerTime> finishTimes;
@@ -95,6 +96,18 @@ public class Racer {
 	public boolean equals(Object obj) {
 	    // TODO: generera en ordentlig equals och även hashCode
 		return ((Racer) obj).startNumber == startNumber;
+	}
+	
+	public RacerClass getClassType() {
+		return classType;
+	}
+
+	public void setClassType(RacerClass classType) {
+		this.classType = classType;
+	}
+	
+	public void setClassType(String className) {
+		this.classType = new RacerClass(className);
 	}
 
 }
