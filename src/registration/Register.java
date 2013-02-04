@@ -2,12 +2,13 @@ package registration;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Observable;
+
 import racer.Racer;
 import racer.RacerTime;
 
@@ -123,8 +124,18 @@ public class Register extends Observable {
 	 * @throws IOException If an I/O error occurs
 	 */
 	public void registerMassStart(String nameFile, String startTime) throws IOException  {
+		String path ="";
+		try {
+			path = Register.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		path = path.substring(0, path.length()- "registrering.jar".length()); //TODO fix this
+		path += nameFile;
+		System.out.println(path);
 		new FileWriter("start.txt").close(); // clear the file!
-		BufferedReader reader = new BufferedReader(new FileReader(nameFile));
+		BufferedReader reader = new BufferedReader(new FileReader(path));
 
 		reader.readLine();
 		while (reader.ready()) {

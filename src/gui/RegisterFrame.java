@@ -33,8 +33,8 @@ public class RegisterFrame extends AbstractFrame{
 		positionFrameInCenter();
 	}
 	
-	public static void main(String[] args) {
-		new RegisterFrame("Mål", false);
-	}
+//	public static void main(String[] args) {
+//		new RegisterFrame("Mål", false);
+//	}
 
 }
