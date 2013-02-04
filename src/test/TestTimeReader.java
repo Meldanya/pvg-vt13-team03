@@ -44,7 +44,7 @@ public class TestTimeReader {
 		tempMap.get("3").add("1359359447");
 		tempMap.put("4", new ArrayList<String>());
 		tempMap.get("4").add("1359359448");
-		Map<String, ArrayList<String>> map = reader.readFromTimeFile("teststart.txt");
+		Map<String, ArrayList<String>> map = reader.readFromTimeFile("src/test/teststart.txt");
 
 		for(String s : map.keySet()){
 			assertEquals(tempMap.get(s).size(), map.get(s).size());
@@ -54,7 +54,7 @@ public class TestTimeReader {
 	
 	@Test
 	public void testIncorrectlyFormattedFile(){
-		assertEquals(reader.readFromTimeFile("incorrectstart.txt"), null);
+		assertEquals(reader.readFromTimeFile("src/test/incorrectstart.txt"), null);
 	}
 
 }
