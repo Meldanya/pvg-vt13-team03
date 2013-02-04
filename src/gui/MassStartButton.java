@@ -3,9 +3,11 @@ package gui;
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Locale;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 import racer.RacerTime;
 import registration.Register;
@@ -22,6 +24,9 @@ public class MassStartButton extends AlternativeButton{
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		// Tvinga svenska namn på standardknappar i Swing
+		UIManager.put("OptionPane.yesButtonText","Ja");
+		UIManager.put("OptionPane.noButtonText","Nej");
 		int option = JOptionPane.showConfirmDialog(frame, "Vill du starta alla deltagare?", "", JOptionPane.YES_NO_OPTION);
 		if(option == JOptionPane.YES_OPTION) {
 			Register register = new Register(true);

@@ -45,7 +45,7 @@ public class Sorter {
 			// Kontrollerar att raden är ett startnummer
 			if (Character.isDigit(s.charAt(0))) {
 				try {
-					Racer racer = racers.getRacer(names.get(s));
+					Racer racer = racers.getRacer(s);
 					
 					racer.setName(names.get(s));
 					racer.setClassType(currentClass);

@@ -83,7 +83,7 @@ public class TestResultWriter {
 		racer.setName("Anders Asson");
 		
 		map.addRacerToMap(racer);
-		writer.writeToFile(5);  //TODO should not be 5
+		writer.writeToFile(1);
 		
 		assertEquals("Result doesn't match", "\n" + header + "\n" + racer.toString() + "\n", readFile());
 	}
@@ -108,7 +108,7 @@ public class TestResultWriter {
 		map.addRacerToMap(racer1);
 		map.addRacerToMap(racer3);
 		map.addRacerToMap(racer2);
-		writer.writeToFile(5); //TODO should not be 5
+		writer.writeToFile(1);
 
 		assertEquals("Result doesn't match", expected.toString(), readFile());
 	}

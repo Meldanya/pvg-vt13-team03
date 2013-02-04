@@ -40,23 +40,32 @@
 	</ul>
 	<h2>Formatering av filer</h2>
 	<p>Filerna är formaterade som CSV med semikolon som separator. Exempel (namnfil):</p>
-	<pre>1; Anders Asson</pre>
+	<pre>1; Anders Andersson
+2; Bengt Bengtsson</pre>
 	<h1>Användning</h1>
 	<p>Hur programmet används. Förklaring av användargränssnittets funktioner.</p>
 	<h2>Starta programmet</h2>
-	<p>Dubbelklicka på programfilen (filnamn.jar). Välj om programmets ska startas i starttids-eller sluttidsläge. </p>
-	<h2>Välja start/slut-läge</h2>
-	<p>När programmet startas så öppnas ett fönster med två alternativ, markera det val som avses användas. När programmet väl är startat kan typ av läge inte ändras. För att ändra läge, stäng av programmet, starta det igen och välj önskat läge.</p>
+	<p>Dubbelklicka på programfilen (filnamn.jar). Ett fönster visas som låter användaren välja programläge.</p>
+	<h2>Välja programläge</h2>
+	<p>När programmet startas så öppnas ett fönster med tre alternativ. Välj det alternativ som ska användas. Vid registrering av start- och måltider ändras programmets gränssnitt för att visa ett fönster där startnummer kan matas in. För att byta läge; starta om programmet.</p>
+	<img src="bilder/setupframe.png" />
+	<p>Alternativet masstart ber användaren bekräfta starten. Därefter registreras aktuell tid för alla deltagare i namnlistan och programmet stängs ner.</p>
+	<img src="bilder/masstart.png" />
 	<h2>Gränssnittets utseende och layout</h2>
-	<p>Gränssnittet består av tre olika fält. Det övre vänstra fältet används för att fylla i startnummer på föraren som registreras. Det övre högra fältet är knappen för att registrera tiden. Det nedre fältet ger en sammanfattning över registrerade tider.</p>
+	<p>Gränssnittet består av ett fält för att mata in ett startnummer och en knapp för att registrera tiden. Underst i fönstret visas ett statusfält med information om de senast sparade tiderna.</p>
+	<figure>
+	    <img src="bilder/starttider.png" />
+	    <figcaption><p><i>Deltagare 1 har registrerats med tid 14:00:32. Deltagare 2 håller på att registreras.</i></p></figcaption>
+    </figure>
 	<h2>Registrera tid</h2>
 	<p>Fyll i förarens startnummer i fältet och tryck på "registrera", även enter-tangenten kan användas. Det ser likadant ut oavsett läge. Den registrerade tiden syns i det nedre fältet. </p>
 	<h2>Spara tider</h2>
 	<p>Tiderna sparas kontinuerligt under programmets användning och behöver inte sparas manuellt.</p>
 	<h2>Visa resultat</h2>
-	<p>De beräknade tiderna skrivs ut i filen resultat.txt som återfinns i mappen där programmet startats. Tiderna skrivs ut i ordningen totaltid, starttid och slutligen måltid. Om en totaltid inte kan beräknas skrivs istället --.--.-- ut. Om en starttid eller sluttid saknas så skrivs istället "Starttid?" respektive "Sluttid?" ut. Då flera start- alternativt måltider registrerats så skrivs en notering ut tillsammans med alla överflödiga registeringar på formen "Flera starttider? 12.12.00". Då en totaltid anses vara orimlig skrivs "Omöjlig Totaltid?" ut.</p>
+	<p>De beräknade tiderna skrivs ut i filen resultat.txt som återfinns i mappen där programmet startats. Tiderna skrivs ut i ordningen totaltid, starttid och slutligen måltid. Om en totaltid inte kan beräknas skrivs istället --.--.-- ut.</p>
+	<p>Om en starttid eller sluttid saknas så skrivs istället "Starttid?" respektive "Sluttid?" ut. Då flera start- alternativt måltider registrerats så skrivs en notering ut tillsammans med alla överflödiga registeringar på formen "Flera starttider? 12.12.00". Då en totaltid anses vara orimlig skrivs "Omöjlig Totaltid?" ut.</p>
 	<h1>Avsluta programmet</h1>
-	<p>För att avsluta programmet behöver man bara stänga ner fönstret.</p>
+	<p>För att avsluta programmet behöver man bara stänga ner fönstret. Alla ändringar sparas automatiskt.</p>
 </body>
 
 </html>

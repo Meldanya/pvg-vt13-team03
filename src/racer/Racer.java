@@ -21,7 +21,7 @@ public class Racer implements Comparable {
 		this.finishTimes = new ArrayList<RacerTime>();
 	}
 	
-	public void setName(String name){
+	public void setName(String name) {
 		this.name = name;
 	}
 
