@@ -6,11 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URISyntaxException;
+import java.util.Map;
 import java.util.Observable;
 
 import racer.Racer;
 import racer.RacerTime;
+import sorting.NameReader;
 
 /**
  * A class representing a register (aka a program that registers racers at the
@@ -41,6 +42,19 @@ public class Register extends Observable {
 	 */
 	public void writeToFile(String fileName) {
 		// TODO: döp om till addResult eftersom den inte bara skriver till fil
+
+		// String path ="";
+		// try {
+		// path =
+		// Register.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+		// } catch (URISyntaxException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		// path = path.substring(0, path.length()- "registrering.jar".length());
+		// //TODO fix this
+		// fileName = path + fileName;
+
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,
 					true));
@@ -115,30 +129,6 @@ public class Register extends Observable {
 			writeToFile("finish.txt");
 		}
 	}
-	
-	
-	
-	/**
-	 * Reads Racer IDs from nameFile and writes the same startTime for every Racer.
-	 *  
-	 * @param nameFile name of the file containing names of Racers
-	 * @param startTime start time to register
-	 * @throws FileNotFoundException If nameFile doesn't exist
-	 * @throws IOException If an I/O error occurs
-	 */
-	public void registerMassStart(String nameFile, String startTime) throws IOException  {
-		String path ="";
-		try {
-			path = Register.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		path = path.substring(0, path.length()- "registrering.jar".length()); //TODO fix this
-		path += nameFile;
-		System.out.println(path);
-		new FileWriter("start.txt").close(); // clear the file!
-		BufferedReader reader = new BufferedReader(new FileReader(path));
 
 	/**
 	 * Reads Racer IDs from nameFile and writes the same startTime for every
@@ -153,28 +143,14 @@ public class Register extends Observable {
 	 * @throws IOException
 	 *             If an I/O error occurs
 	 */
-//	public void registerMassStart(String nameFile, String startTime)
-//			throws IOException {
-//		new FileWriter("start.txt").close(); // clear the file!
-//
-//		Map<String, String> names = new NameReader().readFromNameFile(nameFile);
-//
-//		for (String s : names.keySet()) {
-//			if (Character.isDigit(s.charAt(0))) {
-//				register(s, startTime);
-//			}
-//		}
-
-		/*
-		 * BufferedReader reader = new BufferedReader(new FileReader(nameFile));
-		 * 
-		 * reader.readLine(); while (reader.ready()) { String line =
-		 * reader.readLine(); String[] tempArray = line.split("; ");
-		 * register(tempArray[0], startTime); } reader.close();
-		 */
-	}
-
-	public static void main(String[] args) {
-		new Register(false).register("1");
+	public void registerMassStart(String nameFile, String startTime) throws IOException {
+		new FileWriter("start.txt").close(); // clear the file!
+		
+		  BufferedReader reader = new BufferedReader(new FileReader(nameFile));
+		  
+		  reader.readLine(); while (reader.ready()) { String line =
+		  reader.readLine(); String[] tempArray = line.split("; ");
+		  register(tempArray[0], startTime); } reader.close();
+		 
 	}
 }
