@@ -1,13 +1,13 @@
 package sorting;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class NameReader extends Reader{
-	private HashMap<String, String> map;
+	private TreeMap<String, String> map;
 	
 	public NameReader(){
-		map = new HashMap<String, String>();
+		map = new TreeMap<String, String>();
 	}
 	
 	protected void op(String key, String value) {

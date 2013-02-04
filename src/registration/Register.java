@@ -7,9 +7,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Observable;
 import racer.Racer;
 import racer.RacerTime;
+import sorting.NameReader;
 
 /**
  * A class representing a register (aka a program that registers racers at the
@@ -39,9 +42,10 @@ public class Register extends Observable {
 	 *            The file name to write to.
 	 */
 	public void writeToFile(String fileName) {
-	    // TODO: döp om till addResult eftersom den inte bara skriver till fil
+		// TODO: döp om till addResult eftersom den inte bara skriver till fil
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,true));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,
+					true));
 			String text = racer.getStartNumber() + "; ";
 			if (isStart) {
 				text += racer.getStartTime();
@@ -52,22 +56,22 @@ public class Register extends Observable {
 
 			writer.newLine();
 			writer.close();
-			
-			lastLine=text;
-			
+
+			lastLine = text;
+
 			setChanged();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		notifyObservers();
 	}
-	
+
 	/**
 	 * Returns the last written line
 	 * 
 	 * @return the last written line
 	 */
-	public String lastLine(){
+	public String lastLine() {
 		return lastLine;
 	}
 
@@ -101,7 +105,8 @@ public class Register extends Observable {
 		register(startNumber, new RacerTime(time));
 	}
 
-	//Om man går via register(String startNumber, String time)  så kommer det skapas två objekt, lite dum kod
+	// Om man går via register(String startNumber, String time) så kommer det
+	// skapas två objekt, lite dum kod
 	public void register(String startNumber, RacerTime time) {
 		racer = new Racer(startNumber);
 		if (isStart) {
@@ -112,30 +117,41 @@ public class Register extends Observable {
 			writeToFile("finish.txt");
 		}
 	}
-	
-	
-	
-	/**
-	 * Reads Racer IDs from nameFile and writes the same startTime for every Racer.
-	 *  
-	 * @param nameFile name of the file containing names of Racers
-	 * @param startTime start time to register
-	 * @throws FileNotFoundException If nameFile doesn't exist
-	 * @throws IOException If an I/O error occurs
-	 */
-	public void registerMassStart(String nameFile, String startTime) throws IOException  {
-		new FileWriter("start.txt").close(); // clear the file!
-		BufferedReader reader = new BufferedReader(new FileReader(nameFile));
 
-		reader.readLine();
-		while (reader.ready()) {
-			String line = reader.readLine();
-			String[] tempArray = line.split("; ");
-			register(tempArray[0], startTime);
+	/**
+	 * Reads Racer IDs from nameFile and writes the same startTime for every
+	 * Racer.
+	 * 
+	 * @param nameFile
+	 *            name of the file containing names of Racers
+	 * @param startTime
+	 *            start time to register
+	 * @throws FileNotFoundException
+	 *             If nameFile doesn't exist
+	 * @throws IOException
+	 *             If an I/O error occurs
+	 */
+	public void registerMassStart(String nameFile, String startTime)
+			throws IOException {
+		new FileWriter("start.txt").close(); // clear the file!
+
+		Map<String, String> names = new NameReader().readFromNameFile(nameFile);
+
+		for (String s : names.keySet()) {
+			if (Character.isDigit(s.charAt(0))) {
+				register(s, startTime);
+			}
 		}
-		reader.close();
+
+		/*
+		 * BufferedReader reader = new BufferedReader(new FileReader(nameFile));
+		 * 
+		 * reader.readLine(); while (reader.ready()) { String line =
+		 * reader.readLine(); String[] tempArray = line.split("; ");
+		 * register(tempArray[0], startTime); } reader.close();
+		 */
 	}
-	
+
 	public static void main(String[] args) {
 		new Register(false).register("1");
 	}
