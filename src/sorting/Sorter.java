@@ -13,8 +13,8 @@ public class Sorter {
 
 	private RacerMap racers;
 	
-	public Sorter() {
-		racers = new RacerMap();
+	public Sorter(char typeOfRace) {
+		racers = new RacerMap(typeOfRace);
 		
 		read();
 		readNames();
@@ -59,6 +59,6 @@ public class Sorter {
 	}
 
 	public static void main(String[] args) {
-		new Sorter();
+		new Sorter(args[0].charAt(0));
 	}
 }
