@@ -8,7 +8,6 @@ import java.awt.Toolkit;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 import racer.RacerTime;
 import registration.Register;
@@ -49,7 +48,7 @@ public class StartNbrPopup extends JDialog {
 		
 		JLabel label = new JLabel();
 		label.setText("<html><div style=\"text-align: center;\">" + "Tid (" + time.toString() + ") registrerad!<BR>Skriv in startnummer:</html>");
-		label.setFont(new Font(null, Font.BOLD, 25));
+		label.setFont(new Font(null, Font.PLAIN, 25));
 		gb = new GridBagConstraints();
 		gb.gridwidth = 2;
 		gb.gridx = 0;

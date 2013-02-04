@@ -42,7 +42,7 @@ public class TestNameReader {
 		tempMap.put("4", "David Dsson");
 		tempMap.put("5", "Erik Esson");
 
-		Map<String, String> map = reader.readFromNameFile("src/test/testNamnFil.txt");
+		Map<String, String> map = reader.readFromNameFile("test/TestNameReader/namnfil.txt");
 
 		for (String s : map.keySet()) {
 			assertEquals(tempMap.get(s), map.get(s));
@@ -52,7 +52,7 @@ public class TestNameReader {
 
 	@Test
 	public void testIncorrectlyFormattedFile() {
-		assertNull(reader.readFromNameFile("src/test/incorrectstart.txt"));
+		assertNull(reader.readFromNameFile("test/TestNameReader/incorrectstart.txt"));
 	}
 
 }
