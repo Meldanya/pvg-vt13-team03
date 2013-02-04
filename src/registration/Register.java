@@ -1,6 +1,10 @@
 package registration;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Observable;
@@ -102,6 +106,27 @@ public class Register extends Observable {
 			racer.addFinishTime(new RacerTime(time));
 			writeToFile("finish.txt");
 		}
+	}
+	
+	/**
+	 * Reads Racer IDs from nameFile and writes the same startTime for every Racer.
+	 *  
+	 * @param nameFile name of the file containing names of Racers
+	 * @param startTime start time to register
+	 * @throws FileNotFoundException If nameFile doesn't exist
+	 * @throws IOException If an I/O error occurs
+	 */
+	public void registerMassStart(String nameFile, String startTime) throws IOException  {
+		new FileWriter("start.txt").close(); // clear the file!
+		BufferedReader reader = new BufferedReader(new FileReader(nameFile));
+
+		reader.readLine();
+		while (reader.ready()) {
+			String result = reader.readLine();
+			String[] tempArray = result.split("; ");
+			register(tempArray[0], startTime);
+		}
+		reader.close();
 	}
 	
 	public static void main(String[] args) {
