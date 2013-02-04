@@ -9,17 +9,15 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class StartOrFinishFrame extends JFrame {
+public class StartOrFinishFrame extends AbstractFrame {
 
 	public StartOrFinishFrame() {
 		super("Start eller mål?");
 		setLayout(new GridBagLayout());
-		
 		initComponents();
 		pack();
+
 		positionFrameInCenter();
-		setVisible(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
 	private void initComponents() {
@@ -46,18 +44,6 @@ public class StartOrFinishFrame extends JFrame {
 		gb.gridx = 1;
 		gb.gridy = 1;
 		add(button2, gb);
-	}
-
-	private void positionFrameInCenter() {
-
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-
-		int w = getSize().width;
-		int h = getSize().height;
-		int x = (dim.width - w) / 2;
-		int y = (dim.height - h) / 2;
-
-		setLocation(x, y);
 	}
 
 	public static void main(String[] args) {

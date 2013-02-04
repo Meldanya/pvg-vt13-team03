@@ -22,9 +22,8 @@ public abstract class AlternativeButton extends JButton implements ActionListene
 	protected abstract String getTitle(); 
 	protected abstract boolean getChoice();
 	
-	
 	public void actionPerformed(ActionEvent e) {
-		new RegisterFrame(getChoice());
+		new RegisterFrame(getTitle(), getChoice());
 		frame.dispose();
 	}
 	
