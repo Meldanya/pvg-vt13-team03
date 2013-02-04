@@ -15,10 +15,9 @@ public class FinishButton extends AlternativeButton{
 		return "M\u00E5l";
 	}
 
-	@Override
-	protected boolean getChoice() {
-		return false;
+	public void actionPerformed(ActionEvent e) {
+		new RegisterFrame(getTitle(), true);
+		frame.dispose();
 	}
-
 
 }
