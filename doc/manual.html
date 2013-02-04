@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<style type="text/css">
+		html {
+			font-family: Verdana, sans-serif;
+			font-size: 14px;
+		}
+		
+		body {
+			margin: 0 auto;
+			width: 600px;
+		}
+		
+		h1 {
+			border-bottom: 1px solid black;
+		}
+		
+		pre {
+			background: #eee;
+			padding: 10px;
+		}
+		
+		p {
+			line-height: 1.5em;
+		}
+	</style>
+	<title>PVG</title>
+</head>
+
+<body>
+	<h1>Installation</h1>
+	<p>Om hur programmet installeras och konfigureras</p>
+	<h2>Förkrav</h2>
+	<ul>
+		<li>En dator</li>
+		<li>Java Runtime</li>
+	</ul>
+	<h2>Formatering av filer</h2>
+	<p>Filerna är formaterade som CSV med semikolon som separator. Exempel (namnfil):</p>
+	<pre>1; Anders Asson</pre>
+	<h1>Användning</h1>
+	<p>Hur programmet används. Förklaring av användargränssnittets funktioner.</p>
+	<h2>Starta programmet</h2>
+	<p>Dubbelklicka på programfilen (filnamn.jar). Välj om programmets ska startas i starttids-eller sluttidsläge. </p>
+	<h2>Välja start/slut-läge</h2>
+	<p>När programmet startas så öppnas ett fönster med två alternativ, markera det val som avses användas. När programmet väl är startat kan typ av läge inte ändras. För att ändra läge, stäng av programmet, starta det igen och välj önskat läge.</p>
+	<h2>Gränssnittets utseende och layout</h2>
+	<p>Gränssnittet består av tre olika fält. Det övre vänstra fältet används för att fylla i startnummer på föraren som registreras. Det övre högra fältet är knappen för att registrera tiden. Det nedre fältet ger en sammanfattning över registrerade tider.</p>
+	<h2>Registrera tid</h2>
+	<p>Fyll i förarens startnummer i fältet och tryck på "registrera", även enter-tangenten kan användas. Det ser likadant ut oavsett läge. Den registrerade tiden syns i det nedre fältet. </p>
+	<h2>Spara tider</h2>
+	<p>Tiderna sparas kontinuerligt under programmets användning och behöver inte sparas manuellt.</p>
+	<h2>Visa resultat</h2>
+	<p>De beräknade tiderna skrivs ut i filen resultat.txt som återfinns i mappen där programmet startats. Tiderna skrivs ut i ordningen totaltid, starttid och slutligen måltid. Om en totaltid inte kan beräknas skrivs istället --.--.-- ut. Om en starttid eller sluttid saknas så skrivs istället "Starttid?" respektive "Sluttid?" ut. Då flera start- alternativt måltider registrerats så skrivs en notering ut tillsammans med alla överflödiga registeringar på formen "Flera starttider? 12.12.00". Då en totaltid anses vara orimlig skrivs "Omöjlig Totaltid?" ut.</p>
+	<h1>Avsluta programmet</h1>
+	<p>För att avsluta programmet behöver man bara stänga ner fönstret.</p>
+</body>
+
+</html>
