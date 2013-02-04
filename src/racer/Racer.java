@@ -102,12 +102,33 @@ public class Racer implements Comparable {
 
 		return "";
 	}
-
-	public boolean equals(Object obj) {
-	    // TODO: generera en ordentlig equals och även hashCode
-		return ((Racer) obj).startNumber == startNumber;
-	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((startNumber == null) ? 0 : startNumber.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Racer other = (Racer) obj;
+		if (startNumber == null) {
+			if (other.startNumber != null)
+				return false;
+		} else if (!startNumber.equals(other.startNumber))
+			return false;
+		return true;
+	}
+
 	public RacerClass getClassType() {
 		return classType;
 	}
