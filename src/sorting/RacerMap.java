@@ -83,7 +83,7 @@ public class RacerMap {
 	}
 
 	public void writeToFile(String filename) {
-		ResultWriter writer = new ResultWriter(map, filename);
+		ResultWriter writer = new ResultWriter(this, filename);
 		writer.writeToFile();
 	}
 	
@@ -108,6 +108,14 @@ public class RacerMap {
 			}
 			racer.addStartTime(new RacerTime(start.get(s)));
 		}
+	}
+	
+	public Racer get(String key) {
+		return map.get(key);
+	}
+	
+	public Set<String> keySet() {
+		return map.keySet();
 	}
 	
 	public Set<RacerClass> getClassTypes() {
