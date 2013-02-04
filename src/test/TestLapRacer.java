@@ -7,17 +7,15 @@ import static org.junit.Assert.assertFalse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import racer.LapRacer;
 import racer.Racer;
 import racer.RacerTime;
 
 public class TestLapRacer {
-	private LapRacer racer;
+	private Racer racer;
 
 	@Before
 	public void setUp() throws Exception {
-		racer = new LapRacer("1");
+		racer = new Racer("1");
 		racer.setName("Kalle");
 	}
 
@@ -40,13 +38,13 @@ public class TestLapRacer {
 
 	@Test
 	public void testEquals() {
-		Racer racer2 = new LapRacer("1");
+		Racer racer2 = new Racer("1");
 		assertEquals("Racers not equal", racer, racer2);
 	}
 	
 	@Test
 	public void testNotEquals() {
-		Racer racer2 = new LapRacer("2");
+		Racer racer2 = new Racer("2");
 		assertFalse("Racers equal", racer.equals(racer2));
 	}
 	

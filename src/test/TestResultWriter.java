@@ -38,7 +38,7 @@ public class TestResultWriter {
 	public void setUp() throws Exception {
 		filename = "resultat.txt";
 		header = "StartNr; Namn; TotalTid; StartTider; Måltider";
-		map = new RacerMap('m');
+		map = new RacerMap();
 		writer = new ResultWriter(map, filename);
 		
 		deleteTestFile();
@@ -86,7 +86,7 @@ public class TestResultWriter {
 		racer.setName("Anders Asson");
 		
 		map.addRacerToMap(racer);
-		writer.writeToFile();
+		writer.writeToFile(5);  //TODO should not be 5
 		
 		assertEquals("Result doesn't match", "\n" + header + "\n" + racer.toString() + "\n", readFile());
 	}
@@ -111,7 +111,7 @@ public class TestResultWriter {
 		map.addRacerToMap(racer1);
 		map.addRacerToMap(racer3);
 		map.addRacerToMap(racer2);
-		writer.writeToFile();
+		writer.writeToFile(5); //TODO should not be 5
 
 		assertEquals("Result doesn't match", expected.toString(), readFile());
 	}

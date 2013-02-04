@@ -31,7 +31,7 @@ public class TestRacerMap {
 		testRacer1 = new MarathonRacer("1");
 		testRacer2 = new MarathonRacer("2");
 		testRacer3 = new MarathonRacer("3");
-		map = new RacerMap('m');
+		map = new RacerMap();
 
 	}
 
