@@ -11,13 +11,13 @@ import registration.Register;
  *
  * Main class that launches the GUI.
  */
-public class RegisterFrame extends JFrame{
+public class RegisterFrame extends AbstractFrame{
 	StartNbrField startNbrField;
 	StatusArea statusArea;
 	RegisterButton registerButton;
 	
-	public RegisterFrame(boolean start){
-		super("Registrering");
+	public RegisterFrame(String mode, boolean start){
+		super("Registrering av " + mode + "tider");
 		setSize(640,480);
 		setLayout(new BorderLayout());
 		
@@ -30,12 +30,11 @@ public class RegisterFrame extends JFrame{
 		add(startNbrField,BorderLayout.CENTER);
 		add(statusArea,BorderLayout.PAGE_END);
 		add(registerButton,BorderLayout.LINE_END);
-		setVisible(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		positionFrameInCenter();
 	}
 	
 	public static void main(String[] args) {
-		new RegisterFrame(false);
+		new RegisterFrame("Mål", false);
 	}
 
 }

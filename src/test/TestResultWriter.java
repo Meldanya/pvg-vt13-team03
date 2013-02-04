@@ -17,6 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import racer.Racer;
+import sorting.RacerMap;
 import sorting.ResultWriter;
 
 /**
@@ -24,7 +25,7 @@ import sorting.ResultWriter;
  *
  */
 public class TestResultWriter {
-	private Map<String, Racer> map;
+	private RacerMap map;
 	private ResultWriter writer;
 	private String filename;
 	private String header;
@@ -36,7 +37,7 @@ public class TestResultWriter {
 	public void setUp() throws Exception {
 		filename = "resultat.txt";
 		header = "StartNr; Namn; TotalTid; StartTider; Måltider";
-		map = new TreeMap<String, Racer>();
+		map = new RacerMap();
 		writer = new ResultWriter(map, filename);
 		
 		deleteTestFile();
@@ -83,7 +84,7 @@ public class TestResultWriter {
 		Racer racer = new Racer("1");
 		racer.setName("Anders Asson");
 		
-		map.put(racer.getStartNumber(), racer);
+		map.addRacerToMap(racer);
 		writer.writeToFile();
 		
 		assertEquals("Result doesn't match", header + "\n" + racer.toString() + "\n", readFile());
@@ -103,9 +104,9 @@ public class TestResultWriter {
 				racer3.toString() + "\n";
 
 
-		map.put(racer1.getStartNumber(), racer1);
-		map.put(racer3.getStartNumber(), racer3);
-		map.put(racer2.getStartNumber(), racer2);
+		map.addRacerToMap(racer1);
+		map.addRacerToMap(racer3);
+		map.addRacerToMap(racer2);
 		writer.writeToFile();
 
 		assertEquals("Result doesn't match", expected, readFile());

@@ -2,9 +2,12 @@ package sorting;
 
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 import racer.Racer;
+import racer.RacerClass;
 import racer.RacerTime;
 
 public class RacerMap {
@@ -80,7 +83,7 @@ public class RacerMap {
 	}
 
 	public void writeToFile(String filename) {
-		ResultWriter writer = new ResultWriter(map, filename);
+		ResultWriter writer = new ResultWriter(this, filename);
 		writer.writeToFile();
 	}
 	
@@ -105,5 +108,39 @@ public class RacerMap {
 			}
 			racer.addStartTime(new RacerTime(start.get(s)));
 		}
+	}
+	
+	public Racer get(String key) {
+		return map.get(key);
+	}
+	
+	public Set<String> keySet() {
+		return map.keySet();
+	}
+	
+	public Set<RacerClass> getClassTypes() {
+		Set<RacerClass> set  = new TreeSet<RacerClass>();
+
+		for(String key : map.keySet()) {
+			Racer r = map.get(key);
+
+			set.add(r.getClassType());
+		}
+		
+		return set;
+	}
+	
+	public Set<Racer> getRacers(RacerClass rc) {
+		Set<Racer> set  = new TreeSet<Racer>();
+
+		for(String key : map.keySet()) {
+			Racer r = map.get(key);
+
+			if (r.getClassType().equals(rc)) {
+				set.add(r);
+			}
+		}
+		
+		return set;
 	}
 }

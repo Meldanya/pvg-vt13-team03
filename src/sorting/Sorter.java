@@ -3,7 +3,6 @@ package sorting;
 import java.util.Map;
 
 import racer.Racer;
-import racer.RacerTime;
 
 /**
  * A class representing a sorter. It reads start.txt and finish.txt and outputs
@@ -18,36 +17,40 @@ public class Sorter {
 		
 		read();
 		readNames();
-		//sort();
 		write();
 	}
 
 	private void read() {
 		racers.readFromFile("start.txt", "finish.txt");
 	}
-	
-	private void readNames(){
-		Map<String, String> names = new Reader().readFromFile("namnfil.txt");
-		names.remove("StartNo"); // TODO: kolla vad första raden innehåller istället.
-		// TODO: skicka in en Map<id, namn> till RacerMap istället
-		
-		for(String s : names.keySet()){
-			racers.setName(s, names.get(s));
-		}
-		
-	}
 
 	/**
-	 * The method that performs the reading and sorting.
+	 * @todo kolla vad första raden innehåller istället.
+	 * @todo skicka in en Map<id, namn> till RacerMap istället
 	 */
-	private void sort() {
+	private void readNames() {
+		Map<String, String> names = new Reader().readFromFile("namnfil.txt");
+		String currentClass = "";
+
+		names.remove("StartNo");
+
+		for (String s : names.keySet()) {
+			// Kontrollerar att raden är ett startnummer
+			if (Character.isDigit(s.charAt(0))) {
+				Racer racer = racers.getRacer(names.get(s));
+				
+				racer.setName(names.get(s));
+				racer.setClassType(currentClass);
+			}
+			else {
+				currentClass = s;
+			}
+		}
 	}
-	
 
 	private void write() {
 		racers.writeToFile("result.txt");
 	}
-
 
 	public static void main(String[] args) {
 		new Sorter();

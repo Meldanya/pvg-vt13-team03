@@ -12,7 +12,7 @@ public class FinishButton extends AlternativeButton{
 
 	@Override
 	protected String getTitle() {
-		return "Mål";
+		return "M\u00E5l";
 	}
 
 	@Override

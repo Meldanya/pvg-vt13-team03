@@ -10,12 +10,12 @@ import java.util.TreeSet;
 import racer.Racer;
 
 public class ResultWriter {
-	private Map<String, Racer> data;
+	private RacerMap data;
 	private String filename;
 	private String header;
 	
 	// TODO: klass utan modifierbart tillstånd?
-	public ResultWriter(Map<String, Racer> data, String filename) {
+	public ResultWriter(RacerMap data, String filename) {
 		this.data = data;
 		this.filename = filename;
 		this.header = "StartNr; Namn; TotalTid; StartTider; Måltider";
