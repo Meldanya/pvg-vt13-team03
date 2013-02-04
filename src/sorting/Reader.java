@@ -11,17 +11,6 @@ public abstract class Reader {
     // TODO: ska Sorter eller RacerMap använda denna? Den första kräver att värdet är en sträng och 
     // den andra att värdet är en lista av tider (formaterade som strängar)
 	public void readFromFile(String fileName) {
-		
-//		String path ="";
-//		try {
-//			path = Register.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
-//		} catch (URISyntaxException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		path = path.substring(0, path.length()- "registrering.jar".length()); //TODO fix this
-//		fileName = path + fileName;
-		
 		BufferedReader reader;
 		try {
 			reader = new BufferedReader(new FileReader(fileName));
