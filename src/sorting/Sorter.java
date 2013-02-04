@@ -1,6 +1,7 @@
 package sorting;
 
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import racer.Racer;
 
@@ -37,10 +38,15 @@ public class Sorter {
 		for (String s : names.keySet()) {
 			// Kontrollerar att raden är ett startnummer
 			if (Character.isDigit(s.charAt(0))) {
-				Racer racer = racers.getRacer(names.get(s));
-				
-				racer.setName(names.get(s));
-				racer.setClassType(currentClass);
+				try {
+					Racer racer = racers.getRacer(names.get(s));
+					
+					racer.setName(names.get(s));
+					racer.setClassType(currentClass);
+				} catch (NoSuchElementException e) {
+					// Om racern inte finns definerad så hoppas den över
+					continue;
+				}
 			}
 			else {
 				currentClass = s;

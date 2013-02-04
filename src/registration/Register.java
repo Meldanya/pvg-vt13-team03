@@ -123,8 +123,8 @@ public class Register extends Observable {
 
 		reader.readLine();
 		while (reader.ready()) {
-			String result = reader.readLine();
-			String[] tempArray = result.split("; ");
+			String line = reader.readLine();
+			String[] tempArray = line.split("; ");
 			register(tempArray[0], startTime);
 		}
 		reader.close();

@@ -6,7 +6,8 @@ import java.util.ArrayList;
  * A class representing a racer (aka driver) with a start number, start time and
  * finish time.
  */
-public abstract class Racer {
+public abstract class Racer implements Comparable{
+
 	private RacerClass classType;
 	private String startNumber;
 	private ArrayList<RacerTime> startTimes;
@@ -14,6 +15,7 @@ public abstract class Racer {
 	private String name;
 
 	public Racer(String startNumber) {
+		this.classType = new RacerClass("");
 		this.startNumber = startNumber;
 		this.startTimes = new ArrayList<RacerTime>();
 		this.finishTimes = new ArrayList<RacerTime>();
@@ -108,6 +110,11 @@ public abstract class Racer {
 	
 	public void setClassType(String className) {
 		this.classType = new RacerClass(className);
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		return startNumber.compareTo(((Racer)o).getStartNumber());
 	}
 
 }

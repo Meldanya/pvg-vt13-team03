@@ -1,6 +1,6 @@
 package racer;
 
-public class RacerClass {
+public class RacerClass implements Comparable {
 	private String name;
 	
 	public RacerClass(String name) {
@@ -21,5 +21,10 @@ public class RacerClass {
 	
 	public boolean equals(Object o) {
 		return ((RacerClass)o).name.equals(name);
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		return ((RacerClass)o).name.compareTo(name);
 	}
 }
