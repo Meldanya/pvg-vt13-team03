@@ -7,8 +7,6 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import racer.LapRacer;
-import racer.MarathonRacer;
 import racer.Racer;
 import racer.RacerClass;
 import racer.RacerTime;

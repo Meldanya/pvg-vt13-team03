@@ -8,8 +8,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Observable;
-
-import racer.MarathonRacer;
 import racer.Racer;
 import racer.RacerTime;
 
@@ -80,7 +78,7 @@ public class Register extends Observable {
 	 *            The start number of the driver to register.
 	 */
 	public void register(String startNumber) {
-		racer = new MarathonRacer(startNumber);
+		racer = new Racer(startNumber);
 		if (isStart) {
 			racer.addStartTime(new RacerTime());
 			writeToFile("start.txt");
@@ -99,13 +97,13 @@ public class Register extends Observable {
 	 *            The time to register.
 	 */
 	public void register(String startNumber, String time) {
-		racer = new MarathonRacer(startNumber);
+		racer = new Racer(startNumber);
 		register(startNumber, new RacerTime(time));
 	}
 
 	//Om man går via register(String startNumber, String time)  så kommer det skapas två objekt, lite dum kod
 	public void register(String startNumber, RacerTime time) {
-		racer = new MarathonRacer(startNumber);
+		racer = new Racer(startNumber);
 		if (isStart) {
 			racer.addStartTime(time);
 			writeToFile("start.txt");

@@ -47,7 +47,7 @@ public class Racer implements Comparable {
 
 	public String getFinishTime() {
 		if (finishTimes.size() > 0) {
-			return finishTimes.get(0).toString();
+			return finishTimes.get(finishTimes.size()-1).toString();
 		}
 
 		return "Sluttid?";
@@ -101,26 +101,32 @@ public class Racer implements Comparable {
 		}
 		
 		StringBuilder out = new StringBuilder();
+		ArrayList<String> lapTimes = getLapTimes();
 		
-		out.append(startNumber + "; " + name + "; #" + finishTimes.size() + "; " + getTotalTime() + "; ");
+		out.append(startNumber + "; " + name + "; " + finishTimes.size() + "; " + getTotalTime() + "; ");
 		
 		for (int i = 0; i < laps; i++) {
-			RacerTime laptime = finishTimes.get(i);
-			
-			if (laptime != null) {
-				out.append(laptime.toString());
+			try {
+				String laptime = lapTimes.get(i);
+				
+				out.append(laptime + "; ");
+			} catch (IndexOutOfBoundsException e) {
+				// Laptime doesn't exist, print column anyway
+				out.append("; ");
 			}
-
-			out.append("; ");
 		}
 		
-		out.append(getStartTime());
+		out.append(getStartTime() + "; ");
 		
-		for (int i = 1; i < laps; i++) {
-			out.append("Varvning" + i + "; ");
+		for (int i = 0; i < laps; i++) {
+			try {
+				RacerTime laptime = finishTimes.get(i);
+				out.append(laptime.toString() + "; ");
+			} catch (IndexOutOfBoundsException e) {
+				// Laptime doesn't exist, print column anyway
+				out.append("; ");
+			}
 		}
-		
-		out.append("Mål");
 
 		return out.toString();
 	}
@@ -186,4 +192,7 @@ public class Racer implements Comparable {
 		}
 	}
 	
+	public int getNumberOfLaps() {
+		return finishTimes.size();
+	}
 }
