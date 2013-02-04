@@ -16,13 +16,13 @@ public class RegisterFrame extends JFrame{
 	StatusArea statusArea;
 	RegisterButton registerButton;
 	
-	public RegisterFrame(){
+	public RegisterFrame(boolean start){
 		super("Registrering");
 		setSize(640,480);
 		setLayout(new BorderLayout());
 		
 		// The order in which the following object are initialized is important. 
-		Register register = new Register(false);
+		Register register = new Register(start);
 		startNbrField = new StartNbrField(register);
 		statusArea = new StatusArea(register, startNbrField);
 		registerButton = new RegisterButton(startNbrField);
@@ -35,7 +35,7 @@ public class RegisterFrame extends JFrame{
 	}
 	
 	public static void main(String[] args) {
-		new RegisterFrame();
+		new RegisterFrame(false);
 	}
 
 }
