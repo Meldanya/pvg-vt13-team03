@@ -47,7 +47,7 @@ public class Racer implements Comparable {
 
 	public String getFinishTime() {
 		if (finishTimes.size() > 0) {
-			return finishTimes.get(0).toString();
+			return finishTimes.get(finishTimes.size()-1).toString();
 		}
 
 		return "Sluttid?";
@@ -192,4 +192,7 @@ public class Racer implements Comparable {
 		}
 	}
 	
+	public int getNumberOfLaps() {
+		return finishTimes.size();
+	}
 }

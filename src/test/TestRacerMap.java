@@ -8,8 +8,6 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import racer.MarathonRacer;
 import racer.Racer;
 import sorting.RacerMap;
 
@@ -28,10 +26,10 @@ public class TestRacerMap {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		testRacer1 = new MarathonRacer("1");
-		testRacer2 = new MarathonRacer("2");
-		testRacer3 = new MarathonRacer("3");
-		map = new RacerMap('m');
+		testRacer1 = new Racer("1");
+		testRacer2 = new Racer("2");
+		testRacer3 = new Racer("3");
+		map = new RacerMap();
 
 	}
 
