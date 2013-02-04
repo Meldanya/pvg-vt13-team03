@@ -6,12 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map;
 import java.util.Observable;
 
 import racer.Racer;
 import racer.RacerTime;
-import sorting.NameReader;
 
 /**
  * A class representing a register (aka a program that registers racers at the

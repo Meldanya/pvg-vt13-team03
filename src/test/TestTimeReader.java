@@ -10,8 +10,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import sorting.Reader;
-import sorting.Sorter;
 import sorting.TimeReader;
 
 public class TestTimeReader {

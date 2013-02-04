@@ -5,13 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.sound.midi.SysexMessage;
 import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JTextField;
-
-import racer.RacerTime;
-import registration.Register;
 
 public class OKButton extends JButton implements ActionListener {
 	

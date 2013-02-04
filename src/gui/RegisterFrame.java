@@ -2,8 +2,6 @@ package gui;
 
 import java.awt.BorderLayout;
 
-import javax.swing.JFrame;
-
 import registration.Register;
 
 /**
@@ -12,9 +10,9 @@ import registration.Register;
  * Main class that launches the GUI.
  */
 public class RegisterFrame extends AbstractFrame{
-	StartNbrField startNbrField;
-	StatusArea statusArea;
-	RegisterButton registerButton;
+	private StartNbrField startNbrField;
+	private StatusArea statusArea;
+	private RegisterButton registerButton;
 	
 	public RegisterFrame(String mode, boolean start){
 		super("Registrering av " + mode + "tider");
