@@ -32,9 +32,4 @@ public class RegisterFrame extends AbstractFrame{
 		add(registerButton,BorderLayout.LINE_END);
 		positionFrameInCenter();
 	}
-	
-//	public static void main(String[] args) {
-//		new RegisterFrame("Mål", false);
-//	}
-
 }
