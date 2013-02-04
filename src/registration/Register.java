@@ -103,6 +103,7 @@ public class Register extends Observable {
 		register(startNumber, new RacerTime(time));
 	}
 
+	//Om man går via register(String startNumber, String time)  så kommer det skapas två objekt, lite dum kod
 	public void register(String startNumber, RacerTime time) {
 		racer = new MarathonRacer(startNumber);
 		if (isStart) {
