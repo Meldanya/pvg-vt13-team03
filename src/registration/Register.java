@@ -1,15 +1,12 @@
 package registration;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.Observable;
+
 import racer.Racer;
 import racer.RacerTime;
 import sorting.NameReader;

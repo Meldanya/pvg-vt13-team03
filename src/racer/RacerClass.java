@@ -1,6 +1,6 @@
 package racer;
 
-public class RacerClass implements Comparable {
+public class RacerClass implements Comparable<RacerClass> {
 	private String name;
 	
 	public RacerClass(String name) {
@@ -24,7 +24,7 @@ public class RacerClass implements Comparable {
 	}
 
 	@Override
-	public int compareTo(Object o) {
-		return ((RacerClass)o).name.compareTo(name);
+	public int compareTo(RacerClass o) {
+		return o.name.compareTo(name);
 	}
 }

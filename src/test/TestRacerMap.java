@@ -3,11 +3,13 @@
  */
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import racer.Racer;
 import sorting.RacerMap;
 
@@ -18,8 +20,6 @@ import sorting.RacerMap;
 public class TestRacerMap {
 	private RacerMap map;
 	private Racer testRacer1;
-	private Racer testRacer2;
-	private Racer testRacer3;
 
 	/**
 	 * @throws java.lang.Exception
@@ -27,8 +27,6 @@ public class TestRacerMap {
 	@Before
 	public void setUp() throws Exception {
 		testRacer1 = new Racer("1");
-		testRacer2 = new Racer("2");
-		testRacer3 = new Racer("3");
 		map = new RacerMap();
 
 	}

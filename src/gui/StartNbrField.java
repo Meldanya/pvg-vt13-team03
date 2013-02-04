@@ -3,7 +3,9 @@ package gui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
+
 import registration.Register;
 
 /**
@@ -11,7 +13,7 @@ import registration.Register;
  * 
  */
 public class StartNbrField extends JTextField implements ActionListener {
-	Register register;
+	private Register register;
 
 	public StartNbrField(Register register) {
 		// TODO: namnet är namnet på ett teckensnitt, inte ett påhittat. Det kan

@@ -10,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sorting.NameReader;
-import sorting.Reader;
 
 public class TestNameReader {
 

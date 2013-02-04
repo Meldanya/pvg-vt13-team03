@@ -9,11 +9,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Map;
-import java.util.TreeMap;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import racer.Racer;
 import sorting.RacerMap;
 import sorting.ResultWriter;

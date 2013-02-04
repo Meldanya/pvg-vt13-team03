@@ -3,9 +3,7 @@ package sorting;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 
 import racer.Racer;
 import racer.RacerClass;
