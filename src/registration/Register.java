@@ -40,19 +40,6 @@ public class Register extends Observable {
 	 */
 	public void writeToFile(String fileName) {
 		// TODO: döp om till addResult eftersom den inte bara skriver till fil
-
-		// String path ="";
-		// try {
-		// path =
-		// Register.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
-		// } catch (URISyntaxException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		// path = path.substring(0, path.length()- "registrering.jar".length());
-		// //TODO fix this
-		// fileName = path + fileName;
-
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,
 					true));
