@@ -38,7 +38,7 @@ public class TestResultWriter {
 	public void setUp() throws Exception {
 		filename = "resultat.txt";
 		header = "StartNr; Namn; TotalTid; StartTider; Måltider";
-		map = new RacerMap();
+		map = new RacerMap('m');
 		writer = new ResultWriter(map, filename);
 		
 		deleteTestFile();
