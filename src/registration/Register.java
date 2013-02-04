@@ -14,7 +14,7 @@ import racer.RacerTime;
  */
 public class Register extends Observable {
 	private Racer racer;
-	private boolean start;
+	private boolean isStart;
 	private String lastLine;
 
 	/**
@@ -26,7 +26,7 @@ public class Register extends Observable {
 	 *            times.
 	 */
 	public Register(boolean start) {
-		this.start = start;
+		this.isStart = start;
 	}
 
 	/**
@@ -36,10 +36,11 @@ public class Register extends Observable {
 	 *            The file name to write to.
 	 */
 	public void writeToFile(String fileName) {
+	    // TODO: döp om till addResult eftersom den inte bara skriver till fil
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,true));
 			String text = racer.getStartNumber() + "; ";
-			if (start) {
+			if (isStart) {
 				text += racer.getStartTime();
 			} else {
 				text += racer.getFinishTime();
@@ -75,7 +76,7 @@ public class Register extends Observable {
 	 */
 	public void register(String startNumber) {
 		racer = new Racer(startNumber);
-		if (start) {
+		if (isStart) {
 			racer.addStartTime(new RacerTime());
 			writeToFile("start.txt");
 		} else {
@@ -94,7 +95,7 @@ public class Register extends Observable {
 	 */
 	public void register(String startNumber, String time) {
 		racer = new Racer(startNumber);
-		if (start) {
+		if (isStart) {
 			racer.addStartTime(new RacerTime(time));
 			writeToFile("start.txt");
 		} else {

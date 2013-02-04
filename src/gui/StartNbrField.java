@@ -13,6 +13,7 @@ import registration.Register;
 public class StartNbrField extends JTextField implements ActionListener{
 	Register register;
 	public StartNbrField(Register register) {
+	   // TODO: namnet är namnet på ett teckensnitt, inte ett påhittat. Det kan vara null; då används ett standardteckensnitt
 		Font font = new Font("OurFont",Font.BOLD,96);
 		setFont(font);
 		this.register = register;
@@ -24,7 +25,7 @@ public class StartNbrField extends JTextField implements ActionListener{
 		String text = this.getText();
 		text = text.trim();
 		if (text.equals("")){
-			
+			// TODO: här saknas något, eller ska satsen inverteras och vändas upp och ner? ^^
 		} else {
 			register.register(text);
 		}

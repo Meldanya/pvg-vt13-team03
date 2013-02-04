@@ -14,6 +14,7 @@ public class ResultWriter {
 	private String filename;
 	private String header;
 	
+	// TODO: klass utan modifierbart tillstånd?
 	public ResultWriter(Map<String, Racer> data, String filename) {
 		this.data = data;
 		this.filename = filename;

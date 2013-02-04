@@ -93,6 +93,7 @@ public class Racer {
 	}
 
 	public boolean equals(Object obj) {
+	    // TODO: generera en ordentlig equals och även hashCode
 		return ((Racer) obj).startNumber == startNumber;
 	}
 
