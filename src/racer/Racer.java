@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * A class representing a racer (aka driver) with a start number, start time and
  * finish time.
  */
-public class Racer {
+public abstract class Racer {
 	private RacerClass classType;
 	private String startNumber;
 	private ArrayList<RacerTime> startTimes;

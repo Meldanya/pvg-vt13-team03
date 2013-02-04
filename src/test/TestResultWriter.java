@@ -16,6 +16,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import racer.MarathonRacer;
 import racer.Racer;
 import sorting.RacerMap;
 import sorting.ResultWriter;
@@ -81,7 +82,7 @@ public class TestResultWriter {
 
 	@Test
 	public void testOneRacer() throws IOException {
-		Racer racer = new Racer("1");
+		Racer racer = new MarathonRacer("1");
 		racer.setName("Anders Asson");
 		
 		map.addRacerToMap(racer);
@@ -92,11 +93,11 @@ public class TestResultWriter {
 
 	@Test
 	public void testMultipleRacers() throws IOException {
-		Racer racer1 = new Racer("1");
+		Racer racer1 = new MarathonRacer("1");
 		racer1.setName("Anders Asson");
-		Racer racer2 = new Racer("2");
+		Racer racer2 = new MarathonRacer("2");
 		racer2.setName("Bengt Bsson");
-		Racer racer3 = new Racer("3");
+		Racer racer3 = new MarathonRacer("3");
 		racer3.setName("Chris Csson");
 		String expected = header + "\n" +
 				racer1.toString() + "\n" +

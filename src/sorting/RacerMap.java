@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import racer.MarathonRacer;
 import racer.Racer;
 import racer.RacerClass;
 import racer.RacerTime;
@@ -95,7 +96,7 @@ public class RacerMap {
 		Map<String, ArrayList<String>> start = reader.readFromTimeFile(startFilename);
 		
 		for (String s : finish.keySet()) {
-			Racer racer = new Racer(s);
+			Racer racer = new MarathonRacer(s);
 			ArrayList<String> times = finish.get(s);
 			for(int i = 0; i< times.size(); i++){
 				racer.addFinishTime(new RacerTime(times.get(i)));
@@ -107,7 +108,7 @@ public class RacerMap {
 			if (map.containsKey(s)) {
 				racer = map.get(s);
 			} else {
-				racer = new Racer(s);
+				racer = new MarathonRacer(s);
 				addRacerToMap(racer);
 			}
 			ArrayList<String> times = start.get(s);
