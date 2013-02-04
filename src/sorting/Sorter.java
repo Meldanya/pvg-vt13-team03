@@ -3,7 +3,6 @@ package sorting;
 import java.util.Map;
 
 import racer.Racer;
-import racer.RacerTime;
 
 /**
  * A class representing a sorter. It reads start.txt and finish.txt and outputs
@@ -31,7 +30,7 @@ public class Sorter {
 	 */
 	private void readNames() {
 		Map<String, String> names = new Reader().readFromFile("namnfil.txt");
-		String currentClass = null;
+		String currentClass = "";
 
 		names.remove("StartNo");
 
