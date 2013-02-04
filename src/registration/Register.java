@@ -100,14 +100,21 @@ public class Register extends Observable {
 	 */
 	public void register(String startNumber, String time) {
 		racer = new MarathonRacer(startNumber);
+		register(startNumber, new RacerTime(time));
+	}
+
+	public void register(String startNumber, RacerTime time) {
+		racer = new MarathonRacer(startNumber);
 		if (isStart) {
-			racer.addStartTime(new RacerTime(time));
+			racer.addStartTime(time);
 			writeToFile("start.txt");
 		} else {
-			racer.addFinishTime(new RacerTime(time));
+			racer.addFinishTime(time);
 			writeToFile("finish.txt");
 		}
 	}
+	
+	
 	
 	/**
 	 * Reads Racer IDs from nameFile and writes the same startTime for every Racer.
