@@ -1,7 +1,6 @@
 package test;
 
-import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.*;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -10,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sorting.NameReader;
-import sorting.Reader;
 
 public class TestNameReader {
 
@@ -54,7 +52,7 @@ public class TestNameReader {
 
 	@Test
 	public void testIncorrectlyFormattedFile() {
-		assertEquals(reader.readFromNameFile("incorrectstart.txt"), null);
+		assertNull(reader.readFromNameFile("src/test/incorrectstart.txt"));
 	}
 
 }
