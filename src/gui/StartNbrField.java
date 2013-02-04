@@ -24,9 +24,7 @@ public class StartNbrField extends JTextField implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String text = this.getText();
 		text = text.trim();
-		if (text.equals("")){
-			// TODO: här saknas något, eller ska satsen inverteras och vändas upp och ner? ^^
-		} else {
+		if (!text.equals("")){
 			register.register(text);
 		}
 	}
