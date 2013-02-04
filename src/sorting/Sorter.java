@@ -28,6 +28,8 @@ public class Sorter {
 	}
 
 	private void read() {
+		// Här läses deltagarna in från start och finish. Deltagare utan tider finns inte.
+		// Prova att istället läsa in namnen här och sätta start- och sluttid i readNames()
 		racers.readFromFile("start.txt", "finish.txt");
 	}
 
