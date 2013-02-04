@@ -11,12 +11,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
 import java.util.TreeMap;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import racer.MarathonRacer;
 import racer.Racer;
 import sorting.RacerMap;
 import sorting.ResultWriter;
@@ -82,7 +79,7 @@ public class TestResultWriter {
 
 	@Test
 	public void testOneRacer() throws IOException {
-		Racer racer = new MarathonRacer("1");
+		Racer racer = new Racer("1");
 		racer.setName("Anders Asson");
 		
 		map.addRacerToMap(racer);
@@ -94,9 +91,9 @@ public class TestResultWriter {
 	@Test
 	public void testMultipleRacers() throws IOException {
 		StringBuilder expected = new StringBuilder();
-		Racer racer1 = new MarathonRacer("1");
-		Racer racer2 = new MarathonRacer("2");
-		Racer racer3 = new MarathonRacer("3");
+		Racer racer1 = new Racer("1");
+		Racer racer2 = new Racer("2");
+		Racer racer3 = new Racer("3");
 		
 		racer1.setName("Anders Asson");
 		racer2.setName("Bengt Bsson");
