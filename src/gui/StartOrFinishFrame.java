@@ -1,18 +1,15 @@
 package gui;
 
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Toolkit;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class StartOrFinishFrame extends AbstractFrame {
 
 	public StartOrFinishFrame() {
-		super("Start eller mål?");
+		super("Start eller m\u00E5l?");
 		setLayout(new GridBagLayout());
 		initComponents();
 		pack();
@@ -24,7 +21,7 @@ public class StartOrFinishFrame extends AbstractFrame {
 		GridBagConstraints gb;
 
 		JLabel label = new JLabel();
-		label.setText("<HTML>Vill du registrera<BR>start- eller måltid?</HTML>");
+		label.setText("<HTML>Vill du registrera<BR>start- eller m\u00E5ltid?</HTML>");
 		label.setFont(new Font(null, Font.BOLD, 25));
 		gb = new GridBagConstraints();
 		gb.gridwidth = 2;
