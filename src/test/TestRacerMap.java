@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import racer.Racer;
+import racer.RacerTime;
 import sorting.RacerMap;
 
 /**
@@ -47,36 +48,27 @@ public class TestRacerMap {
 
 	@Test
 	public void testAddRacerToMap() {
-		map.addRacerToMap(testRacer1);
+		map.addRacer(testRacer1);
 		assertEquals("Map has wrong size", 1, map.size());
 	}
 
 	@Test
 	public void testAddStartTime() {
-		map.addRacerToMap(testRacer1);
-		map.addStartTime("1", "10.10.10");
+		map.addRacer(testRacer1);
+		map.getRacer("1").addStartTime(new RacerTime("10.10.10"));
 		assertEquals("Wrong start time", "10.10.10", map.getRacer("1").getStartTime());
 	}
 
 	@Test
 	public void testAddFinishTime() {
-		map.addRacerToMap(testRacer1);
-		map.addFinishTime("1", "20.20.20");
+		map.addRacer(testRacer1);
+		map.getRacer("1").addFinishTime(new RacerTime("20.20.20"));
 		assertEquals("Wrong finish time", "20.20.20", map.getRacer("1").getFinishTime());
 	}
 
 	@Test
-	public void testGetResult() {
-		map.addRacerToMap(testRacer1);
-		map.addStartTime("1", "10.10.10");
-		map.addFinishTime("1", "20.20.20");
-		assertEquals("Wrong result", "10.10.10", map.getResult("1"));
-		
-	}
-
-	@Test
 	public void testGetRacer() {
-		map.addRacerToMap(testRacer1);
+		map.addRacer(testRacer1);
 		assertSame("Wrong racer returned", testRacer1, map.getRacer("1"));
 	}
 }

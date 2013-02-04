@@ -69,7 +69,7 @@ public class Racer implements Comparable {
 	}
 
 	/**
-	 * Returns the racer as a line of the format the Sorter wants.
+	 * Returns the racer as a line in the format the Sorter wants.
 	 */
 	@Override
 	public String toString() {
@@ -94,7 +94,11 @@ public class Racer implements Comparable {
 		
 		return sb.toString();
 	}
-
+	/**
+	 * 
+	 * @param laps
+	 * @return
+	 */
 	public String toString(int laps) {
 		if (laps == 1) {
 			return toString();
@@ -175,9 +179,9 @@ public class Racer implements Comparable {
 	}
 	
 	public ArrayList<String> getLapTimes(){
-		if(finishTimes.size()>0){
-			ArrayList<String> lapTimes = new ArrayList<String>();
-			
+		ArrayList<String> lapTimes = new ArrayList<String>();
+		
+		if (finishTimes.size() > 0) {	
 			String lapOne = startTimes.get(0).getDifferenceTo(finishTimes.get(0));
 			lapTimes.add(lapOne);
 			
@@ -185,11 +189,9 @@ public class Racer implements Comparable {
 				String lapTime = finishTimes.get(i-1).getDifferenceTo(finishTimes.get(i));
 				lapTimes.add(lapTime);
 			}
-			
-			return lapTimes;
-		} else {
-			return null;
 		}
+		
+		return lapTimes;
 	}
 	
 	public int getNumberOfLaps() {

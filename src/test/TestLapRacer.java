@@ -1,12 +1,14 @@
 package test;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+
+import java.util.ArrayList;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import racer.Racer;
 import racer.RacerTime;
 
@@ -95,9 +97,9 @@ public class TestLapRacer {
 	}
 	
 	@Test
-	public void testLapTimesZero(){ // TODO
+	public void testLapTimesZero(){
 		racer.addStartTime(new RacerTime("12.00.00"));
-		assertNull(racer.getLapTimes());
+		assertEquals("Lap times existed when the shouldn't",new ArrayList<String>(),racer.getLapTimes());
 	}
 	
 	@Test
