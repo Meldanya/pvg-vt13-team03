@@ -18,7 +18,12 @@ public abstract class Reader {
 			while (reader.ready()) {
 				String line = reader.readLine();
 				String[] tempArray = line.split("; ");
-				op(tempArray[0], tempArray[1]);
+				
+				try {
+					op(tempArray[0], tempArray[1]);
+				} catch (ArrayIndexOutOfBoundsException e) {
+					op(tempArray[0], "");
+				}
 			}
 			reader.close();
 		} catch (FileNotFoundException e) {
