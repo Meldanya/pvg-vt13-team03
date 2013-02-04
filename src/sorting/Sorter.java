@@ -29,7 +29,7 @@ public class Sorter {
 	 * @todo skicka in en Map<id, namn> till RacerMap istället
 	 */
 	private void readNames() {
-		Map<String, String> names = new Reader().readFromFile("namnfil.txt");
+		Map<String, String> names = new NameReader().readFromNameFile("namnfil.txt");
 		String currentClass = "";
 
 		names.remove("StartNo");

@@ -1,5 +1,6 @@
 package sorting;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -89,13 +90,16 @@ public class RacerMap {
 	
 	public void readFromFile(String startFilename, String finishFilename) {
 
-		Reader reader = new Reader();
-		Map<String, String> finish = reader.readFromFile(finishFilename);
-		Map<String, String> start = reader.readFromFile(startFilename);
+		TimeReader reader = new TimeReader();
+		Map<String, ArrayList<String>> finish = reader.readFromTimeFile(finishFilename);
+		Map<String, ArrayList<String>> start = reader.readFromTimeFile(startFilename);
 		
 		for (String s : finish.keySet()) {
 			Racer racer = new Racer(s);
-			racer.addFinishTime(new RacerTime(finish.get(s)));
+			ArrayList<String> times = finish.get(s);
+			for(int i = 0; i< times.size(); i++){
+				racer.addFinishTime(new RacerTime(times.get(i)));
+			}
 			addRacerToMap(racer);
 		}
 		for (String s : start.keySet()) {
@@ -106,7 +110,10 @@ public class RacerMap {
 				racer = new Racer(s);
 				addRacerToMap(racer);
 			}
-			racer.addStartTime(new RacerTime(start.get(s)));
+			ArrayList<String> times = start.get(s);
+			for(int i = 0; i< times.size(); i++){
+				racer.addStartTime(new RacerTime(times.get(i)));
+			}
 		}
 	}
 	
