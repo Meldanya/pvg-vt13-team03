@@ -44,7 +44,7 @@ public class TestNameReader {
 		tempMap.put("4", "David Dsson");
 		tempMap.put("5", "Erik Esson");
 
-		Map<String, String> map = reader.readFromNameFile("namnfil.txt");
+		Map<String, String> map = reader.readFromNameFile("src/test/testNamnFil.txt");
 
 		for (String s : map.keySet()) {
 			assertEquals(tempMap.get(s), map.get(s));
