@@ -6,9 +6,9 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
 
-public class StartOrFinishFrame extends AbstractFrame {
+public class SetupFrame extends AbstractFrame {
 
-	public StartOrFinishFrame() {
+	public SetupFrame() {
 		super("Start eller m\u00E5l?");
 		setLayout(new GridBagLayout());
 		setResizable(false);
@@ -45,7 +45,7 @@ public class StartOrFinishFrame extends AbstractFrame {
 	}
 
 	public static void main(String[] args) {
-		new StartOrFinishFrame();
+		new SetupFrame();
 	}
 
 }

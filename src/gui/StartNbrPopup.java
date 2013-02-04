@@ -18,6 +18,7 @@ public class StartNbrPopup extends AbstractFrame {
 		super(title);
 		setLayout(new GridBagLayout());
 		setResizable(false);
+		
 		time = new RacerTime();
 		initComponents();
 		pack();
@@ -52,7 +53,7 @@ public class StartNbrPopup extends AbstractFrame {
 		gb.gridy = 2;
 		add(button1, gb);
 
-		CancelButton button2 = new CancelButton();
+		CancelButton button2 = new CancelButton(this);
 		gb = new GridBagConstraints();
 		gb.gridx = 1;
 		gb.gridy = 2;
