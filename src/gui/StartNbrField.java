@@ -27,7 +27,7 @@ public class StartNbrField extends JTextField implements ActionListener {
 		String text = this.getText();
 		text = text.trim();
 		if (text.equals("")) {
-			new StartNbrPopup("test");
+			new StartNbrPopup(register);
 		} else {
 			register.register(text);
 		}

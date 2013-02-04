@@ -17,13 +17,10 @@ public class StartButton extends AlternativeButton{
 		return "Start";
 	}
 
-
-	@Override
-	protected boolean getChoice() {
-		return true;
+	public void actionPerformed(ActionEvent e) {
+		new RegisterFrame(getTitle(), true);
+		frame.dispose();
 	}
-
-
 	
 	
 }
