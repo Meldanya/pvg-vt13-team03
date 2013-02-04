@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import racer.Racer;
+import racer.RacerClass;
 
 public class ResultWriter {
 	private RacerMap data;
@@ -26,16 +27,29 @@ public class ResultWriter {
 	 * is found in Racer class.
 	 */
 	public void writeToFile() {
-		Set<String> keys = new TreeSet<String>(data.keySet());
+		Set<RacerClass> classes = data.getClassTypes();
+		
+		for (RacerClass racerClass : classes) {
+			writeClassTypeToFile(racerClass);
+		}
+	}
+
+	/**
+	 * 
+	 */
+	private void writeClassTypeToFile(RacerClass racerClass) {
+		Set<Racer> racers = data.getRacers(racerClass);
 		
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
-			
+
+			writer.write(racerClass.toString());
+			writer.newLine();
 			writer.write(header);
 			writer.newLine();
 			
-			for (String key : keys) {
-				writer.write(data.get(key).toString());
+			for (Racer racer : racers) {
+				writer.write(racer.toString());
 				writer.newLine();
 			}
 			
