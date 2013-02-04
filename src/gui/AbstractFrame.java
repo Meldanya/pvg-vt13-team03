@@ -13,9 +13,6 @@ public abstract class AbstractFrame extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
-	
-	
-
 	protected void positionFrameInCenter() {
 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
