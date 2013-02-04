@@ -35,7 +35,8 @@ public class TestRegister {
 		
 		String line = null;
 		StringBuilder actual = new StringBuilder();
-		while ((line = reader.readLine()) != null) {
+		while (reader.ready()) {
+			line = reader.readLine();
 			actual.append(line);
 		}
 		

@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import racer.RacerTime;
 
-public class RacerTimeTest {
+public class TestRacerTime {
 	RacerTime racerTime;
 	
 	@Before

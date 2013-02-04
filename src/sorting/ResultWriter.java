@@ -10,13 +10,13 @@ import racer.RacerClass;
 
 public class ResultWriter {
 	private RacerMap data;
-	private String filename;
+	private String fileName;
 	private String header;
 	
 	// TODO: klass utan modifierbart tillstånd?
 	public ResultWriter(RacerMap data, String filename) {
 		this.data = data;
-		this.filename = filename;
+		this.fileName = filename;
 		this.header = "StartNr; Namn; TotalTid; StartTider; Måltider";
 	}
 	
@@ -38,8 +38,18 @@ public class ResultWriter {
 	private void writeClassTypeToFile(RacerClass racerClass, int laps) {
 		Set<Racer> racers = data.getRacers(racerClass);
 		
+//		String path ="";
+//		try {
+//			path = Register.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+//		} catch (URISyntaxException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		path = path.substring(0, path.length()- "registrering.jar".length()); //TODO fix this
+//		fileName = path + fileName;
+		
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
 
 			writer.write(racerClass.toString());
 			writer.newLine();
@@ -72,7 +82,7 @@ public class ResultWriter {
 			
 			writer.close();
 		} catch (IOException e) {
-			System.err.println("File " + filename + " could not be written");
+			System.err.println("File " + fileName + " could not be written");
 		}
 	}
 }

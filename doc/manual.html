@@ -39,17 +39,18 @@
 		<li>Java Runtime</li>
 	</ul>
 	<h2>Formatering av filer</h2>
-	<p>Filerna är formaterade som CSV med semikolon som separator. Exempel (namnfil):</p>
+	<p>Filerna är formaterade som CSV med semikolon som separator. Exempel på en namnfil:</p>
 	<pre>1; Anders Andersson
 2; Bengt Bengtsson</pre>
-	<h1>Användning</h1>
-	<p>Hur programmet används. Förklaring av användargränssnittets funktioner.</p>
+
+	<h1>Registrering</h1>
+	<p>Registreringsprogrammet används för att registrera deltagares start- och måltider. Tiderna lagras i separata filer (start.txt respektive finish.txt) i samma katalog som programmet finns i för senare bearbetning.</p>
 	<h2>Starta programmet</h2>
-	<p>Dubbelklicka på programfilen (filnamn.jar). Ett fönster visas som låter användaren välja programläge.</p>
+	<p>Dubbelklicka på programfilen (EnduroRegister.jar). Ett fönster visas som låter användaren välja programläge.</p>
 	<h2>Välja programläge</h2>
 	<p>När programmet startas så öppnas ett fönster med tre alternativ. Välj det alternativ som ska användas. Vid registrering av start- och måltider ändras programmets gränssnitt för att visa ett fönster där startnummer kan matas in. För att byta läge; starta om programmet.</p>
 	<img src="bilder/setupframe.png" />
-	<p>Alternativet masstart ber användaren bekräfta starten. Därefter registreras aktuell tid för alla deltagare i namnlistan och programmet stängs ner.</p>
+	<p>Alternativet masstart ber användaren bekräfta starten. Därefter registreras aktuell tid för alla deltagare i namnlistan och programmet stängs ner. Namnlistan lagras i filen namnfil.txt i samma katalog som programmet finns i.</p>
 	<img src="bilder/masstart.png" />
 	<h2>Gränssnittets utseende och layout</h2>
 	<p>Gränssnittet består av ett fält för att mata in ett startnummer och en knapp för att registrera tiden. Underst i fönstret visas ett statusfält med information om de senast sparade tiderna.</p>
@@ -61,11 +62,15 @@
 	<p>Fyll i förarens startnummer i fältet och tryck på "registrera", även enter-tangenten kan användas. Det ser likadant ut oavsett läge. Den registrerade tiden syns i det nedre fältet. </p>
 	<h2>Spara tider</h2>
 	<p>Tiderna sparas kontinuerligt under programmets användning och behöver inte sparas manuellt.</p>
-	<h2>Visa resultat</h2>
-	<p>De beräknade tiderna skrivs ut i filen resultat.txt som återfinns i mappen där programmet startats. Tiderna skrivs ut i ordningen totaltid, starttid och slutligen måltid. Om en totaltid inte kan beräknas skrivs istället --.--.-- ut.</p>
-	<p>Om en starttid eller sluttid saknas så skrivs istället "Starttid?" respektive "Sluttid?" ut. Då flera start- alternativt måltider registrerats så skrivs en notering ut tillsammans med alla överflödiga registeringar på formen "Flera starttider? 12.12.00". Då en totaltid anses vara orimlig skrivs "Omöjlig Totaltid?" ut.</p>
-	<h1>Avsluta programmet</h1>
-	<p>För att avsluta programmet behöver man bara stänga ner fönstret. Alla ändringar sparas automatiskt.</p>
+	<h2>Avsluta programmet</h2>
+	<p>För att avsluta programmet behöver man bara stänga ner fönstret.</p>
+	
+	<h1>Sortering av resultat</h1>
+	<p>Sortering av resultatet görs av ett separat program. Resultatet sparas i filen result.txt i samma katalog som programmet finns i.</p>
+	<h2>Starta programmet</h2>
+	<p>Dubbelklicka på programfilen (EnduroSorter.jar). Programmet frågar efter antalet varv i tävlingen. Därefter beräknas och sparas resultatet och sorteringsprogrammet avslutas.</p>
+	<h2>Resultat</h2>
+	<p>Programmet läser in start- och måltider från filerna start.txt och finish.txt. Baserat på informationen i dessa och antalet varv inmatade av användaren beräknas total- och varvtider och sparas i resultatfilen. Om en totaltid inte kan beräknas för att antingen start- eller måltid saknas skrivs istället --.--.-- ut.</p>
+	<p>Om en starttid eller sluttid saknas så skrivs istället "Starttid?" respektive "Sluttid?" ut. Då flera start- eller måltider registrerats så skrivs en notering ut tillsammans med alla överflödiga registeringar på formen "Flera starttider? 12.12.00 12.13.30". En totaltid kortare än 15 minuter anses vara orimlig och "Omöjlig Totaltid?" skrivs då ut.</p>
 </body>
-
 </html>
