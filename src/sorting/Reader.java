@@ -17,23 +17,25 @@ public abstract class Reader {
 
 			while (reader.ready()) {
 				String line = reader.readLine();
-				String[] tempArray = line.split("; ");
 				
-				try {
+				if (line.contains(";")) {
+					String[] tempArray = line.split("; ");
 					op(tempArray[0], tempArray[1]);
-				} catch (ArrayIndexOutOfBoundsException e) {
-					op(tempArray[0], "");
+				}
+				else {
+					op(line, "");
 				}
 			}
+			
 			reader.close();
 		} catch (FileNotFoundException e) {
-			System.out.println("Couldn't find " + fileName);
+			System.err.println("Couldn't find " + fileName);
 			error();
 		} catch (IOException e) {
-			System.out.println("Failed while reading " + fileName);
+			System.err.println("Failed while reading " + fileName);
 			error();
 		} catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("File incorrectly formatted " + fileName);
+			System.err.println("Failed while parsing " + fileName);
 			error();
 		}
 	}
