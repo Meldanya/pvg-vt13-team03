@@ -11,6 +11,7 @@ public class StartOrFinishFrame extends AbstractFrame {
 	public StartOrFinishFrame() {
 		super("Start eller m\u00E5l?");
 		setLayout(new GridBagLayout());
+		setResizable(false);
 		initComponents();
 		pack();
 
@@ -21,7 +22,7 @@ public class StartOrFinishFrame extends AbstractFrame {
 		GridBagConstraints gb;
 
 		JLabel label = new JLabel();
-		label.setText("<HTML>Vill du registrera<BR>start- eller m\u00E5ltid?</HTML>");
+		label.setText("<html><div style=\"text-align: center;\">" + "Vill du registrera<BR>start- eller m\u00E5ltid?</html>");
 		label.setFont(new Font(null, Font.BOLD, 25));
 		gb = new GridBagConstraints();
 		gb.gridwidth = 2;

@@ -88,21 +88,24 @@ public class TestResultWriter {
 		map.addRacerToMap(racer);
 		writer.writeToFile();
 		
-		assertEquals("Result doesn't match", header + "\n" + racer.toString() + "\n", readFile());
+		assertEquals("Result doesn't match", "\n" + header + "\n" + racer.toString() + "\n", readFile());
 	}
 
 	@Test
 	public void testMultipleRacers() throws IOException {
+		StringBuilder expected = new StringBuilder();
 		Racer racer1 = new MarathonRacer("1");
-		racer1.setName("Anders Asson");
 		Racer racer2 = new MarathonRacer("2");
-		racer2.setName("Bengt Bsson");
 		Racer racer3 = new MarathonRacer("3");
+		
+		racer1.setName("Anders Asson");
+		racer2.setName("Bengt Bsson");
 		racer3.setName("Chris Csson");
-		String expected = header + "\n" +
-				racer1.toString() + "\n" +
-				racer2.toString() + "\n" +
-				racer3.toString() + "\n";
+		
+		expected.append("\n" + header + "\n");
+		expected.append(racer1.toString() + "\n");
+		expected.append(racer2.toString() + "\n");
+		expected.append(racer3.toString() + "\n");
 
 
 		map.addRacerToMap(racer1);
@@ -110,14 +113,7 @@ public class TestResultWriter {
 		map.addRacerToMap(racer2);
 		writer.writeToFile();
 
-		assertEquals("Result doesn't match", expected, readFile());
-	}
-
-	@Test
-	public void testEmpty() throws IOException {
-		writer.writeToFile();
-		
-		assertEquals("Result not empty", header + "\n", readFile());
+		assertEquals("Result doesn't match", expected.toString(), readFile());
 	}
 
 }

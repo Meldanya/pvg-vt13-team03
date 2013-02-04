@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public abstract class Reader {
 
@@ -17,9 +15,9 @@ public abstract class Reader {
 		try {
 			reader = new BufferedReader(new FileReader(fileName));
 
-			String result = null;
-			while ((result = reader.readLine()) != null) {
-				String[] tempArray = result.split("; ");
+			while (reader.ready()) {
+				String line = reader.readLine();
+				String[] tempArray = line.split("; ");
 				op(tempArray[0], tempArray[1]);
 			}
 			reader.close();
