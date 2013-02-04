@@ -26,18 +26,18 @@ public class ResultWriter {
 	 * Loads and sorts racers before printing them to a file. Actual formatting
 	 * is found in Racer class.
 	 */
-	public void writeToFile() {
+	public void writeToFile(int laps) {
 		Set<RacerClass> classes = data.getClassTypes();
 		
 		for (RacerClass racerClass : classes) {
-			writeClassTypeToFile(racerClass);
+			writeClassTypeToFile(racerClass, laps);
 		}
 	}
 
 	/**
 	 * 
 	 */
-	private void writeClassTypeToFile(RacerClass racerClass) {
+	private void writeClassTypeToFile(RacerClass racerClass, int laps) {
 		Set<Racer> racers = data.getRacers(racerClass);
 		
 		try {
@@ -45,11 +45,30 @@ public class ResultWriter {
 
 			writer.write(racerClass.toString());
 			writer.newLine();
-			writer.write(header);
+			
+			if (laps < 2) {
+				writer.write(header);
+			}
+			else {
+				writer.write("StartNr; Namn; #Varv; TotalTid; ");
+				
+				for (int i = 1; i <= laps; i++) {
+					writer.write("Varv" + i + "; ");
+				}
+				
+				writer.write("Start; ");
+				
+				for (int i = 1; i < laps; i++) {
+					writer.write("Varvning" + i + "; ");
+				}
+				
+				writer.write("Mål");
+			}
+			
 			writer.newLine();
 			
 			for (Racer racer : racers) {
-				writer.write(racer.toString());
+				writer.write(racer.toString(laps));
 				writer.newLine();
 			}
 			

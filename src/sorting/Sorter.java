@@ -3,6 +3,8 @@ package sorting;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import javax.swing.JOptionPane;
+
 import racer.Racer;
 
 /**
@@ -12,9 +14,13 @@ import racer.Racer;
 public class Sorter {
 
 	private RacerMap racers;
+	private int laps;
 	
-	public Sorter(char typeOfRace) {
-		racers = new RacerMap(typeOfRace);
+	public Sorter() {
+		racers = new RacerMap();
+		
+		String laps = JOptionPane.showInputDialog("Fyll i önskat antal varv, 1 för maratontävling");
+		this.laps = Integer.parseInt(laps);
 		
 		read();
 		readNames();
@@ -55,10 +61,10 @@ public class Sorter {
 	}
 
 	private void write() {
-		racers.writeToFile("result.txt");
+		racers.writeToFile("result.txt", laps);
 	}
 
 	public static void main(String[] args) {
-		new Sorter(args[0].charAt(0));
+		new Sorter();
 	}
 }

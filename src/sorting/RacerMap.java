@@ -15,11 +15,9 @@ import racer.RacerTime;
 
 public class RacerMap {
 	private TreeMap<String, Racer> map;
-	private char typeOfRace;
 
-	public RacerMap(char typeOfRace) {
+	public RacerMap() {
 		map = new TreeMap<String, Racer>();
-		this.typeOfRace= typeOfRace;
 	}
 
 	// TODO: används bara för test => ta bort. Hitta på nåt annat.
@@ -87,9 +85,9 @@ public class RacerMap {
 		return "--.--.--";
 	}
 
-	public void writeToFile(String filename) {
+	public void writeToFile(String filename, int laps) {
 		ResultWriter writer = new ResultWriter(this, filename);
-		writer.writeToFile();
+		writer.writeToFile(laps);
 	}
 	
 	public void readFromFile(String startFilename, String finishFilename) {
@@ -99,15 +97,7 @@ public class RacerMap {
 		Map<String, ArrayList<String>> start = reader.readFromTimeFile(startFilename);
 		
 		for (String s : finish.keySet()) {
-			Racer racer=null;
-			switch(typeOfRace){
-			case 'm':  
-				racer = new MarathonRacer(s);
-				break;
-			case 'l':
-				racer = new LapRacer(s);
-				break;
-			}
+			Racer racer = new Racer(s);
 			ArrayList<String> times = finish.get(s);
 			for(int i = 0; i< times.size(); i++){
 				racer.addFinishTime(new RacerTime(times.get(i)));
@@ -115,18 +105,10 @@ public class RacerMap {
 			addRacerToMap(racer);
 		}
 		for (String s : start.keySet()) {
-			Racer racer=null;
+			Racer racer = new Racer(s);
 			if (map.containsKey(s)) {
 				racer = map.get(s);
 			} else {
-				switch(typeOfRace){
-				case 'm':  
-					racer = new MarathonRacer(s);
-					break;
-				case 'l':
-					racer = new LapRacer(s);
-					break;
-				}
 				addRacerToMap(racer);
 			}
 			ArrayList<String> times = start.get(s);

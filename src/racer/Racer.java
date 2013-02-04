@@ -99,8 +99,30 @@ public class Racer implements Comparable {
 		if (laps == 1) {
 			return toString();
 		}
+		
+		StringBuilder out = new StringBuilder();
+		
+		out.append(startNumber + "; " + name + "; #" + finishTimes.size() + "; " + getTotalTime() + "; ");
+		
+		for (int i = 0; i < laps; i++) {
+			RacerTime laptime = finishTimes.get(i);
+			
+			if (laptime != null) {
+				out.append(laptime.toString());
+			}
 
-		return "";
+			out.append("; ");
+		}
+		
+		out.append(getStartTime());
+		
+		for (int i = 1; i < laps; i++) {
+			out.append("Varvning" + i + "; ");
+		}
+		
+		out.append("Mål");
+
+		return out.toString();
 	}
 	
 	@Override
