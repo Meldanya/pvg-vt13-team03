@@ -16,7 +16,7 @@ public class FinishButton extends AlternativeButton{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		new RegisterFrame(getTitle(), true);
+		new RegisterFrame(getTitle(), false);
 		frame.dispose();
 	}
 

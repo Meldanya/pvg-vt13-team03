@@ -19,6 +19,8 @@ public class PopupStartNbrField extends JTextField implements ActionListener{
 		this.register = register;
 		this.time = time;
 		this.dialog = dialog;
+		addActionListener(this);
+		
 	}
 	
 	@Override
