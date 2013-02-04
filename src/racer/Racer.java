@@ -11,7 +11,7 @@ public abstract class Racer implements Comparable{
 	private RacerClass classType;
 	private String startNumber;
 	private ArrayList<RacerTime> startTimes;
-	private ArrayList<RacerTime> finishTimes;
+	protected ArrayList<RacerTime> finishTimes;
 	private String name;
 
 	public Racer(String startNumber) {
