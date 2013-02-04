@@ -18,7 +18,7 @@ public class StartNbrField extends JTextField implements ActionListener {
 	public StartNbrField(Register register) {
 		// TODO: namnet är namnet på ett teckensnitt, inte ett påhittat. Det kan
 		// vara null; då används ett standardteckensnitt
-		Font font = new Font("OurFont", Font.BOLD, 96);
+		Font font = new Font(null, Font.BOLD, 96);
 		setFont(font);
 		this.register = register;
 		addActionListener(this);

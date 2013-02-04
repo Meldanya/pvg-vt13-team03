@@ -10,6 +10,7 @@ import javax.swing.UIManager;
 
 import racer.RacerTime;
 import registration.Register;
+import res.Strings;
 
 public class MassStartButton extends AlternativeButton{
 
@@ -31,7 +32,7 @@ public class MassStartButton extends AlternativeButton{
 			Register register = new Register(true);
 			RacerTime time = new RacerTime();
 			try {
-				register.registerMassStart("namnfil.txt", time.toString());
+				register.registerMassStart(Strings.NAMEFILE, time.toString());
 				JOptionPane.showMessageDialog(frame, "Alla deltagares starttid har registrerats");
 			} catch (FileNotFoundException e0) {
 				JOptionPane.showMessageDialog(frame, "Filen med deltagarnas namn kunde inte öppnas", "", JOptionPane.ERROR_MESSAGE);

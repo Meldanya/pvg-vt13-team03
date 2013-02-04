@@ -10,6 +10,7 @@ import java.util.Observable;
 
 import racer.Racer;
 import racer.RacerTime;
+import res.Strings;
 
 /**
  * A class representing a register (aka a program that registers racers at the
@@ -82,10 +83,10 @@ public class Register extends Observable {
 		racer = new Racer(startNumber);
 		if (isStart) {
 			racer.addStartTime(new RacerTime());
-			writeToFile("start.txt");
+			writeToFile(Strings.START);
 		} else {
 			racer.addFinishTime(new RacerTime());
-			writeToFile("finish.txt");
+			writeToFile(Strings.FINISH);
 		}
 	}
 
@@ -108,10 +109,10 @@ public class Register extends Observable {
 		racer = new Racer(startNumber);
 		if (isStart) {
 			racer.addStartTime(time);
-			writeToFile("start.txt");
+			writeToFile(Strings.START);
 		} else {
 			racer.addFinishTime(time);
-			writeToFile("finish.txt");
+			writeToFile(Strings.FINISH);
 		}
 	}
 
@@ -129,7 +130,7 @@ public class Register extends Observable {
 	 *             If an I/O error occurs
 	 */
 	public void registerMassStart(String nameFile, String startTime) throws IOException {
-		new FileWriter("start.txt").close(); // clear the file!
+		new FileWriter(Strings.START).close(); // clear the file!
 		
 		  BufferedReader reader = new BufferedReader(new FileReader(nameFile));
 		  
