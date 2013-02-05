@@ -18,8 +18,6 @@ public class RegisterFrame extends AbstractFrame{
 		super("Registrering av " + mode + "tider");
 		setSize(640,480);
 		setLayout(new BorderLayout());
-
-		// The order in which the following object are initialized is important. 
 		Register register = new Register(start);
 		startNbrField = new StartNbrField(register);
 		statusArea = new StatusArea(register, startNbrField);
