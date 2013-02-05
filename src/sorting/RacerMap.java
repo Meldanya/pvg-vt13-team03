@@ -1,101 +1,159 @@
 package sorting;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 import racer.Racer;
+import racer.RacerClass;
 import racer.RacerTime;
 
+/**
+ * Container for Map with all Racers
+ */
 public class RacerMap {
-	private TreeMap<String, Racer> map;
+	private Map<String, Racer> map;
 
+	/**
+	 * Creates a new TreeMap
+	 */
 	public RacerMap() {
 		map = new TreeMap<String, Racer>();
 	}
 
+	/**
+	 * Returns the size of the map
+	 * 
+	 * @return int
+	 */
 	public int size() {
 		return map.size();
 	}
 
-	public void addRacerToMap(Racer racer) {
+	/**
+	 * Adds a racer
+	 * 
+	 * @param racer
+	 */
+	public void addRacer(Racer racer) {
 		map.put(racer.getStartNumber(), racer);
 	}
 
+	/**
+	 * Returns the racer with the specified start number
+	 * 
+	 * @param id
+	 *            The start number
+	 * @return Racer
+	 */
 	public Racer getRacer(String id) {
 		Racer r = map.get(id);
+
 		if (r == null) {
 			throw new NoSuchElementException();
 		}
+
 		return r;
 	}
 
-	public void setName(String id, String name) {
+	/**
+	 * Writes the current map to a file, passes responsibility to ResultWriter
+	 * 
+	 * @param filename
+	 *            File to write to
+	 * @param laps
+	 *            Amount of specified laps
+	 */
+	public void writeToFile(String filename, int laps) {
+		ResultWriter writer = new ResultWriter(this, filename);
 
-		try{
-		Racer r = getRacer(id);
-		r.setName(name);
-		} catch(Exception e){
-			e.printStackTrace();
-		}
-
+		writer.writeToFile(laps);
 	}
 
-	public void addStartTime(String id, String startTime) {
-		try {
-			Racer r = getRacer(id);
-			r.addStartTime(new RacerTime(startTime));
-		} catch (NoSuchElementException e) {
-			System.err.println("NoSuchElementException:1 " + e.getMessage());
-		}
-	}
-
-	public void addFinishTime(String id, String finishTime) {
-		try {
-			Racer r = getRacer(id);
-			r.addFinishTime(new RacerTime(finishTime));
-		} catch (NoSuchElementException e) {
-			System.err.println("NoSuchElementException:2 " + e.getMessage());
-		}
-
-	}
-
-	public String getResult(String id) {
-		try {
-			Racer r = getRacer(id);
-			return r.getTotalTime();
-		} catch (NoSuchElementException e) {
-			System.err.println("NoSuchElementException:3 " + e.getMessage());
-		}
-
-		return "--.--.--";
-	}
-
-	public void writeToFile(String filename) {
-		ResultWriter writer = new ResultWriter(map, filename);
-		writer.writeToFile();
-	}
-	
+	/**
+	 * Reads starttimes and finishtimes from files and loads it into Racers,
+	 * creates new Racers to store the data in where necessary.
+	 * @param startFilename
+	 * @param finishFilename
+	 */
 	public void readFromFile(String startFilename, String finishFilename) {
+		TimeReader reader = new TimeReader();
+		Map<String, ArrayList<String>> finish = reader
+				.readFromTimeFile(finishFilename);
+		Map<String, ArrayList<String>> start = reader
+				.readFromTimeFile(startFilename);
 
-		Reader reader = new Reader();
-		Map<String, String> finish = reader.readFromFile(finishFilename);
-		Map<String, String> start = reader.readFromFile(startFilename);
-		
 		for (String s : finish.keySet()) {
 			Racer racer = new Racer(s);
-			racer.addFinishTime(new RacerTime(finish.get(s)));
-			addRacerToMap(racer);
+			ArrayList<String> times = finish.get(s);
+
+			for (int i = 0; i < times.size(); i++) {
+				racer.addFinishTime(new RacerTime(times.get(i)));
+			}
+
+			addRacer(racer);
 		}
+
 		for (String s : start.keySet()) {
-			Racer racer;
+			Racer racer = new Racer(s);
+			
 			if (map.containsKey(s)) {
 				racer = map.get(s);
 			} else {
-				racer = new Racer(s);
-				addRacerToMap(racer);
+				addRacer(racer);
 			}
-			racer.addStartTime(new RacerTime(start.get(s)));
+			
+			ArrayList<String> times = start.get(s);
+			
+			for (int i = 0; i < times.size(); i++) {
+				racer.addStartTime(new RacerTime(times.get(i)));
+			}
 		}
+	}
+
+	/**
+	 * Gets a set of all the keys
+	 * @return
+	 */
+	public Set<String> keySet() {
+		return map.keySet();
+	}
+
+	/**
+	 * Gets a set of all the registered classes
+	 * @return
+	 */
+	public Set<RacerClass> getClassTypes() {
+		Set<RacerClass> set = new TreeSet<RacerClass>();
+
+		for (String key : map.keySet()) {
+			Racer r = map.get(key);
+
+			set.add(r.getClassType());
+		}
+
+		return set;
+	}
+
+	/**
+	 * Gets a set of all the Racers with the specified class
+	 * @param rc The specified class
+	 * @return
+	 */
+	public Set<Racer> getRacers(RacerClass rc) {
+		Set<Racer> set = new TreeSet<Racer>();
+
+		for (String key : map.keySet()) {
+			Racer r = map.get(key);
+
+			if (r.getClassType().equals(rc)) {
+				set.add(r);
+			}
+		}
+
+		return set;
 	}
 }

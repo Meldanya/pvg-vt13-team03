@@ -1,7 +1,6 @@
 package test;
 
-import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.*;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -9,18 +8,18 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import sorting.Reader;
+import sorting.NameReader;
 
 public class TestNameReader {
 
-	private Reader reader;
+	private NameReader reader;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		reader = new Reader();
+		reader = new NameReader();
 
 	}
 
@@ -43,7 +42,7 @@ public class TestNameReader {
 		tempMap.put("4", "David Dsson");
 		tempMap.put("5", "Erik Esson");
 
-		Map<String, String> map = reader.readFromFile("namnfil.txt");
+		Map<String, String> map = reader.readFromNameFile("test/TestNameReader/namnfil.txt");
 
 		for (String s : map.keySet()) {
 			assertEquals(tempMap.get(s), map.get(s));
@@ -53,7 +52,7 @@ public class TestNameReader {
 
 	@Test
 	public void testIncorrectlyFormattedFile() {
-		assertEquals(reader.readFromFile("incorrectstart.txt"), null);
+		assertNull(reader.readFromNameFile("test/TestNameReader/incorrectstart.txt"));
 	}
 
 }

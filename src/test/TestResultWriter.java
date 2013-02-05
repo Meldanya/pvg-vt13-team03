@@ -9,14 +9,13 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Map;
-import java.util.TreeMap;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import racer.Racer;
+import sorting.RacerMap;
 import sorting.ResultWriter;
 
 /**
@@ -24,7 +23,7 @@ import sorting.ResultWriter;
  *
  */
 public class TestResultWriter {
-	private Map<String, Racer> map;
+	private RacerMap map;
 	private ResultWriter writer;
 	private String filename;
 	private String header;
@@ -36,7 +35,7 @@ public class TestResultWriter {
 	public void setUp() throws Exception {
 		filename = "resultat.txt";
 		header = "StartNr; Namn; TotalTid; StartTider; Måltider";
-		map = new TreeMap<String, Racer>();
+		map = new RacerMap();
 		writer = new ResultWriter(map, filename);
 		
 		deleteTestFile();
@@ -83,39 +82,35 @@ public class TestResultWriter {
 		Racer racer = new Racer("1");
 		racer.setName("Anders Asson");
 		
-		map.put(racer.getStartNumber(), racer);
-		writer.writeToFile();
+		map.addRacer(racer);
+		writer.writeToFile(1);
 		
-		assertEquals("Result doesn't match", header + "\n" + racer.toString() + "\n", readFile());
+		assertEquals("Result doesn't match", "\n" + header + "\n" + racer.toString() + "\n", readFile());
 	}
 
 	@Test
 	public void testMultipleRacers() throws IOException {
+		StringBuilder expected = new StringBuilder();
 		Racer racer1 = new Racer("1");
-		racer1.setName("Anders Asson");
 		Racer racer2 = new Racer("2");
-		racer2.setName("Bengt Bsson");
 		Racer racer3 = new Racer("3");
-		racer3.setName("Chris Csson");
-		String expected = header + "\n" +
-				racer1.toString() + "\n" +
-				racer2.toString() + "\n" +
-				racer3.toString() + "\n";
-
-
-		map.put(racer1.getStartNumber(), racer1);
-		map.put(racer3.getStartNumber(), racer3);
-		map.put(racer2.getStartNumber(), racer2);
-		writer.writeToFile();
-
-		assertEquals("Result doesn't match", expected, readFile());
-	}
-
-	@Test
-	public void testEmpty() throws IOException {
-		writer.writeToFile();
 		
-		assertEquals("Result not empty", header + "\n", readFile());
+		racer1.setName("Anders Asson");
+		racer2.setName("Bengt Bsson");
+		racer3.setName("Chris Csson");
+		
+		expected.append("\n" + header + "\n");
+		expected.append(racer1.toString() + "\n");
+		expected.append(racer2.toString() + "\n");
+		expected.append(racer3.toString() + "\n");
+
+
+		map.addRacer(racer1);
+		map.addRacer(racer3);
+		map.addRacer(racer2);
+		writer.writeToFile(1);
+
+		assertEquals("Result doesn't match", expected.toString(), readFile());
 	}
 
 }

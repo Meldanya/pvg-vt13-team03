@@ -2,8 +2,6 @@ package gui;
 
 import java.awt.BorderLayout;
 
-import javax.swing.JFrame;
-
 import registration.Register;
 
 /**
@@ -11,18 +9,18 @@ import registration.Register;
  *
  * Main class that launches the GUI.
  */
-public class RegisterFrame extends JFrame{
-	StartNbrField startNbrField;
-	StatusArea statusArea;
-	RegisterButton registerButton;
+public class RegisterFrame extends AbstractFrame{
+	private StartNbrField startNbrField;
+	private StatusArea statusArea;
+	private RegisterButton registerButton;
 	
-	public RegisterFrame(){
-		super("Registrering");
+	public RegisterFrame(String mode, boolean start){
+		super("Registrering av " + mode + "tider");
 		setSize(640,480);
 		setLayout(new BorderLayout());
-		
-		// The order in which the following objects are initialized is important. 
-		Register register = new Register(false);
+
+		// The order in which the following object are initialized is important. 
+		Register register = new Register(start);
 		startNbrField = new StartNbrField(register);
 		statusArea = new StatusArea(register, startNbrField);
 		registerButton = new RegisterButton(startNbrField);
@@ -30,12 +28,6 @@ public class RegisterFrame extends JFrame{
 		add(startNbrField,BorderLayout.CENTER);
 		add(statusArea,BorderLayout.PAGE_END);
 		add(registerButton,BorderLayout.LINE_END);
-		setVisible(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		positionFrameInCenter();
 	}
-	
-	public static void main(String[] args) {
-		new RegisterFrame();
-	}
-
 }

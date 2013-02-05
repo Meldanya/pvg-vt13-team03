@@ -1,9 +1,11 @@
 package sorting;
 
 import java.util.Map;
+import java.util.NoSuchElementException;
+
+import javax.swing.JOptionPane;
 
 import racer.Racer;
-import racer.RacerTime;
 
 /**
  * A class representing a sorter. It reads start.txt and finish.txt and outputs
@@ -12,41 +14,57 @@ import racer.RacerTime;
 public class Sorter {
 
 	private RacerMap racers;
+	private int laps;
 	
 	public Sorter() {
 		racers = new RacerMap();
 		
+		String laps = JOptionPane.showInputDialog("Fyll i önskat antal varv, 1 för maratontävling");
+		this.laps = Integer.parseInt(laps);
+		
 		read();
 		readNames();
-		//sort();
 		write();
 	}
 
 	private void read() {
+		// Här läses deltagarna in från start och finish. Deltagare utan tider finns inte.
+		// Prova att istället läsa in namnen här och sätta start- och sluttid i readNames()
 		racers.readFromFile("start.txt", "finish.txt");
-	}
-	
-	private void readNames(){
-		Map<String, String> names = new Reader().readFromFile("namnfil.txt");
-		names.remove("StartNo");
-		
-		for(String s : names.keySet()){
-			racers.setName(s, names.get(s));
-		}
-		
 	}
 
 	/**
-	 * The method that performs the reading and sorting.
+	 * @todo kolla vad första raden innehåller istället.
+	 * @todo skicka in en Map<id, namn> till RacerMap istället
 	 */
-	private void sort() {
+	private void readNames() {
+		Map<String, String> names = new NameReader().readFromNameFile("namnfil.txt");
+		String currentClass = "";
+
+		names.remove("StartNo");
+
+		for (String s : names.keySet()) {
+			// Kontrollerar att raden är ett startnummer
+			if (Character.isDigit(s.charAt(0))) {
+				try {
+					Racer racer = racers.getRacer(s);
+					
+					racer.setName(names.get(s));
+					racer.setClassType(currentClass);
+				} catch (NoSuchElementException e) {
+					// Om racern inte finns definerad så hoppas den över
+					continue;
+				}
+			}
+			else {
+				currentClass = s;
+			}
+		}
 	}
-	
 
 	private void write() {
-		racers.writeToFile("result.txt");
+		racers.writeToFile("result.txt", laps);
 	}
-
 
 	public static void main(String[] args) {
 		new Sorter();

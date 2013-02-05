@@ -6,19 +6,22 @@ import java.util.ArrayList;
  * A class representing a racer (aka driver) with a start number, start time and
  * finish time.
  */
-public class Racer {
+public class Racer implements Comparable<Racer> {
+
+	private RacerClass classType;
 	private String startNumber;
 	private ArrayList<RacerTime> startTimes;
-	private ArrayList<RacerTime> finishTimes;
+	protected ArrayList<RacerTime> finishTimes;
 	private String name;
 
 	public Racer(String startNumber) {
+		this.classType = new RacerClass("");
 		this.startNumber = startNumber;
 		this.startTimes = new ArrayList<RacerTime>();
 		this.finishTimes = new ArrayList<RacerTime>();
 	}
 	
-	public void setName(String name){
+	public void setName(String name) {
 		this.name = name;
 	}
 
@@ -44,7 +47,7 @@ public class Racer {
 
 	public String getFinishTime() {
 		if (finishTimes.size() > 0) {
-			return finishTimes.get(0).toString();
+			return finishTimes.get(finishTimes.size()-1).toString();
 		}
 
 		return "Sluttid?";
@@ -66,16 +69,133 @@ public class Racer {
 	}
 
 	/**
-	 * Returns the racer as a line of the format the Sorter wants.
+	 * Returns the racer as a line in the format the Sorter wants.
 	 */
 	@Override
 	public String toString() {
-		return startNumber + "; " + name +"; " + getTotalTime() + "; " + getStartTime() + "; "
-				+ getFinishTime();
+		StringBuilder sb = new StringBuilder();
+		sb.append(startNumber);
+		sb.append("; ");
+		sb.append(name);
+		sb.append("; ");
+		sb.append(getTotalTime());
+		sb.append("; ");
+		sb.append(getStartTime());
+		sb.append("; ");
+		sb.append(getFinishTime());
+		
+		if (startTimes.size() > 1) {
+			sb.append("; Flera starttider?");
+			for(int i = 1; i < startTimes.size(); i++) {
+				sb.append(" ");
+				sb.append(startTimes.get(i));
+			}
+		}
+		
+		return sb.toString();
+	}
+	/**
+	 * 
+	 * @param laps
+	 * @return
+	 */
+	public String toString(int laps) {
+		if (laps == 1) {
+			return toString();
+		}
+		
+		StringBuilder out = new StringBuilder();
+		ArrayList<String> lapTimes = getLapTimes();
+		
+		out.append(startNumber + "; " + name + "; " + finishTimes.size() + "; " + getTotalTime() + "; ");
+		
+		for (int i = 0; i < laps; i++) {
+			try {
+				String laptime = lapTimes.get(i);
+				
+				out.append(laptime + "; ");
+			} catch (IndexOutOfBoundsException e) {
+				// Laptime doesn't exist, print column anyway
+				out.append("; ");
+			}
+		}
+		
+		out.append(getStartTime() + "; ");
+		
+		for (int i = 0; i < laps; i++) {
+			try {
+				RacerTime laptime = finishTimes.get(i);
+				out.append(laptime.toString() + "; ");
+			} catch (IndexOutOfBoundsException e) {
+				// Laptime doesn't exist, print column anyway
+				out.append("; ");
+			}
+		}
+
+		return out.toString();
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((startNumber == null) ? 0 : startNumber.hashCode());
+		return result;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
-		return ((Racer) obj).startNumber == startNumber;
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Racer other = (Racer) obj;
+		if (startNumber == null) {
+			if (other.startNumber != null)
+				return false;
+		} else if (!startNumber.equals(other.startNumber))
+			return false;
+		return true;
+	}
+
+	public RacerClass getClassType() {
+		return classType;
+	}
+
+	public void setClassType(RacerClass classType) {
+		this.classType = classType;
+	}
+	
+	public void setClassType(String className) {
+		this.classType = new RacerClass(className);
+	}
+
+	@Override
+	public int compareTo(Racer o) {
+		return startNumber.compareTo(o.getStartNumber());
+	}
+	
+	public ArrayList<String> getLapTimes(){
+		ArrayList<String> lapTimes = new ArrayList<String>();
+		
+		if (finishTimes.size() > 0) {	
+			String lapOne = startTimes.get(0).getDifferenceTo(finishTimes.get(0));
+			lapTimes.add(lapOne);
+			
+			for (int i = 1; i < finishTimes.size(); i++){
+				String lapTime = finishTimes.get(i-1).getDifferenceTo(finishTimes.get(i));
+				lapTimes.add(lapTime);
+			}
+		}
+		
+		return lapTimes;
+	}
+	
+	public int getNumberOfLaps() {
+		return finishTimes.size();
 	}
 
 }
