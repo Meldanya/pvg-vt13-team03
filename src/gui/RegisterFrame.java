@@ -21,7 +21,7 @@ public class RegisterFrame extends JFrame{
 		setSize(640,480);
 		setLayout(new BorderLayout());
 		
-		// The order in which the following object are initialized is important. 
+		// The order in which the following objects are initialized is important. 
 		Register register = new Register(false);
 		startNbrField = new StartNbrField(register);
 		statusArea = new StatusArea(register, startNbrField);
