@@ -87,9 +87,9 @@ public class RacerMap {
 		Map<String, ArrayList<String>> start = reader
 				.readFromTimeFile(startFilename);
 
-		for (String s : finish.keySet()) {
-			Racer racer = new Racer(s);
-			ArrayList<String> times = finish.get(s);
+		for (String startNumber : finish.keySet()) {
+			Racer racer = new Racer(startNumber);
+			ArrayList<String> times = finish.get(startNumber);
 
 			for (int i = 0; i < times.size(); i++) {
 				racer.addFinishTime(new RacerTime(times.get(i)));
@@ -98,16 +98,16 @@ public class RacerMap {
 			addRacer(racer);
 		}
 
-		for (String s : start.keySet()) {
-			Racer racer = new Racer(s);
+		for (String startNumber : start.keySet()) {
+			Racer racer = new Racer(startNumber);
 			
-			if (map.containsKey(s)) {
-				racer = map.get(s);
+			if (map.containsKey(startNumber)) {
+				racer = map.get(startNumber);
 			} else {
 				addRacer(racer);
 			}
 			
-			ArrayList<String> times = start.get(s);
+			ArrayList<String> times = start.get(startNumber);
 			
 			for (int i = 0; i < times.size(); i++) {
 				racer.addStartTime(new RacerTime(times.get(i)));
