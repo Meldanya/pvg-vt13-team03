@@ -54,7 +54,12 @@ public class FunctionalTests {
             throws IOException, InterruptedException {
         String[] command = new String[] { "diff", "--unified", result, expected };
 
-        return runSystemCommand(command);
+        int error = runSystemCommand(command);
+        if (error != 0) {
+            // prettify
+            System.out.println();
+        }
+        return error;
     }
 
     /**
@@ -136,13 +141,48 @@ public class FunctionalTests {
         }
         assertEquals("resultatfiler inte identiska", 0, error);
     }
+    
+    private void simpleLapTest(String number) {
+        singleFilesLapTest(1, "acceptance/acceptanstest" + number + "/starttider.txt",
+                "acceptance/acceptanstest" + number + "/maltider.txt",
+                "acceptance/acceptanstest" + number + "/namnfil.txt",
+                "acceptance/acceptanstest" + number + "/resultat.txt");
+    }
+
+    @Test
+    public void test3_4() {
+        simpleLapTest("3_4");
+    }
+
+    @Test
+    public void test3_5() {
+        simpleLapTest("3_5");
+    }
 
     @Test
     public void test5() {
-        singleFilesLapTest(1, "acceptance/acceptanstest5/starttider.txt",
-                "acceptance/acceptanstest5/maltider.txt",
-                "acceptance/acceptanstest5/namnfil.txt",
-                "acceptance/acceptanstest5/resultat.txt");
+        simpleLapTest("5");
+    }
+
+    @Test
+    public void test6() {
+        simpleLapTest("6");
+    }
+
+    @Test
+    public void test9() {
+        simpleLapTest("9");
+    }
+
+    @Test
+    public void test15() {
+        // ParseException innan iteration 3 för att starttider har ett extra \n i slutet
+        simpleLapTest("15");
+    }
+
+    @Test
+    public void test16() {
+        simpleLapTest("16");
     }
 
 }
