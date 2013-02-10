@@ -1,5 +1,6 @@
 package sorting;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -15,7 +16,7 @@ public class NameReader extends Reader{
 		
 	}
 	
-	public Map<String, String> readFromNameFile(String fileName) {
+	public Map<String, String> readFromNameFile(String fileName) throws IOException {
 		readFromFile(fileName);
 		return map;
 	}

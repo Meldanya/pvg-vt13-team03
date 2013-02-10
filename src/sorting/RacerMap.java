@@ -1,5 +1,6 @@
 package sorting;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -79,7 +80,7 @@ public class RacerMap {
 	 * @param startFilename
 	 * @param finishFilename
 	 */
-	public void readFromFile(String startFilename, String finishFilename) {
+	public void readFromFile(String startFilename, String finishFilename) throws IOException {
 		TimeReader reader = new TimeReader();
 		Map<String, ArrayList<String>> finish = reader
 				.readFromTimeFile(finishFilename);
