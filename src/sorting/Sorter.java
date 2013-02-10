@@ -16,11 +16,9 @@ public class Sorter {
 	private RacerMap racers;
 	private int laps;
 	
-	public Sorter() {
+	public Sorter(int laps) {
+		this.laps = laps;
 		racers = new RacerMap();
-		
-		String laps = JOptionPane.showInputDialog("Fyll i önskat antal varv, 1 för maratontävling");
-		this.laps = Integer.parseInt(laps);
 		
 		read();
 		readNames();
@@ -67,6 +65,7 @@ public class Sorter {
 	}
 
 	public static void main(String[] args) {
-		new Sorter();
+		String laps = JOptionPane.showInputDialog("Fyll i önskat antal varv, 1 för maratontävling");
+		new Sorter(Integer.parseInt(laps));
 	}
 }
