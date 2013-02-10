@@ -1,6 +1,6 @@
 package constants;
 
-public class Strings {
+public class FileNames {
 
 	
 	public static final String START = "start.txt";
