@@ -65,7 +65,13 @@ public class Sorter {
 	}
 
 	public static void main(String[] args) {
-		String laps = JOptionPane.showInputDialog("Fyll i önskat antal varv, 1 för maratontävling");
+	    String laps;
+	    if (args.length == 1) {
+	        laps = args[0];
+	    } else {
+	        laps = JOptionPane.showInputDialog("Fyll i önskat antal varv, 1 för maratontävling");
+	    }
+	    System.out.println(laps);
 		new Sorter(Integer.parseInt(laps));
 	}
 }
