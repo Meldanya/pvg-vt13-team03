@@ -17,65 +17,16 @@ import racer.RacerTime;
  * start and finish line).
  */
 public class Register extends Observable {
-	private String fileName; 
+	private String fileName;
 	private String lastLine;
 
-	public Register(String fileName){
+	public Register(String fileName) {
 		this.fileName = fileName;
 	}
-	
-	/**
-	 * Writes the result to the file with the provided file name.
-	 * 
-	 * @param fileName
-	 *            The file name to write to.
-	 * @param time TODO
-	 */
-	public void writeToFile(String startNumber, RacerTime time) {
-		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,
-					true));
-			lastLine = stringToAppendToFile(startNumber, time);
-
-			writer.append(lastLine);
-			writer.newLine();
-			writer.close();
-
-			setChanged();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		notifyObservers();
-	}
 
 	/**
-	 * @param startNumber
-	 * @param time
-	 * @return
-	 */
-	private String stringToAppendToFile(String startNumber,
-			RacerTime time) {
-		StringBuilder text = new StringBuilder();
-
-		text.append(startNumber);
-		text.append("; ");
-		text.append(time);
-		
-		return text.toString();
-	}
-
-	/**
-	 * Returns the last written line, used to output the written line in the GUI
-	 * 
-	 * @return the last written line
-	 */
-	public String getLastWrittenLine() {
-		return lastLine;
-	}
-
-	/**
-	 * Registers a new time for a racer with the provided start number. It will use the current time.
+	 * Registers a new time for a racer with the provided start number. It will
+	 * use the current time.
 	 * 
 	 * @param startNumber
 	 *            The start number of the driver to register.
@@ -97,13 +48,53 @@ public class Register extends Observable {
 	}
 
 	/**
-	 * Registers the specified time
+	 * Writes the result to the file with the provided file name.
 	 * 
-	 * @param startNumber
+	 * @param fileName
+	 *            The file name to write to.
 	 * @param time
+	 *            TODO
 	 */
 	public void register(String startNumber, RacerTime time) {
-		writeToFile(startNumber, time);
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,
+					true));
+			lastLine = stringToAppendToFile(startNumber, time);
+
+			writer.append(lastLine);
+			writer.newLine();
+			writer.close();
+
+			setChanged();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		notifyObservers();
+	}
+
+	/**
+	 * @param startNumber
+	 * @param time
+	 * @return
+	 */
+	private String stringToAppendToFile(String startNumber, RacerTime time) {
+		StringBuilder text = new StringBuilder();
+
+		text.append(startNumber);
+		text.append("; ");
+		text.append(time);
+
+		return text.toString();
+	}
+
+	/**
+	 * Returns the last written line, used to output the written line in the GUI
+	 * 
+	 * @return the last written line
+	 */
+	public String getLastWrittenLine() {
+		return lastLine;
 	}
 
 	/**
@@ -119,14 +110,19 @@ public class Register extends Observable {
 	 * @throws IOException
 	 *             If an I/O error occurs
 	 */
-	public void registerMassStart(String nameFile, String startTime) throws IOException {
+	public void registerMassStart(String nameFile, String startTime)
+			throws IOException {
 		new FileWriter(FileNames.START).close(); // clear the file!
-		
-		  BufferedReader reader = new BufferedReader(new FileReader(nameFile));
-		  
-		  reader.readLine(); while (reader.ready()) { String line =
-		  reader.readLine(); String[] tempArray = line.split("; ");
-		  register(tempArray[0], startTime); } reader.close();
-		 
+
+		BufferedReader reader = new BufferedReader(new FileReader(nameFile));
+
+		reader.readLine();
+		while (reader.ready()) {
+			String line = reader.readLine();
+			String[] tempArray = line.split("; ");
+			register(tempArray[0], startTime);
+		}
+		reader.close();
+
 	}
 }
