@@ -30,16 +30,17 @@ public abstract class Register extends Observable {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,
 					true));
-			String text = racer.getStartNumber() + "; ";
-			
-			text += getRacerTime();
-			
-			writer.append(text);
+			StringBuilder text = new StringBuilder();
 
+			text.append(racer.getStartNumber());
+			text.append("; ");
+			text.append(getRacerTime());
+
+			writer.append(text);
 			writer.newLine();
 			writer.close();
 
-			lastLine = text;
+			lastLine = text.toString();
 
 			setChanged();
 		} catch (IOException e) {
