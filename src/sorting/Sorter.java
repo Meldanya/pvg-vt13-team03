@@ -71,7 +71,6 @@ public class Sorter {
 	    } else {
 	        laps = JOptionPane.showInputDialog("Fyll i önskat antal varv, 1 för maratontävling");
 	    }
-	    System.out.println(laps);
 		new Sorter(Integer.parseInt(laps));
 	}
 }
