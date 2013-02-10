@@ -8,7 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Observable;
 
-import racer.Racer;
 import racer.RacerTime;
 import res.Strings;
 
@@ -18,23 +17,23 @@ import res.Strings;
  */
 public abstract class Register extends Observable {
 	private String lastLine;
-	protected Racer racer;
 
 	/**
 	 * Writes the result to the file with the provided file name.
 	 * 
 	 * @param fileName
 	 *            The file name to write to.
+	 * @param time TODO
 	 */
-	public void writeToFile(String fileName) {
+	public void writeToFile(String fileName, String startNumber, RacerTime time) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,
 					true));
 			StringBuilder text = new StringBuilder();
 
-			text.append(racer.getStartNumber());
+			text.append(startNumber);
 			text.append("; ");
-			text.append(getRacerTime());
+			text.append(time);
 
 			writer.append(text);
 			writer.newLine();
@@ -49,13 +48,6 @@ public abstract class Register extends Observable {
 		
 		notifyObservers();
 	}
-	
-	/**
-	 * Subclasses implements this method to return either start time or finish time,
-	 * depending on the use of Register for Start or Finish.
-	 * @return Representation of the read time
-	 */
-	protected abstract String getRacerTime();
 
 	/**
 	 * Returns the last written line, used to output the written line in the GUI
@@ -65,6 +57,8 @@ public abstract class Register extends Observable {
 	public String lastLine() {
 		return lastLine;
 	}
+	
+	protected abstract String getFileName();
 
 	/**
 	 * Registers a new time for a racer with the provided start number. It will use the current time.
@@ -75,10 +69,6 @@ public abstract class Register extends Observable {
 	public void register(String startNumber) {
 		register(startNumber, new RacerTime());
 	}
-	
-	protected abstract void addTime(RacerTime racerTime);
-	
-	protected abstract String getFileName();
 
 	/**
 	 * Registers a new time for a racer with the provided start number.
@@ -89,7 +79,6 @@ public abstract class Register extends Observable {
 	 *            The time to register.
 	 */
 	public void register(String startNumber, String time) {
-		racer = new Racer(startNumber);
 		register(startNumber, new RacerTime(time));
 	}
 
@@ -100,9 +89,7 @@ public abstract class Register extends Observable {
 	 * @param time
 	 */
 	public void register(String startNumber, RacerTime time) {
-		racer = new Racer(startNumber);
-		addTime(time);
-		writeToFile(getFileName());
+		writeToFile(getFileName(), startNumber, time);
 	}
 
 	/**
