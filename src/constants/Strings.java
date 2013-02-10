@@ -1,4 +1,4 @@
-package res;
+package constants;
 
 public class Strings {
 
