@@ -10,6 +10,7 @@ import javax.swing.UIManager;
 
 import racer.RacerTime;
 import registration.Register;
+import registration.StartRegister;
 import res.Strings;
 
 public class MassStartButton extends AlternativeButton{
@@ -29,7 +30,7 @@ public class MassStartButton extends AlternativeButton{
 		UIManager.put("OptionPane.noButtonText","Nej");
 		int option = JOptionPane.showConfirmDialog(frame, "Vill du starta alla deltagare?", "", JOptionPane.YES_NO_OPTION);
 		if(option == JOptionPane.YES_OPTION) {
-			Register register = new Register(true);
+			Register register = new StartRegister();
 			RacerTime time = new RacerTime();
 			try {
 				register.registerMassStart(Strings.NAMEFILE, time.toString());
