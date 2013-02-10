@@ -8,8 +8,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Observable;
 
+import constants.Strings;
+
 import racer.RacerTime;
-import res.Strings;
 
 /**
  * A class representing a register (aka a program that registers racers at the

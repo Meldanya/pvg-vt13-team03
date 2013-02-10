@@ -8,10 +8,11 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import constants.Strings;
+
 import racer.RacerTime;
 import registration.Register;
 import registration.StartRegister;
-import res.Strings;
 
 public class MassStartButton extends AlternativeButton{
 

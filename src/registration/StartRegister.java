@@ -1,6 +1,6 @@
 package registration;
 
-import res.Strings;
+import constants.Strings;
 
 public class StartRegister extends Register {
 
