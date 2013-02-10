@@ -50,8 +50,4 @@ public class SetupFrame extends AbstractFrame {
 		add(button3, gb);
 	}
 
-	public static void main(String[] args) {
-		new SetupFrame();
-	}
-
 }
