@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import registration.Register;
-import registration.StartRegister;
+import constants.FileNames;
 
 public class TestRegister {
 
@@ -22,9 +22,9 @@ public class TestRegister {
 		
 	}
 	
-	private void startMany(String fileName) throws IOException {
-		register = new StartRegister();
-		register.registerMassStart(fileName, "12.00.00");
+	private void startMany(String nameFile) throws IOException {
+		register = new Register(FileNames.START);
+		register.registerMassStart(nameFile, "12.00.00");
 		
 		BufferedReader reader = new BufferedReader(new FileReader("test/TestRegister/start.txt"));
 

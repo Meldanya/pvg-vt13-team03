@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Observable;
 
-import constants.Strings;
+import constants.FileNames;
 
 import racer.RacerTime;
 
@@ -16,9 +16,14 @@ import racer.RacerTime;
  * A class representing a register (aka a program that registers racers at the
  * start and finish line).
  */
-public abstract class Register extends Observable {
+public class Register extends Observable {
+	private String fileName; 
 	private String lastLine;
 
+	public Register(String fileName){
+		this.fileName = fileName;
+	}
+	
 	/**
 	 * Writes the result to the file with the provided file name.
 	 * 
@@ -26,7 +31,7 @@ public abstract class Register extends Observable {
 	 *            The file name to write to.
 	 * @param time TODO
 	 */
-	public void writeToFile(String fileName, String startNumber, RacerTime time) {
+	public void writeToFile(String startNumber, RacerTime time) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,
 					true));
@@ -65,11 +70,9 @@ public abstract class Register extends Observable {
 	 * 
 	 * @return the last written line
 	 */
-	public String lastLine() {
+	public String getLastWrittenLine() {
 		return lastLine;
 	}
-	
-	protected abstract String getFileName();
 
 	/**
 	 * Registers a new time for a racer with the provided start number. It will use the current time.
@@ -100,7 +103,7 @@ public abstract class Register extends Observable {
 	 * @param time
 	 */
 	public void register(String startNumber, RacerTime time) {
-		writeToFile(getFileName(), startNumber, time);
+		writeToFile(startNumber, time);
 	}
 
 	/**
@@ -117,7 +120,7 @@ public abstract class Register extends Observable {
 	 *             If an I/O error occurs
 	 */
 	public void registerMassStart(String nameFile, String startTime) throws IOException {
-		new FileWriter(Strings.START).close(); // clear the file!
+		new FileWriter(FileNames.START).close(); // clear the file!
 		
 		  BufferedReader reader = new BufferedReader(new FileReader(nameFile));
 		  

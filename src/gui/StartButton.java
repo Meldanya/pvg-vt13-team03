@@ -4,7 +4,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
 
-import registration.StartRegister;
+import registration.Register;
+import constants.FileNames;
 
 public class StartButton extends AlternativeButton{
 
@@ -20,7 +21,7 @@ public class StartButton extends AlternativeButton{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		new RegisterFrame(getTitle(), new StartRegister());
+		new RegisterFrame(getTitle(), new Register(FileNames.START));
 		frame.dispose();
 	}
 	
