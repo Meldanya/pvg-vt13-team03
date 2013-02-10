@@ -29,17 +29,11 @@ public abstract class Register extends Observable {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,
 					true));
-			StringBuilder text = new StringBuilder();
+			lastLine = stringToAppendToFile(startNumber, time);
 
-			text.append(startNumber);
-			text.append("; ");
-			text.append(time);
-
-			writer.append(text);
+			writer.append(lastLine);
 			writer.newLine();
 			writer.close();
-
-			lastLine = text.toString();
 
 			setChanged();
 		} catch (IOException e) {
@@ -47,6 +41,22 @@ public abstract class Register extends Observable {
 		}
 		
 		notifyObservers();
+	}
+
+	/**
+	 * @param startNumber
+	 * @param time
+	 * @return
+	 */
+	private String stringToAppendToFile(String startNumber,
+			RacerTime time) {
+		StringBuilder text = new StringBuilder();
+
+		text.append(startNumber);
+		text.append("; ");
+		text.append(time);
+		
+		return text.toString();
 	}
 
 	/**
