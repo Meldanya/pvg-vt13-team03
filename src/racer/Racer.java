@@ -13,7 +13,6 @@ public class Racer implements Comparable<Racer> {
 	private ArrayList<RacerTime> startTimes;
 	protected ArrayList<RacerTime> finishTimes;
 	private String name;
-	private ArrayList<String> errors;
 
 	public Racer(String startNumber) {
 		this.classType = new RacerClass("");
