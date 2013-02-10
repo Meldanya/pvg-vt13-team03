@@ -16,22 +16,9 @@ import res.Strings;
  * A class representing a register (aka a program that registers racers at the
  * start and finish line).
  */
-public class Register extends Observable {
-	private Racer racer;
-	private boolean isStart;
+public abstract class Register extends Observable {
 	private String lastLine;
-
-	/**
-	 * Creates a new Register instance with the boolean parameter specifying
-	 * whether it should register start or finish times.
-	 * 
-	 * @param start
-	 *            Whether the Register instance should register start of finish
-	 *            times.
-	 */
-	public Register(boolean start) {
-		this.isStart = start;
-	}
+	protected Racer racer;
 
 	/**
 	 * Writes the result to the file with the provided file name.
@@ -40,16 +27,13 @@ public class Register extends Observable {
 	 *            The file name to write to.
 	 */
 	public void writeToFile(String fileName) {
-		// TODO: döp om till addResult eftersom den inte bara skriver till fil
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,
 					true));
 			String text = racer.getStartNumber() + "; ";
-			if (isStart) {
-				text += racer.getStartTime();
-			} else {
-				text += racer.getFinishTime();
-			}
+			
+			text += getRacerTime();
+			
 			writer.append(text);
 
 			writer.newLine();
@@ -61,11 +45,19 @@ public class Register extends Observable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		notifyObservers();
 	}
+	
+	/**
+	 * Subclasses implements this method to return either start time or finish time,
+	 * depending on the use of Register for Start or Finish.
+	 * @return Representation of the read time
+	 */
+	protected abstract String getRacerTime();
 
 	/**
-	 * Returns the last written line
+	 * Returns the last written line, used to output the written line in the GUI
 	 * 
 	 * @return the last written line
 	 */
@@ -74,21 +66,18 @@ public class Register extends Observable {
 	}
 
 	/**
-	 * Registers a new time for a racer with the provided start number.
+	 * Registers a new time for a racer with the provided start number. It will use the current time.
 	 * 
 	 * @param startNumber
 	 *            The start number of the driver to register.
 	 */
 	public void register(String startNumber) {
-		racer = new Racer(startNumber);
-		if (isStart) {
-			racer.addStartTime(new RacerTime());
-			writeToFile(Strings.START);
-		} else {
-			racer.addFinishTime(new RacerTime());
-			writeToFile(Strings.FINISH);
-		}
+		register(startNumber, new RacerTime());
 	}
+	
+	protected abstract void addTime(RacerTime racerTime);
+	
+	protected abstract String getFileName();
 
 	/**
 	 * Registers a new time for a racer with the provided start number.
@@ -103,17 +92,16 @@ public class Register extends Observable {
 		register(startNumber, new RacerTime(time));
 	}
 
-	// Om man går via register(String startNumber, String time) så kommer det
-	// skapas två objekt, lite dum kod
+	/**
+	 * Registers the specified time
+	 * 
+	 * @param startNumber
+	 * @param time
+	 */
 	public void register(String startNumber, RacerTime time) {
 		racer = new Racer(startNumber);
-		if (isStart) {
-			racer.addStartTime(time);
-			writeToFile(Strings.START);
-		} else {
-			racer.addFinishTime(time);
-			writeToFile(Strings.FINISH);
-		}
+		addTime(time);
+		writeToFile(getFileName());
 	}
 
 	/**

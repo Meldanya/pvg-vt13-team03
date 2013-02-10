@@ -13,6 +13,7 @@ public class Racer implements Comparable<Racer> {
 	private ArrayList<RacerTime> startTimes;
 	protected ArrayList<RacerTime> finishTimes;
 	private String name;
+	private ArrayList<String> errors;
 
 	public Racer(String startNumber) {
 		this.classType = new RacerClass("");
@@ -67,7 +68,7 @@ public class Racer implements Comparable<Racer> {
 		
 		return startTime.getDifferenceTo(finishTime);
 	}
-
+	
 	/**
 	 * Returns the racer as a line in the format the Sorter wants.
 	 */
@@ -83,7 +84,7 @@ public class Racer implements Comparable<Racer> {
 		sb.append(getStartTime());
 		sb.append("; ");
 		sb.append(getFinishTime());
-		
+
 		if (startTimes.size() > 1) {
 			sb.append("; Flera starttider?");
 			for(int i = 1; i < startTimes.size(); i++) {
