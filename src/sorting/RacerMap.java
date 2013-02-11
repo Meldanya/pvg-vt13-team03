@@ -99,6 +99,11 @@ public class RacerMap {
 		}
 
 		for (String startNumber : start.keySet()) {
+			if (startNumber.trim().length() < 1) {
+				// Makes sure that the read line is not empty
+				continue;
+			}
+			
 			Racer racer = new Racer(startNumber);
 			
 			if (map.containsKey(startNumber)) {
@@ -109,8 +114,8 @@ public class RacerMap {
 			
 			ArrayList<String> times = start.get(startNumber);
 			
-			for (int i = 0; i < times.size(); i++) {
-				racer.addStartTime(new RacerTime(times.get(i)));
+			for (String time : times) {
+				racer.addStartTime(new RacerTime(time));
 			}
 		}
 	}
