@@ -52,7 +52,7 @@ public class ResultWriter {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
 
 			writer.write(racerClass.toString());
-			writer.newLine();
+//			writer.newLine();
 			
 			if (laps < 2) {
 				writer.write(header);
