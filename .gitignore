@@ -1,8 +1,5 @@
 *~
 /bin
-start.txt
-finish.txt
-result.txt
-namnfil.txt
+*.txt
 outfilename
-sorter.cfg
+*.cfg
