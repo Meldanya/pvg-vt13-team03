@@ -64,7 +64,7 @@ public class Racer implements Comparable<Racer> {
 		}
 
 		RacerTime startTime = startTimes.get(0);
-		RacerTime finishTime = finishTimes.get(0);
+		RacerTime finishTime = finishTimes.get(finishTimes.size()-1);
 
 		return startTime.getDifferenceTo(finishTime);
 	}
@@ -109,13 +109,18 @@ public class Racer implements Comparable<Racer> {
 
 		StringBuilder out = new StringBuilder();
 		ArrayList<String> lapTimes = getLapTimes();
+		boolean impossibleLapTime =false;
 		
 		out.append(startNumber + "; " + name + "; " + getNumberOfLaps() + "; " + getTotalTime());
 		
 		for (int i = 0; i < laps; i++) {
 			try {
 				String laptime = lapTimes.get(i);
+				RacerTime impossible = new RacerTime("00.15.00");
 				
+				if(!laptime.equals("") && (new RacerTime(laptime)).compareTo(impossible)<0 ){
+					impossibleLapTime=true;
+				}
 				out.append("; " + laptime);
 
 			} catch (IndexOutOfBoundsException e) {
@@ -140,7 +145,19 @@ public class Racer implements Comparable<Racer> {
 				}
 			}
 		}
-
+		if (startTimes.size() > 1) {
+			out.append("; Flera starttider?");
+			for (int i = 1; i < startTimes.size(); i++) {
+				out.append(" ");
+				out.append(startTimes.get(i));
+			}
+		}
+		
+		if(impossibleLapTime){
+			out.append("; Omöjlig varvtid?");
+		}
+		
+		
 		return out.toString();
 	}
 
@@ -209,7 +226,12 @@ public class Racer implements Comparable<Racer> {
 	}
 
 	public int getNumberOfLaps() {
-		return finishTimes.size();
+		int laps = finishTimes.size();
+		
+		// Subtract one lap if the racer lacks a start time
+		laps -= startTimes.size() > 0 ? 0 : 1;
+		
+		return laps;
 	}
 
 }
