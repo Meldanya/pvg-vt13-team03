@@ -48,7 +48,10 @@ public class Sorter {
 	}
 	private ArrayList<String> finishFiles(){
 		ArrayList<String> finishFiles = new ArrayList<String>();
-		finishFiles.add(config.getProperty("FinishFiles"));
+		String[] finishFilesArray = config.getProperty("FinishFiles").split(",");
+		for (int i = 0; i < finishFilesArray.length; i++){
+			finishFiles.add(finishFilesArray[i]);
+		}
 		return finishFiles;
 	}
 	private String resultfile(){
@@ -92,14 +95,5 @@ public class Sorter {
 		for (int i = 0; i < finishFiles.size(); i++){
 			racers.writeToFile(resultfile(), laps(),null);
 		}
-	}
-	
-	/**
-	 * Returns a copy of the current configuration. This is used for testing. 
-	 * 
-	 * @return a copy of the configuration
-	 */
-	public Properties getCopyOfConfig() {
-		return new Properties(config);
 	}
 }
