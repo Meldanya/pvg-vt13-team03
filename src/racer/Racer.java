@@ -47,9 +47,6 @@ public class Racer implements Comparable<Racer> {
 		this.startTimes.add(startTime);
 	}
 
-	/**
-	 * @return
-	 */
 	public String getFinishTime() {
 		if (finishTimes.size() > 0) {
 			return finishTimes.get(finishTimes.size() - 1).toString();
@@ -85,34 +82,30 @@ public class Racer implements Comparable<Racer> {
 		sb.append(name);
 		sb.append("; ");
 		String finishTime = null;
-
 		if (finishTimes.size() <= 1) {
+
 			finishTime = getTotalTime();
 
 		} else {
 			finishTime = startTimes.get(0).getDifferenceTo(finishTimes.get(0));
 		}
-
 		sb.append(finishTime);
 		sb.append("; ");
 		sb.append(getStartTime());
 		sb.append("; ");
-
 		if (finishTimes.size() <= 1) {
 			sb.append(getFinishTime());
 		} else {
 			sb.append(finishTimes.get(0).toString());
 			sb.append("; Flera måltider?");
-			
 			for (int i = 1; i < finishTimes.size(); i++) {
 				sb.append(" ");
 				sb.append(finishTimes.get(i));
 			}
-		}
 
+		}
 		if (startTimes.size() > 1) {
 			sb.append("; Flera starttider?");
-
 			for (int i = 1; i < startTimes.size(); i++) {
 				sb.append(" ");
 				sb.append(startTimes.get(i));
@@ -120,9 +113,7 @@ public class Racer implements Comparable<Racer> {
 		}
 
 		// Makes sure that finishTime is not "--.--.--"
-		if (!finishTime.equals("--.--.--")
-				&& (new RacerTime(finishTime)).compareTo(new RacerTime(
-						"00.15.00")) < 0) {
+		if(!finishTime.equals("--.--.--") && (new RacerTime(finishTime)).compareTo(new RacerTime("00.15.00"))<0){
 			sb.append("; Omöjlig Totaltid?");
 		}
 
@@ -155,8 +146,8 @@ public class Racer implements Comparable<Racer> {
 						&& (new RacerTime(laptime)).compareTo(impossible) < 0) {
 					impossibleLapTime = true;
 				}
-				
 				out.append("; " + laptime);
+
 			} catch (IndexOutOfBoundsException e) {
 				// Laptime doesn't exist, print column anyway
 				out.append("; ");
@@ -171,14 +162,18 @@ public class Racer implements Comparable<Racer> {
 				out.append("; " + laptime.toString());
 			} catch (IndexOutOfBoundsException e) {
 				// Laptime doesn't exist, print column anyway
-				out.append(";");
+				if(i==laps-1){
+					out.append(";");
+				} else{
+					out.append("; ");
+				}
 			}
 		}
-
-		if (finishTimes.size() == 0) {
+		
+		if(finishTimes.size()==0){
 			out.append(" Slut?");
 		}
-
+		
 		if (startTimes.size() > 1) {
 			out.append("; Flera starttider?");
 			for (int i = 1; i < startTimes.size(); i++) {
@@ -248,7 +243,6 @@ public class Racer implements Comparable<Racer> {
 			} else {
 				lapTimes.add("");
 			}
-
 			for (int i = 1; i < finishTimes.size(); i++) {
 				String lapTime = finishTimes.get(i - 1).getDifferenceTo(
 						finishTimes.get(i));
@@ -272,4 +266,5 @@ public class Racer implements Comparable<Racer> {
 	public void sortFinishTimes() {
 		Collections.sort(finishTimes);
 	}
+
 }
