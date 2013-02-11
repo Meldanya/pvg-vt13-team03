@@ -138,7 +138,12 @@ public class FunctionalTests {
             fail(ioe.getMessage());
         }
 
-        new Sorter(laps);
+        try {
+			new Sorter(laps);
+		} catch (IOException e) {
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
         
         // remove symlinks after test
         File file;

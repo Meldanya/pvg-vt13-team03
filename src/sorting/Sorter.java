@@ -18,19 +18,13 @@ public class Sorter {
 	private RacerMap racers;
 	private int laps;
 	
-	public Sorter(int laps) {
-		this.laps = laps;
+	public Sorter(int laps) throws IOException {
 		racers = new RacerMap();
-
-		try {
-			read();
-			readNames();
-		} catch (FileNotFoundException e) {
-			System.err.println("Kunde ej finna filerna");
-			e.printStackTrace();
-		} catch (IOException e){
-			e.printStackTrace();
-		}
+		
+		this.laps = laps;
+		
+		read();
+		readNames();
 		
 		write();
 	}
@@ -49,21 +43,26 @@ public class Sorter {
 
 		names.remove("StartNo");
 
-		for (String s : names.keySet()) {
+		for (String startNumber : names.keySet()) {
 			// Kontrollerar att raden är ett startnummer
-			if (Character.isDigit(s.charAt(0))) {
+			if (Character.isDigit(startNumber.charAt(0))) {
 				try {
-					Racer racer = racers.getRacer(s);
+					Racer racer = racers.getRacer(startNumber);
 					
-					racer.setName(names.get(s));
+					racer.setName(names.get(startNumber));
 					racer.setClassType(currentClass);
 				} catch (NoSuchElementException e) {
-					// Om racern inte finns definerad så hoppas den över
-					continue;
+					Racer racer = new Racer(startNumber);
+
+					racer.setName(names.get(startNumber));
+					racer.setClassType(currentClass);
+					
+					racers.addRacer(racer);
 				}
 			}
 			else {
-				currentClass = s;
+				// In this case the start number is the class name
+				currentClass = startNumber;
 			}
 		}
 	}

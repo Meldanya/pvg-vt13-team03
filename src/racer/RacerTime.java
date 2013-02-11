@@ -16,6 +16,10 @@ public class RacerTime {
 	public RacerTime(String inputTime) {
 		this();
 		
+		if (inputTime.indexOf('.') < 0) {
+			inputTime = formatString(Long.parseLong(inputTime));
+		}
+		
 		try {
 			time = format.parse(inputTime);
 		} catch (ParseException e) {

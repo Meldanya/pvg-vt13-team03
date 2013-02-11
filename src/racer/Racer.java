@@ -19,6 +19,7 @@ public class Racer implements Comparable<Racer> {
 		this.startNumber = startNumber;
 		this.startTimes = new ArrayList<RacerTime>();
 		this.finishTimes = new ArrayList<RacerTime>();
+		this.name = "";
 	}
 	
 	public void setName(String name) {
@@ -181,7 +182,7 @@ public class Racer implements Comparable<Racer> {
 	public ArrayList<String> getLapTimes(){
 		ArrayList<String> lapTimes = new ArrayList<String>();
 		
-		if (finishTimes.size() > 0) {	
+		if (startTimes.size() > 0 && finishTimes.size() > 0) {	
 			String lapOne = startTimes.get(0).getDifferenceTo(finishTimes.get(0));
 			lapTimes.add(lapOne);
 			
