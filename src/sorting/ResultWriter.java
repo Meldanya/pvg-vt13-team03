@@ -44,8 +44,10 @@ public class ResultWriter {
 	private void writeClassTypeToFile(RacerClass racerClass, int laps) throws IOException {
 		Set<Racer> racers = data.getRacers(racerClass);
 		
-		writer.write(racerClass.toString());
-		writer.newLine();
+		if (racerClass.toString().length() > 0 ){
+			writer.write(racerClass.toString());
+			writer.newLine();
+		}
 		
 		if (laps < 2) {
 			writer.write(header);

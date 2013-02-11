@@ -84,8 +84,11 @@ public class TestResultWriter {
 		
 		map.addRacer(racer);
 		writer.writeToFile(1);
+		String expected = header + "\n" + racer.toString() + "\n";
+		System.out.print(expected);
+		System.out.print(readFile());
 		
-		assertEquals("Result doesn't match", "\n" + header + "\n" + racer.toString() + "\n", readFile());
+		assertEquals("Result doesn't match", expected, readFile());
 	}
 
 	@Test
@@ -99,7 +102,7 @@ public class TestResultWriter {
 		racer2.setName("Bengt Bsson");
 		racer3.setName("Chris Csson");
 		
-		expected.append("\n" + header + "\n");
+		expected.append(header + "\n");
 		expected.append(racer1.toString() + "\n");
 		expected.append(racer2.toString() + "\n");
 		expected.append(racer3.toString() + "\n");
