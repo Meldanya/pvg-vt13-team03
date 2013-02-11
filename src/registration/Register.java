@@ -7,10 +7,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Observable;
-
-import constants.FileNames;
+import java.util.Scanner;
 
 import racer.RacerTime;
+import constants.FileNames;
 
 /**
  * A class representing a register (aka a program that registers racers at the
@@ -114,15 +114,15 @@ public class Register extends Observable {
 			throws IOException {
 		new FileWriter(FileNames.START).close(); // clear the file!
 
-		BufferedReader reader = new BufferedReader(new FileReader(nameFile));
+		Scanner scanner = new Scanner(new BufferedReader(new FileReader(nameFile)));
 
-		reader.readLine();
-		while (reader.ready()) {
-			String line = reader.readLine();
+		scanner.nextLine();
+		while (scanner.hasNext()) {
+			String line = scanner.nextLine();
 			String[] tempArray = line.split("; ");
 			register(tempArray[0], startTime);
 		}
-		reader.close();
+		scanner.close();
 
 	}
 }
