@@ -8,10 +8,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Observable;
-
-import constants.FileNames;
+import java.util.Scanner;
 
 import racer.RacerTime;
+import constants.FileNames;
 
 /**
  * A class representing a register (aka a program that registers racers at the
@@ -19,7 +19,7 @@ import racer.RacerTime;
  */
 public class Register extends Observable {
 	private String fileName;
-	private String lastLine;
+	private String lastWrittenLine;
 
 	public Register(String fileName) {
 		this.fileName = fileName;
@@ -60,9 +60,9 @@ public class Register extends Observable {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,
 					true));
-			lastLine = stringToAppendToFile(startNumber, time);
+			lastWrittenLine = stringToAppendToFile(startNumber, time);
 
-			writer.append(lastLine);
+			writer.append(lastWrittenLine);
 			writer.newLine();
 			writer.close();
 
@@ -95,7 +95,7 @@ public class Register extends Observable {
 	 * @return the last written line
 	 */
 	public String getLastWrittenLine() {
-		return lastLine;
+		return lastWrittenLine;
 	}
 
 	/**
@@ -115,15 +115,15 @@ public class Register extends Observable {
 			throws IOException {
 		new File(FileNames.START).delete(); // remove existing start file
 
-		BufferedReader reader = new BufferedReader(new FileReader(nameFile));
+		Scanner scanner = new Scanner(new BufferedReader(new FileReader(nameFile)));
 
-		reader.readLine();
-		while (reader.ready()) {
-			String line = reader.readLine();
+		scanner.nextLine();
+		while (scanner.hasNext()) {
+			String line = scanner.nextLine();
 			String[] tempArray = line.split("; ");
 			register(tempArray[0], startTime);
 		}
-		reader.close();
+		scanner.close();
 
 	}
 }
