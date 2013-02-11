@@ -226,6 +226,11 @@ public class Racer implements Comparable<Racer> {
 		this.classType = new RacerClass(className);
 	}
 
+	/**
+	 * Used by TreeMap in Competition.getRacers()
+	 * @param o
+	 * @return
+	 */
 	@Override
 	public int compareTo(Racer o) {
 		return startNumber.compareTo(o.getStartNumber());

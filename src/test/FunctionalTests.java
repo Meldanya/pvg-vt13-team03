@@ -215,17 +215,66 @@ public class FunctionalTests {
         assertEquals("resultatfiler inte identiska", 0, error);
     }
     
+    private void sortedTwoFinishLapTest(String start, String finish1, String finish2, String namnfil,
+            String result, String sortresultat) {
+        try { // catch exceptions here to decrease the amount of boilerplate
+              // code in the tests
+            symlink(start, "start.txt");
+            symlink(finish1, "finish1.txt");
+            symlink(finish2, "finish2.txt");
+            symlink(namnfil, "namnfil.txt");
+        } catch (InterruptedException inte) {
+            inte.printStackTrace();
+            fail(inte.getMessage());
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            fail(ioe.getMessage());
+        }
+
+        try {
+			new Sorter();
+		} catch (IOException e) {
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
+        
+        // kolla result.txt
+        int error = -1; // -1 is certainly bad
+        try {
+            error = compareFiles("result.txt", result);
+            error = compareFiles("sortresultat.txt", sortresultat);
+        } catch (InterruptedException inte) {
+            inte.printStackTrace();
+            fail(inte.getMessage());
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            fail(ioe.getMessage());
+        }
+        assertEquals("resultatfiler inte identiska", 0, error);
+    }
+    
     private void simpleLapTest(String number) {
-        singleFilesLapTest("acceptance/acceptanstest" + number + "/starttider.txt", "acceptance/acceptanstest" + number + "/maltider.txt",
+        singleFilesLapTest("acceptance/acceptanstest" + number + "/starttider.txt",
+        		"acceptance/acceptanstest" + number + "/maltider.txt",
                 "acceptance/acceptanstest" + number + "/namnfil.txt",
                 "acceptance/acceptanstest" + number + "/resultat.txt");
     }
     
     private void twoFinishLapTest(String number) {
-    	twoFinishLapTest("acceptance/acceptanstest" + number + "/starttider.txt", "acceptance/acceptanstest" + number + "/maltider1.txt",
+    	twoFinishLapTest("acceptance/acceptanstest" + number + "/starttider.txt",
+    			"acceptance/acceptanstest" + number + "/maltider1.txt",
                 "acceptance/acceptanstest" + number + "/maltider2.txt",
                 "acceptance/acceptanstest" + number + "/namnfil.txt",
                 "acceptance/acceptanstest" + number + "/resultat.txt");
+    }
+    
+    private void sortedTwoFinishLapTest(String number) {
+    	sortedTwoFinishLapTest("acceptance/acceptanstest" + number + "/starttider.txt",
+    			"acceptance/acceptanstest" + number + "/maltider1.txt",
+                "acceptance/acceptanstest" + number + "/maltider2.txt",
+                "acceptance/acceptanstest" + number + "/namnfil.txt",
+                "acceptance/acceptanstest" + number + "/resultat.txt",
+                "acceptance/acceptanstest" + number + "/sortresultat.txt");
     }
 
     @Test
@@ -265,6 +314,12 @@ public class FunctionalTests {
     public void test16() throws FileNotFoundException, IOException {
     	setNumberOfLapsInConfigFile(3);
         simpleLapTest("16");
+    }
+    
+    @Test
+    public void test18() throws IOException {
+    	setNumberOfLapsInConfigFile(3);
+    	sortedTwoFinishLapTest("18");
     }
     
     private void setNumberOfLapsInConfigFile(int laps) throws IOException{
