@@ -53,6 +53,21 @@ public class Competition {
 				currentClass = startNumber;
 			}
 		}
+		
+		identifyNonExistingRacers(names);
+	}
+
+	/**
+	 * @param names
+	 */
+	private void identifyNonExistingRacers(Map<String, String> names) {
+		for (String startNumber : racers.keySet()) {
+			Racer racer = racers.get(startNumber);
+			
+			if (!names.keySet().contains(startNumber)) {
+				racer.setClassType("Icke existerande startnummer");
+			}
+		}
 	}
 
 	/**
