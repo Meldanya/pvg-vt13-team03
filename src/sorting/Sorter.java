@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import constants.FileNames;
+
 import racer.Racer;
 
 /**
@@ -27,7 +29,7 @@ public class Sorter {
 	}
 
 	private void read() throws IOException {
-		racers.readFromFile("start.txt", "finish.txt");
+		racers.readFromFile(FileNames.START, FileNames.FINISH);
 	}
 
 	/**
@@ -35,7 +37,7 @@ public class Sorter {
 	 * @todo skicka in en Map<id, namn> till RacerMap istället
 	 */
 	private void readNames() throws IOException {
-		Map<String, String> names = new NameReader().readFromNameFile("namnfil.txt");
+		Map<String, String> names = new NameReader().readFromNameFile(FileNames.NAMEFILE);
 		String currentClass = "";
 
 		names.remove("StartNr");
@@ -65,6 +67,6 @@ public class Sorter {
 	}
 
 	private void write() {
-		racers.writeToFile("result.txt", laps);
+		racers.writeToFile(FileNames.OUTFILE, laps);
 	}
 }
