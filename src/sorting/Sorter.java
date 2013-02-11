@@ -48,7 +48,7 @@ public class Sorter {
 	private String namefile(){
 		return config.getProperty("Namefile");
 	}
-	private ArrayList<String> finishFiles(){
+	public ArrayList<String> finishFiles(){
 		ArrayList<String> finishFiles = new ArrayList<String>();
 		String finishFilesString = config.getProperty("FinishFiles");
 		finishFilesString = finishFilesString.replaceAll("\\s","");
