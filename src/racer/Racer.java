@@ -200,19 +200,11 @@ public class Racer implements Comparable<Racer> {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
+		if(!(obj instanceof Racer)){
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Racer other = (Racer) obj;
-		if (startNumber == null) {
-			if (other.startNumber != null)
-				return false;
-		} else if (!startNumber.equals(other.startNumber))
-			return false;
-		return true;
+		}
+		
+		return startNumber.equals(((Racer)obj).startNumber);
 	}
 
 	public RacerClass getClassType() {
