@@ -176,11 +176,6 @@ public class FunctionalTests {
     }
 
     @Test
-    public void test3_5() {
-        simpleLapTest("3_5");
-    }
-
-    @Test
     public void test5() {
         simpleLapTest("5");
     }
