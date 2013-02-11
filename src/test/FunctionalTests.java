@@ -43,7 +43,7 @@ public class FunctionalTests {
      */
     private void symlink(String target, String linkName) throws IOException,
             InterruptedException {
-		String[] command = new String[] { "ln", "--symbolic", target, linkName };
+		String[] command = new String[] { "ln", "-s", target, linkName };
 
         int error = runSystemCommand(command);
         if (error != 0) {
