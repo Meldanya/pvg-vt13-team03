@@ -8,7 +8,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.util.Observable;
 import java.util.Scanner;
 
@@ -60,10 +59,8 @@ public class Register extends Observable {
 	 */
 	public void register(String startNumber, RacerTime time) {
 		try {
-//			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,
-//					true));
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
-				    new FileOutputStream(fileName), "UTF-8"));
+				    new FileOutputStream(fileName, true), "UTF-8"));
 			
 			lastWrittenLine = stringToAppendToFile(startNumber, time);
 
