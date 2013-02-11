@@ -52,8 +52,12 @@ public class Sorter {
 					racer.setName(names.get(startNumber));
 					racer.setClassType(currentClass);
 				} catch (NoSuchElementException e) {
-					// Om racern inte finns definerad så hoppas den över
-					continue;
+					Racer racer = new Racer(startNumber);
+
+					racer.setName(names.get(startNumber));
+					racer.setClassType(currentClass);
+					
+					racers.addRacer(racer);
 				}
 			}
 			else {
