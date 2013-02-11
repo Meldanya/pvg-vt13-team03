@@ -52,6 +52,7 @@ public class TestLapRacer {
 	
 	@Test
 	public void testAddOneLapTime(){
+		racer.addStartTime(new RacerTime("11.11.14"));
 		racer.addFinishTime(new RacerTime("11.12.14"));
 		assertEquals(1, racer.getNumberOfLaps());
 	}
@@ -59,7 +60,7 @@ public class TestLapRacer {
 	@Test
 	public void testAddManyLapTimes(){
 		for(int i = 0; i<10; i++){
-			
+			racer.addStartTime(new RacerTime("11.11." + i));
 			racer.addFinishTime(new RacerTime("11.12." + i));
 		}
 		assertEquals(10, racer.getNumberOfLaps());

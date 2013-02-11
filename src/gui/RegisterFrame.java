@@ -12,7 +12,6 @@ import registration.Register;
 public class RegisterFrame extends AbstractFrame{
 	private StartNbrField startNbrField;
 	private StatusArea statusArea;
-	private Register register;
 	private RegisterButton registerButton;
 	
 	public RegisterFrame(String mode, Register register) {
@@ -20,8 +19,6 @@ public class RegisterFrame extends AbstractFrame{
 		
 		setSize(640,480);
 		setLayout(new BorderLayout());
-
-		this.register = register;
 
 		startNbrField = new StartNbrField(register);
 		statusArea = new StatusArea(register, startNbrField);

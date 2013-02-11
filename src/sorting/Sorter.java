@@ -1,16 +1,8 @@
 package sorting;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
-import javax.swing.JButton;
-
-import racer.Racer;
 import constants.FileNames;
 
 /**

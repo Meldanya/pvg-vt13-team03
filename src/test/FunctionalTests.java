@@ -1,13 +1,14 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -193,7 +194,7 @@ public class FunctionalTests {
     public void test9() {
         simpleLapTest("9");
     }
-
+    
     @Test
     public void test15() {
         // ParseException innan iteration 3 för att starttider har ett extra \n i slutet
