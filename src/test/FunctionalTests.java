@@ -262,7 +262,7 @@ public class FunctionalTests {
         simpleLapTest("16");
     }
     
-    private void setNumberOfLapsInConfigFile(int laps) throws FileNotFoundException, IOException{
+    private void setNumberOfLapsInConfigFile(int laps) throws IOException{
     	config.setProperty("NumberOfLaps",String.valueOf(laps));
     	config.store(new FileOutputStream(FileNames.CONFIG),"Test config for Enduro Sorter");
     }
