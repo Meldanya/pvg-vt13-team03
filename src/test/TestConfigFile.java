@@ -33,8 +33,8 @@ public class TestConfigFile {
 		assertEquals("Namefile=namnfil.txt wasn't read.", "namnfil.txt", config.getProperty("Namefile"));
 		assertEquals("TypeOfContest=Marathon wasn't read.", "Marathon", config.getProperty("TypeOfContest"));
 		assertEquals("NumberOfLaps=1 wasn't read.", "1", config.getProperty("NumberOfLaps"));
-		assertEquals("MinumumLapTime=00.15.00 wasn't read.", "00.15.00", config.getProperty("MinumumLapTime"));
-		assertEquals("TimeLimit=01.00.00 wasn't read.", "01.00.00", config.getProperty("TimeLimit"));
+		assertEquals("MinimumLapTime=00.15.00 wasn't read.", "00.15.00", config.getProperty("MinimumLapTime"));
+		assertEquals("TimeStartIsOpen=01.00.00 wasn't read.", "01.00.00", config.getProperty("TimeStartIsOpen"));
 	}
 	
 	@After
