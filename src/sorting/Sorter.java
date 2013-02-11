@@ -1,14 +1,17 @@
 package sorting;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
 
 import constants.FileNames;
+
 
 /**
  * A class representing a sorter. It reads start.txt and finish.txt and outputs
@@ -41,20 +44,24 @@ public class Sorter {
 
 	private void read() throws IOException {
 	
-//		String yourPath = ".";
-//		File directory = new File(yourPath);
-//		String[] myFiles = directory.list(new FinishFileFilter());
+		File directory = new File(".");
+		String[] finishFiles = directory.list(new FinishFileFilter());
 		
 		racers.readFromFile(FileNames.START, true);
-		racers.readFromFile(FileNames.FINISH, false);		
+
+		
+		for(String fileName : finishFiles) {
+			racers.readFromFile(fileName, false);			
+		}
+
 	}
 	
-//	private class FinishFileFilter implements FilenameFilter{
-//		@Override
-//		public boolean accept(File dir, String name) {
-//			 return name.startsWith("maltider") && name.endsWith(".txt");
-//		}
-//	}
+	private class FinishFileFilter implements FilenameFilter{
+		@Override
+		public boolean accept(File dir, String name) {
+			 return name.startsWith("finish") && name.endsWith(".txt");
+		}
+	}
 
 	/**
 	 * @todo kolla vad första raden innehåller istället.
@@ -63,12 +70,13 @@ public class Sorter {
 	private void readNames() throws IOException {
 		Map<String, String> names = new NameReader().readFromNameFile(FileNames.NAMEFILE);
 
+
 		names.remove("StartNr");
 		racers.setNames(names);
 	}
 
 	private void write() {
-		racers.writeToFile("result.txt", laps);
+		racers.writeToFile(FileNames.OUTFILE, laps);
 	}
 	/**
 	 * Returns a copy of the current configuration. This is used for testing. 

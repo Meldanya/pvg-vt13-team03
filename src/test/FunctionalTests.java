@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,11 +19,24 @@ public class FunctionalTests {
 	
 	@Before
 	public void setUp() {
-		// remove existing files
+		cleanUp();
+	}
+	
+	@After
+	public void tearDown() {
+        cleanUp();
+	}
+	
+	private void cleanUp() {
+		// remove symlinks
         File file;
         file = new File("start.txt");
         file.delete();
         file = new File("finish.txt");
+        file.delete();
+        file = new File("finish1.txt");
+        file.delete();
+        file = new File("finish2.txt");
         file.delete();
         file = new File("namnfil.txt");
         file.delete();
@@ -146,15 +160,43 @@ public class FunctionalTests {
 			fail(e.getMessage());
 		}
         
-        // remove symlinks after test
-        File file;
-        file = new File("start.txt");
-        assertTrue("start.txt kunde inte raderas", file.delete());
-        file = new File("finish.txt");
-        assertTrue("finish.txt kunde inte raderas", file.delete());
-        file = new File("namnfil.txt");
-        assertTrue("namnfil.txt kunde inte raderas", file.delete());
+        // kolla result.txt
+        int error = -1; // -1 is certainly bad
+        try {
+            error = compareFiles("result.txt", result);
+        } catch (InterruptedException inte) {
+            inte.printStackTrace();
+            fail(inte.getMessage());
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            fail(ioe.getMessage());
+        }
+        assertEquals("resultatfiler inte identiska", 0, error);
+    }
+    
+    private void twoFinishLapTest(int laps, String start, String finish1, String finish2,
+            String namnfil, String result) {
+        try { // catch exceptions here to decrease the amount of boilerplate
+              // code in the tests
+            symlink(start, "start.txt");
+            symlink(finish1, "finish1.txt");
+            symlink(finish2, "finish2.txt");
+            symlink(namnfil, "namnfil.txt");
+        } catch (InterruptedException inte) {
+            inte.printStackTrace();
+            fail(inte.getMessage());
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            fail(ioe.getMessage());
+        }
 
+        try {
+			new Sorter(laps);
+		} catch (IOException e) {
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
+        
         // kolla result.txt
         int error = -1; // -1 is certainly bad
         try {
@@ -176,6 +218,14 @@ public class FunctionalTests {
                 "acceptance/acceptanstest" + number + "/resultat.txt");
     }
     
+    private void twoFinishLapTest(int laps, String number) {
+    	twoFinishLapTest(laps, "acceptance/acceptanstest" + number + "/starttider.txt",
+                "acceptance/acceptanstest" + number + "/maltider1.txt",
+                "acceptance/acceptanstest" + number + "/maltider2.txt",
+                "acceptance/acceptanstest" + number + "/namnfil.txt",
+                "acceptance/acceptanstest" + number + "/resultat.txt");
+    }
+    
     private void simpleLapTest(String number) {
     	simpleLapTest(1, number);
     }
@@ -193,6 +243,11 @@ public class FunctionalTests {
     @Test
     public void test9() {
         simpleLapTest(3, "9");
+    }
+    
+    @Test
+    public void test10() {
+    	twoFinishLapTest(3, "10");
     }
     
     @Test
