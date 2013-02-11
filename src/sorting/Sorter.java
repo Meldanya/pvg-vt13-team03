@@ -48,7 +48,9 @@ public class Sorter {
 	}
 	private ArrayList<String> finishFiles(){
 		ArrayList<String> finishFiles = new ArrayList<String>();
-		String[] finishFilesArray = config.getProperty("FinishFiles").split(",");
+		String finishFilesString = config.getProperty("FinishFiles");
+		finishFilesString = finishFilesString.replaceAll("\\s","");
+		String[] finishFilesArray = finishFilesString.split(",");
 		for (int i = 0; i < finishFilesArray.length; i++){
 			finishFiles.add(finishFilesArray[i]);
 		}
