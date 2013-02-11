@@ -1,7 +1,6 @@
 package enduro;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
@@ -14,9 +13,13 @@ public class SorterProgram {
 	 * @param args Unused
 	 */
 	public static void main(String[] args) {
-		String laps = JOptionPane.showInputDialog("Fyll i önskat antal varv, 1 för maratontävling");
-
-		try {
+	    String laps;
+	    if (args.length == 1) {
+	        laps = args[0];
+	    } else {
+	        laps = JOptionPane.showInputDialog("Fyll i önskat antal varv, 1 för maratontävling");
+	    }
+	    try {
 			new Sorter(Integer.parseInt(laps));
 
 			JOptionPane.showMessageDialog(null, "Sorteringen lyckades, resultatet skrivet till result.txt");
@@ -28,5 +31,4 @@ public class SorterProgram {
 			e.printStackTrace();
 		}
 	}
-
 }

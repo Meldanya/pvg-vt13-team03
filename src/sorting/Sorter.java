@@ -70,5 +70,4 @@ public class Sorter {
 	private void write() {
 		racers.writeToFile("result.txt", laps);
 	}
-
 }

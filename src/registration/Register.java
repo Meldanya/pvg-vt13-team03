@@ -2,6 +2,7 @@ package registration;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -112,7 +113,7 @@ public class Register extends Observable {
 	 */
 	public void registerMassStart(String nameFile, String startTime)
 			throws IOException {
-		new FileWriter(FileNames.START).close(); // clear the file!
+		new File(FileNames.START).delete(); // remove existing start file
 
 		Scanner scanner = new Scanner(new BufferedReader(new FileReader(nameFile)));
 
