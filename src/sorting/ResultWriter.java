@@ -3,6 +3,7 @@ package sorting;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.Set;
 
 import racer.Racer;
@@ -13,12 +14,14 @@ public class ResultWriter {
 	private Competition data;
 	private String fileName;
 	private String header;
+	private Comparator<Racer> comp;
 	
 	// TODO: klass utan modifierbart tillstånd?
-	public ResultWriter(Competition data, String filename) {
+	public ResultWriter(Competition data, String filename, Comparator<Racer> comp) {
 		this.data = data;
 		this.fileName = filename;
 		this.header = "StartNr; Namn; TotalTid; StartTider; Måltider";
+		this.comp = comp;
 	}
 	
 	/**
@@ -42,7 +45,7 @@ public class ResultWriter {
 	}
 
 	private void writeClassTypeToFile(RacerClass racerClass, int laps) throws IOException {
-		Set<Racer> racers = data.getRacers(racerClass);
+		Set<Racer> racers = data.getRacers(racerClass, comp);
 		
 		if (racerClass.toString().length() > 0 ){
 			writer.write(racerClass.toString());

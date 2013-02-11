@@ -38,7 +38,7 @@ public class TestResultWriter {
 		filename = "resultat.txt";
 		header = "StartNr; Namn; TotalTid; StartTider; Måltider";
 		competition = new Competition();
-		writer = new ResultWriter(competition, filename);
+		writer = new ResultWriter(competition, filename, null);
 		
 		deleteTestFile();
 	}

@@ -77,7 +77,7 @@ public class Sorter {
 	}
 
 	private void write() {
-		racers.writeToFile(FileNames.OUTFILE, laps());
+		racers.writeToFile(FileNames.OUTFILE, laps(), null);
 	}
 	
 	/**
