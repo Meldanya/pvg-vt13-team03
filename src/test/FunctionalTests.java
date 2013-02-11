@@ -260,8 +260,10 @@ public class FunctionalTests {
     }
 
     @Test
-    public void test16() {
-        simpleLapTest(3, "16");
+    public void test16() throws FileNotFoundException, IOException {
+    	config.setProperty("NumberOfLaps","3");
+    	config.store(new FileOutputStream(FileNames.CONFIG),"Test config for Enduro Sorter");
+        simpleLapTest("16");
     }
 
 }
