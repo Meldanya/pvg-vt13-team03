@@ -77,10 +77,12 @@ public class RacerMap {
 	/**
 	 * Reads starttimes and finishtimes from files and loads it into Racers,
 	 * creates new Racers to store the data in where necessary.
+	 * 
 	 * @param startFilename
 	 * @param finishFilename
 	 */
-	public void readFromFile(String startFilename, String finishFilename) throws IOException {
+	public void readFromFile(String startFilename, String finishFilename)
+			throws IOException {
 		TimeReader reader = new TimeReader();
 		Map<String, ArrayList<String>> finish = reader
 				.readFromTimeFile(finishFilename);
@@ -103,17 +105,17 @@ public class RacerMap {
 				// Makes sure that the read line is not empty
 				continue;
 			}
-			
+
 			Racer racer = new Racer(startNumber);
-			
+
 			if (map.containsKey(startNumber)) {
 				racer = map.get(startNumber);
 			} else {
 				addRacer(racer);
 			}
-			
+
 			ArrayList<String> times = start.get(startNumber);
-			
+
 			for (String time : times) {
 				racer.addStartTime(new RacerTime(time));
 			}
@@ -122,6 +124,7 @@ public class RacerMap {
 
 	/**
 	 * Gets a set of all the keys
+	 * 
 	 * @return
 	 */
 	public Set<String> keySet() {
@@ -130,6 +133,7 @@ public class RacerMap {
 
 	/**
 	 * Gets a set of all the registered classes
+	 * 
 	 * @return
 	 */
 	public Set<RacerClass> getClassTypes() {
@@ -146,7 +150,9 @@ public class RacerMap {
 
 	/**
 	 * Gets a set of all the Racers with the specified class
-	 * @param rc The specified class
+	 * 
+	 * @param rc
+	 *            The specified class
 	 * @return
 	 */
 	public Set<Racer> getRacers(RacerClass rc) {
