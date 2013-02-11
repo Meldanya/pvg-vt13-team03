@@ -10,12 +10,12 @@ import racer.RacerClass;
 
 public class ResultWriter {
 	private BufferedWriter writer;
-	private RacerMap data;
+	private Competition data;
 	private String fileName;
 	private String header;
 	
 	// TODO: klass utan modifierbart tillstånd?
-	public ResultWriter(RacerMap data, String filename) {
+	public ResultWriter(Competition data, String filename) {
 		this.data = data;
 		this.fileName = filename;
 		this.header = "StartNr; Namn; TotalTid; StartTider; Måltider";

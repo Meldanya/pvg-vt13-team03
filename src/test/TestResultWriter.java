@@ -9,13 +9,15 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import racer.Racer;
-import sorting.RacerMap;
+import sorting.Competition;
 import sorting.ResultWriter;
 
 /**
@@ -23,7 +25,7 @@ import sorting.ResultWriter;
  *
  */
 public class TestResultWriter {
-	private RacerMap map;
+	private Competition competition;
 	private ResultWriter writer;
 	private String filename;
 	private String header;
@@ -35,8 +37,8 @@ public class TestResultWriter {
 	public void setUp() throws Exception {
 		filename = "resultat.txt";
 		header = "StartNr; Namn; TotalTid; StartTider; Måltider";
-		map = new RacerMap();
-		writer = new ResultWriter(map, filename);
+		competition = new Competition();
+		writer = new ResultWriter(competition, filename);
 		
 		deleteTestFile();
 	}
@@ -79,35 +81,46 @@ public class TestResultWriter {
 
 	@Test
 	public void testOneRacer() throws IOException {
-		Racer racer = new Racer("1");
-		racer.setName("Anders Asson");
+		String name = "Anders Asson";
+		Racer r1 = new Racer("1");
+		r1.setName(name);
+		Map<String, String> nameMappings = new HashMap<String, String>();
+		nameMappings.put("1", name);
+		competition.setNames(nameMappings);
 		
-		map.addRacer(racer);
 		writer.writeToFile(1);
 		
-		assertEquals("Result doesn't match", "\n" + header + "\n" + racer.toString() + "\n", readFile());
+		assertEquals("Result doesn't match", "\n" + header + "\n" + r1 + "\n", readFile());
 	}
 
 	@Test
 	public void testMultipleRacers() throws IOException {
 		StringBuilder expected = new StringBuilder();
-		Racer racer1 = new Racer("1");
-		Racer racer2 = new Racer("2");
-		Racer racer3 = new Racer("3");
+		Map<String, String> nameMappings = new HashMap<String, String>();
 		
-		racer1.setName("Anders Asson");
-		racer2.setName("Bengt Bsson");
-		racer3.setName("Chris Csson");
+		String name1 = "Anders Asson";
+		String name2 = "Bengt Bsson";
+		String name3 = "Chris Csson";
+		
+		Racer r1 = new Racer("1");
+		r1.setName(name1);
+		Racer r2 = new Racer("2");
+		r2.setName(name2);
+		Racer r3 = new Racer("3");
+		r3.setName(name3);
+		
+		nameMappings.put("1", name1);
+		nameMappings.put("2", name2);
+		nameMappings.put("3", name3);
 		
 		expected.append("\n" + header + "\n");
-		expected.append(racer1.toString() + "\n");
-		expected.append(racer2.toString() + "\n");
-		expected.append(racer3.toString() + "\n");
+		expected.append(r1 + "\n");
+		expected.append(r2 + "\n");
+		expected.append(r3 + "\n");
 
 
-		map.addRacer(racer1);
-		map.addRacer(racer3);
-		map.addRacer(racer2);
+		competition.setNames(nameMappings);
+		
 		writer.writeToFile(1);
 
 		assertEquals("Result doesn't match", expected.toString(), readFile());
