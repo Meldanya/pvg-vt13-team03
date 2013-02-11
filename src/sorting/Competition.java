@@ -140,19 +140,8 @@ public class Competition {
 		return set;
 	}
 
-	/**
-	 * Gets a set of all the Racers with the specified class
-	 * 
-	 * @param rc
-	 *            The specified class
-	 * @return
-	 */
-	public Set<Racer> getRacers(RacerClass rc) {
-		return getRacers(rc, null);
-	}
-
 	public Set<Racer> getRacers(RacerClass rc, Comparator<Racer> comp) {
-		Set<Racer> set = new TreeSet<Racer>(comp);
+		TreeSet<Racer> set = new TreeSet<Racer>(comp);
 
 		for (String key : racers.keySet()) {
 			Racer r = racers.get(key);
@@ -161,6 +150,7 @@ public class Competition {
 				set.add(r);
 			}
 		}
+		
 		return set;
 	}
 }

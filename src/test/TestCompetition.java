@@ -33,7 +33,7 @@ public class TestCompetition {
 	
 	@Test
 	public void testEmptyCompetition() {
-		Set<Racer> racers = competition.getRacers(new RacerClass(""));
+		Set<Racer> racers = competition.getRacers(new RacerClass(""), null);
 		assertEquals("wrong number of racers", 0, racers.size());
 	}
 
@@ -43,7 +43,7 @@ public class TestCompetition {
 
 		competition.setNames(nameMappings);
 
-		Set<Racer> racers = competition.getRacers(new RacerClass(""));
+		Set<Racer> racers = competition.getRacers(new RacerClass(""), null);
 		
 		assertEquals("wrong number of racers", 1, racers.size());
 	}

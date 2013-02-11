@@ -29,7 +29,7 @@ public class TestRacerPlacingComparator {
 		r2.addFinishTime(new RacerTime("12.30.00"));
 		r2.addFinishTime(new RacerTime("13.00.00"));
 		
-		assertTrue("r2 not greater than r1", comp.compare(r1, r2) < 0);
+		assertTrue("r1 not greater than r2", comp.compare(r1, r2) > 0);
 	}
 	
 	@Test
@@ -49,7 +49,7 @@ public class TestRacerPlacingComparator {
 		r2.addStartTime(new RacerTime("12.00.00"));
 		r2.addFinishTime(new RacerTime("12.40.00"));
 		
-		assertTrue("r1 not greater than r2", comp.compare(r1, r2) > 0);
+		assertTrue("r2 not greater than r1", comp.compare(r1, r2) < 0);
 	}
 
 }
