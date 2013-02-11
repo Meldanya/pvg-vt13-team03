@@ -109,28 +109,32 @@ public class Racer implements Comparable<Racer> {
 		StringBuilder out = new StringBuilder();
 		ArrayList<String> lapTimes = getLapTimes();
 		
-		out.append(startNumber + "; " + name + "; " + finishTimes.size() + "; " + getTotalTime() + "; ");
+		out.append(startNumber + "; " + name + "; " + getNumberOfLaps() + "; " + getTotalTime());
 		
 		for (int i = 0; i < laps; i++) {
 			try {
 				String laptime = lapTimes.get(i);
 				
-				out.append(laptime + "; ");
+				out.append("; " + laptime);
 			} catch (IndexOutOfBoundsException e) {
 				// Laptime doesn't exist, print column anyway
 				out.append("; ");
 			}
 		}
 		
-		out.append(getStartTime() + "; ");
+		out.append("; " + getStartTime());
 		
 		for (int i = 0; i < laps; i++) {
 			try {
 				RacerTime laptime = finishTimes.get(i);
-				out.append(laptime.toString() + "; ");
+				out.append("; " + laptime.toString());
 			} catch (IndexOutOfBoundsException e) {
 				// Laptime doesn't exist, print column anyway
-				out.append("; ");
+				if (i == (laps - 1)) {
+					out.append("; Slut?");
+				} else {
+					out.append("; ");
+				}
 			}
 		}
 
