@@ -251,6 +251,11 @@ public class FunctionalTests {
     }
     
     @Test
+    public void test13(){
+    	twoFinishLapTest(3, "13");
+    }
+    
+    @Test
     public void test15() {
         // ParseException innan iteration 3 för att starttider har ett extra \n i slutet
         simpleLapTest(3, "15");
