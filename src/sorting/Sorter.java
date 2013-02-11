@@ -1,11 +1,8 @@
 package sorting;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Map;
 import java.util.NoSuchElementException;
-
-import javax.swing.JOptionPane;
 
 import racer.Racer;
 
