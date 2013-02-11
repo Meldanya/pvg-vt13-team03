@@ -168,11 +168,15 @@ public class FunctionalTests {
         assertEquals("resultatfiler inte identiska", 0, error);
     }
     
-    private void simpleLapTest(String number) {
-        singleFilesLapTest(1, "acceptance/acceptanstest" + number + "/starttider.txt",
+    private void simpleLapTest(int laps, String number) {
+        singleFilesLapTest(laps, "acceptance/acceptanstest" + number + "/starttider.txt",
                 "acceptance/acceptanstest" + number + "/maltider.txt",
                 "acceptance/acceptanstest" + number + "/namnfil.txt",
                 "acceptance/acceptanstest" + number + "/resultat.txt");
+    }
+    
+    private void simpleLapTest(String number) {
+    	simpleLapTest(1, number);
     }
 
     @Test
@@ -193,7 +197,7 @@ public class FunctionalTests {
     @Test
     public void test15() {
         // ParseException innan iteration 3 för att starttider har ett extra \n i slutet
-        simpleLapTest("15");
+        simpleLapTest(3, "15");
     }
 
     @Test
