@@ -18,21 +18,13 @@ public class Sorter {
 	private RacerMap racers;
 	private int laps;
 	
-	public Sorter() {
+	public Sorter(int laps) throws IOException {
 		racers = new RacerMap();
 		
-		String laps = JOptionPane.showInputDialog("Fyll i önskat antal varv, 1 för maratontävling");
-		this.laps = Integer.parseInt(laps);
+		this.laps = laps;
 		
-		try {
-			read();
-			readNames();
-		} catch (FileNotFoundException e) {
-			System.err.println("Kunde ej finna filerna");
-			e.printStackTrace();
-		} catch (IOException e){
-			e.printStackTrace();
-		}
+		read();
+		readNames();
 		
 		write();
 	}
