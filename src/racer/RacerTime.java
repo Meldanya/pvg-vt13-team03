@@ -42,10 +42,4 @@ public class RacerTime {
 		return formatString(difference);
 	}
 	
-	public static void main(String[] args) {
-		RacerTime rt1 = new RacerTime("13.49.00");
-		RacerTime rt2 = new RacerTime("13.50.20");
-		
-		System.out.println(rt1.getDifferenceTo(rt2));
-	}
 }

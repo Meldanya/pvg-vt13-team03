@@ -1,7 +1,9 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +36,7 @@ public class TestTimeReader {
 	}
 
 	@Test
-	public void testTimeReader() {
+	public void testTimeReader() throws IOException {
 		Map<String, ArrayList<String>> tempMap = new HashMap<String, ArrayList<String>>();
 		tempMap.put("1", new ArrayList<String>());
 		tempMap.get("1").add("1359359445");
@@ -52,9 +54,9 @@ public class TestTimeReader {
 
 	}
 	
-	@Test
-	public void testIncorrectlyFormattedFile(){
-		assertEquals(reader.readFromTimeFile("test/TestTimeReader/incorrectstart.txt"), null);
+	@Test (expected=ArrayIndexOutOfBoundsException.class)
+	public void testIncorrectlyFormattedFileInsufficientColumns() throws IOException {
+		assertNull(reader.readFromTimeFile("test/TestNameReader/incorrectstart.txt"));
 	}
 
 }

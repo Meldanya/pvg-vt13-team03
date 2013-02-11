@@ -40,7 +40,7 @@ public class StatusArea extends JScrollPane implements Observer{
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		println(register.lastLine());
+		println(register.getLastWrittenLine());
 		field.setText(""); // TODO: är det inte någon annans ansvar att tömma inmatningsfältet?
 	}
 }

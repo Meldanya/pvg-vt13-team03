@@ -1,6 +1,9 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
+import java.io.IOException;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -32,7 +35,7 @@ public class TestNameReader {
 	}
 
 	@Test
-	public void testReader() {
+	public void testReader() throws IOException {
 
 		Map<String, String> tempMap = new TreeMap<String, String>();
 		tempMap.put("StartNo", "Namn");
@@ -50,8 +53,8 @@ public class TestNameReader {
 
 	}
 
-	@Test
-	public void testIncorrectlyFormattedFile() {
+	@Test (expected=ArrayIndexOutOfBoundsException.class)
+	public void testIncorrectlyFormattedFileInsufficientColumns() throws IOException {
 		assertNull(reader.readFromNameFile("test/TestNameReader/incorrectstart.txt"));
 	}
 

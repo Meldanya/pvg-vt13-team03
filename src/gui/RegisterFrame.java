@@ -12,15 +12,17 @@ import registration.Register;
 public class RegisterFrame extends AbstractFrame{
 	private StartNbrField startNbrField;
 	private StatusArea statusArea;
+	private Register register;
 	private RegisterButton registerButton;
 	
-	public RegisterFrame(String mode, boolean start){
+	public RegisterFrame(String mode, Register register) {
 		super("Registrering av " + mode + "tider");
+		
 		setSize(640,480);
 		setLayout(new BorderLayout());
 
-		// The order in which the following object are initialized is important. 
-		Register register = new Register(start);
+		this.register = register;
+
 		startNbrField = new StartNbrField(register);
 		statusArea = new StatusArea(register, startNbrField);
 		registerButton = new RegisterButton(startNbrField);

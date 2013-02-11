@@ -1,5 +1,6 @@
 package sorting;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,7 @@ public class TimeReader extends Reader{
 		map.get(key).add(value);			
 	}
 
-	public Map<String, ArrayList<String>> readFromTimeFile(String fileName) {
+	public Map<String, ArrayList<String>> readFromTimeFile(String fileName) throws IOException {
 		map = new HashMap<String, ArrayList<String>>();
 		readFromFile(fileName);
 		return map;

@@ -67,7 +67,7 @@ public class Racer implements Comparable<Racer> {
 		
 		return startTime.getDifferenceTo(finishTime);
 	}
-
+	
 	/**
 	 * Returns the racer as a line in the format the Sorter wants.
 	 */
@@ -83,7 +83,7 @@ public class Racer implements Comparable<Racer> {
 		sb.append(getStartTime());
 		sb.append("; ");
 		sb.append(getFinishTime());
-		
+
 		if (startTimes.size() > 1) {
 			sb.append("; Flera starttider?");
 			for(int i = 1; i < startTimes.size(); i++) {

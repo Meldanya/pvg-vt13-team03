@@ -10,7 +10,7 @@ import javax.swing.UIManager;
 
 import racer.RacerTime;
 import registration.Register;
-import res.Strings;
+import constants.FileNames;
 
 public class MassStartButton extends AlternativeButton{
 
@@ -29,10 +29,10 @@ public class MassStartButton extends AlternativeButton{
 		UIManager.put("OptionPane.noButtonText","Nej");
 		int option = JOptionPane.showConfirmDialog(frame, "Vill du starta alla deltagare?", "", JOptionPane.YES_NO_OPTION);
 		if(option == JOptionPane.YES_OPTION) {
-			Register register = new Register(true);
+			Register register = new Register(FileNames.START);
 			RacerTime time = new RacerTime();
 			try {
-				register.registerMassStart(Strings.NAMEFILE, time.toString());
+				register.registerMassStart(FileNames.NAMEFILE, time.toString());
 				JOptionPane.showMessageDialog(frame, "Alla deltagares starttid har registrerats");
 			} catch (FileNotFoundException e0) {
 				JOptionPane.showMessageDialog(frame, "Filen med deltagarnas namn kunde inte öppnas", "", JOptionPane.ERROR_MESSAGE);
