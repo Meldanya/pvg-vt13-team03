@@ -85,6 +85,7 @@ public class Racer implements Comparable<Racer> {
 		if (finishTimes.size() <= 1) {
 
 			finishTime = getTotalTime();
+
 		} else {
 			finishTime = startTimes.get(0).getDifferenceTo(finishTimes.get(0));
 		}

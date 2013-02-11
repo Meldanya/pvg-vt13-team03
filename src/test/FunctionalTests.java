@@ -250,8 +250,9 @@ public class FunctionalTests {
     	twoFinishLapTest("10");
     }
     
-    @Ignore @Test
-    public void test13(){
+    @Test
+    public void test13() throws FileNotFoundException, IOException{
+    	setNumberOfLapsInConfigFile(3);
     	twoFinishLapTest("13");
     }
     
