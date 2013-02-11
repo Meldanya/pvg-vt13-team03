@@ -39,7 +39,7 @@ public class Racer implements Comparable<Racer> {
 			return startTimes.get(0).toString();
 		}
 		
-		return "Starttid?";
+		return "Start?";
 	}
 
 	public void addStartTime(RacerTime startTime) {
@@ -51,7 +51,7 @@ public class Racer implements Comparable<Racer> {
 			return finishTimes.get(finishTimes.size()-1).toString();
 		}
 
-		return "Sluttid?";
+		return "Slut?";
 	}
 
 	public void addFinishTime(RacerTime finishTime) {
