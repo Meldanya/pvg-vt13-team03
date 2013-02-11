@@ -1,14 +1,14 @@
 package sorting;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class NameReader extends Reader{
-	private TreeMap<String, String> map;
+	private Map<String, String> map;
 	
 	public NameReader(){
-		map = new TreeMap<String, String>();
+		map = new LinkedHashMap<String, String>();
 	}
 	
 	protected void op(String key, String value) {
