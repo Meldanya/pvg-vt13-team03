@@ -1,9 +1,14 @@
 package sorting;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Properties;
 
 import constants.FileNames;
 
@@ -13,21 +18,31 @@ import constants.FileNames;
  * result.txt but only for one driver.
  */
 public class Sorter {
-
 	private Competition racers;
+	private Properties config;
 	private int laps;
 	
-	public Sorter(int laps) throws IOException {
+	public Sorter() throws IOException {
 		racers = new Competition();
 		
-		this.laps = laps;
 		
+		this.config = new Properties(new SorterDefaultConfig());
+		
+		try {
+			config.load(new BufferedReader(new FileReader(FileNames.CONFIG)));
+		} catch (FileNotFoundException e1) {
+			new SorterDefaultConfig().store(new FileOutputStream(FileNames.CONFIG),"Default config for Enduro Sorter");
+			// May throw an exception. For example if the user doesn't have
+			// permission to write  
+		}
 		read();
 		readNames();
 		
 		write();
 	}
-
+	private int laps(){
+		return Integer.parseInt(config.getProperty("NumberOfLaps"));
+	}
 	private void read() throws IOException {
 	
 		File directory = new File(".");
@@ -62,6 +77,15 @@ public class Sorter {
 	}
 
 	private void write() {
-		racers.writeToFile(FileNames.OUTFILE, laps);
+		racers.writeToFile(FileNames.OUTFILE, laps());
+	}
+	
+	/**
+	 * Returns a copy of the current configuration. This is used for testing. 
+	 * 
+	 * @return a copy of the configuration
+	 */
+	public Properties getCopyOfConfig() {
+		return new Properties(config);
 	}
 }
