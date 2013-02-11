@@ -20,7 +20,6 @@ import constants.FileNames;
 public class Sorter {
 	private Competition racers;
 	private Properties config;
-	private int laps;
 	
 	public Sorter() throws IOException {
 		racers = new Competition();
@@ -42,6 +41,9 @@ public class Sorter {
 	}
 	private int laps(){
 		return Integer.parseInt(config.getProperty("NumberOfLaps"));
+	}
+	private String namefile(){
+		return config.getProperty("Namefile");
 	}
 	private void read() throws IOException {
 	
@@ -69,7 +71,7 @@ public class Sorter {
 	 * @todo skicka in en Map<id, namn> till RacerMap istället
 	 */
 	private void readNames() throws IOException {
-		Map<String, String> names = new NameReader().readFromNameFile(FileNames.NAMEFILE);
+		Map<String, String> names = new NameReader().readFromNameFile(namefile());
 
 
 		names.remove("StartNr");

@@ -250,7 +250,7 @@ public class FunctionalTests {
     	twoFinishLapTest("10");
     }
     
-    @Test
+    @Ignore @Test
     public void test13(){
     	twoFinishLapTest("13");
     }
