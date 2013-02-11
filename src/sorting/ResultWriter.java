@@ -52,6 +52,18 @@ public class ResultWriter {
 			writer.newLine();
 		}
 		
+		//Ser till så att den inte skriver ut fler varv än nödvändigt
+		int maxLapCount=0;
+		for (Racer racer : racers) {
+			if(maxLapCount<racer.getNumberOfLaps()){
+				maxLapCount=racer.getNumberOfLaps();				
+			}
+		}
+		
+		if(maxLapCount>0 && maxLapCount<laps){
+			laps=maxLapCount;
+		}
+		
 		if (laps < 2) {
 			writer.write(header);
 		}
@@ -72,7 +84,6 @@ public class ResultWriter {
 		}
 		
 		writer.newLine();
-		
 		for (Racer racer : racers) {
 			writer.write(racer.toString(laps));
 			writer.newLine();

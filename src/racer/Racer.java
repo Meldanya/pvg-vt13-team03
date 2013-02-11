@@ -85,6 +85,7 @@ public class Racer implements Comparable<Racer> {
 		if (finishTimes.size() <= 1) {
 
 			finishTime = getTotalTime();
+
 		} else {
 			finishTime = startTimes.get(0).getDifferenceTo(finishTimes.get(0));
 		}
@@ -199,19 +200,11 @@ public class Racer implements Comparable<Racer> {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
+		if(!(obj instanceof Racer)){
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Racer other = (Racer) obj;
-		if (startNumber == null) {
-			if (other.startNumber != null)
-				return false;
-		} else if (!startNumber.equals(other.startNumber))
-			return false;
-		return true;
+		}
+		
+		return startNumber.equals(((Racer)obj).startNumber);
 	}
 
 	public RacerClass getClassType() {
@@ -226,6 +219,11 @@ public class Racer implements Comparable<Racer> {
 		this.classType = new RacerClass(className);
 	}
 
+	/**
+	 * Used by TreeMap in Competition.getRacers()
+	 * @param o
+	 * @return
+	 */
 	@Override
 	public int compareTo(Racer o) {
 		return startNumber.compareTo(o.getStartNumber());
