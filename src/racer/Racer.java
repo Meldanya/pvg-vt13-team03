@@ -21,7 +21,7 @@ public class Racer implements Comparable<Racer> {
 		this.finishTimes = new ArrayList<RacerTime>();
 		this.name = "";
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -38,8 +38,8 @@ public class Racer implements Comparable<Racer> {
 		if (startTimes.size() > 0) {
 			return startTimes.get(0).toString();
 		}
-		
-		return "Starttid?";
+
+		return "Start?";
 	}
 
 	public void addStartTime(RacerTime startTime) {
@@ -48,10 +48,10 @@ public class Racer implements Comparable<Racer> {
 
 	public String getFinishTime() {
 		if (finishTimes.size() > 0) {
-			return finishTimes.get(finishTimes.size()-1).toString();
+			return finishTimes.get(finishTimes.size() - 1).toString();
 		}
 
-		return "Sluttid?";
+		return "Slut?";
 	}
 
 	public void addFinishTime(RacerTime finishTime) {
@@ -65,10 +65,10 @@ public class Racer implements Comparable<Racer> {
 
 		RacerTime startTime = startTimes.get(0);
 		RacerTime finishTime = finishTimes.get(0);
-		
+
 		return startTime.getDifferenceTo(finishTime);
 	}
-	
+
 	/**
 	 * Returns the racer as a line in the format the Sorter wants.
 	 */
@@ -87,14 +87,15 @@ public class Racer implements Comparable<Racer> {
 
 		if (startTimes.size() > 1) {
 			sb.append("; Flera starttider?");
-			for(int i = 1; i < startTimes.size(); i++) {
+			for (int i = 1; i < startTimes.size(); i++) {
 				sb.append(" ");
 				sb.append(startTimes.get(i));
 			}
 		}
-		
+
 		return sb.toString();
 	}
+
 	/**
 	 * 
 	 * @param laps
@@ -104,25 +105,26 @@ public class Racer implements Comparable<Racer> {
 		if (laps == 1) {
 			return toString();
 		}
-		
+
 		StringBuilder out = new StringBuilder();
 		ArrayList<String> lapTimes = getLapTimes();
-		
-		out.append(startNumber + "; " + name + "; " + finishTimes.size() + "; " + getTotalTime() + "; ");
-		
+
+		out.append(startNumber + "; " + name + "; " + finishTimes.size() + "; "
+				+ getTotalTime() + "; ");
+
 		for (int i = 0; i < laps; i++) {
 			try {
 				String laptime = lapTimes.get(i);
-				
+
 				out.append(laptime + "; ");
 			} catch (IndexOutOfBoundsException e) {
 				// Laptime doesn't exist, print column anyway
 				out.append("; ");
 			}
 		}
-		
+
 		out.append(getStartTime() + "; ");
-		
+
 		for (int i = 0; i < laps; i++) {
 			try {
 				RacerTime laptime = finishTimes.get(i);
@@ -135,7 +137,7 @@ public class Racer implements Comparable<Racer> {
 
 		return out.toString();
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -169,7 +171,7 @@ public class Racer implements Comparable<Racer> {
 	public void setClassType(RacerClass classType) {
 		this.classType = classType;
 	}
-	
+
 	public void setClassType(String className) {
 		this.classType = new RacerClass(className);
 	}
@@ -178,23 +180,25 @@ public class Racer implements Comparable<Racer> {
 	public int compareTo(Racer o) {
 		return startNumber.compareTo(o.getStartNumber());
 	}
-	
-	public ArrayList<String> getLapTimes(){
+
+	public ArrayList<String> getLapTimes() {
 		ArrayList<String> lapTimes = new ArrayList<String>();
-		
-		if (startTimes.size() > 0 && finishTimes.size() > 0) {	
-			String lapOne = startTimes.get(0).getDifferenceTo(finishTimes.get(0));
+
+		if (startTimes.size() > 0 && finishTimes.size() > 0) {
+			String lapOne = startTimes.get(0).getDifferenceTo(
+					finishTimes.get(0));
 			lapTimes.add(lapOne);
-			
-			for (int i = 1; i < finishTimes.size(); i++){
-				String lapTime = finishTimes.get(i-1).getDifferenceTo(finishTimes.get(i));
+
+			for (int i = 1; i < finishTimes.size(); i++) {
+				String lapTime = finishTimes.get(i - 1).getDifferenceTo(
+						finishTimes.get(i));
 				lapTimes.add(lapTime);
 			}
 		}
-		
+
 		return lapTimes;
 	}
-	
+
 	public int getNumberOfLaps() {
 		return finishTimes.size();
 	}

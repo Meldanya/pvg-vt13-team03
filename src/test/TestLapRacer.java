@@ -28,14 +28,14 @@ public class TestLapRacer {
 	
 	@Test
 	public void testNoTimes() {
-		assertEquals("Start time exists", "Starttid?", racer.getStartTime());
-		assertEquals("Finish time exists", "Sluttid?", racer.getFinishTime());
+		assertEquals("Start time exists", "Start?", racer.getStartTime());
+		assertEquals("Finish time exists", "Slut?", racer.getFinishTime());
 	}
 
 	@Test
 	public void testTimeFormatting() {
 		racer.addStartTime(new RacerTime("11.12.13"));
-		assertEquals("Formatting is wrong", "1; Kalle; --.--.--; 11.12.13; Sluttid?", racer.toString());
+		assertEquals("Formatting is wrong", "1; Kalle; --.--.--; 11.12.13; Slut?", racer.toString());
 	}
 
 	@Test
