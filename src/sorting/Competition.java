@@ -2,6 +2,7 @@ package sorting;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -9,6 +10,7 @@ import java.util.TreeSet;
 
 import racer.Racer;
 import racer.RacerClass;
+import racer.RacerPlacingComparator;
 import racer.RacerTime;
 
 /**
@@ -53,21 +55,6 @@ public class Competition {
 				currentClass = startNumber;
 			}
 		}
-		
-		identifyNonExistingRacers(names);
-	}
-
-	/**
-	 * @param names
-	 */
-	private void identifyNonExistingRacers(Map<String, String> names) {
-		for (String startNumber : racers.keySet()) {
-			Racer racer = racers.get(startNumber);
-			
-			if (!names.keySet().contains(startNumber)) {
-				racer.setClassType("Icke existerande startnummer");
-			}
-		}
 	}
 
 	/**
@@ -78,8 +65,8 @@ public class Competition {
 	 * @param laps
 	 *            Amount of specified laps
 	 */
-	public void writeToFile(String filename, int laps) {
-		ResultWriter writer = new ResultWriter(this, filename);
+	public void writeToFile(String filename, int laps, Comparator<Racer> comp) {
+		ResultWriter writer = new ResultWriter(this, filename, comp);
 
 		writer.writeToFile(laps);
 	}
@@ -147,7 +134,11 @@ public class Competition {
 	 * @return
 	 */
 	public Set<Racer> getRacers(RacerClass rc) {
-		Set<Racer> set = new TreeSet<Racer>();
+		return getRacers(rc, null);
+	}
+	
+	public Set<Racer> getRacers(RacerClass rc, Comparator<Racer> comp){
+		Set<Racer> set = new TreeSet<Racer>(comp);
 
 		for (String key : racers.keySet()) {
 			Racer r = racers.get(key);
@@ -156,7 +147,6 @@ public class Competition {
 				set.add(r);
 			}
 		}
-
 		return set;
 	}
 }

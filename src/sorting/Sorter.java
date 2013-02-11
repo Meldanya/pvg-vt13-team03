@@ -87,7 +87,7 @@ public class Sorter {
 	private void write() {
 		ArrayList<String> finishFiles = finishFiles();
 		for (int i = 0; i < finishFiles.size(); i++){
-			racers.writeToFile(FileNames.OUTFILE, laps());
+			racers.writeToFile(FileNames.OUTFILE, laps(),null);
 		}
 	}
 	
