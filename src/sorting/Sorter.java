@@ -1,5 +1,7 @@
 package sorting;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
@@ -19,15 +21,21 @@ public class Sorter {
 	public Sorter(int laps) {
 		this.laps = laps;
 		racers = new RacerMap();
+
+		try {
+			read();
+			readNames();
+		} catch (FileNotFoundException e) {
+			System.err.println("Kunde ej finna filerna");
+			e.printStackTrace();
+		} catch (IOException e){
+			e.printStackTrace();
+		}
 		
-		read();
-		readNames();
 		write();
 	}
 
-	private void read() {
-		// Här läses deltagarna in från start och finish. Deltagare utan tider finns inte.
-		// Prova att istället läsa in namnen här och sätta start- och sluttid i readNames()
+	private void read() throws IOException {
 		racers.readFromFile("start.txt", "finish.txt");
 	}
 
@@ -35,7 +43,7 @@ public class Sorter {
 	 * @todo kolla vad första raden innehåller istället.
 	 * @todo skicka in en Map<id, namn> till RacerMap istället
 	 */
-	private void readNames() {
+	private void readNames() throws IOException {
 		Map<String, String> names = new NameReader().readFromNameFile("namnfil.txt");
 		String currentClass = "";
 
@@ -62,15 +70,5 @@ public class Sorter {
 
 	private void write() {
 		racers.writeToFile("result.txt", laps);
-	}
-
-	public static void main(String[] args) {
-	    String laps;
-	    if (args.length == 1) {
-	        laps = args[0];
-	    } else {
-	        laps = JOptionPane.showInputDialog("Fyll i önskat antal varv, 1 för maratontävling");
-	    }
-		new Sorter(Integer.parseInt(laps));
 	}
 }
