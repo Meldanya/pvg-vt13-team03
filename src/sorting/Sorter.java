@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Properties;
 
+import racer.RacerPlacingComparator;
+
 import constants.FileNames;
 
 
@@ -48,8 +50,16 @@ public class Sorter {
 	}
 	private ArrayList<String> finishFiles(){
 		ArrayList<String> finishFiles = new ArrayList<String>();
-		finishFiles.add(config.getProperty("FinishFiles"));
+		String finishFilesString = config.getProperty("FinishFiles");
+		finishFilesString = finishFilesString.replaceAll("\\s","");
+		String[] finishFilesArray = finishFilesString.split(",");
+		for (int i = 0; i < finishFilesArray.length; i++){
+			finishFiles.add(finishFilesArray[i]);
+		}
 		return finishFiles;
+	}
+	private String resultfile(){
+		return config.getProperty("ResultFile");
 	}
 	private void read() throws IOException {
 	
@@ -87,16 +97,8 @@ public class Sorter {
 	private void write() {
 		ArrayList<String> finishFiles = finishFiles();
 		for (int i = 0; i < finishFiles.size(); i++){
-			racers.writeToFile(FileNames.OUTFILE, laps(),null);
+			racers.writeToFile(resultfile(), laps(), null);
+			racers.writeToFile(FileNames.SORTRESULTAT, laps(), new RacerPlacingComparator());
 		}
-	}
-	
-	/**
-	 * Returns a copy of the current configuration. This is used for testing. 
-	 * 
-	 * @return a copy of the configuration
-	 */
-	public Properties getCopyOfConfig() {
-		return new Properties(config);
 	}
 }
