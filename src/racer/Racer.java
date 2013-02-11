@@ -110,7 +110,7 @@ public class Racer implements Comparable<Racer> {
 			}
 		}
 		
-		if((new RacerTime(finishTime)).compareTo(new RacerTime("00.15.00"))<0){
+		if(!finishTime.equals("--.--.--") && (new RacerTime(finishTime)).compareTo(new RacerTime("00.15.00"))<0){
 			sb.append("; Omöjlig Totaltid?");
 		}
 
