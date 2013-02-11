@@ -41,7 +41,7 @@ public class Sorter {
 		Map<String, String> names = new NameReader().readFromNameFile("namnfil.txt");
 		String currentClass = "";
 
-		names.remove("StartNo");
+		names.remove("StartNr");
 
 		for (String startNumber : names.keySet()) {
 			// Kontrollerar att raden är ett startnummer

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TimeReader extends Reader{
+public class TimeReader extends Reader {
 	private HashMap<String, ArrayList<String>> map;
 
 	protected void op(String key, String value) {
@@ -24,6 +24,5 @@ public class TimeReader extends Reader{
 	@Override
 	protected void error() {
 		map=null;
-		
 	}
 }
