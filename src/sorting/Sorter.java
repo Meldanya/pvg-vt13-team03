@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Properties;
 
@@ -45,6 +46,11 @@ public class Sorter {
 	private String namefile(){
 		return config.getProperty("Namefile");
 	}
+	private ArrayList<String> finishFiles(){
+		ArrayList<String> finishFiles = new ArrayList<String>();
+		finishFiles.add(config.getProperty("FinishFiles"));
+		return finishFiles;
+	}
 	private void read() throws IOException {
 	
 		File directory = new File(".");
@@ -79,7 +85,10 @@ public class Sorter {
 	}
 
 	private void write() {
-		racers.writeToFile(FileNames.OUTFILE, laps(), null);
+		ArrayList<String> finishFiles = finishFiles();
+		for (int i = 0; i < finishFiles.size(); i++){
+			racers.writeToFile(FileNames.OUTFILE, laps(),null);
+		}
 	}
 	
 	/**
