@@ -261,7 +261,7 @@ public class FunctionalTests {
 
     @Test
     public void test16() {
-        simpleLapTest("16");
+        simpleLapTest(3, "16");
     }
 
 }
