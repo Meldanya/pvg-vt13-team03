@@ -103,6 +103,7 @@ public class Competition {
 					racer.addFinishTime(new RacerTime(time));
 				}
 			}
+			racer.sortFinishTimes();
 		}
 	}
 
