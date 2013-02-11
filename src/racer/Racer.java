@@ -71,6 +71,7 @@ public class Racer implements Comparable<Racer> {
 
 	/**
 	 * Returns the racer as a line in the format the Sorter wants.
+	 * Is only run if laps = 1
 	 */
 	@Override
 	public String toString() {
@@ -108,30 +109,35 @@ public class Racer implements Comparable<Racer> {
 
 		StringBuilder out = new StringBuilder();
 		ArrayList<String> lapTimes = getLapTimes();
-
-		out.append(startNumber + "; " + name + "; " + finishTimes.size() + "; "
-				+ getTotalTime() + "; ");
-
+		
+		out.append(startNumber + "; " + name + "; " + getNumberOfLaps() + "; " + getTotalTime());
+		
 		for (int i = 0; i < laps; i++) {
 			try {
 				String laptime = lapTimes.get(i);
+				
+				out.append("; " + laptime);
 
-				out.append(laptime + "; ");
 			} catch (IndexOutOfBoundsException e) {
 				// Laptime doesn't exist, print column anyway
 				out.append("; ");
 			}
 		}
-
-		out.append(getStartTime() + "; ");
+		
+		out.append("; " + getStartTime());
+		
 
 		for (int i = 0; i < laps; i++) {
 			try {
 				RacerTime laptime = finishTimes.get(i);
-				out.append(laptime.toString() + "; ");
+				out.append("; " + laptime.toString());
 			} catch (IndexOutOfBoundsException e) {
 				// Laptime doesn't exist, print column anyway
-				out.append("; ");
+				if (i == (laps - 1)) {
+					out.append("; Slut?");
+				} else {
+					out.append("; ");
+				}
 			}
 		}
 
@@ -183,15 +189,18 @@ public class Racer implements Comparable<Racer> {
 
 	public ArrayList<String> getLapTimes() {
 		ArrayList<String> lapTimes = new ArrayList<String>();
+		
+		if (finishTimes.size() > 0) {
+			if(startTimes.size() > 0){
+				String lapOne = startTimes.get(0).getDifferenceTo(
+						finishTimes.get(0));
+				lapTimes.add(lapOne);
+			} else{
+				lapTimes.add("");
+			}
+			for (int i = 1; i < finishTimes.size(); i++){
+				String lapTime = finishTimes.get(i-1).getDifferenceTo(finishTimes.get(i));
 
-		if (startTimes.size() > 0 && finishTimes.size() > 0) {
-			String lapOne = startTimes.get(0).getDifferenceTo(
-					finishTimes.get(0));
-			lapTimes.add(lapOne);
-
-			for (int i = 1; i < finishTimes.size(); i++) {
-				String lapTime = finishTimes.get(i - 1).getDifferenceTo(
-						finishTimes.get(i));
 				lapTimes.add(lapTime);
 			}
 		}
