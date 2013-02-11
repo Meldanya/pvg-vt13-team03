@@ -19,7 +19,7 @@ import constants.FileNames;
  */
 public class Register extends Observable {
 	private String fileName;
-	private String lastLine;
+	private String lastWrittenLine;
 
 	public Register(String fileName) {
 		this.fileName = fileName;
@@ -60,9 +60,9 @@ public class Register extends Observable {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,
 					true));
-			lastLine = stringToAppendToFile(startNumber, time);
+			lastWrittenLine = stringToAppendToFile(startNumber, time);
 
-			writer.append(lastLine);
+			writer.append(lastWrittenLine);
 			writer.newLine();
 			writer.close();
 
@@ -95,7 +95,7 @@ public class Register extends Observable {
 	 * @return the last written line
 	 */
 	public String getLastWrittenLine() {
-		return lastLine;
+		return lastWrittenLine;
 	}
 
 	/**
