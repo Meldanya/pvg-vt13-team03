@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Properties;
 
+import racer.RacerPlacingComparator;
+
 import constants.FileNames;
 
 
@@ -95,7 +97,8 @@ public class Sorter {
 	private void write() {
 		ArrayList<String> finishFiles = finishFiles();
 		for (int i = 0; i < finishFiles.size(); i++){
-			racers.writeToFile(resultfile(), laps(),null);
+			racers.writeToFile(resultfile(), laps(), null);
+			racers.writeToFile(FileNames.SORTRESULTAT, laps(), new RacerPlacingComparator());
 		}
 	}
 }
