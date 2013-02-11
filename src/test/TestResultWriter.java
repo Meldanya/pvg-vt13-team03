@@ -84,8 +84,11 @@ public class TestResultWriter {
 		
 		map.addRacer(racer);
 		writer.writeToFile(1);
+		String expected = header + "\n" + racer.toString() + "\n";
+		System.out.print(expected);
+		System.out.print(readFile());
 		
-		assertEquals("Result doesn't match", header + "\n" + racer.toString() + "\n", readFile());
+		assertEquals("Result doesn't match", expected, readFile());
 	}
 
 	@Test

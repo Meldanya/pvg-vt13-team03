@@ -189,7 +189,7 @@ public class FunctionalTests {
     public void test9() {
         simpleLapTest("9");
     }
-
+    
     @Test
     public void test15() {
         // ParseException innan iteration 3 för att starttider har ett extra \n i slutet
