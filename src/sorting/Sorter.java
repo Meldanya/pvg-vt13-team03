@@ -2,9 +2,8 @@ package sorting;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
-import racer.Racer;
+import constants.FileNames;
 
 /**
  * A class representing a sorter. It reads start.txt and finish.txt and outputs
@@ -12,11 +11,11 @@ import racer.Racer;
  */
 public class Sorter {
 
-	private RacerMap racers;
+	private Competition racers;
 	private int laps;
 	
 	public Sorter(int laps) throws IOException {
-		racers = new RacerMap();
+		racers = new Competition();
 		
 		this.laps = laps;
 		
@@ -27,41 +26,31 @@ public class Sorter {
 	}
 
 	private void read() throws IOException {
-		racers.readFromFile("start.txt", "finish.txt");
+	
+//		String yourPath = ".";
+//		File directory = new File(yourPath);
+//		String[] myFiles = directory.list(new FinishFileFilter());
+		
+		racers.readFromFile(FileNames.START, true);
+		racers.readFromFile(FileNames.FINISH, false);		
 	}
+	
+//	private class FinishFileFilter implements FilenameFilter{
+//		@Override
+//		public boolean accept(File dir, String name) {
+//			 return name.startsWith("maltider") && name.endsWith(".txt");
+//		}
+//	}
 
 	/**
 	 * @todo kolla vad första raden innehåller istället.
 	 * @todo skicka in en Map<id, namn> till RacerMap istället
 	 */
 	private void readNames() throws IOException {
-		Map<String, String> names = new NameReader().readFromNameFile("namnfil.txt");
-		String currentClass = "";
+		Map<String, String> names = new NameReader().readFromNameFile(FileNames.NAMEFILE);
 
 		names.remove("StartNr");
-
-		for (String startNumber : names.keySet()) {
-			// Kontrollerar att raden är ett startnummer
-			if (Character.isDigit(startNumber.charAt(0))) {
-				try {
-					Racer racer = racers.getRacer(startNumber);
-					
-					racer.setName(names.get(startNumber));
-					racer.setClassType(currentClass);
-				} catch (NoSuchElementException e) {
-					Racer racer = new Racer(startNumber);
-
-					racer.setName(names.get(startNumber));
-					racer.setClassType(currentClass);
-					
-					racers.addRacer(racer);
-				}
-			}
-			else {
-				// In this case the start number is the class name
-				currentClass = startNumber;
-			}
-		}
+		racers.setNames(names);
 	}
 
 	private void write() {
