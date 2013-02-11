@@ -251,6 +251,11 @@ public class FunctionalTests {
     }
     
     @Test
+    public void test13(){
+    	twoFinishLapTest("13");
+    }
+    
+
     public void test15() throws IOException {
     	setNumberOfLapsInConfigFile(3);
         simpleLapTest("15");

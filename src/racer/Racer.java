@@ -161,13 +161,18 @@ public class Racer implements Comparable<Racer> {
 				out.append("; " + laptime.toString());
 			} catch (IndexOutOfBoundsException e) {
 				// Laptime doesn't exist, print column anyway
-				if (i == (laps - 1) ) {
-					out.append("; Slut?");
-				} else {
+				if(i==laps-1){
+					out.append(";");
+				} else{
 					out.append("; ");
 				}
 			}
 		}
+		
+		if(finishTimes.size()==0){
+			out.append(" Slut?");
+		}
+		
 		if (startTimes.size() > 1) {
 			out.append("; Flera starttider?");
 			for (int i = 1; i < startTimes.size(); i++) {
