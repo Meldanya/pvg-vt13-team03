@@ -3,6 +3,7 @@ package test;
 import static org.junit.Assert.*;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -13,6 +14,18 @@ import org.junit.Test;
 import sorting.Sorter;
 
 public class FunctionalTests {
+	
+	@Before
+	public void setUp() {
+		// remove existing files
+        File file;
+        file = new File("start.txt");
+        file.delete();
+        file = new File("finish.txt");
+        file.delete();
+        file = new File("namnfil.txt");
+        file.delete();
+	}
 
     /**
      * Creates a symbolic link linkName->target by spawning a subprocess.
@@ -24,18 +37,17 @@ public class FunctionalTests {
      * @param linkName
      *            name of the new symbolic link
      * @throws RuntimeException
-     *             if the symlink could probably not be created
+     *             if the symbolic link could probably not be created
      * @throws IOException
      * @throws InterruptedException
      */
     private void symlink(String target, String linkName) throws IOException,
             InterruptedException {
-        String[] command = new String[] { "ln", "--symbolic", "--force",
-                target, linkName };
+		String[] command = new String[] { "ln", "--symbolic", target, linkName };
 
         int error = runSystemCommand(command);
         if (error != 0) {
-            throw new RuntimeException("Failed to create symbolic link");
+            throw new RuntimeException("Failed to create symbolic link " + linkName);
         }
     }
 
@@ -127,6 +139,15 @@ public class FunctionalTests {
         }
 
         new Sorter(laps);
+        
+        // remove symlinks after test
+        File file;
+        file = new File("start.txt");
+        assertTrue("start.txt kunde inte raderas", file.delete());
+        file = new File("finish.txt");
+        assertTrue("finish.txt kunde inte raderas", file.delete());
+        file = new File("namnfil.txt");
+        assertTrue("namnfil.txt kunde inte raderas", file.delete());
 
         // kolla result.txt
         int error = -1; // -1 is certainly bad
