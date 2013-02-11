@@ -159,7 +159,7 @@ public class Racer implements Comparable<Racer> {
 				out.append("; " + laptime.toString());
 			} catch (IndexOutOfBoundsException e) {
 				// Laptime doesn't exist, print column anyway
-				if (i == (laps - 1)) {
+				if (i == (laps - 1) && finishTimes.size()==0) {
 					out.append("; Slut?");
 				} else {
 					out.append("; ");
