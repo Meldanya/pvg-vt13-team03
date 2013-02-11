@@ -51,6 +51,9 @@ public class Sorter {
 		finishFiles.add(config.getProperty("FinishFiles"));
 		return finishFiles;
 	}
+	private String resultfile(){
+		return config.getProperty("ResultFile");
+	}
 	private void read() throws IOException {
 	
 		File directory = new File(".");
@@ -87,7 +90,7 @@ public class Sorter {
 	private void write() {
 		ArrayList<String> finishFiles = finishFiles();
 		for (int i = 0; i < finishFiles.size(); i++){
-			racers.writeToFile(FileNames.OUTFILE, laps(),null);
+			racers.writeToFile(resultfile(), laps(),null);
 		}
 	}
 	
