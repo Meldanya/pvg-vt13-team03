@@ -34,10 +34,10 @@ public class Competition {
 	private void addRacer(Racer racer) {
 		racers.put(racer.getStartNumber(), racer);
 	}
-	
+
 	public void setNames(Map<String, String> names) {
 		String currentClass = "";
-		
+
 		for (String startNumber : names.keySet()) {
 			// Kontrollerar att raden är ett startnummer
 			if (Character.isDigit(startNumber.charAt(0))) {
@@ -46,15 +46,29 @@ public class Competition {
 					racer = new Racer(startNumber);
 					addRacer(racer);
 				}
-				
+
 				racer.setName(names.get(startNumber));
 				racer.setClassType(currentClass);
-			}
-			else {
+			} else {
 				// In this case the start number is the class name
 				currentClass = startNumber;
 			}
 		}
+		identifyNonExistingRacers(names);
+	}
+
+	/**
+	 * @param names
+	 */
+	private void identifyNonExistingRacers(Map<String, String> names) {
+		for (String startNumber : racers.keySet()) {
+			Racer racer = racers.get(startNumber);
+
+			if (!names.keySet().contains(startNumber)) {
+				racer.setClassType("Icke existerande startnummer");
+			}
+		}
+
 	}
 
 	/**
@@ -70,18 +84,18 @@ public class Competition {
 
 		writer.writeToFile(laps);
 	}
-	
+
 	/**
-	 * Reads start/finish times from a file and loads it into Racers,
-	 * creates new Racers to store the data in where necessary.
+	 * Reads start/finish times from a file and loads it into Racers, creates
+	 * new Racers to store the data in where necessary.
 	 * 
 	 * @param fileName
 	 */
-	public void readFromFile(String fileName, boolean start) throws IOException{
+	public void readFromFile(String fileName, boolean start) throws IOException {
 		TimeReader reader = new TimeReader();
 		Map<String, ArrayList<String>> timesMap = reader
 				.readFromTimeFile(fileName);
-		
+
 		for (String startNumber : timesMap.keySet()) {
 			if (startNumber.trim().length() < 1) {
 				// Makes sure that the read line is not empty
@@ -136,8 +150,8 @@ public class Competition {
 	public Set<Racer> getRacers(RacerClass rc) {
 		return getRacers(rc, null);
 	}
-	
-	public Set<Racer> getRacers(RacerClass rc, Comparator<Racer> comp){
+
+	public Set<Racer> getRacers(RacerClass rc, Comparator<Racer> comp) {
 		Set<Racer> set = new TreeSet<Racer>(comp);
 
 		for (String key : racers.keySet()) {
