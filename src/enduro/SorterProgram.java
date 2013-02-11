@@ -15,14 +15,8 @@ public class SorterProgram {
 	 * @param args Unused
 	 */
 	public static void main(String[] args) {
-	    String laps;
-	    if (args.length == 1) {
-	        laps = args[0];
-	    } else {
-	        laps = JOptionPane.showInputDialog("Fyll i önskat antal varv, 1 för maratontävling");
-	    }
 	    try {
-			new Sorter(Integer.parseInt(laps));
+			new Sorter();
 
 			JOptionPane.showMessageDialog(null, "Sorteringen lyckades, resultatet skrivet till " + FileNames.OUTFILE);
 		} catch (FileNotFoundException e) {

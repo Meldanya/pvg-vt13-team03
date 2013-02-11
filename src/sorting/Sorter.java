@@ -22,10 +22,9 @@ public class Sorter {
 	private Properties config;
 	private int laps;
 	
-	public Sorter(int laps) throws IOException {
+	public Sorter() throws IOException {
 		racers = new Competition();
 		
-		this.laps = laps;
 		
 		this.config = new Properties(new SorterDefaultConfig());
 		
@@ -41,7 +40,9 @@ public class Sorter {
 		
 		write();
 	}
-
+	private int laps(){
+		return Integer.parseInt(config.getProperty("NumberOfLaps"));
+	}
 	private void read() throws IOException {
 	
 		File directory = new File(".");
@@ -76,8 +77,9 @@ public class Sorter {
 	}
 
 	private void write() {
-		racers.writeToFile(FileNames.OUTFILE, laps);
+		racers.writeToFile(FileNames.OUTFILE, laps());
 	}
+	
 	/**
 	 * Returns a copy of the current configuration. This is used for testing. 
 	 * 
