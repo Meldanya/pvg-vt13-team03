@@ -71,6 +71,7 @@ public class Racer implements Comparable<Racer> {
 	
 	/**
 	 * Returns the racer as a line in the format the Sorter wants.
+	 * Is only run if laps = 1
 	 */
 	@Override
 	public String toString() {
