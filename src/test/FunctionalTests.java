@@ -240,15 +240,13 @@ public class FunctionalTests {
 
     @Test
     public void test9() throws IOException {
-    	config.setProperty("NumberOfLaps","3");
-    	config.store(new FileOutputStream(FileNames.CONFIG),"Test config for Enduro Sorter");
+    	setNumberOfLapsInConfigFile(3);
         simpleLapTest("9");
     }
     
     @Test
     public void test10() throws FileNotFoundException, IOException {
-    	config.setProperty("NumberOfLaps","3");
-    	config.store(new FileOutputStream(FileNames.CONFIG),"Test config for Enduro Sorter");
+    	setNumberOfLapsInConfigFile(3);
     	twoFinishLapTest("10");
     }
     
@@ -259,16 +257,19 @@ public class FunctionalTests {
     
 
     public void test15() throws IOException {
-    	config.setProperty("NumberOfLaps","3");
-    	config.store(new FileOutputStream(FileNames.CONFIG),"Test config for Enduro Sorter");
+    	setNumberOfLapsInConfigFile(3);
         simpleLapTest("15");
     }
 
     @Test
     public void test16() throws FileNotFoundException, IOException {
-    	config.setProperty("NumberOfLaps","3");
-    	config.store(new FileOutputStream(FileNames.CONFIG),"Test config for Enduro Sorter");
+    	setNumberOfLapsInConfigFile(3);
         simpleLapTest("16");
+    }
+    
+    private void setNumberOfLapsInConfigFile(int laps) throws FileNotFoundException, IOException{
+    	config.setProperty("NumberOfLaps",String.valueOf(laps));
+    	config.store(new FileOutputStream(FileNames.CONFIG),"Test config for Enduro Sorter");
     }
 
 }
