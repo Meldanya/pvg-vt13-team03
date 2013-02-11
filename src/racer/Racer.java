@@ -1,6 +1,7 @@
 package racer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * A class representing a racer (aka driver) with a start number, start time and
@@ -254,6 +255,10 @@ public class Racer implements Comparable<Racer> {
 		laps -= startTimes.size() > 0 ? 0 : 1;
 
 		return laps;
+	}
+
+	public void sortFinishTimes() {
+		Collections.sort(finishTimes);
 	}
 
 }
