@@ -90,8 +90,6 @@ public class TestResultWriter {
 		
 		writer.writeToFile(1);
 		String expected = header + "\n" + r1 + "\n";
-		System.out.print(expected);
-		System.out.print(readFile());
 
 		assertEquals("Result doesn't match", expected, readFile());
 	}
