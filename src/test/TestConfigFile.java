@@ -25,7 +25,7 @@ public class TestConfigFile {
 		new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileNames.FINISH)));
 		new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileNames.NAMEFILE)));
 		new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileNames.CONFIG)));
-		config = new Sorter(1).getCopyOfConfig();
+		config = new Sorter().getCopyOfConfig();
 	}
 	
 	@Test
