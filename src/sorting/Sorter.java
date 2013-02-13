@@ -73,10 +73,10 @@ public class Sorter {
 		File directory = new File(".");
 		String[] finishFiles = directory.list(new FinishFileFilter());
 
-		racers.readFromFile(FileNames.START, true);
+		racers.setStartTimes(FileNames.START);
 
 		for (String fileName : finishFiles) {
-			racers.readFromFile(fileName, false);
+			racers.setFinishTimes(fileName);
 		}
 
 	}
