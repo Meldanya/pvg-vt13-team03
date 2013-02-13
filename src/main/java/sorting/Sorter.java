@@ -62,7 +62,12 @@ public class Sorter {
 		}
 		return finishFiles;
 	}
-	private String resultfile(){
+	
+	private String startFile(){
+		return config.getProperty("StartFile");
+	}
+
+	private String resultfile() {
 		return config.getProperty("ResultFile");
 	}
 	private void read() throws IOException {
@@ -70,7 +75,7 @@ public class Sorter {
 		File directory = new File(".");
 		String[] finishFiles = directory.list(new FinishFileFilter());
 
-		racers.setStartTimes(FileNames.START);
+		racers.setStartTimes(startFile());
 
 		for (String fileName : finishFiles) {
 			racers.setFinishTimes(fileName);

@@ -14,6 +14,7 @@ public class SorterConfig {
 	public SorterConfig() {
 		config = new Properties();
 		config.setProperty("Namefile", "namnfil.txt");
+		config.setProperty("StartFile", "start.txt");
 		config.setProperty("FinishFiles", "finish.txt");
 		config.setProperty("ResultFile", "result.txt");
 
