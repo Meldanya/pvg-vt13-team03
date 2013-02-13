@@ -92,8 +92,7 @@ public class Competition {
 	 */
 	public void readFromFile(String fileName, boolean start) throws IOException {
 		TimeReader reader = new TimeReader();
-		Map<String, ArrayList<String>> timesMap = reader
-				.readFromTimeFile(fileName);
+		Map<String, ArrayList<String>> timesMap = reader.readFromTimeFile(fileName);
 
 		for (String startNumber : timesMap.keySet()) {
 			if (startNumber.trim().length() < 1) {
