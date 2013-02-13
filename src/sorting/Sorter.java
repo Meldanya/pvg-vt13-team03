@@ -27,7 +27,7 @@ public class Sorter {
 	}
 
 	/** @throws IOException */
-	private void initializeConfig() throws IOException{
+	private void initializeConfig() throws IOException {
 		this.config = new SorterConfig();
 
 		try {
@@ -35,7 +35,7 @@ public class Sorter {
 		} catch (FileNotFoundException e1) {
 			try {
 				new SorterConfig().store(FileNames.CONFIG, "Default config for Enduro Sorter");
-			} catch (IOException e){
+			} catch (IOException e) {
 				System.err.println("Couldn't create a file with the default configuration.");
 			}
 		}
