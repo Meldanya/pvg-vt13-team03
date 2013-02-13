@@ -14,15 +14,13 @@ public class SorterConfig {
 	public SorterConfig() {
 		config = new Properties();
 		config.setProperty("Namefile", "namnfil.txt");
-
+		config.setProperty("FinishFiles", "finish.txt");
+		config.setProperty("ResultFile", "result.txt");
+		
 		config.setProperty("TypeOfContest", "Marathon");
-
 		config.setProperty("NumberOfLaps", "1");
 		config.setProperty("MinimumLapTime", "00.15.00");
 		config.setProperty("TimeStartIsOpen", "01.00.00");
-
-		config.setProperty("FinishFiles", "finish.txt");
-		config.setProperty("ResultFile", "result.txt");
 	}
 
 	/** @param propertyName the name of the property.
