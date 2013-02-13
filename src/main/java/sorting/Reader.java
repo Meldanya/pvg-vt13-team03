@@ -30,5 +30,4 @@ public abstract class Reader {
 	}
 	
 	protected abstract void op(String key, String value);
-	protected abstract void error();
 }
