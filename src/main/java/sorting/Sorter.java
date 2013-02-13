@@ -41,7 +41,9 @@ public class Sorter {
 			// permission to write  
 		}
 	}
-	private int laps(){
+
+	private int laps() { 
+		//TODO NumberFormatException needs catching
 		return Integer.parseInt(config.getProperty("NumberOfLaps"));
 	}
 	private String namefile(){
