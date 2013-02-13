@@ -4,27 +4,30 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Properties;
+import java.io.OutputStreamWriter;
 
-import org.junit.*;
-
-import constants.FileNames;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
 
 import sorting.Sorter;
-import sorting.SorterDefaultConfig;
+import sorting.SorterConfig;
+import constants.FileNames;
 
 public class FunctionalTests {
-	Properties config;
+	SorterConfig config;
 
 	@Before
 	public void setUp() {
 		cleanUp();
-		config = new Properties(new SorterDefaultConfig());
+		config = new SorterConfig();
 	}
 
 	@After
@@ -312,7 +315,7 @@ public class FunctionalTests {
 
 	private void setNumberOfLapsInConfigFile(int laps) throws IOException {
 		config.setProperty("NumberOfLaps", String.valueOf(laps));
-		config.store(new FileOutputStream(FileNames.CONFIG), "Test config for Enduro Sorter");
+		config.store(FileNames.CONFIG, "Test config for Enduro Sorter");
 	}
 
 }

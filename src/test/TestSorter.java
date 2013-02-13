@@ -14,11 +14,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sorting.Sorter;
-import sorting.SorterDefaultConfig;
+import sorting.SorterConfig;
 import constants.FileNames;
 
 public class TestSorter {
-	Properties config;
+	SorterConfig config;
 
 	@Before
 	public void setUp() throws Exception {
@@ -26,13 +26,13 @@ public class TestSorter {
 		new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileNames.FINISH)));
 		new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileNames.NAMEFILE)));
 		new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileNames.CONFIG)));
-		config = new Properties(new SorterDefaultConfig());
+		config = new SorterConfig();
 	}
 
 	@Test
 	public void testFinishFilesCanHandleWhitespace() throws IOException {
 		config.setProperty("FinishFiles", "finish1.txt, finish2.txt,\tfinish3.txt");
-		config.store(new FileOutputStream(FileNames.CONFIG), "Test config for Enduro Sorter");
+		config.store(FileNames.CONFIG, "Test config for Enduro Sorter");
 		Sorter sorter = new Sorter();
 		ArrayList<String> finishFiles = sorter.finishFiles();
 		assertEquals("Whitespace wasn't handled", "finish1.txt", finishFiles.get(0));

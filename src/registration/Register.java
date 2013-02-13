@@ -46,8 +46,7 @@ public class Register extends Observable {
 	 * @param time TODO */
 	public void register(String startNumber, RacerTime time) {
 		try {
-			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(fileName, true), "UTF-8"));
+			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName, true), "UTF-8"));
 
 			lastWrittenLine = stringToAppendToFile(startNumber, time);
 
