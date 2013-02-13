@@ -22,6 +22,15 @@ public class Sorter {
 	public Sorter() throws IOException {
 		racers = new Competition();
 
+		initializeConfig();
+		read();
+		readNames();
+
+		write();
+	}
+
+	/** @throws IOException */
+	private void initializeConfig() throws IOException{
 		this.config = new SorterConfig();
 
 		try {
@@ -31,10 +40,6 @@ public class Sorter {
 			// May throw an exception. For example if the user doesn't have
 			// permission to write  
 		}
-		read();
-		readNames();
-		
-		write();
 	}
 	private int laps(){
 		return Integer.parseInt(config.getProperty("NumberOfLaps"));
