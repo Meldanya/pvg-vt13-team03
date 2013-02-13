@@ -98,7 +98,7 @@ public class Sorter {
 		ArrayList<String> finishFiles = finishFiles();
 		for (int i = 0; i < finishFiles.size(); i++){
 			racers.writeToFile(resultfile(), laps(), null);
-			racers.writeToFile(FileNames.SORTRESULTAT, laps(), new RacerPlacingComparator());
+			racers.writeToFile(FileNames.SORTED_OUTFILE, laps(), new RacerPlacingComparator());
 		}
 	}
 }
