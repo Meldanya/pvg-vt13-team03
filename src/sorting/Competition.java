@@ -10,7 +10,6 @@ import java.util.TreeSet;
 
 import racer.Racer;
 import racer.RacerClass;
-import racer.RacerPlacingComparator;
 import racer.RacerTime;
 
 /** Container for Map with all Racers */

@@ -4,9 +4,8 @@ import java.io.FileNotFoundException;
 
 import javax.swing.JOptionPane;
 
-import constants.FileNames;
-
 import sorting.Sorter;
+import constants.FileNames;
 
 public class SorterProgram {
 
