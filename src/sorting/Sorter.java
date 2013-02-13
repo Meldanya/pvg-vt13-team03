@@ -63,8 +63,8 @@ public class Sorter {
 		}
 		return finishFiles;
 	}
-	
-	private String startFile(){
+
+	private String startFile() {
 		return config.getProperty("StartFile");
 	}
 
