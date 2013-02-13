@@ -83,14 +83,30 @@ public class Competition {
 
 		writer.writeToFile(laps);
 	}
-
-	/**
-	 * Reads start/finish times from a file and loads it into Racers, creates
-	 * new Racers to store the data in where necessary.
+	/** Reads start times from a file and loads it into Racers, creates new
+	 * Racers to store the data in where necessary.
 	 * 
 	 * @param fileName
-	 */
-	public void readFromFile(String fileName, boolean start) throws IOException {
+	 * @throws IOException */
+	public void setStartTimes(String fileName) throws IOException {
+		readFromFile(fileName, true);
+	}
+
+	/** Reads finish times from a file and loads it into Racers, creates new
+	 * Racers to store the data in where necessary.
+	 * 
+	 * @param fileName
+	 * @throws IOException */
+
+	public void setFinishTimes(String fileName) throws IOException {
+		readFromFile(fileName, false);
+	}
+
+	/** Reads start/finish times from a file and loads it into Racers, creates
+	 * new Racers to store the data in where necessary.
+	 * 
+	 * @param fileName */
+	private void readFromFile(String fileName, boolean start) throws IOException {
 		TimeReader reader = new TimeReader();
 		Map<String, ArrayList<String>> timesMap = reader.readFromTimeFile(fileName);
 
