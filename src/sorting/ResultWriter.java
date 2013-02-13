@@ -61,10 +61,9 @@ public class ResultWriter {
 			laps = maxLapCount;
 		}
 
-//		if (laps < 2) {
-//			writer.write(header);
-//		}
-		else {
+		if (laps < 2) {
+			writer.write(header);
+		} else {
 			writer.write("StartNr; Namn; #Varv; TotalTid; ");
 
 			for (int i = 1; i <= laps; i++) {
