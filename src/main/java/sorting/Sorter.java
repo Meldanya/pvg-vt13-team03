@@ -1,18 +1,13 @@
 package sorting;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Properties;
 
 import racer.RacerPlacingComparator;
-
 import constants.FileNames;
 
 
@@ -22,18 +17,17 @@ import constants.FileNames;
  */
 public class Sorter {
 	private Competition racers;
-	private Properties config;
-	
+	private SorterConfig config;
+
 	public Sorter() throws IOException {
 		racers = new Competition();
-		
-		
-		this.config = new Properties(new SorterDefaultConfig());
-		
+
+		this.config = new SorterConfig();
+
 		try {
-			config.load(new BufferedReader(new FileReader(FileNames.CONFIG)));
+			config.load(FileNames.CONFIG);
 		} catch (FileNotFoundException e1) {
-			new SorterDefaultConfig().store(new FileOutputStream(FileNames.CONFIG),"Default config for Enduro Sorter");
+			new SorterConfig().store(FileNames.CONFIG, "Default config for Enduro Sorter");
 			// May throw an exception. For example if the user doesn't have
 			// permission to write  
 		}

@@ -61,7 +61,6 @@ public class Register extends Observable {
 		try {
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
 				    new FileOutputStream(fileName, true), "UTF-8"));
-			
 			lastWrittenLine = stringToAppendToFile(startNumber, time);
 
 			writer.append(lastWrittenLine);
