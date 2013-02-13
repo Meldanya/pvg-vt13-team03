@@ -86,22 +86,22 @@ public class FunctionalTests {
 		config = null;
         cleanUp();
 	}
-	
+
+	/** Removes symlinks. */
 	private void cleanUp() {
-		// remove symlinks
-        File file;
-        file = new File("start.txt");
-        file.delete();
-        file = new File("finish.txt");
-        file.delete();
-        file = new File("finish1.txt");
-        file.delete();
-        file = new File("finish2.txt");
-        file.delete();
-        file = new File("namnfil.txt");
-        file.delete();
-        file = new File("sorter.cfg");
-        file.delete();
+		File file;
+		file = new File("start.txt");
+		file.delete();
+		file = new File("finish.txt");
+		file.delete();
+		file = new File("finish1.txt");
+		file.delete();
+		file = new File("finish2.txt");
+		file.delete();
+		file = new File("namnfil.txt");
+		file.delete();
+		file = new File("sorter.cfg");
+		file.delete();
 	}
 
     /**
