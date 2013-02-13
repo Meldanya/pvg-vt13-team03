@@ -16,7 +16,7 @@ public class SorterConfig {
 		config.setProperty("Namefile", "namnfil.txt");
 		config.setProperty("FinishFiles", "finish.txt");
 		config.setProperty("ResultFile", "result.txt");
-		
+
 		config.setProperty("NumberOfLaps", "1");
 	}
 
@@ -29,8 +29,8 @@ public class SorterConfig {
 
 	/** @param propertyName the property to be placed into this property list.
 	 * @param propertyValue the value corresponding to property.
-	 * @return the previous value of the specified property in this property list, or
-	 *         null if it did not have one. */
+	 * @return the previous value of the specified property in this property
+	 *         list, or null if it did not have one. */
 	public Object setProperty(String propertyName, String propertyValue) {
 		return config.setProperty(propertyName, propertyValue);
 	}
