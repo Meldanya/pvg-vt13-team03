@@ -41,7 +41,8 @@ public class Sorter {
 		}
 	}
 
-	private int laps() {
+	private int laps() { 
+		//TODO NumberFormatException needs catching
 		return Integer.parseInt(config.getProperty("NumberOfLaps"));
 	}
 
