@@ -30,7 +30,7 @@ public class Sorter {
 	}
 
 	/** @throws IOException */
-	private void initializeConfig() throws IOException{
+	private void initializeConfig() throws IOException {
 		this.config = new SorterConfig();
 
 		try {
