@@ -19,19 +19,26 @@ public class Sorter {
 	public Sorter() throws IOException {
 		racers = new Competition();
 
+		initializeConfig();
+		read();
+		readNames();
+
+		write();
+	}
+
+	/** @throws IOException */
+	private void initializeConfig() throws IOException{
 		this.config = new SorterConfig();
 
 		try {
 			config.load(FileNames.CONFIG);
 		} catch (FileNotFoundException e1) {
-			new SorterConfig().store(FileNames.CONFIG, "Default config for Enduro Sorter");
-			// May throw an exception. For example if the user doesn't have
-			// permission to write
+			try {
+				new SorterConfig().store(FileNames.CONFIG, "Default config for Enduro Sorter");
+			} catch (IOException e){
+				System.err.println("Couldn't create a file with the default configuration.");
+			}
 		}
-		read();
-		readNames();
-
-		write();
 	}
 
 	private int laps() {
