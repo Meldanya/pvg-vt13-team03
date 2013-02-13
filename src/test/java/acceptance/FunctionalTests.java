@@ -28,6 +28,58 @@ public class FunctionalTests {
 		cleanUp();
 		config = new SorterConfig();
 	}
+
+	@Test
+	public void test5() {
+		simpleLapTest("5");
+	}
+
+	@Test
+	public void test6() {
+		simpleLapTest("6");
+	}
+
+	@Test
+	public void test9() throws IOException {
+		setNumberOfLapsInConfigFile(3);
+		simpleLapTest("9");
+	}
+
+	@Test
+	public void test10() throws FileNotFoundException, IOException {
+		setNumberOfLapsInConfigFile(3);
+		twoFinishLapTest("10");
+	}
+
+	@Test
+	public void test13() throws FileNotFoundException, IOException {
+		setNumberOfLapsInConfigFile(3);
+		twoFinishLapTest("13");
+	}
+
+	@Test
+	public void test15() throws IOException {
+		setNumberOfLapsInConfigFile(3);
+		simpleLapTest("15");
+	}
+
+	@Test
+	public void test16() throws FileNotFoundException, IOException {
+		setNumberOfLapsInConfigFile(3);
+		simpleLapTest("16");
+	}
+
+	@Ignore
+	@Test
+	public void test18() throws IOException {
+		setNumberOfLapsInConfigFile(3);
+		sortedTwoFinishLapTest("18");
+	}
+
+	private void setNumberOfLapsInConfigFile(int laps) throws IOException {
+		config.setProperty("NumberOfLaps", String.valueOf(laps));
+		config.store(FileNames.CONFIG, "Test config for Enduro Sorter");
+	}
 	
 	@After
 	public void tearDown() {
@@ -240,7 +292,7 @@ public class FunctionalTests {
 			e.printStackTrace();
 			fail(e.getMessage());
 		}
-        
+		
         // kolla result.txt
         int error = -1; // -1 is certainly bad
         try {
@@ -279,56 +331,4 @@ public class FunctionalTests {
                 ACCEPTANCE_PATH + number + "/resultat.txt",
                 ACCEPTANCE_PATH + number + "/sortresultat.txt");
     }
-
-    @Test
-    public void test5() {
-        simpleLapTest("5");
-    }
-
-    @Test
-    public void test6() {
-        simpleLapTest("6");
-    }
-
-    @Test
-    public void test9() throws IOException {
-    	setNumberOfLapsInConfigFile(3);
-        simpleLapTest("9");
-    }
-    
-    @Test
-    public void test10() throws FileNotFoundException, IOException {
-    	setNumberOfLapsInConfigFile(3);
-    	twoFinishLapTest("10");
-    }
-    
-    @Test
-    public void test13() throws FileNotFoundException, IOException{
-    	setNumberOfLapsInConfigFile(3);
-    	twoFinishLapTest("13");
-    }
-    
-    @Test
-    public void test15() throws IOException {
-    	setNumberOfLapsInConfigFile(3);
-        simpleLapTest("15");
-    }
-
-    @Test
-    public void test16() throws FileNotFoundException, IOException {
-    	setNumberOfLapsInConfigFile(3);
-        simpleLapTest("16");
-    }
-    
-    @Ignore @Test
-    public void test18() throws IOException {
-    	setNumberOfLapsInConfigFile(3);
-    	sortedTwoFinishLapTest("18");
-    }
-    
-    private void setNumberOfLapsInConfigFile(int laps) throws IOException{
-    	config.setProperty("NumberOfLaps",String.valueOf(laps));
-    	config.store(FileNames.CONFIG,"Test config for Enduro Sorter");
-    }
-
 }
