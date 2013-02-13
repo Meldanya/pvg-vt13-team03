@@ -48,6 +48,11 @@ public class Sorter {
 	private String namefile(){
 		return config.getProperty("Namefile");
 	}
+	
+	/**
+	 * Returns a list with the filenames that the sorter will read goal times from.
+	 * @return A list with the goal times.
+	 */
 	public ArrayList<String> finishFiles(){
 		ArrayList<String> finishFiles = new ArrayList<String>();
 		String finishFilesString = config.getProperty("FinishFiles");
