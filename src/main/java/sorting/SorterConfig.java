@@ -25,18 +25,22 @@ public class SorterConfig {
 		config.setProperty("ResultFile", "result.txt");
 	}
 
-	/** @param propertyName
-	 * @param propertyValue
-	 * @return T */
-	public Object setProperty(String propertyName, String propertyValue) {
-		return config.setProperty(propertyName, propertyValue);
-	}
-
+	/** @param propertyName the name of the property.
+	 * @return the value in this property list with the specified name.
+	 * @see java.util.Properties#getProperty(java.lang.String) */
 	public String getProperty(String propertyName) {
 		return config.getProperty(propertyName);
 	}
 
-	/** @param filename TODO
+	/** @param propertyName the property to be placed into this property list.
+	 * @param propertyValue the value corresponding to property.
+	 * @return the previous value of the specified property in this property list, or
+	 *         null if it did not have one. */
+	public Object setProperty(String propertyName, String propertyValue) {
+		return config.setProperty(propertyName, propertyValue);
+	}
+
+	/** @param filename The filename to load the config from
 	 * @throws IOException
 	 * @see java.util.Properties#load(java.io.Reader) */
 	public void load(String filename) throws IOException {
@@ -44,7 +48,7 @@ public class SorterConfig {
 		config.load(reader);
 	}
 
-	/** @param filename The filename to load the config from
+	/** @param filename The filename to store the config to
 	 * @param comments
 	 * @throws IOException
 	 * @see java.util.Properties#store(java.io.Writer, java.lang.String) */
