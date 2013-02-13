@@ -85,8 +85,8 @@ public class FunctionalTests {
 		cleanUp();
 	}
 
+	/** Removes symlinks. */
 	private void cleanUp() {
-		// remove symlinks
 		File file;
 		file = new File("start.txt");
 		file.delete();
