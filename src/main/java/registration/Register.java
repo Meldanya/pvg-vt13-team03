@@ -112,8 +112,8 @@ public class Register extends Observable {
 	 * @throws IOException
 	 *             If an I/O error occurs
 	 */
-	public void registerMassStart(String nameFile, String startTime)
-			throws IOException {
+	public void registerMassStart(String nameFile, String startTime) throws IOException {
+
 		new File(FileNames.START).delete(); // remove existing start file
 
 		Scanner scanner = new Scanner(new BufferedReader(new FileReader(nameFile)));

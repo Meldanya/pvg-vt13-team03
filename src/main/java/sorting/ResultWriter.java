@@ -15,8 +15,6 @@ public class ResultWriter {
 	private String fileName;
 	private String header;
 	private Comparator<Racer> comp;
-	
-	// TODO: klass utan modifierbart tillstånd?
 	public ResultWriter(Competition data, String filename, Comparator<Racer> comp) {
 		this.data = data;
 		this.fileName = filename;
@@ -63,6 +61,7 @@ public class ResultWriter {
 		if(maxLapCount>0 && maxLapCount<laps){
 			laps=maxLapCount;
 		}
+
 		
 		if (laps < 2) {
 			writer.write(header);
