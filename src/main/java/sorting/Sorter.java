@@ -75,10 +75,10 @@ public class Sorter {
 		File directory = new File(".");
 		String[] finishFiles = directory.list(new FinishFileFilter());
 
-		racers.setStartTimes(startFile());
+		racers.setStartTimesFromFile(startFile());
 
 		for (String fileName : finishFiles) {
-			racers.setFinishTimes(fileName);
+			racers.setFinishTimesFromFile(fileName);
 		}
 
 	}

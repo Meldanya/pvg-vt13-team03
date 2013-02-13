@@ -88,7 +88,7 @@ public class Competition {
 	 * 
 	 * @param fileName
 	 * @throws IOException */
-	public void setStartTimes(String fileName) throws IOException {
+	public void setStartTimesFromFile(String fileName) throws IOException {
 		Map<String, ArrayList<String>> timesMap = readTimesFromFile(fileName);
 		for (String startNumber : timesMap.keySet()) {
 			if (startNumber.trim().length() >= 1) {
@@ -102,7 +102,7 @@ public class Competition {
 	 * 
 	 * @param fileName
 	 * @throws IOException */
-	public void setFinishTimes(String fileName) throws IOException {
+	public void setFinishTimesFromFile(String fileName) throws IOException {
 		Map<String, ArrayList<String>> timesMap = readTimesFromFile(fileName);
 		for (String startNumber : timesMap.keySet()) {
 			if (startNumber.trim().length() >= 1) {
