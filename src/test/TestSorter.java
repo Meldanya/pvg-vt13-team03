@@ -19,29 +19,29 @@ import constants.FileNames;
 
 public class TestSorter {
 	Properties config;
-	
+
 	@Before
-	public void setUp() throws Exception{
+	public void setUp() throws Exception {
 		new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileNames.START)));
 		new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileNames.FINISH)));
 		new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileNames.NAMEFILE)));
 		new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileNames.CONFIG)));
 		config = new Properties(new SorterDefaultConfig());
 	}
-	
+
 	@Test
-	public void testFinishFilesCanHandleWhitespace() throws IOException{
-		config.setProperty("FinishFiles","finish1.txt, finish2.txt,\tfinish3.txt");
-    	config.store(new FileOutputStream(FileNames.CONFIG),"Test config for Enduro Sorter");
-    	Sorter sorter = new Sorter();
-    	ArrayList<String> finishFiles = sorter.finishFiles();
-    	assertEquals("Whitespace wasn't handled","finish1.txt",finishFiles.get(0));
-    	assertEquals("Whitespace wasn't handled","finish2.txt",finishFiles.get(1));
-    	assertEquals("Whitespace wasn't handled","finish3.txt",finishFiles.get(2));
+	public void testFinishFilesCanHandleWhitespace() throws IOException {
+		config.setProperty("FinishFiles", "finish1.txt, finish2.txt,\tfinish3.txt");
+		config.store(new FileOutputStream(FileNames.CONFIG), "Test config for Enduro Sorter");
+		Sorter sorter = new Sorter();
+		ArrayList<String> finishFiles = sorter.finishFiles();
+		assertEquals("Whitespace wasn't handled", "finish1.txt", finishFiles.get(0));
+		assertEquals("Whitespace wasn't handled", "finish2.txt", finishFiles.get(1));
+		assertEquals("Whitespace wasn't handled", "finish3.txt", finishFiles.get(2));
 	}
-	
+
 	@After
-	public void tearDown(){
+	public void tearDown() {
 		config = null;
 	}
 }

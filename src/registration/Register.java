@@ -14,10 +14,8 @@ import java.util.Scanner;
 import racer.RacerTime;
 import constants.FileNames;
 
-/**
- * A class representing a register (aka a program that registers racers at the
- * start and finish line).
- */
+/** A class representing a register (aka a program that registers racers at the
+ * start and finish line). */
 public class Register extends Observable {
 	private String fileName;
 	private String lastWrittenLine;
@@ -26,42 +24,31 @@ public class Register extends Observable {
 		this.fileName = fileName;
 	}
 
-	/**
-	 * Registers a new time for a racer with the provided start number. It will
+	/** Registers a new time for a racer with the provided start number. It will
 	 * use the current time.
 	 * 
-	 * @param startNumber
-	 *            The start number of the driver to register.
-	 */
+	 * @param startNumber The start number of the driver to register. */
 	public void register(String startNumber) {
 		register(startNumber, new RacerTime());
 	}
 
-	/**
-	 * Registers a new time for a racer with the provided start number.
+	/** Registers a new time for a racer with the provided start number.
 	 * 
-	 * @param startNumber
-	 *            The start number of the driver to register.
-	 * @param time
-	 *            The time to register.
-	 */
+	 * @param startNumber The start number of the driver to register.
+	 * @param time The time to register. */
 	public void register(String startNumber, String time) {
 		register(startNumber, new RacerTime(time));
 	}
 
-	/**
-	 * Writes the result to the file with the provided file name.
+	/** Writes the result to the file with the provided file name.
 	 * 
-	 * @param fileName
-	 *            The file name to write to.
-	 * @param time
-	 *            TODO
-	 */
+	 * @param fileName The file name to write to.
+	 * @param time TODO */
 	public void register(String startNumber, RacerTime time) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
-				    new FileOutputStream(fileName, true), "UTF-8"));
-			
+					new FileOutputStream(fileName, true), "UTF-8"));
+
 			lastWrittenLine = stringToAppendToFile(startNumber, time);
 
 			writer.append(lastWrittenLine);
@@ -76,11 +63,9 @@ public class Register extends Observable {
 		notifyObservers();
 	}
 
-	/**
-	 * @param startNumber
+	/** @param startNumber
 	 * @param time
-	 * @return
-	 */
+	 * @return */
 	private String stringToAppendToFile(String startNumber, RacerTime time) {
 		StringBuilder text = new StringBuilder();
 
@@ -91,28 +76,20 @@ public class Register extends Observable {
 		return text.toString();
 	}
 
-	/**
-	 * Returns the last written line, used to output the written line in the GUI
+	/** Returns the last written line, used to output the written line in the GUI
 	 * 
-	 * @return the last written line
-	 */
+	 * @return the last written line */
 	public String getLastWrittenLine() {
 		return lastWrittenLine;
 	}
 
-	/**
-	 * Reads Racer IDs from nameFile and writes the same startTime for every
+	/** Reads Racer IDs from nameFile and writes the same startTime for every
 	 * Racer.
 	 * 
-	 * @param nameFile
-	 *            name of the file containing names of Racers
-	 * @param startTime
-	 *            start time to register
-	 * @throws FileNotFoundException
-	 *             If nameFile doesn't exist
-	 * @throws IOException
-	 *             If an I/O error occurs
-	 */
+	 * @param nameFile name of the file containing names of Racers
+	 * @param startTime start time to register
+	 * @throws FileNotFoundException If nameFile doesn't exist
+	 * @throws IOException If an I/O error occurs */
 	public void registerMassStart(String nameFile, String startTime)
 			throws IOException {
 		new File(FileNames.START).delete(); // remove existing start file

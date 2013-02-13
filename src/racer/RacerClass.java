@@ -2,7 +2,7 @@ package racer;
 
 public class RacerClass implements Comparable<RacerClass> {
 	private String name;
-	
+
 	public RacerClass(String name) {
 		this.name = name;
 	}
@@ -14,13 +14,13 @@ public class RacerClass implements Comparable<RacerClass> {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String toString() {
 		return name;
 	}
-	
+
 	public boolean equals(Object o) {
-		return ((RacerClass)o).name.equals(name);
+		return ((RacerClass) o).name.equals(name);
 	}
 
 	@Override

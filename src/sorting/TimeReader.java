@@ -9,10 +9,10 @@ public class TimeReader extends Reader {
 	private HashMap<String, ArrayList<String>> map;
 
 	protected void op(String key, String value) {
-		if(!map.containsKey(key)){
+		if (!map.containsKey(key)) {
 			map.put(key, new ArrayList<String>());
-		} 
-		map.get(key).add(value);			
+		}
+		map.get(key).add(value);
 	}
 
 	public Map<String, ArrayList<String>> readFromTimeFile(String fileName) throws IOException {
@@ -23,6 +23,6 @@ public class TimeReader extends Reader {
 
 	@Override
 	protected void error() {
-		map=null;
+		map = null;
 	}
 }

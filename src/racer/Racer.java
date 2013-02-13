@@ -3,10 +3,8 @@ package racer;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- * A class representing a racer (aka driver) with a start number, start time and
- * finish time.
- */
+/** A class representing a racer (aka driver) with a start number, start time and
+ * finish time. */
 public class Racer implements Comparable<Racer> {
 
 	private RacerClass classType;
@@ -70,10 +68,8 @@ public class Racer implements Comparable<Racer> {
 		return startTime.getDifferenceTo(finishTime);
 	}
 
-	/**
-	 * Returns the racer as a line in the format the Sorter wants. Is only run
-	 * if laps = 1
-	 */
+	/** Returns the racer as a line in the format the Sorter wants. Is only run
+	 * if laps = 1 */
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
@@ -113,18 +109,15 @@ public class Racer implements Comparable<Racer> {
 		}
 
 		// Makes sure that finishTime is not "--.--.--"
-		if(!finishTime.equals("--.--.--") && (new RacerTime(finishTime)).compareTo(new RacerTime("00.15.00"))<0){
+		if (!finishTime.equals("--.--.--") && (new RacerTime(finishTime)).compareTo(new RacerTime("00.15.00")) < 0) {
 			sb.append("; Omöjlig Totaltid?");
 		}
 
 		return sb.toString();
 	}
 
-	/**
-	 * 
-	 * @param laps
-	 * @return
-	 */
+	/** @param laps
+	 * @return */
 	public String toString(int laps) {
 		if (laps == 1) {
 			return toString();
@@ -162,18 +155,18 @@ public class Racer implements Comparable<Racer> {
 				out.append("; " + laptime.toString());
 			} catch (IndexOutOfBoundsException e) {
 				// Laptime doesn't exist, print column anyway
-				if(i==laps-1){
+				if (i == laps - 1) {
 					out.append(";");
-				} else{
+				} else {
 					out.append("; ");
 				}
 			}
 		}
-		
-		if(finishTimes.size()==0){
+
+		if (finishTimes.size() == 0) {
 			out.append(" Slut?");
 		}
-		
+
 		if (startTimes.size() > 1) {
 			out.append("; Flera starttider?");
 			for (int i = 1; i < startTimes.size(); i++) {
@@ -200,11 +193,11 @@ public class Racer implements Comparable<Racer> {
 
 	@Override
 	public boolean equals(Object obj) {
-		if(!(obj instanceof Racer)){
+		if (!(obj instanceof Racer)) {
 			return false;
 		}
-		
-		return startNumber.equals(((Racer)obj).startNumber);
+
+		return startNumber.equals(((Racer) obj).startNumber);
 	}
 
 	public RacerClass getClassType() {
@@ -219,11 +212,10 @@ public class Racer implements Comparable<Racer> {
 		this.classType = new RacerClass(className);
 	}
 
-	/**
-	 * Used by TreeMap in Competition.getRacers()
+	/** Used by TreeMap in Competition.getRacers()
+	 * 
 	 * @param o
-	 * @return
-	 */
+	 * @return */
 	@Override
 	public int compareTo(Racer o) {
 		return startNumber.compareTo(o.getStartNumber());

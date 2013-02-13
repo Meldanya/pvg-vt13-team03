@@ -42,7 +42,7 @@ public class SetupFrame extends AbstractFrame {
 		gb.gridx = 1;
 		gb.gridy = 1;
 		add(button2, gb);
-		
+
 		MassStartButton button3 = new MassStartButton(this);
 		gb = new GridBagConstraints();
 		gb.gridx = 2;

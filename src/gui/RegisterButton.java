@@ -6,11 +6,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-/**
- * @author dat11ajo
+/** @author dat11ajo
  * 
- *         Button that registers a driver to the current time.
- */
+ *         Button that registers a driver to the current time. */
 public class RegisterButton extends JButton implements ActionListener {
 	private StartNbrField field;
 

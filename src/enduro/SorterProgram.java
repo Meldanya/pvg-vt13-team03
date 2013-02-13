@@ -10,19 +10,18 @@ import sorting.Sorter;
 
 public class SorterProgram {
 
-	/**
-	 * Launches the sorting application
-	 * @param args Unused
-	 */
+	/** Launches the sorting application
+	 * 
+	 * @param args Unused */
 	public static void main(String[] args) {
-	    try {
+		try {
 			new Sorter();
 
 			JOptionPane.showMessageDialog(null, "Sorteringen lyckades, resultatet skrivet till " + FileNames.OUTFILE);
 		} catch (FileNotFoundException e) {
 			JOptionPane.showMessageDialog(null, ("Kunde ej hitta filerna"));
 			e.printStackTrace();
-		} catch (Exception e){
+		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, ("Sorteringen misslyckades"));
 			e.printStackTrace();
 		}

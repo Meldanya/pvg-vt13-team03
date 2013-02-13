@@ -8,10 +8,7 @@ import javax.swing.JTextField;
 
 import registration.Register;
 
-/**
- * @author dat11ajo
- * 
- */
+/** @author dat11ajo */
 public class StartNbrField extends JTextField implements ActionListener {
 	private Register register;
 

@@ -16,7 +16,7 @@ public class StartNbrPopup extends JDialog {
 
 	private RacerTime time;
 	private Register register;
-	
+
 	public StartNbrPopup(Register register) {
 		this.register = register;
 		setModal(true);
@@ -29,9 +29,9 @@ public class StartNbrPopup extends JDialog {
 		setVisible(true);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 	}
-	
+
 	// OBS: Duplicerad kod, inte säker på lösning än
-	private void positionFrameInCenter(){
+	private void positionFrameInCenter() {
 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -42,10 +42,10 @@ public class StartNbrPopup extends JDialog {
 
 		setLocation(x, y);
 	}
-	
-	private void initComponents(){
+
+	private void initComponents() {
 		GridBagConstraints gb;
-		
+
 		JLabel label = new JLabel();
 		label.setText("<html><div style=\"text-align: center;\">" + "Tid (" + time.toString() + ") registrerad!<BR>Skriv in startnummer:</html>");
 		label.setFont(new Font(null, Font.PLAIN, 25));

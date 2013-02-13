@@ -12,9 +12,9 @@ import racer.RacerTime;
 import registration.Register;
 import constants.FileNames;
 
-public class MassStartButton extends AlternativeButton{
+public class MassStartButton extends AlternativeButton {
 
-	public MassStartButton(JFrame frame){
+	public MassStartButton(JFrame frame) {
 		super(frame);
 	}
 
@@ -25,10 +25,10 @@ public class MassStartButton extends AlternativeButton{
 
 	public void actionPerformed(ActionEvent e) {
 		// Tvinga svenska namn på standardknappar i Swing
-		UIManager.put("OptionPane.yesButtonText","Ja");
-		UIManager.put("OptionPane.noButtonText","Nej");
+		UIManager.put("OptionPane.yesButtonText", "Ja");
+		UIManager.put("OptionPane.noButtonText", "Nej");
 		int option = JOptionPane.showConfirmDialog(frame, "Vill du starta alla deltagare?", "", JOptionPane.YES_NO_OPTION);
-		if(option == JOptionPane.YES_OPTION) {
+		if (option == JOptionPane.YES_OPTION) {
 			Register register = new Register(FileNames.START);
 			RacerTime time = new RacerTime();
 			try {

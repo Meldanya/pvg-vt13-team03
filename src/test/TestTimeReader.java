@@ -17,19 +17,15 @@ import sorting.TimeReader;
 public class TestTimeReader {
 
 	private TimeReader reader;
-	
-	/**
-	 * @throws java.lang.Exception
-	 */
+
+	/** @throws java.lang.Exception */
 	@Before
 	public void setUp() throws Exception {
 		reader = new TimeReader();
-		
+
 	}
 
-	/**
-	 * @throws java.lang.Exception
-	 */
+	/** @throws java.lang.Exception */
 	@After
 	public void tearDown() throws Exception {
 
@@ -48,13 +44,13 @@ public class TestTimeReader {
 		tempMap.get("4").add("1359359448");
 		Map<String, ArrayList<String>> map = reader.readFromTimeFile("test/TestTimeReader/start.txt");
 
-		for(String s : map.keySet()){
+		for (String s : map.keySet()) {
 			assertEquals(tempMap.get(s).size(), map.get(s).size());
 		}
 
 	}
-	
-	@Test (expected=ArrayIndexOutOfBoundsException.class)
+
+	@Test(expected = ArrayIndexOutOfBoundsException.class)
 	public void testIncorrectlyFormattedFileInsufficientColumns() throws IOException {
 		assertNull(reader.readFromTimeFile("test/TestNameReader/incorrectstart.txt"));
 	}

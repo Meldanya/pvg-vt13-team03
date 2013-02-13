@@ -7,12 +7,12 @@ import javax.swing.JFrame;
 
 public abstract class AbstractFrame extends JFrame {
 
-	public AbstractFrame(String title){
+	public AbstractFrame(String title) {
 		super(title);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
-	
+
 	protected void positionFrameInCenter() {
 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -23,7 +23,7 @@ public abstract class AbstractFrame extends JFrame {
 		int y = (dim.height - h) / 2;
 
 		setLocation(x, y);
-		
+
 		setVisible(true);
 	}
 }

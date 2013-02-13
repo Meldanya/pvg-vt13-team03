@@ -7,13 +7,12 @@ import javax.swing.JFrame;
 import registration.Register;
 import constants.FileNames;
 
-public class StartButton extends AlternativeButton{
+public class StartButton extends AlternativeButton {
 
-	public StartButton(JFrame frame){
+	public StartButton(JFrame frame) {
 		super(frame);
-		
-	}
 
+	}
 
 	@Override
 	protected String getTitle() {
@@ -24,6 +23,5 @@ public class StartButton extends AlternativeButton{
 		new RegisterFrame(getTitle(), new Register(FileNames.START));
 		frame.dispose();
 	}
-	
-	
+
 }

@@ -17,18 +17,14 @@ public class TestNameReader {
 
 	private NameReader reader;
 
-	/**
-	 * @throws java.lang.Exception
-	 */
+	/** @throws java.lang.Exception */
 	@Before
 	public void setUp() throws Exception {
 		reader = new NameReader();
 
 	}
 
-	/**
-	 * @throws java.lang.Exception
-	 */
+	/** @throws java.lang.Exception */
 	@After
 	public void tearDown() throws Exception {
 
@@ -53,7 +49,7 @@ public class TestNameReader {
 
 	}
 
-	@Test (expected=ArrayIndexOutOfBoundsException.class)
+	@Test(expected = ArrayIndexOutOfBoundsException.class)
 	public void testIncorrectlyFormattedFileInsufficientColumns() throws IOException {
 		assertNull(reader.readFromNameFile("test/TestNameReader/incorrectstart.txt"));
 	}

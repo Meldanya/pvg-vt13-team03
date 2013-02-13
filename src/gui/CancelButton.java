@@ -8,10 +8,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
-public class CancelButton extends JButton implements ActionListener{
+public class CancelButton extends JButton implements ActionListener {
 
 	private JDialog dialog;
-	
+
 	public CancelButton(JDialog frame) {
 		super("Avbryt");
 		this.dialog = frame;
@@ -24,6 +24,5 @@ public class CancelButton extends JButton implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		dialog.dispose();
 	}
-	
-	
+
 }

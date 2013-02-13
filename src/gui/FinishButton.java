@@ -7,9 +7,9 @@ import javax.swing.JFrame;
 import registration.Register;
 import constants.FileNames;
 
-public class FinishButton extends AlternativeButton{
+public class FinishButton extends AlternativeButton {
 
-	public FinishButton(JFrame frame){
+	public FinishButton(JFrame frame) {
 		super(frame);
 	}
 
