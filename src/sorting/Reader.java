@@ -17,7 +17,7 @@ public abstract class Reader {
 
 		while (reader.ready()) {
 			String line = reader.readLine();
-
+			//TODO Det behövs kollas så att line inte är null
 			if (line.contains(";")) {
 				String[] tempArray = line.split("; ");
 				op(tempArray[0], tempArray[1]);
