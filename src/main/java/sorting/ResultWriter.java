@@ -14,12 +14,13 @@ public class ResultWriter {
 	private Competition data;
 	private String fileName;
 	private String header;
-	private Comparator<Racer> comp;
-	public ResultWriter(Competition data, String filename, Comparator<Racer> comp) {
+	private Comparator<Racer> comparator;
+
+	public ResultWriter(Competition data, String filename, Comparator<Racer> comparator) {
 		this.data = data;
 		this.fileName = filename;
 		this.header = "StartNr; Namn; TotalTid; StartTider; Måltider";
-		this.comp = comp;
+		this.comparator = comparator;
 	}
 	
 	/**
@@ -43,9 +44,10 @@ public class ResultWriter {
 	}
 
 	private void writeClassTypeToFile(RacerClass racerClass, int laps) throws IOException {
-		Set<Racer> racers = data.getRacers(racerClass, comp);
-		
-		if (racerClass.toString().length() > 0 ){
+
+		Set<Racer> racers = data.getRacers(racerClass, comparator);
+
+		if (racerClass.toString().length() > 0) {
 			writer.write(racerClass.toString());
 			writer.newLine();
 		}
