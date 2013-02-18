@@ -12,7 +12,7 @@ import org.junit.Test;
 import racer.AbstractRacer;
 import racer.RacerTime;
 
-public class TestLapRacer {
+public class TestCircuitRacer {
 	private AbstractRacer abstractRacer;
 
 	@Before
