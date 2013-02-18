@@ -28,27 +28,18 @@ public class Register extends Observable {
 	}
 
 	/**
-	 * Registers a new time for a list of racers with the provided start numbers. It will
-	 * use the current time.
+	 * Registers a new time for a list of racers with the provided start
+	 * numbers. It will use the current time.
 	 * 
 	 * @param startNumbers
 	 *            The start numbers of the drivers to register.
 	 */
 	public void register(ArrayList<String> startNumbers) {
-		for (String startNumber : startNumbers) {
-			register(startNumber);
-		}
-	}
 
-	/**
-	 * Registers a new time for a racer with the provided start number. It will
-	 * use the current time.
-	 * 
-	 * @param startNumber
-	 *            The start number of the driver to register.
-	 */
-	public void register(String startNumber) {
-		register(startNumber, new RacerTime());
+		RacerTime racerTime = new RacerTime();
+		for (String startNumber : startNumbers) {
+			register(startNumber, racerTime);
+		}
 	}
 
 	/**
@@ -74,7 +65,7 @@ public class Register extends Observable {
 	public void register(String startNumber, RacerTime time) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
-				    new FileOutputStream(fileName, true), "UTF-8"));
+					new FileOutputStream(fileName, true), "UTF-8"));
 			lastWrittenLine = stringToAppendToFile(startNumber, time);
 
 			writer.append(lastWrittenLine);
@@ -126,11 +117,13 @@ public class Register extends Observable {
 	 * @throws IOException
 	 *             If an I/O error occurs
 	 */
-	public void registerMassStart(String nameFile, String startTime) throws IOException {
+	public void registerMassStart(String nameFile, String startTime)
+			throws IOException {
 
 		new File(FileNames.START).delete(); // remove existing start file
 
-		Scanner scanner = new Scanner(new BufferedReader(new FileReader(nameFile)));
+		Scanner scanner = new Scanner(new BufferedReader(new FileReader(
+				nameFile)));
 
 		scanner.nextLine();
 		while (scanner.hasNext()) {
