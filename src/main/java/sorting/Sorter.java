@@ -55,18 +55,22 @@ public class Sorter {
 	 * @return A list with the goal times.
 	 */
 	public ArrayList<String> finishFiles(){
-		ArrayList<String> finishFiles = new ArrayList<String>();
-		String finishFilesString = config.getProperty("FinishFiles");
-		finishFilesString = finishFilesString.replaceAll("\\s","");
-		String[] finishFilesArray = finishFilesString.split(",");
-		for (int i = 0; i < finishFilesArray.length; i++){
-			finishFiles.add(finishFilesArray[i]);
-		}
-		return finishFiles;
+		return getPropertyMultipleEntries("FinishFiles");
 	}
 
 	private String startFile() {
-		return config.getProperty("StartFiles");
+		return getPropertyMultipleEntries("StartFiles").get(0);
+	}
+	
+	private ArrayList<String> getPropertyMultipleEntries(String propertyName){
+		ArrayList<String> properties = new ArrayList<String>();
+		String propertiesString = config.getProperty(propertyName);
+		propertiesString = propertiesString.replaceAll("\\s","");
+		String[] propertiesArray = propertiesString.split(",");
+		for (int i = 0; i < propertiesArray.length; i++){
+			properties.add(propertiesArray[i]);
+		}
+		return properties;
 	}
 
 	private String resultfile() {
