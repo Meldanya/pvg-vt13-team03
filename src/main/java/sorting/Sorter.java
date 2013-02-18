@@ -66,7 +66,7 @@ public class Sorter {
 	}
 
 	private String startFile() {
-		return config.getProperty("StartFile");
+		return config.getProperty("StartFiles");
 	}
 
 	private String resultfile() {
