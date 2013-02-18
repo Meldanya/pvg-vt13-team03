@@ -12,7 +12,8 @@ public class CircuitRacer extends AbstractLapRacer {
 	 * @param laps
 	 * @return
 	 */
-	public String toString() {	
+	public String toString() {
+		int laps = distanceList.size();
 		StringBuilder out = new StringBuilder();
 		ArrayList<String> lapTimes = getLapTimes();
 		boolean impossibleLapTime = false;
