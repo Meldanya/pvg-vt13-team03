@@ -42,8 +42,7 @@ public class Sorter {
 		}
 	}
 
-	private int laps() { 
-		//TODO NumberFormatException needs catching
+	private int laps() {
 		return Integer.parseInt(config.getProperty("NumberOfLaps"));
 	}
 	private String namefile(){
