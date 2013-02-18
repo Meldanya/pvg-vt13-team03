@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import racer.RacerPlacingComparator;
@@ -57,8 +58,8 @@ public class Sorter {
 		return getPropertyMultipleEntries("FinishFiles");
 	}
 
-	private String startFile() {
-		return getPropertyMultipleEntries("StartFiles").get(0);
+	private ArrayList<String> startFiles() {
+		return getPropertyMultipleEntries("StartFiles");
 	}
 	
 	private ArrayList<String> getPropertyMultipleEntries(String propertyName){
@@ -75,17 +76,16 @@ public class Sorter {
 	private String resultfile() {
 		return config.getProperty("ResultFile");
 	}
-	private void read() throws IOException {
-	
+	private void read() throws IOException {		
+		for (String fileName : startFiles()){
+			racers.setStartTimesFromFile(fileName);
+		}
+
 		File directory = new File(".");
 		String[] finishFiles = directory.list(new FinishFileFilter());
-
-		racers.setStartTimesFromFile(startFile());
-
 		for (String fileName : finishFiles) {
 			racers.setFinishTimesFromFile(fileName);
 		}
-
 	}
 	
 	private class FinishFileFilter implements FilenameFilter{
