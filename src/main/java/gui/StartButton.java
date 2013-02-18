@@ -4,8 +4,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
 
+import registration.FileNames;
 import registration.Register;
-import constants.FileNames;
 
 public class StartButton extends AlternativeButton{
 

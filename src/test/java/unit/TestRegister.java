@@ -10,8 +10,8 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
+import registration.FileNames;
 import registration.Register;
-import constants.FileNames;
 
 public class TestRegister {
 

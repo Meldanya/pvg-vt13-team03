@@ -14,7 +14,6 @@ import java.util.Observable;
 import java.util.Scanner;
 
 import racer.RacerTime;
-import constants.FileNames;
 
 /**
  * A class representing a register (aka a program that registers racers at the

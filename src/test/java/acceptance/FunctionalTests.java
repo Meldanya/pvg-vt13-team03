@@ -14,9 +14,9 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import registration.FileNames;
 import sorting.Sorter;
 import sorting.SorterConfig;
-import constants.FileNames;
 
 public class FunctionalTests {
 	//private static final String ACCEPTANCE_PATH = "acceptance/acceptanstest";
@@ -77,7 +77,7 @@ public class FunctionalTests {
 
 	private void setNumberOfLapsInConfigFile(int laps) throws IOException {
 		config.setProperty("NumberOfLaps", String.valueOf(laps));
-		config.store(FileNames.CONFIG, "Test config for Enduro Sorter");
+		config.store("sorter.cfg", "Test config for Enduro Sorter");
 	}
 	
 	@After
