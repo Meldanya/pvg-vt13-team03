@@ -94,13 +94,12 @@ public class TestSortResultWriter {
 		competition.setNames(nameMappings);
 		
 		writer.writeToFile(1);
-		String expected = header + "\n1; " + r1 + "\n";
-
+		String expected = header + "\n; " + r1 + "\n";
 		assertEquals("Result doesn't match", expected, readFile());
 	}
 
 	@Test
-	public void testMultipleRacers() throws IOException {
+	public void testMultipleRacers() throws Exception {
 		StringBuilder expected = new StringBuilder();
 		Map<String, String> nameMappings = new HashMap<String, String>();
 		

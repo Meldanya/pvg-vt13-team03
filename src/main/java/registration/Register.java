@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Scanner;
@@ -51,7 +52,12 @@ public class Register extends Observable {
 	 *            The time to register.
 	 */
 	public void register(String startNumber, String time) {
-		register(startNumber, new RacerTime(time));
+		try {
+			register(startNumber, new RacerTime(time));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

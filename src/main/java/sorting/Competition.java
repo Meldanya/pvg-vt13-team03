@@ -1,6 +1,7 @@
 package sorting;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Map;
@@ -107,14 +108,24 @@ public class Competition {
 	private void addStartTimestoRacer(String startNumber, ArrayList<String> times) {
 		Racer racer = getReferenceToRacer(startNumber);
 		for (String time : times) {
-			racer.addStartTime(new RacerTime(time));
+			try {
+				racer.addStartTime(new RacerTime(time));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
 	private void addFinishTimestoRacer(String startNumber, ArrayList<String> times) {
 		Racer racer = getReferenceToRacer(startNumber);
 		for (String time : times) {
-			racer.addFinishTime(new RacerTime(time));
+			try {
+				racer.addFinishTime(new RacerTime(time));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		racer.sortFinishTimes();
 	}

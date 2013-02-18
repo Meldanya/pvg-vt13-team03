@@ -13,18 +13,14 @@ public class RacerTime implements Comparable<RacerTime> {
 		format = new SimpleDateFormat("HH.mm.ss");
 	}
 
-	public RacerTime(String inputTime) {
+	public RacerTime(String inputTime) throws ParseException {
 		this();
 
 		if (inputTime.indexOf('.') < 0) {
 			inputTime = formatString(Long.parseLong(inputTime));
 		}
 
-		try {
-			time = format.parse(inputTime);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		time = format.parse(inputTime);
 	}
 
 	public String toString() {

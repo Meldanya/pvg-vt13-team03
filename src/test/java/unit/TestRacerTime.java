@@ -3,6 +3,8 @@ package unit;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.text.ParseException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +14,7 @@ public class TestRacerTime {
 	RacerTime racerTime;
 	
 	@Before
-	public void setUp() {
+	public void setUp() throws Exception {
 		racerTime = new RacerTime("11.12.13");
 	}
 	
@@ -22,19 +24,19 @@ public class TestRacerTime {
 	}
 	
 	@Test
-	public void testBasicCompareTo() {
+	public void testBasicCompareTo() throws Exception {
 		RacerTime compare = new RacerTime("11.12.14");
 		assertEquals("Diff not correct", "00.00.01", racerTime.getDifferenceTo(compare));
 	}
 
 	@Test
-	public void testComplexCompareTo() {
+	public void testComplexCompareTo() throws Exception {
 		RacerTime compare = new RacerTime("22.13.14");
 		assertEquals("Diff not correct", "11.01.01", racerTime.getDifferenceTo(compare));
 	}
 	
 	@Test
-	public void testEquals(){
+	public void testEquals() throws Exception {
 		RacerTime time1 = new RacerTime("11.11.11");
 		RacerTime time2 = new RacerTime("11.11.11");
 		
@@ -43,7 +45,7 @@ public class TestRacerTime {
 	}
 	
 	@Test
-	public void testComparable() {
+	public void testComparable() throws Exception {
 		RacerTime time1 = new RacerTime("11.11.11");
 		RacerTime time2 = new RacerTime("11.13.11");
 		
