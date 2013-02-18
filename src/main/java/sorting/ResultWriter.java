@@ -14,76 +14,77 @@ public class ResultWriter {
 	private Competition data;
 	private String fileName;
 	private String header;
-	private Comparator<Racer> comp;
-	
-	// TODO: klass utan modifierbart tillstånd?
-	public ResultWriter(Competition data, String filename, Comparator<Racer> comp) {
+	private Comparator<Racer> comparator;
+
+	public ResultWriter(Competition data, String filename, Comparator<Racer> comparator) {
+
 		this.data = data;
 		this.fileName = filename;
 		this.header = "StartNr; Namn; TotalTid; StartTider; Måltider";
-		this.comp = comp;
+		this.comparator = comparator;
 	}
-	
+
 	/**
 	 * Loads and sorts racers before printing them to a file. Actual formatting
 	 * is found in Racer class.
 	 */
 	public void writeToFile(int laps) {
 		Set<RacerClass> classes = data.getClassTypes();
-		
+
 		try {
 			writer = new BufferedWriter(new FileWriter(fileName));
-			
+
 			for (RacerClass racerClass : classes) {
 				writeClassTypeToFile(racerClass, laps);
 			}
-			
+
 			writer.close();
 		} catch (IOException e) {
 			System.err.println("File " + fileName + " could not be written");
 		}
 	}
-
 	private void writeClassTypeToFile(RacerClass racerClass, int laps) throws IOException {
-		Set<Racer> racers = data.getRacers(racerClass, comp);
-		
-		if (racerClass.toString().length() > 0 ){
+
+		Set<Racer> racers = data.getRacers(racerClass, comparator);
+
+		if (racerClass.toString().length() > 0) {
 			writer.write(racerClass.toString());
 			writer.newLine();
 		}
-		
-		//Ser till så att den inte skriver ut fler varv än nödvändigt
-		int maxLapCount=0;
+
+		// Ser till så att den inte skriver ut fler varv än nödvändigt
+		int maxLapCount = 0;
 		for (Racer racer : racers) {
-			if(maxLapCount<racer.getNumberOfLaps()){
-				maxLapCount=racer.getNumberOfLaps();				
+			if (maxLapCount < racer.getNumberOfLaps()) {
+				maxLapCount = racer.getNumberOfLaps();
 			}
 		}
-		
-		if(maxLapCount>0 && maxLapCount<laps){
-			laps=maxLapCount;
+
+		if (maxLapCount > 0 && maxLapCount < laps) {
+			laps = maxLapCount;
 		}
-		
+
 		if (laps < 2) {
-			writer.write(header);
-		}
-		else {
-			writer.write("StartNr; Namn; #Varv; TotalTid; ");
-			
+			header = "StartNr; Namn; TotalTid; StartTider; Måltider\n";
+		} else {
+			StringBuilder sb = new StringBuilder();
+			sb.append("StartNr; Namn; #Varv; TotalTid; ");
 			for (int i = 1; i <= laps; i++) {
-				writer.write("Varv" + i + "; ");
+				sb.append("Varv" + i + "; ");
 			}
-			
-			writer.write("Start; ");
-			
+
+			sb.append("Start; ");
+
 			for (int i = 1; i < laps; i++) {
-				writer.write("Varvning" + i + "; ");
+				sb.append("Varvning" + i + "; ");
 			}
-			
-			writer.write("Mål");
+
+			sb.append("Mål");
+			sb.append('\n');
+			header = sb.toString();
 		}
-		
-		writer.newLine();
+		writer.write(header);
+
 		for (Racer racer : racers) {
 			writer.write(racer.toString(laps));
 			writer.newLine();

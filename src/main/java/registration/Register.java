@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Scanner;
 
@@ -24,6 +25,19 @@ public class Register extends Observable {
 
 	public Register(String fileName) {
 		this.fileName = fileName;
+	}
+
+	/**
+	 * Registers a new time for a list of racers with the provided start numbers. It will
+	 * use the current time.
+	 * 
+	 * @param startNumbers
+	 *            The start numbers of the drivers to register.
+	 */
+	public void register(ArrayList<String> startNumbers) {
+		for (String startNumber : startNumbers) {
+			register(startNumber);
+		}
 	}
 
 	/**
@@ -61,7 +75,6 @@ public class Register extends Observable {
 		try {
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
 				    new FileOutputStream(fileName, true), "UTF-8"));
-			
 			lastWrittenLine = stringToAppendToFile(startNumber, time);
 
 			writer.append(lastWrittenLine);
@@ -113,8 +126,8 @@ public class Register extends Observable {
 	 * @throws IOException
 	 *             If an I/O error occurs
 	 */
-	public void registerMassStart(String nameFile, String startTime)
-			throws IOException {
+	public void registerMassStart(String nameFile, String startTime) throws IOException {
+
 		new File(FileNames.START).delete(); // remove existing start file
 
 		Scanner scanner = new Scanner(new BufferedReader(new FileReader(nameFile)));

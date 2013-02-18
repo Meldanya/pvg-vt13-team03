@@ -7,18 +7,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.Properties;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import sorting.Sorter;
-import sorting.SorterDefaultConfig;
+import sorting.SorterConfig;
 import constants.FileNames;
 
 public class TestSorter {
-	Properties config;
+	SorterConfig config;
 	
 	@Before
 	public void setUp() throws Exception{
@@ -26,18 +25,18 @@ public class TestSorter {
 		new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileNames.FINISH)));
 		new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileNames.NAMEFILE)));
 		new BufferedWriter(new OutputStreamWriter(new FileOutputStream(FileNames.CONFIG)));
-		config = new Properties(new SorterDefaultConfig());
+		config = new SorterConfig();
 	}
 	
 	@Test
-	public void testFinishFilesCanHandleWhitespace() throws IOException{
-		config.setProperty("FinishFiles","finish1.txt, finish2.txt,\tfinish3.txt");
-    	config.store(new FileOutputStream(FileNames.CONFIG),"Test config for Enduro Sorter");
-    	Sorter sorter = new Sorter();
-    	ArrayList<String> finishFiles = sorter.finishFiles();
-    	assertEquals("Whitespace wasn't handled","finish1.txt",finishFiles.get(0));
-    	assertEquals("Whitespace wasn't handled","finish2.txt",finishFiles.get(1));
-    	assertEquals("Whitespace wasn't handled","finish3.txt",finishFiles.get(2));
+	public void testFinishFilesCanHandleWhitespace() throws IOException {
+		config.setProperty("FinishFiles", "finish1.txt, finish2.txt,\tfinish3.txt");
+		config.store(FileNames.CONFIG, "Test config for Enduro Sorter");
+		Sorter sorter = new Sorter();
+		ArrayList<String> finishFiles = sorter.finishFiles();
+		assertEquals("Whitespace wasn't handled", "finish1.txt", finishFiles.get(0));
+		assertEquals("Whitespace wasn't handled", "finish2.txt", finishFiles.get(1));
+		assertEquals("Whitespace wasn't handled", "finish3.txt", finishFiles.get(2));
 	}
 	
 	@After

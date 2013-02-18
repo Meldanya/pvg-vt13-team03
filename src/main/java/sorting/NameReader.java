@@ -20,11 +20,4 @@ public class NameReader extends Reader{
 		readFromFile(fileName);
 		return map;
 	}
-
-	@Override
-	protected void error() {
-		map=null;
-		
-	}
-
 }
