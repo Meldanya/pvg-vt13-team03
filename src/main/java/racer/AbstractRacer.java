@@ -11,15 +11,11 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 
 	private RacerClass classType;
 	protected String startNumber;
-	protected ArrayList<RacerTime> startTimes;
-	protected ArrayList<RacerTime> finishTimes;
 	protected String name;
 
 	public AbstractRacer(String startNumber) {
 		this.classType = new RacerClass("");
 		this.startNumber = startNumber;
-		this.startTimes = new ArrayList<RacerTime>();
-		this.finishTimes = new ArrayList<RacerTime>();
 		this.name = "";
 	}
 
@@ -42,10 +38,10 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 
 		return "Start?";
 	}
+	
+	public abstract void addStartTime(String string);
+	public abstract void addFinishTime(String string);
 
-	public void addStartTime(RacerTime startTime) {
-		this.startTimes.add(startTime);
-	}
 
 	public String getFinishTime() {
 		if (finishTimes.size() > 0) {
@@ -70,6 +66,8 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 		return startTime.getDifferenceTo(finishTime);
 	}
 	public abstract String toString();
+	
+	
 	
 
 	@Override

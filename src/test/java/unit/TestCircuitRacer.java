@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import racer.AbstractRacer;
 import racer.CircuitRacer;
 import racer.RacerTime;
 

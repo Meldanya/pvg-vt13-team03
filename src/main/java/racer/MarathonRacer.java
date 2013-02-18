@@ -1,6 +1,5 @@
 package racer;
 
-import java.util.ArrayList;
 
 public class MarathonRacer extends AbstractRacer {
 
