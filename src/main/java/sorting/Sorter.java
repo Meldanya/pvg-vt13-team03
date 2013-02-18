@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import racer.RacerRankingComparator;
-import registration.FileNames;
 
 
 /**

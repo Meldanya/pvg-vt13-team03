@@ -11,10 +11,8 @@ import java.io.InputStreamReader;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import registration.FileNames;
 import sorting.Sorter;
 import sorting.SorterConfig;
 

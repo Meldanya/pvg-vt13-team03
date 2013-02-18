@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 
 import parser.Parser;
-
 import registration.Register;
 
 /**
