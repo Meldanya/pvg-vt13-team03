@@ -11,18 +11,17 @@
 <h2>Steg för steg</h2>
 
 <ol>
-<li>Uppdatera sökvägar till filer i constants/FileNames.java
-<ul><li>Sökvägarna måste vara absoluta (Exempel: /home/user/starttider.txt)</li></ul></li>
+<li>Uppdatera sökvägar till filer i constants/FileNames.java. Sökvägarna kan vara absoluta (ex. /home/user/startfil.txt) eller relativa. Om de är relativa utgår de från användarens hemkatalog.</li>
 <li>Skapa JAR-filer i Eclipse.
 <ol><li>Öppna export</li>
 <li>Välj Runnable JAR</li>
 <li>Välj SorterProgram för att skapa sorteringsprogram, RegisterProgram för registreringsprogram</li>
 <li>Välj sökväg där filerna ska sparas</li>
 <li>Välj "Package required..."</li></ol></li>
-<li>JAR-filerna ska nu gå att starta genom att dubbelklicka på dem.</li>
+<li>JAR-filerna ska nu gå att starta genom att öppna dem med Java Runtime. På Unix-liknande system kan man först behöva högerklicka på dem och ställa in så att användaren får köra dem.</li>
 </ol>
 
-<h1>Filstruktur</h1>
+<h1>Katalogstruktur</h1>
 
 <p>Kort beskrivning om vad de olika mapparna i projektet innehåller.</p>
 
