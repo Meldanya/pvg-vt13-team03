@@ -50,7 +50,7 @@ public class CircuitRacer extends AbstractLapRacer {
 		 * out.append("; "); } } }
 		 */
 
-		if (finishTimes.size() == 0) {
+		if (getLastLap().getFinishTime() == null) {
 			out.append("; Slut?");
 		}
 
@@ -72,9 +72,28 @@ public class CircuitRacer extends AbstractLapRacer {
 	@Override
 	public String getTotalTime() {
 		if (distanceList.isEmpty()) {
-			return "00.00.00";
+			return "--.--.--";
 		}
-		return "00.00.00";
-		//Vi måste lägga till funktionalitet för att jämföra 2 RacerTimes. Sista med första i detta fallet
+		
+		Distance firstLap = getFirstLap();
+		Distance lastLap = getLastLap();
+		
+		return firstLap.getStartTime().getDifferenceTo(lastLap.getFinishTime());
+	}
+
+	/**
+	 * @return
+	 */
+	private Distance getFirstLap() {
+		Distance firstLap = distanceList.get(0);
+		return firstLap;
+	}
+
+	/**
+	 * @return
+	 */
+	private Distance getLastLap() {
+		Distance lastLap = distanceList.get(distanceList.size() - 1);
+		return lastLap;
 	}
 }
