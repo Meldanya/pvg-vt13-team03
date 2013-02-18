@@ -15,6 +15,7 @@ import org.junit.Test;
 
 import racer.AbstractRacer;
 import racer.RacerClass;
+import racer.RacerFactory;
 import sorting.Competition;
 
 public class TestCompetition {
@@ -23,7 +24,7 @@ public class TestCompetition {
 
 	@Before
 	public void setUp() throws Exception {
-		competition = new Competition(typeOfContest);
+		competition = new Competition(new RacerFactory("marathon"));
 		nameMappings = new HashMap<String, String>();
 	}
 

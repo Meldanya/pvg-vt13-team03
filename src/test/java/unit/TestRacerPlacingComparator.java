@@ -7,18 +7,21 @@ import org.junit.Before;
 import org.junit.Test;
 
 import racer.AbstractRacer;
+import racer.RacerFactory;
 import racer.RacerPlacingComparator;
 import racer.RacerTime;
 
 public class TestRacerPlacingComparator {
 	private AbstractRacer r1;
 	private AbstractRacer r2;
+	private RacerFactory factory;
 	private RacerPlacingComparator comp;
 	
 	@Before
 	public void setUp() {
-		r1 = new AbstractRacer("1");
-		r2 = new AbstractRacer("2");
+		factory = new RacerFactory("marathon");
+		r1 = factory.createRacer("1");
+		r2 = factory.createRacer("2");
 		comp = new RacerPlacingComparator();
 	}
 	

@@ -17,6 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import racer.AbstractRacer;
+import racer.RacerFactory;
 import sorting.Competition;
 import sorting.ResultWriter;
 
@@ -26,6 +27,7 @@ import sorting.ResultWriter;
  */
 public class TestResultWriter {
 	private Competition competition;
+	private RacerFactory factory;
 	private ResultWriter writer;
 	private String filename;
 	private String header;
@@ -37,7 +39,8 @@ public class TestResultWriter {
 	public void setUp() throws Exception {
 		filename = "resultat.txt";
 		header = "StartNr; Namn; TotalTid; StartTider; Måltider";
-		competition = new Competition(typeOfContest);
+		factory = new RacerFactory("marathon");
+		competition = new Competition(factory);
 		writer = new ResultWriter(competition, filename, null);
 		
 		deleteTestFile();
@@ -82,7 +85,7 @@ public class TestResultWriter {
 	@Test
 	public void testOneRacer() throws IOException {
 		String name = "Anders Asson";
-		AbstractRacer r1 = new AbstractRacer("1");
+		AbstractRacer r1 = factory.createRacer("1");
 		r1.setName(name);
 		Map<String, String> nameMappings = new HashMap<String, String>();
 		nameMappings.put("1", name);
@@ -103,11 +106,11 @@ public class TestResultWriter {
 		String name2 = "Bengt Bsson";
 		String name3 = "Chris Csson";
 		
-		AbstractRacer r1 = new AbstractRacer("1");
+		AbstractRacer r1 = factory.createRacer("1");
 		r1.setName(name1);
-		AbstractRacer r2 = new AbstractRacer("2");
+		AbstractRacer r2 = factory.createRacer("2");
 		r2.setName(name2);
-		AbstractRacer r3 = new AbstractRacer("3");
+		AbstractRacer r3 = factory.createRacer("3");
 		r3.setName(name3);
 		
 		nameMappings.put("1", name1);

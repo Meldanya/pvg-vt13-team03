@@ -20,10 +20,11 @@ public class Sorter {
 	private Competition racers;
 	private SorterConfig config;
 
-	public Sorter() throws IOException { 
+	public Sorter() throws IOException {
+		initializeConfig();
+
 		racers = new Competition(new RacerFactory(typeOfContest()));
 
-		initializeConfig();
 		read();
 		readNames();
 
