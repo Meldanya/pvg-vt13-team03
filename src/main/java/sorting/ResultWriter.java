@@ -22,8 +22,6 @@ public class ResultWriter extends Writer {
 		return sb.toString();
 	}
 
-
-
 	@Override
 	protected String getHeader(int laps) {
 		String header;
@@ -32,7 +30,6 @@ public class ResultWriter extends Writer {
 		} else {
 			StringBuilder sb = new StringBuilder();
 			sb.append("StartNr; Namn; #Varv; TotalTid; ");
-
 			for (int i = 1; i <= laps; i++) {
 				sb.append("Varv" + i + "; ");
 			}

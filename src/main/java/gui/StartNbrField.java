@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
+import parser.Parser;
+
 import registration.Register;
 
 /**
@@ -28,10 +30,12 @@ public class StartNbrField extends JTextField implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String text = this.getText();
 		text = text.trim();
+		Parser parser = new Parser();
+		
 		if (text.equals("")) {
 			new StartNbrPopup(register);
 		} else {
-			register.register(text);
+			register.register(parser.parse(text));
 		}
 	}
 

@@ -10,7 +10,6 @@ import java.util.TreeSet;
 
 import racer.Racer;
 import racer.RacerClass;
-import racer.RacerPlacingComparator;
 import racer.RacerTime;
 
 /**
@@ -76,37 +75,57 @@ public class Competition {
 	 * new Racers to store the data in where necessary.
 	 * 
 	 * @param fileName
-	 */
-	public void readFromFile(String fileName, boolean start) throws IOException {
-		TimeReader reader = new TimeReader();
-		Map<String, ArrayList<String>> timesMap = reader
-				.readFromTimeFile(fileName);
-
+	 * @throws IOException */
+	public void setStartTimesFromFile(String fileName) throws IOException {
+		Map<String, ArrayList<String>> timesMap = readTimesFromFile(fileName);
 		for (String startNumber : timesMap.keySet()) {
-			if (startNumber.trim().length() < 1) {
-				// Makes sure that the read line is not empty
-				continue;
+			if (startNumber.trim().length() >= 1) {
+				addStartTimestoRacer(startNumber, timesMap.get(startNumber));
 			}
-
-			Racer racer = new Racer(startNumber);
-
-			if (racers.containsKey(startNumber)) {
-				racer = racers.get(startNumber);
-			} else {
-				addRacer(racer);
-			}
-
-			ArrayList<String> times = timesMap.get(startNumber);
-
-			for (String time : times) {
-				if (start) {
-					racer.addStartTime(new RacerTime(time));
-				} else {
-					racer.addFinishTime(new RacerTime(time));
-				}
-			}
-			racer.sortFinishTimes();
 		}
+	}
+
+	/** Reads finish times from a file and loads it into Racers, creates new
+	 * Racers to store the data in where necessary.
+	 * 
+	 * @param fileName
+	 * @throws IOException */
+	public void setFinishTimesFromFile(String fileName) throws IOException {
+		Map<String, ArrayList<String>> timesMap = readTimesFromFile(fileName);
+		for (String startNumber : timesMap.keySet()) {
+			if (startNumber.trim().length() >= 1) {
+				addFinishTimestoRacer(startNumber, timesMap.get(startNumber));
+			}
+		}
+	}
+
+	private Map<String, ArrayList<String>> readTimesFromFile(String fileName) throws IOException {
+		TimeReader reader = new TimeReader();
+		return reader.readFromTimeFile(fileName);
+	}
+
+	private void addStartTimestoRacer(String startNumber, ArrayList<String> times) {
+		Racer racer = getReferenceToRacer(startNumber);
+		for (String time : times) {
+			racer.addStartTime(new RacerTime(time));
+		}
+	}
+
+	private void addFinishTimestoRacer(String startNumber, ArrayList<String> times) {
+		Racer racer = getReferenceToRacer(startNumber);
+		for (String time : times) {
+			racer.addFinishTime(new RacerTime(time));
+		}
+		racer.sortFinishTimes();
+	}
+
+	private Racer getReferenceToRacer(String startNumber) {
+		Racer racer = racers.get(startNumber);
+		if (racer == null) {
+			racer = new Racer(startNumber);
+			addRacer(racer);
+		}
+		return racer;
 	}
 
 	/**

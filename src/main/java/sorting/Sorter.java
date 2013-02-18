@@ -1,18 +1,13 @@
 package sorting;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Properties;
 
 import racer.RacerPlacingComparator;
-
 import constants.FileNames;
 
 
@@ -22,57 +17,74 @@ import constants.FileNames;
  */
 public class Sorter {
 	private Competition racers;
-	private Properties config;
-	
+	private SorterConfig config;
+
 	public Sorter() throws IOException {
 		racers = new Competition();
-		
-		
-		this.config = new Properties(new SorterDefaultConfig());
-		
+
+		initializeConfig();
+		read();
+		readNames();
+
+		write();
+	}
+
+	/** @throws IOException */
+	private void initializeConfig() throws IOException {
+		this.config = new SorterConfig();
+
 		try {
-			config.load(new BufferedReader(new FileReader(FileNames.CONFIG)));
+			config.load(FileNames.CONFIG);
 		} catch (FileNotFoundException e1) {
-			new SorterDefaultConfig().store(new FileOutputStream(FileNames.CONFIG),"Default config for Enduro Sorter");
+			new SorterConfig().store(FileNames.CONFIG, "Default config for Enduro Sorter");
 			// May throw an exception. For example if the user doesn't have
 			// permission to write  
 		}
-		read();
-		readNames();
-		
-		write();
 	}
-	private int laps(){
+
+	private int laps() {
 		return Integer.parseInt(config.getProperty("NumberOfLaps"));
 	}
 	private String namefile(){
 		return config.getProperty("Namefile");
 	}
+	
+	/**
+	 * Returns a list with the filenames that the sorter will read goal times from.
+	 * @return A list with the goal times.
+	 */
 	public ArrayList<String> finishFiles(){
-		ArrayList<String> finishFiles = new ArrayList<String>();
-		String finishFilesString = config.getProperty("FinishFiles");
-		finishFilesString = finishFilesString.replaceAll("\\s","");
-		String[] finishFilesArray = finishFilesString.split(",");
-		for (int i = 0; i < finishFilesArray.length; i++){
-			finishFiles.add(finishFilesArray[i]);
-		}
-		return finishFiles;
+		return getPropertyMultipleEntries("FinishFiles");
 	}
-	private String resultfile(){
+
+	private ArrayList<String> startFiles() {
+		return getPropertyMultipleEntries("StartFiles");
+	}
+	
+	private ArrayList<String> getPropertyMultipleEntries(String propertyName){
+		ArrayList<String> properties = new ArrayList<String>();
+		String propertiesString = config.getProperty(propertyName);
+		propertiesString = propertiesString.replaceAll("\\s","");
+		String[] propertiesArray = propertiesString.split(",");
+		for (int i = 0; i < propertiesArray.length; i++){
+			properties.add(propertiesArray[i]);
+		}
+		return properties;
+	}
+
+	private String resultfile() {
 		return config.getProperty("ResultFile");
 	}
-	private void read() throws IOException {
-	
-		File directory = new File(".");
-		String[] finishFiles = directory.list(new FinishFileFilter());
-		
-		racers.readFromFile(FileNames.START, true);
-
-		
-		for(String fileName : finishFiles) {
-			racers.readFromFile(fileName, false);			
+	private void read() throws IOException {		
+		for (String fileName : startFiles()){
+			racers.setStartTimesFromFile(fileName);
 		}
 
+		File directory = new File(".");
+		String[] finishFiles = directory.list(new FinishFileFilter());
+		for (String fileName : finishFiles) {
+			racers.setFinishTimesFromFile(fileName);
+		}
 	}
 	
 	private class FinishFileFilter implements FilenameFilter{
@@ -99,7 +111,7 @@ public class Sorter {
 		for (int i = 0; i < finishFiles.size(); i++){
 			new ResultWriter(racers, resultfile()).writeToFile(laps());
 			String timeStartIsOpen = config.getProperty("TimeStartIsOpen");
-			new SortResultWriter(racers, FileNames.SORTRESULTAT, new RacerPlacingComparator(), timeStartIsOpen).writeToFile(laps());
+			new SortResultWriter(racers, FileNames.SORTED_OUTFILE, new RacerPlacingComparator(), timeStartIsOpen).writeToFile(laps());
 		}
 	}
 }

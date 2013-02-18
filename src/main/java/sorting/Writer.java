@@ -14,14 +14,14 @@ public abstract class Writer {
 	private BufferedWriter writer;
 	protected Competition data;
 	protected String fileName;
-	protected Comparator<Racer> comp;
+	protected Comparator<Racer> comparator;
 
 	// TODO: klass utan modifierbart tillstånd?
 		public Writer(Competition data, String filename,
 				Comparator<Racer> comp) {
 			this.data = data;
 			this.fileName = filename;
-			this.comp = comp;
+			this.comparator = comp;
 		}
 
 	/**
@@ -46,7 +46,7 @@ public abstract class Writer {
 
 	private void writeClassTypeToFile(RacerClass racerClass, int laps)
 			throws IOException {
-		Set<Racer> racers = data.getRacers(racerClass, comp);
+		Set<Racer> racers = data.getRacers(racerClass, comparator);
 
 		if (racerClass.toString().length() > 0) {
 			writer.write(racerClass.toString());
