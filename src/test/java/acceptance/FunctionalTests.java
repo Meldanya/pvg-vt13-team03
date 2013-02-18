@@ -41,42 +41,43 @@ public class FunctionalTests {
 
 	@Test
 	public void test9() throws IOException {
-		setNumberOfLapsInConfigFile(3);
+		prepareForCircuitContest(3);
 		simpleLapTest("9");
 	}
 
 	@Test
 	public void test10() throws FileNotFoundException, IOException {
-		setNumberOfLapsInConfigFile(3);
+		prepareForCircuitContest(3);
 		twoFinishLapTest("10");
 	}
 
 	@Test
 	public void test13() throws FileNotFoundException, IOException {
-		setNumberOfLapsInConfigFile(3);
+		prepareForCircuitContest(3);
 		twoFinishLapTest("13");
 	}
 
 	@Test
 	public void test15() throws IOException {
-		setNumberOfLapsInConfigFile(3);
+		prepareForCircuitContest(3);
 		simpleLapTest("15");
 	}
 
 	@Test
 	public void test16() throws FileNotFoundException, IOException {
-		setNumberOfLapsInConfigFile(3);
+		prepareForCircuitContest(3);
 		simpleLapTest("16");
 	}
 
 	@Ignore
 	@Test
 	public void test18() throws IOException {
-		setNumberOfLapsInConfigFile(3);
+		prepareForCircuitContest(3);
 		sortedTwoFinishLapTest("18");
 	}
 
-	private void setNumberOfLapsInConfigFile(int laps) throws IOException {
+	private void prepareForCircuitContest(int laps) throws IOException {
+		config.setProperty("ContestType", "circuit");
 		config.setProperty("NumberOfLaps", String.valueOf(laps));
 		config.store(FileNames.CONFIG, "Test config for Enduro Sorter");
 	}
