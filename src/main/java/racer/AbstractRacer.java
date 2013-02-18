@@ -86,7 +86,7 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof AbstractRacer))
 			return false;
 		AbstractRacer other = (AbstractRacer) obj;
 		if (startNumber == null) {
