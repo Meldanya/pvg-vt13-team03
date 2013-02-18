@@ -8,7 +8,7 @@ public class SorterDefaultConfig extends Properties{
 		
 		this.setProperty("TypeOfContest", "Marathon");
 		
-		this.setProperty("NumberOfLaps", "1");
+		this.setProperty("NumberOfLaps", "2");
 		this.setProperty("MinimumLapTime", "00.15.00");
 		this.setProperty("TimeStartIsOpen","01.00.00");
 		

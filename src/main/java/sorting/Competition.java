@@ -72,20 +72,6 @@ public class Competition {
 	}
 
 	/**
-	 * Writes the current map to a file, passes responsibility to ResultWriter
-	 * 
-	 * @param filename
-	 *            File to write to
-	 * @param laps
-	 *            Amount of specified laps
-	 */
-	public void writeToFile(String filename, int laps, Comparator<Racer> comp) {
-		ResultWriter writer = new ResultWriter(this, filename, comp);
-
-		writer.writeToFile(laps);
-	}
-
-	/**
 	 * Reads start/finish times from a file and loads it into Racers, creates
 	 * new Racers to store the data in where necessary.
 	 * 
@@ -145,7 +131,6 @@ public class Competition {
 
 		for (String key : racers.keySet()) {
 			Racer r = racers.get(key);
-
 			if (r.getClassType().equals(rc)) {
 				set.add(r);
 			}

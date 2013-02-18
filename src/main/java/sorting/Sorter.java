@@ -97,8 +97,9 @@ public class Sorter {
 	private void write() {
 		ArrayList<String> finishFiles = finishFiles();
 		for (int i = 0; i < finishFiles.size(); i++){
-			racers.writeToFile(resultfile(), laps(), null);
-			racers.writeToFile(FileNames.SORTRESULTAT, laps(), new RacerPlacingComparator());
+			new ResultWriter(racers, resultfile()).writeToFile(laps());
+			String timeStartIsOpen = config.getProperty("TimeStartIsOpen");
+			new SortResultWriter(racers, FileNames.SORTRESULTAT, new RacerPlacingComparator(), timeStartIsOpen).writeToFile(laps());
 		}
 	}
 }

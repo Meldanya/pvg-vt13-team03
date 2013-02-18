@@ -11,24 +11,29 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import racer.Racer;
+import racer.RacerClass;
+import racer.RacerPlacingComparator;
+import racer.RacerTime;
 import sorting.Competition;
-import sorting.ResultWriter;
+import sorting.SortResultWriter;
 
 /**
  * @author dat11rla
  *
  */
-public class TestResultWriter {
+public class TestSortResultWriter {
 	private Competition competition;
-	private ResultWriter writer;
+	private SortResultWriter writer;
 	private String filename;
 	private String header;
+	private RacerPlacingComparator comp = new RacerPlacingComparator();
 	
 	/**
 	 * @throws java.lang.Exception
@@ -36,9 +41,9 @@ public class TestResultWriter {
 	@Before
 	public void setUp() throws Exception {
 		filename = "resultat.txt";
-		header = "StartNr; Namn; TotalTid; StartTider; Måltider";
+		header = "Plac; StartNr; Namn; TotalTid";
 		competition = new Competition();
-		writer = new ResultWriter(competition, filename);
+		writer = new SortResultWriter(competition, filename, comp, "01.00.00");
 		
 		deleteTestFile();
 	}
@@ -89,7 +94,7 @@ public class TestResultWriter {
 		competition.setNames(nameMappings);
 		
 		writer.writeToFile(1);
-		String expected = header + "\n" + r1 + "\n";
+		String expected = header + "\n1; " + r1 + "\n";
 
 		assertEquals("Result doesn't match", expected, readFile());
 	}
@@ -105,22 +110,34 @@ public class TestResultWriter {
 		
 		Racer r1 = new Racer("1");
 		r1.setName(name1);
+		r1.addStartTime(new RacerTime("12.00.00"));
+		r1.addFinishTime(new RacerTime("15.00.00"));
 		Racer r2 = new Racer("2");
 		r2.setName(name2);
+		r2.addStartTime(new RacerTime("12.00.00"));
+		r2.addFinishTime(new RacerTime("14.00.00"));
 		Racer r3 = new Racer("3");
 		r3.setName(name3);
+		r3.addStartTime(new RacerTime("12.00.00"));
+		r3.addFinishTime(new RacerTime("13.00.00"));
 		
 		nameMappings.put("1", name1);
-		nameMappings.put("3", name3);
 		nameMappings.put("2", name2);
+		nameMappings.put("3", name3);
 		
 		expected.append(header + "\n");
-		expected.append(r1 + "\n");
-		expected.append(r2 + "\n");
-		expected.append(r3 + "\n");
-
+		expected.append("1; " + r3 + "\n");
+		expected.append("2; " + r2 + "\n");
+		expected.append("3; " + r1 + "\n");
 
 		competition.setNames(nameMappings);
+		Set<Racer> racers = competition.getRacers(new RacerClass(""), null);
+		int counter = 15;
+		for(Racer racer: racers){
+			racer.addStartTime(new RacerTime("12.00.00"));
+			racer.addFinishTime(new RacerTime(counter + ".00.00"));
+			counter--;
+		}
 		
 		writer.writeToFile(1);
 

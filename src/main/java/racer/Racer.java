@@ -125,7 +125,7 @@ public class Racer implements Comparable<Racer> {
 	 * @param laps
 	 * @return
 	 */
-	public String toString(int laps) {
+	public String toString(int laps, boolean includeAbsoluteTimes) {
 		if (laps == 1) {
 			return toString();
 		}
@@ -150,40 +150,44 @@ public class Racer implements Comparable<Racer> {
 
 			} catch (IndexOutOfBoundsException e) {
 				// Laptime doesn't exist, print column anyway
-				out.append("; ");
-			}
-		}
-
-		out.append("; " + getStartTime());
-
-		for (int i = 0; i < laps; i++) {
-			try {
-				RacerTime laptime = finishTimes.get(i);
-				out.append("; " + laptime.toString());
-			} catch (IndexOutOfBoundsException e) {
-				// Laptime doesn't exist, print column anyway
-				if(i==laps-1){
-					out.append(";");
-				} else{
-					out.append("; ");
+				out.append(';');
+				if (includeAbsoluteTimes) {
+					out.append(' ');
 				}
 			}
 		}
-		
-		if(finishTimes.size()==0){
-			out.append(" Slut?");
-		}
-		
-		if (startTimes.size() > 1) {
-			out.append("; Flera starttider?");
-			for (int i = 1; i < startTimes.size(); i++) {
-				out.append(" ");
-				out.append(startTimes.get(i));
+		if (includeAbsoluteTimes) {
+			out.append("; " + getStartTime());
+	
+			for (int i = 0; i < laps; i++) {
+				try {
+					RacerTime laptime = finishTimes.get(i);
+					out.append("; " + laptime.toString());
+				} catch (IndexOutOfBoundsException e) {
+					// Laptime doesn't exist, print column anyway
+					if(i==laps-1){
+						out.append(";");
+					} else{
+						out.append("; ");
+					}
+				}
 			}
-		}
-
-		if (impossibleLapTime) {
-			out.append("; Omöjlig varvtid?");
+			
+			if(finishTimes.size()==0){
+				out.append(" Slut?");
+			}
+			
+			if (startTimes.size() > 1) {
+				out.append("; Flera starttider?");
+				for (int i = 1; i < startTimes.size(); i++) {
+					out.append(" ");
+					out.append(startTimes.get(i));
+				}
+			}
+	
+			if (impossibleLapTime) {
+				out.append("; Omöjlig varvtid?");
+			}
 		}
 
 		return out.toString();
