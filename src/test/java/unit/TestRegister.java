@@ -22,6 +22,16 @@ public class TestRegister {
 		
 	}
 	
+	@Test
+	public void testStartMany() throws IOException {
+		startMany("test/TestRegister/namnfil.txt");
+	}
+
+	@Test(expected = FileNotFoundException.class)
+	public void testNameFileNotFound() throws IOException {
+		startMany("nonexisting");
+	}
+	
 	private void startMany(String nameFile) throws IOException {
 		register = new Register(FileNames.START);
 		register.registerMassStart(nameFile, "12.00.00");
@@ -43,15 +53,4 @@ public class TestRegister {
 		
 		assertEquals("Mass start failed.", expected, actual.toString());
 	}
-	
-	@Test
-	public void testStartMany() throws IOException {
-		startMany("test/TestRegister/namnfil.txt");
-	}
-	
-	@Test(expected=FileNotFoundException.class)
-	public void testNameFileNotFound() throws IOException {
-		startMany("nonexisting");
-	}
-
 }

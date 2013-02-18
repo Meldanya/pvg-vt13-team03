@@ -189,22 +189,30 @@ public class Racer implements Comparable<Racer> {
 		return out.toString();
 	}
 
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((startNumber == null) ? 0 : startNumber.hashCode());
+		result = prime * result + ((startNumber == null) ? 0 : startNumber.hashCode());
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if(!(obj instanceof Racer)){
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
-		}
-		
-		return startNumber.equals(((Racer)obj).startNumber);
+		if (getClass() != obj.getClass())
+			return false;
+		Racer other = (Racer) obj;
+		if (startNumber == null) {
+			if (other.startNumber != null)
+				return false;
+		} else if (!startNumber.equals(other.startNumber))
+			return false;
+		return true;
 	}
 
 	public RacerClass getClassType() {

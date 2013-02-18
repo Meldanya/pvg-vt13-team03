@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TimeReader extends Reader {
-	private HashMap<String, ArrayList<String>> map;
+	private Map<String, ArrayList<String>> map;
 
 	protected void op(String key, String value) {
 		if(!map.containsKey(key)){
@@ -19,10 +19,5 @@ public class TimeReader extends Reader {
 		map = new HashMap<String, ArrayList<String>>();
 		readFromFile(fileName);
 		return map;
-	}
-
-	@Override
-	protected void error() {
-		map=null;
 	}
 }

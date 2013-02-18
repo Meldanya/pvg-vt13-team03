@@ -14,15 +14,14 @@ public class ResultWriter {
 	private Competition data;
 	private String fileName;
 	private String header;
-	private Comparator<Racer> comp;
+	private Comparator<Racer> comparator;
 
-	// TODO: klass utan modifierbart tillstånd?
-	public ResultWriter(Competition data, String filename,
-			Comparator<Racer> comp) {
+	public ResultWriter(Competition data, String filename, Comparator<Racer> comparator) {
+
 		this.data = data;
 		this.fileName = filename;
 		this.header = "StartNr; Namn; TotalTid; StartTider; Måltider";
-		this.comp = comp;
+		this.comparator = comparator;
 	}
 
 	/**
@@ -44,10 +43,9 @@ public class ResultWriter {
 			System.err.println("File " + fileName + " could not be written");
 		}
 	}
+	private void writeClassTypeToFile(RacerClass racerClass, int laps) throws IOException {
 
-	private void writeClassTypeToFile(RacerClass racerClass, int laps)
-			throws IOException {
-		Set<Racer> racers = data.getRacers(racerClass, comp);
+		Set<Racer> racers = data.getRacers(racerClass, comparator);
 
 		if (racerClass.toString().length() > 0) {
 			writer.write(racerClass.toString());
@@ -71,7 +69,6 @@ public class ResultWriter {
 		} else {
 			StringBuilder sb = new StringBuilder();
 			sb.append("StartNr; Namn; #Varv; TotalTid; ");
-
 			for (int i = 1; i <= laps; i++) {
 				sb.append("Varv" + i + "; ");
 			}

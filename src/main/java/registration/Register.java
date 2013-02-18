@@ -75,7 +75,6 @@ public class Register extends Observable {
 		try {
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
 				    new FileOutputStream(fileName, true), "UTF-8"));
-			
 			lastWrittenLine = stringToAppendToFile(startNumber, time);
 
 			writer.append(lastWrittenLine);
@@ -127,8 +126,8 @@ public class Register extends Observable {
 	 * @throws IOException
 	 *             If an I/O error occurs
 	 */
-	public void registerMassStart(String nameFile, String startTime)
-			throws IOException {
+	public void registerMassStart(String nameFile, String startTime) throws IOException {
+
 		new File(FileNames.START).delete(); // remove existing start file
 
 		Scanner scanner = new Scanner(new BufferedReader(new FileReader(nameFile)));
