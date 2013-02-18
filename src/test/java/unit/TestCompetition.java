@@ -13,7 +13,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import racer.Racer;
+import racer.AbstractRacer;
 import racer.RacerClass;
 import sorting.Competition;
 
@@ -33,8 +33,8 @@ public class TestCompetition {
 	
 	@Test
 	public void testEmptyCompetition() {
-		Set<Racer> racers = competition.getRacers(new RacerClass(""), null);
-		assertEquals("wrong number of racers", 0, racers.size());
+		Set<AbstractRacer> abstractRacers = competition.getRacers(new RacerClass(""), null);
+		assertEquals("wrong number of racers", 0, abstractRacers.size());
 	}
 
 	@Test
@@ -43,9 +43,9 @@ public class TestCompetition {
 
 		competition.setNames(nameMappings);
 
-		Set<Racer> racers = competition.getRacers(new RacerClass(""), null);
+		Set<AbstractRacer> abstractRacers = competition.getRacers(new RacerClass(""), null);
 		
-		assertEquals("wrong number of racers", 1, racers.size());
+		assertEquals("wrong number of racers", 1, abstractRacers.size());
 	}
 
 }

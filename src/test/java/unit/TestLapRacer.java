@@ -9,16 +9,16 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import racer.Racer;
+import racer.AbstractRacer;
 import racer.RacerTime;
 
 public class TestLapRacer {
-	private Racer racer;
+	private AbstractRacer abstractRacer;
 
 	@Before
 	public void setUp() throws Exception {
-		racer = new Racer("1");
-		racer.setName("Kalle");
+		abstractRacer = new AbstractRacer("1");
+		abstractRacer.setName("Kalle");
 	}
 
 	@After
@@ -28,96 +28,96 @@ public class TestLapRacer {
 	
 	@Test
 	public void testNoTimes() {
-		assertEquals("Start time exists", "Start?", racer.getStartTime());
-		assertEquals("Finish time exists", "Slut?", racer.getFinishTime());
+		assertEquals("Start time exists", "Start?", abstractRacer.getStartTime());
+		assertEquals("Finish time exists", "Slut?", abstractRacer.getFinishTime());
 	}
 
 	@Test
 	public void testTimeFormatting() {
-		racer.addStartTime(new RacerTime("11.12.13"));
-		assertEquals("Formatting is wrong", "1; Kalle; --.--.--; 11.12.13; Slut?", racer.toString());
+		abstractRacer.addStartTime(new RacerTime("11.12.13"));
+		assertEquals("Formatting is wrong", "1; Kalle; --.--.--; 11.12.13; Slut?", abstractRacer.toString());
 	}
 
 	@Test
 	public void testEquals() {
-		Racer racer2 = new Racer("1");
-		assertEquals("Racers not equal", racer, racer2);
+		AbstractRacer racer2 = new AbstractRacer("1");
+		assertEquals("Racers not equal", abstractRacer, racer2);
 	}
 	
 	@Test
 	public void testNotEquals() {
-		Racer racer2 = new Racer("2");
-		assertFalse("Racers equal", racer.equals(racer2));
+		AbstractRacer racer2 = new AbstractRacer("2");
+		assertFalse("Racers equal", abstractRacer.equals(racer2));
 	}
 	
 	@Test
 	public void testAddOneLapTime(){
-		racer.addStartTime(new RacerTime("11.11.14"));
-		racer.addFinishTime(new RacerTime("11.12.14"));
-		assertEquals(1, racer.getNumberOfLaps());
+		abstractRacer.addStartTime(new RacerTime("11.11.14"));
+		abstractRacer.addFinishTime(new RacerTime("11.12.14"));
+		assertEquals(1, abstractRacer.getNumberOfLaps());
 	}
 	
 	@Test
 	public void testAddManyLapTimes(){
 		for(int i = 0; i<10; i++){
-			racer.addStartTime(new RacerTime("11.11." + i));
-			racer.addFinishTime(new RacerTime("11.12." + i));
+			abstractRacer.addStartTime(new RacerTime("11.11." + i));
+			abstractRacer.addFinishTime(new RacerTime("11.12." + i));
 		}
-		assertEquals(10, racer.getNumberOfLaps());
+		assertEquals(10, abstractRacer.getNumberOfLaps());
 	}
 	
 	@Test
 	public void testFinishTime(){
 	for(int i = 0; i<10; i++){
 			
-			racer.addFinishTime(new RacerTime("11.12." + i));
+			abstractRacer.addFinishTime(new RacerTime("11.12." + i));
 		}
-		assertEquals(racer.getFinishTime(),"11.12.09");
+		assertEquals(abstractRacer.getFinishTime(),"11.12.09");
 	}
 	
 	@Test
 	public void testNumberOfLapsZero(){
-		racer.addStartTime(new RacerTime("12.00.00"));
-		assertEquals("Wrong number of laps. Should be zero.",0,racer.getNumberOfLaps());
+		abstractRacer.addStartTime(new RacerTime("12.00.00"));
+		assertEquals("Wrong number of laps. Should be zero.",0,abstractRacer.getNumberOfLaps());
 	}
 	
 	@Test
 	public void testNumberOfLapsOne(){
-		racer.addStartTime(new RacerTime("12.00.00"));
-		racer.addFinishTime(new RacerTime("12.15.00"));
-		assertEquals("Wrong number of laps. Should be one.",1,racer.getNumberOfLaps());
+		abstractRacer.addStartTime(new RacerTime("12.00.00"));
+		abstractRacer.addFinishTime(new RacerTime("12.15.00"));
+		assertEquals("Wrong number of laps. Should be one.",1,abstractRacer.getNumberOfLaps());
 	}
 	
 	@Test
 	public void testNumberOfLapsThree(){
-		racer.addStartTime(new RacerTime("12.00.00"));
-		racer.addFinishTime(new RacerTime("12.15.00"));
-		racer.addFinishTime(new RacerTime("12.30.00"));
-		racer.addFinishTime(new RacerTime("12.45.00"));
-		assertEquals("Wrong number of laps. Should be three.",3,racer.getNumberOfLaps());
+		abstractRacer.addStartTime(new RacerTime("12.00.00"));
+		abstractRacer.addFinishTime(new RacerTime("12.15.00"));
+		abstractRacer.addFinishTime(new RacerTime("12.30.00"));
+		abstractRacer.addFinishTime(new RacerTime("12.45.00"));
+		assertEquals("Wrong number of laps. Should be three.",3,abstractRacer.getNumberOfLaps());
 	}
 	
 	@Test
 	public void testLapTimesZero(){
-		racer.addStartTime(new RacerTime("12.00.00"));
-		assertEquals("Lap times existed when the shouldn't",new ArrayList<String>(),racer.getLapTimes());
+		abstractRacer.addStartTime(new RacerTime("12.00.00"));
+		assertEquals("Lap times existed when the shouldn't",new ArrayList<String>(),abstractRacer.getLapTimes());
 	}
 	
 	@Test
 	public void testLaptimesOne(){
-		racer.addStartTime(new RacerTime("12.00.00"));
-		racer.addFinishTime(new RacerTime("12.15.00"));
-		assertEquals("Lap time did not add upp for on lap.","00.15.00",racer.getLapTimes().get(0));
+		abstractRacer.addStartTime(new RacerTime("12.00.00"));
+		abstractRacer.addFinishTime(new RacerTime("12.15.00"));
+		assertEquals("Lap time did not add upp for on lap.","00.15.00",abstractRacer.getLapTimes().get(0));
 	}
 	
 	@Test
 	public void testLaptimesThree(){
-		racer.addStartTime(new RacerTime("12.00.00"));
-		racer.addFinishTime(new RacerTime("12.15.00"));
-		racer.addFinishTime(new RacerTime("12.35.00"));
-		racer.addFinishTime(new RacerTime("13.00.00"));
-		assertEquals("Lap time did not add upp for lap one.","00.15.00",racer.getLapTimes().get(0));
-		assertEquals("Lap time did not add upp for lap two.","00.20.00",racer.getLapTimes().get(1));
-		assertEquals("Lap time did not add upp for lap three.","00.25.00",racer.getLapTimes().get(2));
+		abstractRacer.addStartTime(new RacerTime("12.00.00"));
+		abstractRacer.addFinishTime(new RacerTime("12.15.00"));
+		abstractRacer.addFinishTime(new RacerTime("12.35.00"));
+		abstractRacer.addFinishTime(new RacerTime("13.00.00"));
+		assertEquals("Lap time did not add upp for lap one.","00.15.00",abstractRacer.getLapTimes().get(0));
+		assertEquals("Lap time did not add upp for lap two.","00.20.00",abstractRacer.getLapTimes().get(1));
+		assertEquals("Lap time did not add upp for lap three.","00.25.00",abstractRacer.getLapTimes().get(2));
 	}
 }

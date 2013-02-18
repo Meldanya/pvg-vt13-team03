@@ -16,7 +16,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import racer.Racer;
+import racer.AbstractRacer;
 import sorting.Competition;
 import sorting.ResultWriter;
 
@@ -82,7 +82,7 @@ public class TestResultWriter {
 	@Test
 	public void testOneRacer() throws IOException {
 		String name = "Anders Asson";
-		Racer r1 = new Racer("1");
+		AbstractRacer r1 = new AbstractRacer("1");
 		r1.setName(name);
 		Map<String, String> nameMappings = new HashMap<String, String>();
 		nameMappings.put("1", name);
@@ -103,11 +103,11 @@ public class TestResultWriter {
 		String name2 = "Bengt Bsson";
 		String name3 = "Chris Csson";
 		
-		Racer r1 = new Racer("1");
+		AbstractRacer r1 = new AbstractRacer("1");
 		r1.setName(name1);
-		Racer r2 = new Racer("2");
+		AbstractRacer r2 = new AbstractRacer("2");
 		r2.setName(name2);
-		Racer r3 = new Racer("3");
+		AbstractRacer r3 = new AbstractRacer("3");
 		r3.setName(name3);
 		
 		nameMappings.put("1", name1);

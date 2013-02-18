@@ -7,15 +7,15 @@ import java.util.Collections;
  * A class representing a racer (aka driver) with a start number, start time and
  * finish time.
  */
-public class Racer implements Comparable<Racer> {
+public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 
 	private RacerClass classType;
-	private String startNumber;
-	private ArrayList<RacerTime> startTimes;
+	protected String startNumber;
+	protected ArrayList<RacerTime> startTimes;
 	protected ArrayList<RacerTime> finishTimes;
-	private String name;
+	protected String name;
 
-	public Racer(String startNumber) {
+	public AbstractRacer(String startNumber) {
 		this.classType = new RacerClass("");
 		this.startNumber = startNumber;
 		this.startTimes = new ArrayList<RacerTime>();
@@ -69,126 +69,8 @@ public class Racer implements Comparable<Racer> {
 
 		return startTime.getDifferenceTo(finishTime);
 	}
-
-	/**
-	 * Returns the racer as a line in the format the Sorter wants. Is only run
-	 * if laps = 1
-	 */
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(startNumber);
-		sb.append("; ");
-		sb.append(name);
-		sb.append("; ");
-		String finishTime = null;
-		if (finishTimes.size() <= 1) {
-
-			finishTime = getTotalTime();
-
-		} else {
-			finishTime = startTimes.get(0).getDifferenceTo(finishTimes.get(0));
-		}
-		sb.append(finishTime);
-		sb.append("; ");
-		sb.append(getStartTime());
-		sb.append("; ");
-		if (finishTimes.size() <= 1) {
-			sb.append(getFinishTime());
-		} else {
-			sb.append(finishTimes.get(0).toString());
-			sb.append("; Flera måltider?");
-			for (int i = 1; i < finishTimes.size(); i++) {
-				sb.append(" ");
-				sb.append(finishTimes.get(i));
-			}
-
-		}
-		if (startTimes.size() > 1) {
-			sb.append("; Flera starttider?");
-			for (int i = 1; i < startTimes.size(); i++) {
-				sb.append(" ");
-				sb.append(startTimes.get(i));
-			}
-		}
-
-		// Makes sure that finishTime is not "--.--.--"
-		if(!finishTime.equals("--.--.--") && (new RacerTime(finishTime)).compareTo(new RacerTime("00.15.00"))<0){
-			sb.append("; Omöjlig Totaltid?");
-		}
-
-		return sb.toString();
-	}
-
-	/**
-	 * 
-	 * @param laps
-	 * @return
-	 */
-	public String toString(int laps) {
-		if (laps == 1) {
-			return toString();
-		}
-
-		StringBuilder out = new StringBuilder();
-		ArrayList<String> lapTimes = getLapTimes();
-		boolean impossibleLapTime = false;
-
-		out.append(startNumber + "; " + name + "; " + getNumberOfLaps() + "; "
-				+ getTotalTime());
-
-		for (int i = 0; i < laps; i++) {
-			try {
-				String laptime = lapTimes.get(i);
-				RacerTime impossible = new RacerTime("00.15.00");
-
-				if (!laptime.equals("")
-						&& (new RacerTime(laptime)).compareTo(impossible) < 0) {
-					impossibleLapTime = true;
-				}
-				out.append("; " + laptime);
-
-			} catch (IndexOutOfBoundsException e) {
-				// Laptime doesn't exist, print column anyway
-				out.append("; ");
-			}
-		}
-
-		out.append("; " + getStartTime());
-
-		for (int i = 0; i < laps; i++) {
-			try {
-				RacerTime laptime = finishTimes.get(i);
-				out.append("; " + laptime.toString());
-			} catch (IndexOutOfBoundsException e) {
-				// Laptime doesn't exist, print column anyway
-				if(i==laps-1){
-					out.append(";");
-				} else{
-					out.append("; ");
-				}
-			}
-		}
-		
-		if(finishTimes.size()==0){
-			out.append(" Slut?");
-		}
-		
-		if (startTimes.size() > 1) {
-			out.append("; Flera starttider?");
-			for (int i = 1; i < startTimes.size(); i++) {
-				out.append(" ");
-				out.append(startTimes.get(i));
-			}
-		}
-
-		if (impossibleLapTime) {
-			out.append("; Omöjlig varvtid?");
-		}
-
-		return out.toString();
-	}
-
+	public abstract String toString();
+	
 
 	@Override
 	public int hashCode() {
@@ -206,7 +88,7 @@ public class Racer implements Comparable<Racer> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Racer other = (Racer) obj;
+		AbstractRacer other = (AbstractRacer) obj;
 		if (startNumber == null) {
 			if (other.startNumber != null)
 				return false;
@@ -233,7 +115,7 @@ public class Racer implements Comparable<Racer> {
 	 * @return
 	 */
 	@Override
-	public int compareTo(Racer o) {
+	public int compareTo(AbstractRacer o) {
 		return startNumber.compareTo(o.getStartNumber());
 	}
 

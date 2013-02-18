@@ -8,7 +8,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import racer.Racer;
+import racer.AbstractRacer;
 import racer.RacerClass;
 import racer.RacerTime;
 
@@ -16,22 +16,22 @@ import racer.RacerTime;
  * Container for Map with all Racers
  */
 public class Competition {
-	private Map<String, Racer> racers;
+	private Map<String, AbstractRacer> abstractRacers;
 
 	/**
 	 * Creates a new TreeMap
 	 */
 	public Competition() {
-		racers = new TreeMap<String, Racer>();
+		abstractRacers = new TreeMap<String, AbstractRacer>();
 	}
 
 	/**
 	 * Adds a racer
 	 * 
-	 * @param racer
+	 * @param abstractRacer
 	 */
-	private void addRacer(Racer racer) {
-		racers.put(racer.getStartNumber(), racer);
+	private void addRacer(AbstractRacer abstractRacer) {
+		abstractRacers.put(abstractRacer.getStartNumber(), abstractRacer);
 	}
 
 	public void setNames(Map<String, String> names) {
@@ -40,14 +40,14 @@ public class Competition {
 		for (String startNumber : names.keySet()) {
 			// Kontrollerar att raden är ett startnummer
 			if (Character.isDigit(startNumber.charAt(0))) {
-				Racer racer = racers.get(startNumber);
-				if (racer == null) {
-					racer = new Racer(startNumber);
-					addRacer(racer);
+				AbstractRacer abstractRacer = abstractRacers.get(startNumber);
+				if (abstractRacer == null) {
+					abstractRacer = new AbstractRacer(startNumber);
+					addRacer(abstractRacer);
 				}
 
-				racer.setName(names.get(startNumber));
-				racer.setClassType(currentClass);
+				abstractRacer.setName(names.get(startNumber));
+				abstractRacer.setClassType(currentClass);
 			} else {
 				// In this case the start number is the class name
 				currentClass = startNumber;
@@ -60,11 +60,11 @@ public class Competition {
 	 * @param names
 	 */
 	private void identifyNonExistingRacers(Map<String, String> names) {
-		for (String startNumber : racers.keySet()) {
-			Racer racer = racers.get(startNumber);
+		for (String startNumber : abstractRacers.keySet()) {
+			AbstractRacer abstractRacer = abstractRacers.get(startNumber);
 
 			if (!names.keySet().contains(startNumber)) {
-				racer.setClassType("Icke existerande startnummer");
+				abstractRacer.setClassType("Icke existerande startnummer");
 			}
 		}
 
@@ -78,7 +78,7 @@ public class Competition {
 	 * @param laps
 	 *            Amount of specified laps
 	 */
-	public void writeToFile(String filename, int laps, Comparator<Racer> comp) {
+	public void writeToFile(String filename, int laps, Comparator<AbstractRacer> comp) {
 		ResultWriter writer = new ResultWriter(this, filename, comp);
 
 		writer.writeToFile(laps);
@@ -117,27 +117,27 @@ public class Competition {
 	}
 
 	private void addStartTimestoRacer(String startNumber, ArrayList<String> times) {
-		Racer racer = getReferenceToRacer(startNumber);
+		AbstractRacer abstractRacer = getReferenceToRacer(startNumber);
 		for (String time : times) {
-			racer.addStartTime(new RacerTime(time));
+			abstractRacer.addStartTime(new RacerTime(time));
 		}
 	}
 
 	private void addFinishTimestoRacer(String startNumber, ArrayList<String> times) {
-		Racer racer = getReferenceToRacer(startNumber);
+		AbstractRacer abstractRacer = getReferenceToRacer(startNumber);
 		for (String time : times) {
-			racer.addFinishTime(new RacerTime(time));
+			abstractRacer.addFinishTime(new RacerTime(time));
 		}
-		racer.sortFinishTimes();
+		abstractRacer.sortFinishTimes();
 	}
 
-	private Racer getReferenceToRacer(String startNumber) {
-		Racer racer = racers.get(startNumber);
-		if (racer == null) {
-			racer = new Racer(startNumber);
-			addRacer(racer);
+	private AbstractRacer getReferenceToRacer(String startNumber) {
+		AbstractRacer abstractRacer = abstractRacers.get(startNumber);
+		if (abstractRacer == null) {
+			abstractRacer = new AbstractRacer(startNumber);
+			addRacer(abstractRacer);
 		}
-		return racer;
+		return abstractRacer;
 	}
 
 	/**
@@ -148,8 +148,8 @@ public class Competition {
 	public Set<RacerClass> getClassTypes() {
 		Set<RacerClass> set = new TreeSet<RacerClass>();
 
-		for (String key : racers.keySet()) {
-			Racer r = racers.get(key);
+		for (String key : abstractRacers.keySet()) {
+			AbstractRacer r = abstractRacers.get(key);
 
 			set.add(r.getClassType());
 		}
@@ -157,11 +157,11 @@ public class Competition {
 		return set;
 	}
 
-	public Set<Racer> getRacers(RacerClass rc, Comparator<Racer> comp) {
-		TreeSet<Racer> set = new TreeSet<Racer>(comp);
+	public Set<AbstractRacer> getRacers(RacerClass rc, Comparator<AbstractRacer> comp) {
+		TreeSet<AbstractRacer> set = new TreeSet<AbstractRacer>(comp);
 
-		for (String key : racers.keySet()) {
-			Racer r = racers.get(key);
+		for (String key : abstractRacers.keySet()) {
+			AbstractRacer r = abstractRacers.get(key);
 
 			if (r.getClassType().equals(rc)) {
 				set.add(r);

@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Comparator;
 import java.util.Set;
 
-import racer.Racer;
+import racer.AbstractRacer;
 import racer.RacerClass;
 
 public class ResultWriter {
@@ -14,9 +14,9 @@ public class ResultWriter {
 	private Competition data;
 	private String fileName;
 	private String header;
-	private Comparator<Racer> comparator;
+	private Comparator<AbstractRacer> comparator;
 
-	public ResultWriter(Competition data, String filename, Comparator<Racer> comparator) {
+	public ResultWriter(Competition data, String filename, Comparator<AbstractRacer> comparator) {
 
 		this.data = data;
 		this.fileName = filename;
@@ -26,7 +26,7 @@ public class ResultWriter {
 
 	/**
 	 * Loads and sorts racers before printing them to a file. Actual formatting
-	 * is found in Racer class.
+	 * is found in AbstractRacer class.
 	 */
 	public void writeToFile(int laps) {
 		Set<RacerClass> classes = data.getClassTypes();
@@ -45,7 +45,7 @@ public class ResultWriter {
 	}
 	private void writeClassTypeToFile(RacerClass racerClass, int laps) throws IOException {
 
-		Set<Racer> racers = data.getRacers(racerClass, comparator);
+		Set<AbstractRacer> abstractRacers = data.getRacers(racerClass, comparator);
 
 		if (racerClass.toString().length() > 0) {
 			writer.write(racerClass.toString());
@@ -54,9 +54,9 @@ public class ResultWriter {
 
 		// Ser till så att den inte skriver ut fler varv än nödvändigt
 		int maxLapCount = 0;
-		for (Racer racer : racers) {
-			if (maxLapCount < racer.getNumberOfLaps()) {
-				maxLapCount = racer.getNumberOfLaps();
+		for (AbstractRacer abstractRacer : abstractRacers) {
+			if (maxLapCount < abstractRacer.getNumberOfLaps()) {
+				maxLapCount = abstractRacer.getNumberOfLaps();
 			}
 		}
 
@@ -85,8 +85,8 @@ public class ResultWriter {
 		}
 		writer.write(header);
 
-		for (Racer racer : racers) {
-			writer.write(racer.toString(laps));
+		for (AbstractRacer abstractRacer : abstractRacers) {
+			writer.write(abstractRacer.toString(laps));
 			writer.newLine();
 		}
 	}

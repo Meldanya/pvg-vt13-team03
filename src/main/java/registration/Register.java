@@ -105,8 +105,8 @@ public class Register extends Observable {
 	}
 
 	/**
-	 * Reads Racer IDs from nameFile and writes the same startTime for every
-	 * Racer.
+	 * Reads AbstractRacer IDs from nameFile and writes the same startTime for every
+	 * AbstractRacer.
 	 * 
 	 * @param nameFile
 	 *            name of the file containing names of Racers

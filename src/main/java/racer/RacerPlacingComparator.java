@@ -2,10 +2,10 @@ package racer;
 
 import java.util.Comparator;
 
-public class RacerPlacingComparator implements Comparator<Racer> {
+public class RacerPlacingComparator implements Comparator<AbstractRacer> {
 
 	@Override
-	public int compare(Racer o1, Racer o2) {
+	public int compare(AbstractRacer o1, AbstractRacer o2) {
 		// upp och ner-komparator!
 		if (o1.getNumberOfLaps() == o2.getNumberOfLaps()) {
 			// samma antal varv eller maratontävling

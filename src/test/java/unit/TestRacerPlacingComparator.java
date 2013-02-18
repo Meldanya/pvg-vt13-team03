@@ -6,19 +6,19 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import racer.Racer;
+import racer.AbstractRacer;
 import racer.RacerPlacingComparator;
 import racer.RacerTime;
 
 public class TestRacerPlacingComparator {
-	private Racer r1;
-	private Racer r2;
+	private AbstractRacer r1;
+	private AbstractRacer r2;
 	private RacerPlacingComparator comp;
 	
 	@Before
 	public void setUp() {
-		r1 = new Racer("1");
-		r2 = new Racer("2");
+		r1 = new AbstractRacer("1");
+		r2 = new AbstractRacer("2");
 		comp = new RacerPlacingComparator();
 	}
 	
