@@ -70,6 +70,14 @@
 
 <p>Paketet innehåller klasser som gör det möjligt att läsa in filerna som registreringsprogrammet genererar och sorterar all data som fås från inläsningen beroende på tävlingstyp. Klassen ResultWriter.java skriver det sorterade resultatet till fil. Klassen Competition.java representerar en tävling på sådant sätt att sortering kan ske.</p>
 
+<h1>Distribuering på olika datorer</h1>
+
+<p>Varje dator kör ett eget registreringsprogramm som genererar filer med start och sluttider. Dessa filer läses sedan in av sorteringsprogrammet som körs på 1 dator.</p>
+
+<h1>Filer</h1>
+
+<p>Sorter.cfg används vid sorteringen i programmet och beroende på innehåll sorterar programmet olika. pom.xml genereras av plugin-programmet maven och innehåller kod för att bygga en release. Resterande .txt-filer är semikolon-separerade och deras namn beskriver vad dom används till.</p>
+
 </body>
 
 </html>
