@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import racer.RacerFactory;
 import racer.RacerPlacingComparator;
 import constants.FileNames;
 
@@ -19,8 +20,8 @@ public class Sorter {
 	private Competition racers;
 	private SorterConfig config;
 
-	public Sorter() throws IOException {
-		racers = new Competition();
+	public Sorter() throws IOException { 
+		racers = new Competition(new RacerFactory(typeOfContest()));
 
 		initializeConfig();
 		read();
@@ -41,7 +42,9 @@ public class Sorter {
 			// permission to write  
 		}
 	}
-
+	private String typeOfContest(){
+		return config.getProperty("ContestType");
+	}
 	private int laps() {
 		return Integer.parseInt(config.getProperty("NumberOfLaps"));
 	}

@@ -23,7 +23,7 @@ public class TestCompetition {
 
 	@Before
 	public void setUp() throws Exception {
-		competition = new Competition();
+		competition = new Competition(typeOfContest);
 		nameMappings = new HashMap<String, String>();
 	}
 

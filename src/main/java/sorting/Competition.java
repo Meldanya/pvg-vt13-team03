@@ -10,18 +10,22 @@ import java.util.TreeSet;
 
 import racer.AbstractRacer;
 import racer.RacerClass;
+import racer.RacerFactory;
 import racer.RacerTime;
 
 /**
  * Container for Map with all Racers
  */
 public class Competition {
+	private RacerFactory factory;
 	private Map<String, AbstractRacer> abstractRacers;
 
 	/**
 	 * Creates a new TreeMap
+	 * @param factory TODO
 	 */
-	public Competition() {
+	public Competition(RacerFactory factory) {
+		this.factory = factory;
 		abstractRacers = new TreeMap<String, AbstractRacer>();
 	}
 
@@ -42,7 +46,7 @@ public class Competition {
 			if (Character.isDigit(startNumber.charAt(0))) {
 				AbstractRacer abstractRacer = abstractRacers.get(startNumber);
 				if (abstractRacer == null) {
-					abstractRacer = new AbstractRacer(startNumber);
+					abstractRacer = factory.createRacer(startNumber);
 					addRacer(abstractRacer);
 				}
 
@@ -134,7 +138,7 @@ public class Competition {
 	private AbstractRacer getReferenceToRacer(String startNumber) {
 		AbstractRacer abstractRacer = abstractRacers.get(startNumber);
 		if (abstractRacer == null) {
-			abstractRacer = new AbstractRacer(startNumber);
+			abstractRacer = factory.createRacer(startNumber);
 			addRacer(abstractRacer);
 		}
 		return abstractRacer;

@@ -55,7 +55,7 @@ public class CircuitRacer extends AbstractLapRacer {
 		}
 		
 		if(finishTimes.size()==0){
-			out.append(" Slut?");
+			out.append("; Slut?");
 		}
 		
 		if (startTimes.size() > 1) {

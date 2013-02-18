@@ -18,6 +18,7 @@ public class SorterConfig {
 		config.setProperty("FinishFiles", "finish.txt");
 		config.setProperty("ResultFile", "result.txt");
 
+		config.setProperty("ContestType", "Marathon");
 		config.setProperty("NumberOfLaps", "1");
 	}
 

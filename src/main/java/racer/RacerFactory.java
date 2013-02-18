@@ -7,7 +7,7 @@ public class RacerFactory {
 		this.raceType = raceType.toLowerCase();
 	}
 	
-	public AbstractRacer getRacer(String startNumber) {
+	public AbstractRacer createRacer(String startNumber) {
 		if (raceType.equals("circuit")) {
 			return new CircuitRacer(startNumber);
 		}

@@ -20,7 +20,7 @@ public class TestRacerFactory {
 		factory = new RacerFactory("circuit");
 		racer = new CircuitRacer("42");
 
-		assertEquals("RacerFactory doesn't return CircuitRacer", racer, factory.getRacer("42"));
+		assertEquals("RacerFactory doesn't return CircuitRacer", racer, factory.createRacer("42"));
 	}
 
 	@Test
@@ -28,7 +28,7 @@ public class TestRacerFactory {
 		factory = new RacerFactory("lap");
 		racer = new LapRacer("42");
 
-		assertEquals("RacerFactory doesn't return LapRacer", racer, factory.getRacer("42"));
+		assertEquals("RacerFactory doesn't return LapRacer", racer, factory.createRacer("42"));
 	}
 
 	@Test
@@ -36,7 +36,7 @@ public class TestRacerFactory {
 		factory = new RacerFactory("marathon");
 		racer = new MarathonRacer("42");
 
-		assertEquals("RacerFactory doesn't return MarathonRacer", racer, factory.getRacer("42"));
+		assertEquals("RacerFactory doesn't return MarathonRacer", racer, factory.createRacer("42"));
 	}
 
 	@After
