@@ -42,8 +42,7 @@ public class Sorter {
 		}
 	}
 
-	private int laps() { 
-		//TODO NumberFormatException needs catching
+	private int laps() {
 		return Integer.parseInt(config.getProperty("NumberOfLaps"));
 	}
 	private String namefile(){
@@ -55,34 +54,37 @@ public class Sorter {
 	 * @return A list with the goal times.
 	 */
 	public ArrayList<String> finishFiles(){
-		ArrayList<String> finishFiles = new ArrayList<String>();
-		String finishFilesString = config.getProperty("FinishFiles");
-		finishFilesString = finishFilesString.replaceAll("\\s","");
-		String[] finishFilesArray = finishFilesString.split(",");
-		for (int i = 0; i < finishFilesArray.length; i++){
-			finishFiles.add(finishFilesArray[i]);
-		}
-		return finishFiles;
+		return getPropertyMultipleEntries("FinishFiles");
 	}
 
-	private String startFile() {
-		return config.getProperty("StartFile");
+	private ArrayList<String> startFiles() {
+		return getPropertyMultipleEntries("StartFiles");
+	}
+	
+	private ArrayList<String> getPropertyMultipleEntries(String propertyName){
+		ArrayList<String> properties = new ArrayList<String>();
+		String propertiesString = config.getProperty(propertyName);
+		propertiesString = propertiesString.replaceAll("\\s","");
+		String[] propertiesArray = propertiesString.split(",");
+		for (int i = 0; i < propertiesArray.length; i++){
+			properties.add(propertiesArray[i]);
+		}
+		return properties;
 	}
 
 	private String resultfile() {
 		return config.getProperty("ResultFile");
 	}
-	private void read() throws IOException {
-	
+	private void read() throws IOException {		
+		for (String fileName : startFiles()){
+			racers.setStartTimesFromFile(fileName);
+		}
+
 		File directory = new File(".");
 		String[] finishFiles = directory.list(new FinishFileFilter());
-
-		racers.setStartTimesFromFile(startFile());
-
 		for (String fileName : finishFiles) {
 			racers.setFinishTimesFromFile(fileName);
 		}
-
 	}
 	
 	private class FinishFileFilter implements FilenameFilter{
