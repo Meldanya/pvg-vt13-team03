@@ -1,5 +1,6 @@
 package racer;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -113,8 +114,13 @@ public class Racer implements Comparable<Racer> {
 		}
 
 		// Makes sure that finishTime is not "--.--.--"
-		if(!finishTime.equals("--.--.--") && (new RacerTime(finishTime)).compareTo(new RacerTime("00.15.00"))<0){
-			sb.append("; Omöjlig Totaltid?");
+		try {
+			if(!finishTime.equals("--.--.--") && (new RacerTime(finishTime)).compareTo(new RacerTime("00.15.00"))<0){
+				sb.append("; Omöjlig Totaltid?");
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		return sb.toString();
@@ -154,6 +160,9 @@ public class Racer implements Comparable<Racer> {
 				if (includeAbsoluteTimes) {
 					out.append(' ');
 				}
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 		if (includeAbsoluteTimes) {

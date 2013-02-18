@@ -1,5 +1,6 @@
 package sorting;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Set;
@@ -13,7 +14,12 @@ public class SortResultWriter extends Writer {
 	public SortResultWriter(Competition data, String filename,
 			Comparator<Racer> comp, String timeStartIsOpen) {
 		super(data, filename, comp);
-		this.timeStartIsOpen = new RacerTime(timeStartIsOpen);
+		try {
+			this.timeStartIsOpen = new RacerTime(timeStartIsOpen);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -44,16 +50,21 @@ public class SortResultWriter extends Writer {
 		int rank = 1;
 		ArrayList<Racer> unranked = new ArrayList<Racer>();
 		for (Racer racer : racers) {
-			RacerTime totalTime = new RacerTime(racer.getTotalTime());
-			if (totalTime.compareTo(timeStartIsOpen) >= 0) {
-				sb.append(rank);
-				sb.append("; ");
-				sb.append(racer.toString(laps, false));
-				sb.append('\n');
-				rank++;
-			} else {
+			try {
+				RacerTime totalTime = new RacerTime(racer.getTotalTime());
+				if (totalTime.compareTo(timeStartIsOpen) >= 0) {
+					sb.append(rank);
+					sb.append("; ");
+					sb.append(racer.toString(laps, false));
+					sb.append('\n');
+					rank++;
+				} else {
+					unranked.add(racer);
+				}
+			} catch (ParseException e) {
 				unranked.add(racer);
 			}
+			
 		}
 		for (Racer racer : unranked) {
 			sb.append("; ");

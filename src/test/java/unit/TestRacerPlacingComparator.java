@@ -3,6 +3,8 @@ package unit;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.text.ParseException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,7 +25,7 @@ public class TestRacerPlacingComparator {
 	}
 	
 	@Test
-	public void testDifferentNoOfLaps() {
+	public void testDifferentNoOfLaps() throws ParseException {
 		r1.addStartTime(new RacerTime("12.00.00"));
 		r1.addFinishTime(new RacerTime("12.30.00"));
 		r2.addStartTime(new RacerTime("12.00.00"));
@@ -34,7 +36,7 @@ public class TestRacerPlacingComparator {
 	}
 	
 	@Test
-	public void testEqual() {
+	public void testEqual() throws ParseException {
 		r1.addStartTime(new RacerTime("12.00.00"));
 		r1.addFinishTime(new RacerTime("12.30.00"));
 		r2.addStartTime(new RacerTime("12.00.00"));
@@ -44,7 +46,7 @@ public class TestRacerPlacingComparator {
 	}
 	
 	@Test
-	public void testSameNoOfLaps() {
+	public void testSameNoOfLaps() throws ParseException {
 		r1.addStartTime(new RacerTime("12.00.00"));
 		r1.addFinishTime(new RacerTime("12.30.00"));
 		r2.addStartTime(new RacerTime("12.00.00"));
