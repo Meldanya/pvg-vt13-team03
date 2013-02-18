@@ -38,21 +38,17 @@ public class CircuitRacer extends AbstractLapRacer {
 			}
 		}
 
-		out.append("; " + getStartTime());
+		RacerTime startTime = distanceList.get(0).getStartTime();
+		out.append("; "
+				+ ((startTime == null) ? "Start?" : startTime.toString()));
 
-		for (int i = 0; i < laps; i++) {
-			try {
-				RacerTime laptime = finishTimes.get(i);
-				out.append("; " + laptime.toString());
-			} catch (IndexOutOfBoundsException e) {
-				// Laptime doesn't exist, print column anyway
-				if (i == laps - 1) {
-					out.append(";");
-				} else {
-					out.append("; ");
-				}
-			}
-		}
+		/*
+		 * for (int i = 0; i < laps; i++) { try { RacerTime laptime =
+		 * finishTimes.get(i); out.append("; " + laptime.toString()); } catch
+		 * (IndexOutOfBoundsException e) { // Laptime doesn't exist, print
+		 * column anyway if (i == laps - 1) { out.append(";"); } else {
+		 * out.append("; "); } } }
+		 */
 
 		if (finishTimes.size() == 0) {
 			out.append("; Slut?");
@@ -71,5 +67,14 @@ public class CircuitRacer extends AbstractLapRacer {
 		}
 
 		return out.toString();
+	}
+
+	@Override
+	public String getTotalTime() {
+		if (distanceList.isEmpty()) {
+			return "00.00.00";
+		}
+		return "00.00.00";
+		//Vi måste lägga till funktionalitet för att jämföra 2 RacerTimes. Sista med första i detta fallet
 	}
 }

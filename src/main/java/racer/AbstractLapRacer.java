@@ -44,4 +44,10 @@ public abstract class AbstractLapRacer extends AbstractRacer {
 		dist.setFinishTime(string);
 		distanceList.add(dist);
 	}
+	
+	
+	
+	public int getNumberOfLaps(){
+		return distanceList.size();
+	}
 }

@@ -30,43 +30,13 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 	public void setStartNumber(String startNumber) {
 		this.startNumber = startNumber;
 	}
-
-	public String getStartTime() {
-		if (startTimes.size() > 0) {
-			return startTimes.get(0).toString();
-		}
-
-		return "Start?";
-	}
 	
 	public abstract void addStartTime(String string);
 	public abstract void addFinishTime(String string);
 
 
-	public String getFinishTime() {
-		if (finishTimes.size() > 0) {
-			return finishTimes.get(finishTimes.size() - 1).toString();
-		}
-
-		return "Slut?";
-	}
-
-	public void addFinishTime(RacerTime finishTime) {
-		this.finishTimes.add(finishTime);
-	}
-
-	public String getTotalTime() {
-		if (startTimes.size() < 1 || finishTimes.size() < 1) {
-			return "--.--.--";
-		}
-
-		RacerTime startTime = startTimes.get(0);
-		RacerTime finishTime = finishTimes.get(finishTimes.size() - 1);
-
-		return startTime.getDifferenceTo(finishTime);
-	}
+	public abstract String getTotalTime();
 	public abstract String toString();
-	
 	
 	
 
@@ -139,17 +109,11 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 		return lapTimes;
 	}
 
-	public int getNumberOfLaps() {
-		int laps = finishTimes.size();
-
-		// Subtract one lap if the racer lacks a start time
-		laps -= startTimes.size() > 0 ? 0 : 1;
-
-		return laps;
-	}
 
 	public void sortFinishTimes() {
 		Collections.sort(finishTimes);
 	}
+	
+	public abstract int getNumberOfLaps();
 
 }

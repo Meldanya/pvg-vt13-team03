@@ -3,9 +3,15 @@ package racer;
 
 public class MarathonRacer extends AbstractRacer {
 
+	private Distance distance;
+	
 	public MarathonRacer(String startNumber) {
 		super(startNumber);
 		// TODO Auto-generated constructor stub
+	}
+	
+	public String getStartTime() {
+		return distance.getStartTime().toString();
 	}
 
 	/**
@@ -29,7 +35,7 @@ public class MarathonRacer extends AbstractRacer {
 		}
 		sb.append(finishTime);
 		sb.append("; ");
-		sb.append(getStartTime());
+		sb.append(distance.getStartTime().toString());
 		sb.append("; ");
 		if (finishTimes.size() <= 1) {
 			sb.append(getFinishTime());
@@ -56,5 +62,28 @@ public class MarathonRacer extends AbstractRacer {
 		}
 	
 		return sb.toString();
+	}
+
+	@Override
+	public void addStartTime(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addFinishTime(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getTotalTime() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getNumberOfLaps() {
+		return 1;
 	}
 }

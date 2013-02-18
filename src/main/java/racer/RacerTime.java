@@ -26,6 +26,7 @@ public class RacerTime implements Comparable<RacerTime> {
 			e.printStackTrace();
 		}
 	}
+	
 
 	public String toString() {
 		return format.format(time);

@@ -22,8 +22,8 @@ public class TestMarathonRacer {
 
 	@Test
 	public void testTimeFormatting() {
-		marathonRacer.addStartTime(new RacerTime("12.00.00"));
-		marathonRacer.addFinishTime(new RacerTime("13.23.34"));
+		marathonRacer.addStartTime("12.00.00");
+		marathonRacer.addFinishTime("13.23.34");
 	
 		
 		assertEquals("Formatting is wrong", "1; Anders Asson; 01.23.34; 12.00.00; 13.23.34", marathonRacer.toString());
