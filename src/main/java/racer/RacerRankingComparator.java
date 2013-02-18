@@ -2,7 +2,7 @@ package racer;
 
 import java.util.Comparator;
 
-public class RacerPlacingComparator implements Comparator<Racer> {
+public class RacerRankingComparator implements Comparator<Racer> {
 
 	@Override
 	public int compare(Racer o1, Racer o2) {

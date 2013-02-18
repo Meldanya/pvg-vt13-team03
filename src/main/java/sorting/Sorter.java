@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
-import racer.RacerPlacingComparator;
+import racer.RacerRankingComparator;
 import constants.FileNames;
 
 
@@ -111,7 +111,7 @@ public class Sorter {
 		for (int i = 0; i < finishFiles.size(); i++){
 			new ResultWriter(racers, resultfile()).writeToFile(laps());
 			String timeStartIsOpen = config.getProperty("TimeStartIsOpen");
-			new SortResultWriter(racers, FileNames.SORTED_OUTFILE, new RacerPlacingComparator(), timeStartIsOpen).writeToFile(laps());
+			new SortResultWriter(racers, FileNames.SORTED_OUTFILE, new RacerRankingComparator(), timeStartIsOpen).writeToFile(laps());
 		}
 	}
 }

@@ -9,19 +9,19 @@ import org.junit.Before;
 import org.junit.Test;
 
 import racer.Racer;
-import racer.RacerPlacingComparator;
+import racer.RacerRankingComparator;
 import racer.RacerTime;
 
 public class TestRacerPlacingComparator {
 	private Racer r1;
 	private Racer r2;
-	private RacerPlacingComparator comp;
+	private RacerRankingComparator comp;
 	
 	@Before
 	public void setUp() {
 		r1 = new Racer("1");
 		r2 = new Racer("2");
-		comp = new RacerPlacingComparator();
+		comp = new RacerRankingComparator();
 	}
 	
 	@Test

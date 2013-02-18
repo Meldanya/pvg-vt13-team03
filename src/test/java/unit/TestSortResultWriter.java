@@ -19,7 +19,7 @@ import org.junit.Test;
 
 import racer.Racer;
 import racer.RacerClass;
-import racer.RacerPlacingComparator;
+import racer.RacerRankingComparator;
 import racer.RacerTime;
 import sorting.Competition;
 import sorting.SortResultWriter;
@@ -33,7 +33,7 @@ public class TestSortResultWriter {
 	private SortResultWriter writer;
 	private String filename;
 	private String header;
-	private RacerPlacingComparator comp = new RacerPlacingComparator();
+	private RacerRankingComparator comp = new RacerRankingComparator();
 	
 	/**
 	 * @throws java.lang.Exception
