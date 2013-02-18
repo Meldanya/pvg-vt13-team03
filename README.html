@@ -1,0 +1,75 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+</head>
+
+<body>
+
+<h1>Bygga system</h1>
+
+<h2>Steg för steg</h2>
+
+<ol>
+<li>Uppdatera sökvägar till filer i constants/FileNames.java
+<ul><li>Sökvägarna måste vara absoluta (Exempel: /home/user/starttider.txt)</li></ul></li>
+<li>Skapa JAR-filer i Eclipse.
+<ol><li>Öppna export</li>
+<li>Välj Runnable JAR</li>
+<li>Välj SorterProgram för att skapa sorteringsprogram, RegisterProgram för registreringsprogram</li>
+<li>Välj sökväg där filerna ska sparas</li>
+<li>Välj "Package required..."</li></ol></li>
+<li>JAR-filerna ska nu gå att starta genom att dubbelklicka på dem.</li>
+</ol>
+
+<h1>Filstruktur</h1>
+
+<p>Kort beskrivning om vad de olika mapparna i projektet innehåller.</p>
+
+<h2>Manual (doc)</h2>
+
+<p>Manualen finns i mappen doc som HTML-fil. Dubbelklicka på ikonen så öppnas den med förvald webbläsare. </p>
+
+<h2>Tester (test)</h2>
+
+<p>I testmappen finns det filer som behövs för några av enhetstesterna. Se kapitlet under källkod.</p>
+
+<h2>Källkod (src)</h2>
+
+<p>I src-mappen har vi två undermappar, main och test. Main innehåller all källkod för programmet uppdelad i paket, för mer om paket se kapitlet om paket. Test innehåller alla testfiler, detta inkluderar både enhetstester (java/unit) och acceptanstester (java/acceptance). Även nödvändiga filer för acceptanstesterna ligger i testmappen under resources/acceptance.</p>
+
+<h2>Övriga</h2>
+
+<p>Mapparna bin och target innehåller kompilerade programfiler som används vid exekvering och exportering av projektet. Mappen uml innehåller genererade UML-diagram för Green UML programmet.</p>
+
+<h1>Paketuppdelning</h1>
+
+<p>I mainmappen finns det sex olika paket</p>
+
+<h2>constants</h2>
+
+<p>Paketet constants innehåller konstanter för projektet, så som sökvägar till filer.</p>
+
+<h2>enduro</h2>
+
+<p>Ingångsvägen för programmet, startar upp komponenter i GUI. De två klasser som ligger i detta paket innehåller main-metoderna för registrerings- och sorteringsprogrammen.</p>
+
+<h2>gui</h2>
+
+<p>Detta paket innehållet de olika komponenterna som tillsammans bildar användargränssnittet. Ingen funktionalitet finns här.</p>
+
+<h2>racer</h2>
+
+<p>Pakektet innehåller klasser för att kunna representera, jämföra, skriva ut önskad information om en förare mm.</p>
+
+<h2>registration</h2>
+
+<p>Paketet innehåller en klass Register.java vilken i sig har metoder för att registrera tider till förare.</p>
+
+<h2>sorting</h2>
+
+<p>Paketet innehåller klasser som gör det möjligt att läsa in filerna som registreringsprogrammet genererar och sorterar all data som fås från inläsningen beroende på tävlingstyp. Klassen ResultWriter.java skriver det sorterade resultatet till fil. Klassen Competition.java representerar en tävling på sådant sätt att sortering kan ske.</p>
+
+</body>
+
+</html>
