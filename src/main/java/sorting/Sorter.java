@@ -5,9 +5,13 @@ import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import racer.RacerRankingComparator;
+
+import com.google.gson.Gson;
 
 
 /**
@@ -17,11 +21,13 @@ import racer.RacerRankingComparator;
 public class Sorter {
 	private Competition racers;
 	private SorterConfig config;
-	private final String CONFIGFILE = "sorter.cfg";
+	private final String CONFIGFILE = "sorter.cfg"; //Borde ligga i constants?
+	private Gson gson;
 
 	public Sorter() throws IOException {
 		racers = new Competition();
-
+		gson = new Gson();
+					
 		initializeConfig();
 		read();
 		readNames();
