@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.Properties;
 
+import com.google.gson.Gson;
+
 public class SorterConfig {
 	private Properties config;
 
@@ -21,6 +23,9 @@ public class SorterConfig {
 
 		config.setProperty("NumberOfLaps", "1");
 		config.setProperty("TimeStartIsOpen", "01.00.00");
+		
+		
+		config.setProperty("laps", new Gson().toJson(new Lap[0]));
 	}
 
 	/** @param propertyName the name of the property.
