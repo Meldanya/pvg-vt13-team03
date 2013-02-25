@@ -50,4 +50,5 @@ public class TestRacerTime {
 		assertTrue("racerTime not greater than time1", racerTime.compareTo(time1) > 0);
 		assertTrue("racerTime not less than time2", racerTime.compareTo(time2) < 0);
 	}
+
 }

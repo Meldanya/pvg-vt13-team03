@@ -7,33 +7,25 @@ public class LapRacer extends AbstractRacer {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
 	@Override
 	public String toString() {
-		
+
 		StringBuilder sb = new StringBuilder();
-		sb.append(startNumber + "; " + name + "; " + getTotalTime() + "; " + distanceList.size() + "; " + lapsToString());
+		sb.append(startNumber + "; " + name + "; " + getTotalTime() + "; "
+				+ distanceList.size() + "; " + lapsToString());
 		return sb.toString();
 	}
-	
-	private String lapsToString(){
+
+	private String lapsToString() {
 		StringBuilder sb = new StringBuilder();
-		
+
 		sb.append(distanceList.size() + "; ");
-		
-		for(Distance distance : distanceList){
+
+		for (Distance distance : distanceList) {
 			sb.append(distance.toString());
 		}
-		
+
 		return sb.toString();
-	}
-
-
-
-	@Override
-	public String getTotalTime() {
-		
 	}
 
 }

@@ -3,6 +3,7 @@ package racer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class RacerTime implements Comparable<RacerTime> {
 	private Date time;
@@ -11,6 +12,11 @@ public class RacerTime implements Comparable<RacerTime> {
 	public RacerTime() {
 		time = new Date();
 		format = new SimpleDateFormat("HH.mm.ss");
+	}
+
+	public RacerTime(long millisec) {
+		this();
+		time = new Date(millisec);
 	}
 
 	public RacerTime(String inputTime) {
@@ -26,7 +32,6 @@ public class RacerTime implements Comparable<RacerTime> {
 			e.printStackTrace();
 		}
 	}
-	
 
 	public String toString() {
 		return format.format(time);
@@ -41,11 +46,11 @@ public class RacerTime implements Comparable<RacerTime> {
 		return String.format("%02d.%02d.%02d", hours, minutes, seconds);
 	}
 
-	public RacerTime computeLapTime(RacerTime compare){
-		long difference = compare.time.getTime()-time.getTime();
-		return new RacerTime(String.valueOf(difference));
+	public RacerTime computeLapTime(RacerTime compare) {
+		long difference = compare.time.getTime() - time.getTime();
+		return new RacerTime(difference);
 	}
-	
+
 	public String getDifferenceTo(RacerTime compare) {
 		long difference = compare.time.getTime() - time.getTime();
 
@@ -81,5 +86,10 @@ public class RacerTime implements Comparable<RacerTime> {
 			return false;
 		return true;
 	}
+	
+	public long getTime(){
+		return time.getTime();
+	}
+
 
 }

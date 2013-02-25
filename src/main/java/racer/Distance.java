@@ -35,8 +35,9 @@ public class Distance {
 		return finishTime;
 	}
 
-	public RacerTime getLapTime(){
+	public long getLapTime(){
 		RacerTime lapTime = startTime.computeLapTime(finishTime);
-		return lapTime;
+		return lapTime.getTime();
 	}
+	
 }
