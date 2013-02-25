@@ -1,7 +1,5 @@
 package sorting;
 
-import racer.RacerTime;
-
 public class Lap {
 	
 	private int number;

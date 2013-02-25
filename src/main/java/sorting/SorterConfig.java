@@ -61,10 +61,13 @@ public class SorterConfig {
 	}
 
 	/**
-	 * Loads configuration from file and parses it as JSON
+	 * Loads configuration from file and parses it as JSON, suppresses warnings
+	 * as map class needs type definition which is impossible to pass in this
+	 * use case.
 	 * 
 	 * @throws IOException
 	 */
+	@SuppressWarnings("unchecked")
 	public void load() throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(CONFIG_FILE));
 		StringBuilder sb = new StringBuilder();
@@ -74,7 +77,7 @@ public class SorterConfig {
 			sb.append(line);
 			line = reader.readLine();
 		}
-
+		
 		config = gson.fromJson(sb.toString(), Map.class);
 
 		if (config == null) {
