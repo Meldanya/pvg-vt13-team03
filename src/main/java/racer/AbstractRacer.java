@@ -104,14 +104,14 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 //		Collections.sort(finishTimes);
 	}
 
-	public String getTotalTime() {
-		long totalTime = distanceList.get(0).getLapTime();
-		//RacerTime totalTime = new RacerTime(0);
-		for (int i = 1; i < distanceList.size(); i++) {
-			totalTime = totalTime+(distanceList.get(i).getLapTime());
-		}
-		return new RacerTime(totalTime).toString();
-	}
+	public abstract String getTotalTime();// {
+//		long totalTime = distanceList.get(0).getLapTime();
+//		//RacerTime totalTime = new RacerTime(0);
+//		for (int i = 1; i < distanceList.size(); i++) {
+//			totalTime = totalTime+(distanceList.get(i).getLapTime());
+//		}
+//		return new RacerTime(totalTime).toString();
+//	}
 
 	public abstract int getNumberOfLaps();
 
