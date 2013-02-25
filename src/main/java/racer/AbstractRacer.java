@@ -2,6 +2,7 @@ package racer;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * A class representing a racer (aka driver) with a start number, start time and
@@ -12,6 +13,7 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 	private RacerClass classType;
 	protected String startNumber;
 	protected String name;
+	protected List<Distance> distanceList;
 
 	public AbstractRacer(String startNumber) {
 		this.classType = new RacerClass("");
@@ -85,28 +87,6 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 	@Override
 	public int compareTo(AbstractRacer o) {
 		return startNumber.compareTo(o.getStartNumber());
-	}
-
-	public ArrayList<String> getLapTimes() {
-		ArrayList<String> lapTimes = new ArrayList<String>();
-
-		if (finishTimes.size() > 0) {
-			if (startTimes.size() > 0) {
-				String lapOne = startTimes.get(0).getDifferenceTo(
-						finishTimes.get(0));
-				lapTimes.add(lapOne);
-			} else {
-				lapTimes.add("");
-			}
-			for (int i = 1; i < finishTimes.size(); i++) {
-				String lapTime = finishTimes.get(i - 1).getDifferenceTo(
-						finishTimes.get(i));
-
-				lapTimes.add(lapTime);
-			}
-		}
-
-		return lapTimes;
 	}
 
 

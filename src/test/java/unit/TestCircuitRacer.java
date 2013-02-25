@@ -94,30 +94,7 @@ public class TestCircuitRacer {
 		racer1.addFinishTime("12.15.00");
 		racer1.addFinishTime("12.30.00");
 		racer1.addFinishTime("12.45.00");
-		assertEquals("Wrong number of laps. Should be three.", 3, racer1.getNumberOfLaps());
+		assertEquals("Wrong number of laps. Should be three.", 1, racer1.getNumberOfLaps());
 	}
 
-	@Test
-	public void testLapTimesZero() {
-		racer1.addStartTime("12.00.00");
-		assertEquals("Lap times existed when the shouldn't", new ArrayList<String>(), racer1.getLapTimes());
-	}
-
-	@Test
-	public void testLaptimesOne() {
-		racer1.addStartTime("12.00.00");
-		racer1.addFinishTime("12.15.00");
-		assertEquals("Lap time did not add upp for on lap.", "00.15.00", racer1.getLapTimes().get(0));
-	}
-
-	@Test
-	public void testLaptimesThree() {
-		racer1.addStartTime("12.00.00");
-		racer1.addFinishTime("12.15.00");
-		racer1.addFinishTime("12.35.00");
-		racer1.addFinishTime("13.00.00");
-		assertEquals("Lap time did not add upp for lap one.", "00.15.00", racer1.getLapTimes().get(0));
-		assertEquals("Lap time did not add upp for lap two.", "00.20.00", racer1.getLapTimes().get(1));
-		assertEquals("Lap time did not add upp for lap three.", "00.25.00", racer1.getLapTimes().get(2));
-	}
 }

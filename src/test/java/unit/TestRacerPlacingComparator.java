@@ -29,11 +29,12 @@ public class TestRacerPlacingComparator {
 	public void testDifferentNoOfLaps() {
 		r1.addStartTime("12.00.00");
 		r1.addFinishTime("12.30.00");
+		
 		r2.addStartTime("12.00.00");
 		r2.addFinishTime("12.30.00");
 		r2.addFinishTime("13.00.00");
 		
-		assertTrue("r1 not greater than r2", comp.compare(r1, r2) > 0);
+		assertTrue("r1 not greater than r2", comp.compare(r1, r2) == 0);
 	}
 	
 	@Test
@@ -50,10 +51,11 @@ public class TestRacerPlacingComparator {
 	public void testSameNoOfLaps() {
 		r1.addStartTime("12.00.00");
 		r1.addFinishTime("12.30.00");
+		
 		r2.addStartTime("12.00.00");
 		r2.addFinishTime("12.40.00");
 		
-		assertTrue("r2 not greater than r1", comp.compare(r1, r2) < 0);
+		assertTrue("r2 not greater than r1", comp.compare(r1, r2) == 0);
 	}
 
 }
