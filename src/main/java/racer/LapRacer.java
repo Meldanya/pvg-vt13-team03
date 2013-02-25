@@ -36,4 +36,28 @@ public class LapRacer extends AbstractRacer {
 		
 	}
 
+
+
+	@Override
+	public void addStartTime(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void addFinishTime(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public int getNumberOfLaps() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

@@ -80,4 +80,22 @@ public class CircuitRacer extends AbstractRacer {
 		return "00.00.00";
 		//Vi måste lägga till funktionalitet för att jämföra 2 RacerTimes. Sista med första i detta fallet
 	}
+
+	@Override
+	public void addStartTime(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addFinishTime(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getNumberOfLaps() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
