@@ -45,8 +45,11 @@ public class Distance {
 	}
 
 	public RacerTime getLapTime(){
-		RacerTime lapTime = startTimes.get(0).computeLapTime(finishTimes.get(0));
-		return lapTime;
+		if (startTimes.size() > 0 && finishTimes.size() > 0){
+			return startTimes.get(0).computeLapTime(finishTimes.get(0));
+		} else {
+			return new RacerTime();
+		}
 	}
 	
 	public String possibleMultipleStartTimes(){

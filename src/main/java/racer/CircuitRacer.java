@@ -48,10 +48,10 @@ public class CircuitRacer extends AbstractRacer {
 
 	@Override
 	public String getTotalTime() {
-		if (distanceList.isEmpty()) {
-			return "00.00.00";
-		}
-		return "00.00.00";
+		RacerTime startTime = new RacerTime(distanceList.get(0).getStartTime());
+		RacerTime finishTime = new RacerTime(distanceList.get(distanceList.size()-1).getStartTime());
+		String totalTime = finishTime.getDifferenceTo(startTime);
+		return totalTime;
 		//Vi måste lägga till funktionalitet för att jämföra 2 RacerTimes. Sista med första i detta fallet
 	}
 
