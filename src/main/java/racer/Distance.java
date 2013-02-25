@@ -72,7 +72,7 @@ public class Distance {
 		}
 		return sb.toString();
 	}
-	/** @return Error messag if finishTime is "--.--.--" */
+	/** @return Error message if finishTime is "--.--.--" */
 	public String possibleImpossibleTotalTime(){
 		RacerTime lapTime = getLapTime();
 		if(!lapTime.equals("--.--.--") && (lapTime).compareTo(minTime)<0){
