@@ -3,7 +3,7 @@ package racer;
 public class MarathonRacer extends AbstractRacer {
 	public MarathonRacer(String startNumber) {
 		super(startNumber);
-		distanceList.add(new Distance());
+		
 	}
 
 	public String getStartTime() {
@@ -20,7 +20,6 @@ public class MarathonRacer extends AbstractRacer {
 	 */
 	@Override
 	public String toString() {
-		// /// Skriv om - skriv rätt => Tester kommer gå igenom
 		StringBuilder sb = new StringBuilder();
 		sb.append(startNumber);
 		sb.append("; ");

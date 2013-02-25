@@ -22,7 +22,6 @@ import sorting.Competition;
 import sorting.ResultWriter;
 
 /**
- * @author dat11rla
  *
  */
 public class TestResultWriter {

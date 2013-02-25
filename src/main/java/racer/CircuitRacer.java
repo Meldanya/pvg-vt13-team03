@@ -81,8 +81,8 @@ public class CircuitRacer extends AbstractRacer {
 
 	@Override
 	public int getNumberOfLaps() {
-		// TODO Auto-generated method stub
-		return 0;
+		//-1 because addFinishTime should always start a new distance:
+		return distanceList.size() - 1 ; 
 	}
 
 	@Override

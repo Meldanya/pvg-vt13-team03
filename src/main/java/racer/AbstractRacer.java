@@ -1,7 +1,6 @@
 package racer;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -19,6 +18,7 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 		this.classType = new RacerClass("");
 		this.startNumber = startNumber;
 		this.distanceList = new ArrayList<Distance>();
+		distanceList.add(new Distance());
 		this.name = "";
 	}
 
