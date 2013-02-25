@@ -1,6 +1,6 @@
 package racer;
 
-public class LapRacer extends AbstractLapRacer {
+public class LapRacer extends AbstractRacer {
 
 	public LapRacer(String startNumber) {
 		super(startNumber);
