@@ -2,6 +2,7 @@ package racer;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * A class representing a racer (aka driver) with a start number, start time and
@@ -12,6 +13,7 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 	private RacerClass classType;
 	protected String startNumber;
 	protected String name;
+	protected List<Distance> distanceList;
 
 	public AbstractRacer(String startNumber) {
 		this.classType = new RacerClass("");
