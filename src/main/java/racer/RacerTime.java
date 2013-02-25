@@ -41,6 +41,11 @@ public class RacerTime implements Comparable<RacerTime> {
 		return String.format("%02d.%02d.%02d", hours, minutes, seconds);
 	}
 
+	public RacerTime computeLapTime(RacerTime compare){
+		long difference = compare.time.getTime()-time.getTime();
+		return new RacerTime(String.valueOf(difference));
+	}
+	
 	public String getDifferenceTo(RacerTime compare) {
 		long difference = compare.time.getTime() - time.getTime();
 

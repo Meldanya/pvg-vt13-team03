@@ -45,4 +45,9 @@ public class Distance {
 	public void addFinishTime(String string) {
 		finishTimes.add(new RacerTime(string));
 	}
+
+	public RacerTime getLapTime(){
+		RacerTime lapTime = startTimes.get(0).computeLapTime(finishTimes.get(0));
+		return lapTime;
+	}
 }
