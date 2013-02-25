@@ -110,9 +110,9 @@ StartNo; Namn
 		<p>Programmet läser in start- och måltider och namn från filer som angivits i konfigurationen. Om en totaltid inte kan beräknas för att antingen start- eller måltid saknas skrivs istället --.--.-- ut.</p>
 		<p>Om en starttid eller sluttid saknas så skrivs istället <code>Start?</code> respektive <code>Slut?</code> ut. Då flera start- eller måltider registrerats så skrivs en notering ut tillsammans med alla överflödiga registeringar på formen <code>Flera starttider? 12.12.00 12.13.30</code>. Om en totaltid anses vara orimlig skrivs <code>Omöjlig Totaltid?</code> ut.</p>
 		<h2>Konfiguration</h2>
-		<p>Sorteringsprogrammet konfigureras med hjälp av filen <code>sorter.cfg</code> placerad i hemkatalogen. Filen består av ett antal tilldelningssatser, en per rad, där en inställning tilldelas ett värde. Ett exempel som tilldelar NumberOfLaps värdet 1:
-		  <pre>NumberOfLaps=1</pre>
-Rader som inleds med ett brädgårdstecken (#) betraktas som kommentarer och ignoreras av sorteringsprogrammet. Alla filnamn anges relativt från användarens hemkatalog.
+		<p>Sorteringsprogrammet konfigureras med hjälp av filen <code>sorter.cfg</code> placerad i hemkatalogen. Filen är JSON-formatterad. Värdena avskiljs med kolon. Ett exempel som tilldelar NumberOfLaps värdet 1:
+		  <pre>{<br>"NumberOfLaps":"1",<br>"StartFiles":"start.txt"<br>}</pre>
+		Alla filnamn anges relativt från användarens hemkatalog.
 		  <h3>Inställningsvärden</h3>
 		  <dl>
 		    <dt>Namefile</dt>
