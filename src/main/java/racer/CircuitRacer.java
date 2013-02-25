@@ -13,8 +13,6 @@ public class CircuitRacer extends AbstractRacer {
 	 * @return
 	 */
 	public String toString() {
-		
-		
 		///// Skriv om - skriv rätt => Tester kommer gå igenom
 		int laps = distanceList.size();
 		StringBuilder out = new StringBuilder();
