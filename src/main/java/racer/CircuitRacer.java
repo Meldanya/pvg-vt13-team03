@@ -82,20 +82,20 @@ public class CircuitRacer extends AbstractRacer {
 	}
 
 	@Override
-	public void addStartTime(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addFinishTime(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public int getNumberOfLaps() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void addStartTime(RacerTime racerTime) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addFinishTime(RacerTime racerTime) {
+		// TODO Auto-generated method stub
+		
 	}
 }

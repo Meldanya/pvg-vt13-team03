@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import racer.Distance;
+import racer.RacerTime;
 
 public class TestDistance {
 
@@ -15,8 +16,8 @@ public class TestDistance {
 	@Before
 	public void setUp() throws Exception {
 		distance = new Distance();
-		distance.addStartTime("11.00.00");
-		distance.addFinishTime("12.00.00");
+		distance.addStartTime(new RacerTime("11.00.00"));
+		distance.addFinishTime(new RacerTime("12.00.00"));
 	}
 	@Test
 	public void testTimeFormatting() {

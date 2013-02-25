@@ -36,12 +36,12 @@ public class Distance {
 			return finishTimes.get(0).toString();
 		}
 	}
-	public void addStartTime(String string) {
-		startTimes.add(new RacerTime(string));
+	public void addStartTime(RacerTime racerTime) {
+		startTimes.add(racerTime);
 	}
 	
-	public void addFinishTime(String string) {
-		finishTimes.add(new RacerTime(string));
+	public void addFinishTime(RacerTime racerTime) {
+		finishTimes.add(racerTime);
 	}
 
 	public RacerTime getLapTime(){
