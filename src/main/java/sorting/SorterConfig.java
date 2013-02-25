@@ -11,7 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class SorterConfig {
-	public static final String CONFIGFILE = "sorter.cfg";
+	public static final String CONFIG_FILE = "sorter.cfg";
 
 	private Gson gson;
 	private Map<String, Object> config;
@@ -21,41 +21,34 @@ public class SorterConfig {
 		config = new TreeMap<String, Object>();
 	}
 
+	/**
+	 * Set as its own method to allow for creating empty configuration
+	 */
 	public void setDefaults() {
-		config.put("Namefile", "namnfil.txt");
-		config.put("StartFiles", "start.txt");
-		config.put("FinishFiles", "finish.txt");
-		config.put("ResultFile", "result.txt");
-		config.put("SortedResultFile", "sortresultat.txt");
-
-		config.put("NumberOfLaps", "1");
-		config.put("TimeStartIsOpen", "01.00.00");
-		config.put("Laps", new Lap[] { new Lap() });
-	}
-
-	public static void main(String args[]) {
-		SorterConfig conf = new SorterConfig();
-		conf.setDefaults();
-
-		try {
-			conf.store("sorter.cfg");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		set("Namefile", "namnfil.txt");
+		set("StartFiles", "start.txt");
+		set("FinishFiles", "finish.txt");
+		set("ResultFile", "result.txt");
+		set("SortedResultFile", "sortresultat.txt");
+		set("NumberOfLaps", "1");
+		set("TimeStartIsOpen", "01.00.00");
+		set("Laps", new Lap[] { new Lap() });
 	}
 
 	/**
+	 * Masks private map
+	 * 
 	 * @param propertyName
 	 *            the name of the property.
 	 * @return the value in this property list with the specified name.
-	 * @see java.util.Properties#getProperty(java.lang.String)
 	 */
-	public Object getProperty(String propertyName) {
+	public Object get(String propertyName) {
 		return config.get(propertyName);
 	}
 
 	/**
+	 * Masks private map
+	 * 
 	 * @param propertyName
 	 *            the property to be placed into this property list.
 	 * @param propertyValue
@@ -63,18 +56,17 @@ public class SorterConfig {
 	 * @return the previous value of the specified property in this property
 	 *         list, or null if it did not have one.
 	 */
-	public Object setProperty(String propertyName, Object propertyValue) {
+	public Object set(String propertyName, Object propertyValue) {
 		return config.put(propertyName, propertyValue);
 	}
 
 	/**
-	 * @param filename
-	 *            The filename to load the config from
+	 * Loads configuration from file and parses it as JSON
+	 * 
 	 * @throws IOException
-	 * @see java.util.Properties#load(java.io.Reader)
 	 */
-	public void load(String filename) throws IOException {
-		BufferedReader reader = new BufferedReader(new FileReader(filename));
+	public void load() throws IOException {
+		BufferedReader reader = new BufferedReader(new FileReader(CONFIG_FILE));
 		StringBuilder sb = new StringBuilder();
 		String line = reader.readLine();
 
@@ -84,19 +76,21 @@ public class SorterConfig {
 		}
 
 		config = gson.fromJson(sb.toString(), Map.class);
+
+		if (config == null) {
+			throw new EmptyConfigurationFileException();
+		}
 	}
 
 	/**
-	 * @param filename
-	 *            The filename to store the config to
-	 * @param comments
+	 * Outputs the configuration to a configuration file formatted as JSON
+	 * 
 	 * @throws IOException
-	 * @see java.util.Properties#store(java.io.Writer, java.lang.String)
 	 */
-	public void store(String filename) throws IOException {
-		PrintWriter writer = new PrintWriter(filename);
+	public void store() throws IOException {
+		PrintWriter writer = new PrintWriter(CONFIG_FILE);
 		String json = gson.toJson(config);
-		
+
 		writer.write(json);
 		writer.close();
 	}

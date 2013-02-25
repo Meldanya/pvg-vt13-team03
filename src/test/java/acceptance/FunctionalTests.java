@@ -75,8 +75,8 @@ public class FunctionalTests {
 	}
 
 	private void setNumberOfLapsInConfigFile(int laps) throws IOException {
-		config.setProperty("NumberOfLaps", String.valueOf(laps));
-		config.store("sorter.cfg");
+		config.set("NumberOfLaps", String.valueOf(laps));
+		config.store();
 	}
 	
 	@After

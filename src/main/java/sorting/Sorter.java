@@ -41,19 +41,23 @@ public class Sorter {
 		config = new SorterConfig();
 
 		try {
-			config.load(SorterConfig.CONFIGFILE);
+			config.load();
 		} catch (FileNotFoundException e1) {
 			config = new SorterConfig();
 			config.setDefaults();
-			config.store(SorterConfig.CONFIGFILE);  
+			config.store();
+		} catch (EmptyConfigurationFileException e1) {
+			config = new SorterConfig();
+			config.setDefaults();
+			config.store();
 		}
 	}
 
 	private int laps() {
-		return Integer.parseInt((String) config.getProperty("NumberOfLaps"));
+		return Integer.parseInt((String) config.get("NumberOfLaps"));
 	}
 	private String namefile(){
-		return (String) config.getProperty("Namefile");
+		return (String) config.get("Namefile");
 	}
 	
 	/**
@@ -70,7 +74,7 @@ public class Sorter {
 	
 	private ArrayList<String> getPropertyMultipleEntries(String propertyName){
 		ArrayList<String> properties = new ArrayList<String>();
-		String propertiesString = (String) config.getProperty(propertyName);
+		String propertiesString = (String) config.get(propertyName);
 		propertiesString = propertiesString.replaceAll("\\s",""); // strip whitespace
 		String[] propertiesArray = propertiesString.split(",");
 		for (int i = 0; i < propertiesArray.length; i++){
@@ -80,7 +84,7 @@ public class Sorter {
 	}
 
 	public String resultfile() {
-		return (String) config.getProperty("ResultFile");
+		return (String) config.get("ResultFile");
 	}
 	private void read() throws IOException {		
 		for (String fileName : startFiles()){
@@ -117,8 +121,8 @@ public class Sorter {
 		ArrayList<String> finishFiles = finishFiles();
 		for (int i = 0; i < finishFiles.size(); i++){
 			new ResultWriter(racers, resultfile()).writeToFile(laps());
-			String timeStartIsOpen = (String) config.getProperty("TimeStartIsOpen");
-			new SortResultWriter(racers, (String) config.getProperty("SortedResultFile"), new RacerRankingComparator(), timeStartIsOpen).writeToFile(laps());
+			String timeStartIsOpen = (String) config.get("TimeStartIsOpen");
+			new SortResultWriter(racers, (String) config.get("SortedResultFile"), new RacerRankingComparator(), timeStartIsOpen).writeToFile(laps());
 		}
 	}
 }

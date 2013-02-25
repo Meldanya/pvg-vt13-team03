@@ -28,20 +28,20 @@ public class TestSorterConfig {
 	public void testSetDefaultConfig() throws IOException {
 		conf.setDefaults();
 		
-		assertEquals("namnfil.txt", conf.getProperty("Namefile"));
-		assertEquals("start.txt", conf.getProperty("StartFiles"));
+		assertEquals("namnfil.txt", conf.get("Namefile"));
+		assertEquals("start.txt", conf.get("StartFiles"));
 	}
 
 	@Test
 	public void testStoreConfig() throws IOException {
 		conf.setDefaults();
-		conf.store(SorterConfig.CONFIGFILE);
+		conf.store();
 
 		conf = new SorterConfig();
-		conf.load(SorterConfig.CONFIGFILE);
+		conf.load();
 		
-		assertEquals("namnfil.txt", conf.getProperty("Namefile"));
-		assertEquals("start.txt", conf.getProperty("StartFiles"));
+		assertEquals("namnfil.txt", conf.get("Namefile"));
+		assertEquals("start.txt", conf.get("StartFiles"));
 	}
 
 }
