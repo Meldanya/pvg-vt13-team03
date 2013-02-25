@@ -62,9 +62,9 @@ public class Distance {
 
 	public String getLapTimeString() {
 		if (startTimes.size() > 0 && finishTimes.size() > 0) {
-			return computeRacerTime().toString();
+			return "; "+computeRacerTime().toString();
 		} else {
-			return "--.--.--";
+			return "";
 		}
 	}
 
@@ -95,7 +95,9 @@ public class Distance {
 	/** @return Error message if finishTime is "--.--.--" */
 	public String possibleImpossibleTotalTime() {
 		String lapTime = getLapTimeString();
-		if (!lapTime.equals("--.--.--") && (lapTime).compareTo(minTime) < 0) {
+		if (lapTime.equals("")){
+			return "";
+		} else if ((lapTime).compareTo(minTime) < 0) {
 			return ("; Omöjlig Totaltid?");
 		}
 		return "";

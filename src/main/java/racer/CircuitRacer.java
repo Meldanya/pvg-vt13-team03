@@ -25,10 +25,10 @@ public class CircuitRacer extends AbstractRacer {
 
 		// Varvtider:
 		for (Distance lap: distanceList) {
-			sb.append("; ");
 			sb.append(lap.getLapTimeString());
 		}
-
+		
+		//Den första starttiden:
 		sb.append("; ");
 		sb.append(distanceList.get(0).getStartTime());
 
