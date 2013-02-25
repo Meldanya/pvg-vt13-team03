@@ -11,7 +11,11 @@ public class MarathonRacer extends AbstractRacer {
 	}
 
 	private Distance firstDistance() {
-		return distanceList.get(0);
+		if (!distanceList.isEmpty()){
+			return distanceList.get(0);
+		} else {
+			return null;
+		}
 	}
 
 	/**
