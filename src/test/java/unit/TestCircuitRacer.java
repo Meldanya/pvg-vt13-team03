@@ -64,7 +64,6 @@ public class TestCircuitRacer {
 		}
 		assertEquals(10, racer1.getNumberOfLaps());
 	}
-
 	@Ignore
 	@Test
 	public void testFinishTime() {
@@ -72,7 +71,7 @@ public class TestCircuitRacer {
 
 			racer1.addFinishTime("11.12." + i);
 		}
-	//	assertEquals(racer1.getFinishTime(), "11.12.09");
+//		assertEquals(racer1.getFinishTime(), "11.12.09");
 	}
 
 	@Test
