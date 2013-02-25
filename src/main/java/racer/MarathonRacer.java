@@ -24,7 +24,6 @@ public class MarathonRacer extends AbstractRacer {
 		sb.append(startNumber);
 		sb.append("; ");
 		sb.append(name);
-		sb.append("; ");
 		sb.append(getTotalTime());
 		sb.append("; ");
 
