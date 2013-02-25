@@ -18,6 +18,7 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 	public AbstractRacer(String startNumber) {
 		this.classType = new RacerClass("");
 		this.startNumber = startNumber;
+		this.distanceList = new ArrayList<Distance>();
 		this.name = "";
 	}
 
@@ -33,9 +34,18 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 		this.startNumber = startNumber;
 	}
 
-	public abstract void addStartTime(String string);
+	
+	public void addStartTime(String time){
+		addStartTime(new RacerTime(time));
+	}
+	public abstract void addStartTime(RacerTime racerTime);
+	
+	public void addFinishTime(String time){
+		addFinishTime(new RacerTime(time));
+	}
+	public abstract void addFinishTime(RacerTime racerTime);
 
-	public abstract void addFinishTime(String string);
+
 
 	public abstract String toString();
 
@@ -89,16 +99,17 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 	}
 
 	public void sortFinishTimes() {
-		Collections.sort(finishTimes);
+//		TODO: fix this!
+//		Collections.sort(finishTimes);
 	}
 
-	public RacerTime getTotalTime() {
-		RacerTime totalTime = distanceList.get(0).getLapTime();
+	public String getTotalTime() {
+		long totalTime = distanceList.get(0).getLapTime();
 		//RacerTime totalTime = new RacerTime(0);
 		for (int i = 1; i < distanceList.size(); i++) {
-			totalTime = totalTime.add(distanceList.get(i).getLapTime());
+			totalTime = totalTime+(distanceList.get(i).getLapTime());
 		}
-		return totalTime;
+		return new RacerTime(totalTime).toString();
 	}
 
 	public abstract int getNumberOfLaps();

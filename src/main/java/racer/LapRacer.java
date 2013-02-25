@@ -28,4 +28,28 @@ public class LapRacer extends AbstractRacer {
 		return sb.toString();
 	}
 
+
+
+	@Override
+	public int getNumberOfLaps() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+	@Override
+	public void addStartTime(RacerTime racerTime) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void addFinishTime(RacerTime racerTime) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -1,17 +1,21 @@
 package racer;
 
-
 public class MarathonRacer extends AbstractRacer {
-
-	private Distance distance;
-	
 	public MarathonRacer(String startNumber) {
 		super(startNumber);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public String getStartTime() {
-		return distance.getStartTime().toString();
+		return firstDistance().getStartTime().toString();
+	}
+
+	private Distance firstDistance() {
+		if (!distanceList.isEmpty()){
+			return distanceList.get(0);
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -20,72 +24,59 @@ public class MarathonRacer extends AbstractRacer {
 	 */
 	@Override
 	public String toString() {
-		
-		///// Skriv om - skriv rätt => Tester kommer gå igenom
+		// /// Skriv om - skriv rätt => Tester kommer gå igenom
 		StringBuilder sb = new StringBuilder();
 		sb.append(startNumber);
 		sb.append("; ");
 		sb.append(name);
 		sb.append("; ");
-		String finishTime = null;
-		if (finishTimes.size() <= 1) {
-	
-			finishTime = getTotalTime();
-	
-		} else {
-			finishTime = startTimes.get(0).getDifferenceTo(finishTimes.get(0));
-		}
-		sb.append(finishTime);
+		sb.append(getTotalTime());
 		sb.append("; ");
-		sb.append(distance.getStartTime().toString());
+
+		Distance distance = firstDistance();
+
+		sb.append(distance.getStartTime());
 		sb.append("; ");
-		if (finishTimes.size() <= 1) {
-			sb.append(getFinishTime());
-		} else {
-			sb.append(finishTimes.get(0).toString());
-			sb.append("; Flera måltider?");
-			for (int i = 1; i < finishTimes.size(); i++) {
-				sb.append(" ");
-				sb.append(finishTimes.get(i));
-			}
-	
-		}
-		if (startTimes.size() > 1) {
-			sb.append("; Flera starttider?");
-			for (int i = 1; i < startTimes.size(); i++) {
-				sb.append(" ");
-				sb.append(startTimes.get(i));
-			}
-		}
-	
-		// Makes sure that finishTime is not "--.--.--"
-		if(!finishTime.equals("--.--.--") && (new RacerTime(finishTime)).compareTo(new RacerTime("00.15.00"))<0){
-			sb.append("; Omöjlig Totaltid?");
-		}
-	
+		sb.append(distance.getFinishTime());
+
+		sb.append(distance.possibleMultipleFinishTimes());
+
+		sb.append(distance.possibleMultipleStartTimes());
+
+		sb.append(distance.possibleImpossibleTotalTime());
+
 		return sb.toString();
 	}
 
 	@Override
-	public void addStartTime(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addFinishTime(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public String getTotalTime() {
-		// TODO Auto-generated method stub
-		return null;
+		return firstDistance().getLapTimeString();
 	}
 
 	@Override
 	public int getNumberOfLaps() {
 		return 1;
+	}
+
+	@Override
+	public void addStartTime(RacerTime racerTime) {
+		if (firstDistance() == null){
+			Distance distance = new Distance();
+			distance.addStartTime(racerTime);
+			distanceList.add(distance);
+		} else {
+			firstDistance().addStartTime(racerTime);
+		}
+	}
+	
+	@Override
+	public void addFinishTime(RacerTime racerTime) {
+		if (firstDistance() == null){
+			Distance distance = new Distance();
+			distance.addFinishTime(racerTime);
+			distanceList.add(distance);
+		} else {
+			firstDistance().addFinishTime(racerTime);
+		}
 	}
 }

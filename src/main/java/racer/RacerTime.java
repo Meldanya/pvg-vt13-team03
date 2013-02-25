@@ -12,6 +12,7 @@ public class RacerTime implements Comparable<RacerTime> {
 	public RacerTime() {
 		time = new Date();
 		format = new SimpleDateFormat("HH.mm.ss");
+		format.getTimeZone().setRawOffset(0);
 	}
 
 	public RacerTime(long millisec) {
@@ -39,13 +40,14 @@ public class RacerTime implements Comparable<RacerTime> {
 
 	private String formatString(long milliseconds) {
 		int seconds = (int) (milliseconds / 1000);
-		int hours = seconds / 3600;
+		int hours = Math.round(seconds / 3600f);
 		int minutes = (seconds - hours * 3600) / 60;
 		seconds -= hours * 3600 + minutes * 60;
 
 		return String.format("%02d.%02d.%02d", hours, minutes, seconds);
 	}
-
+	
+	//test
 	public RacerTime computeLapTime(RacerTime compare) {
 		long difference = compare.time.getTime() - time.getTime();
 		return new RacerTime(difference);
@@ -90,6 +92,4 @@ public class RacerTime implements Comparable<RacerTime> {
 	public long getTime(){
 		return time.getTime();
 	}
-
-
 }

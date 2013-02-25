@@ -1,43 +1,96 @@
 package racer;
 
-public class Distance {
+import java.util.ArrayList;
+import java.util.List;
 
-	private RacerTime startTime, finishTime;
-	
+public class Distance {
+	private List<RacerTime> startTimes, finishTimes;
+	private String minTime;
 
 	public Distance() {
-		
+		startTimes = new ArrayList<RacerTime>();
+		finishTimes = new ArrayList<RacerTime>();
+		minTime = "00.15.00";
 	}
 	
 	public String toString(){
+		String start = getStartTime();
+		String finish = getFinishTime();
 		
-		String start = (startTime == null) ? "Start?" : startTime.toString();
-		String finish = (finishTime == null) ? "Slut?" : finishTime.toString();
-		
-		return startTime.getDifferenceTo(finishTime) + "; " + start + "; " + finish;	
-	}
-	
-	public void setStartTime(String string) {
-		startTime = new RacerTime(string);
-		
+		return startTimes.get(0).getDifferenceTo(finishTimes.get(0)) + "; " + start + "; " + finish;	
 	}
 
-	public void setFinishTime(String string) {
-		finishTime = new RacerTime(string);
-		
+	public String getStartTime() {
+		int startTimesSize = startTimes.size();
+		if (startTimesSize == 0){
+			return "Start?";
+		} else {
+			return startTimes.get(0).toString();
+		}
+	}
+	public String getFinishTime() {
+		int finishTimesSize = finishTimes.size();
+		if (finishTimesSize == 0){
+			return "Slut?";
+		} else {
+			return finishTimes.get(0).toString();
+		}
+	}
+	public void addStartTime(RacerTime racerTime) {
+		startTimes.add(racerTime);
 	}
 	
-	public RacerTime getStartTime() {
-		return startTime;
+	public void addFinishTime(RacerTime racerTime) {
+		finishTimes.add(racerTime);
 	}
+	
 
-	public RacerTime getFinishTime() {
-		return finishTime;
+	private RacerTime computeRacerTime(){
+		return startTimes.get(0).computeLapTime(finishTimes.get(0));
 	}
+	
 
 	public long getLapTime(){
-		RacerTime lapTime = startTime.computeLapTime(finishTime);
+		RacerTime lapTime = computeRacerTime();
 		return lapTime.getTime();
 	}
 	
+
+	public String getLapTimeString(){
+		RacerTime lapTime = computeRacerTime();
+		return lapTime.toString();
+	}
+	
+	public String possibleMultipleStartTimes(){
+		StringBuilder sb = new StringBuilder();
+		if (startTimes.size() > 1) {
+			sb.append("; Flera starttider?");
+			for (int i = 1; i < startTimes.size(); i++) {
+				sb.append(" ");
+				sb.append(startTimes.get(i));
+			}
+		}
+		return sb.toString();
+	}
+	
+	public String possibleMultipleFinishTimes(){
+		StringBuilder sb = new StringBuilder();
+		if (finishTimes.size() > 1) {
+			sb.append("; Flera måltider?");
+			for (int i = 1; i < finishTimes.size(); i++) {
+				sb.append(" ");
+				sb.append(finishTimes.get(i));
+			}
+		}
+		return sb.toString();
+	}
+	/** @return Error messag if finishTime is "--.--.--" */
+	public String possibleImpossibleTotalTime(){
+		String lapTime = getLapTimeString();
+		if(!lapTime.equals("--.--.--") && (lapTime).compareTo(minTime)<0){
+			return("; Omöjlig Totaltid?");
+		}
+		return "";
+	}
+
 }
