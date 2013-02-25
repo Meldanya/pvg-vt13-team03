@@ -24,4 +24,10 @@ public class TestDistance {
 		assertEquals("Formatting is wrong", "01.00.00; 11.00.00; 12.00.00", distance.toString());
 	}
 
+	@Test
+	public void testGetLapTime(){
+		distance.setStartTime("11.00.00");
+		distance.setFinishTime("12.00.00");
+		assertEquals("getLapTime is wrong", "01.00.00", distance.getLapTime().toString());
+	}
 }
