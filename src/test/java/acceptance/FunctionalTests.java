@@ -25,6 +25,7 @@ public class FunctionalTests {
 	public void setUp() {
 		cleanUp();
 		config = new SorterConfig();
+		config.setDefaults();
 	}
 
 	@Test
@@ -75,7 +76,7 @@ public class FunctionalTests {
 
 	private void setNumberOfLapsInConfigFile(int laps) throws IOException {
 		config.setProperty("NumberOfLaps", String.valueOf(laps));
-		config.store("sorter.cfg", "Test config for Enduro Sorter");
+		config.store("sorter.cfg");
 	}
 	
 	@After
@@ -97,8 +98,8 @@ public class FunctionalTests {
 		file.delete();
 		file = new File("namnfil.txt");
 		file.delete();
-		file = new File("sorter.cfg");
-		file.delete();
+//		file = new File("sorter.cfg");
+//		file.delete();
 	}
 
     /**

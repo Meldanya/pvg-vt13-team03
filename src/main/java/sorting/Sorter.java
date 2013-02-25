@@ -5,9 +5,13 @@ import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import racer.RacerRankingComparator;
+
+import com.google.gson.Gson;
 
 
 /**
@@ -17,11 +21,10 @@ import racer.RacerRankingComparator;
 public class Sorter {
 	private Competition racers;
 	private SorterConfig config;
-	private final String CONFIGFILE = "sorter.cfg";
 
 	public Sorter() throws IOException {
 		racers = new Competition();
-
+					
 		initializeConfig();
 		read();
 		readNames();
@@ -29,24 +32,28 @@ public class Sorter {
 		write();
 	}
 
-	/** @throws IOException */
+	/**
+	 * Tries to load config from file, if file cannot be found we instead load
+	 * the defaults and create a new file.
+	 * @throws IOException
+	 */
 	private void initializeConfig() throws IOException {
-		this.config = new SorterConfig();
+		config = new SorterConfig();
 
 		try {
-			config.load(CONFIGFILE);
+			config.load(SorterConfig.CONFIGFILE);
 		} catch (FileNotFoundException e1) {
-			new SorterConfig().store(CONFIGFILE, "Default config for Enduro Sorter");
-			// May throw an exception. For example if the user doesn't have
-			// permission to write  
+			config = new SorterConfig();
+			config.setDefaults();
+			config.store(SorterConfig.CONFIGFILE);  
 		}
 	}
 
 	private int laps() {
-		return Integer.parseInt(config.getProperty("NumberOfLaps"));
+		return Integer.parseInt((String) config.getProperty("NumberOfLaps"));
 	}
 	private String namefile(){
-		return config.getProperty("Namefile");
+		return (String) config.getProperty("Namefile");
 	}
 	
 	/**
@@ -63,8 +70,8 @@ public class Sorter {
 	
 	private ArrayList<String> getPropertyMultipleEntries(String propertyName){
 		ArrayList<String> properties = new ArrayList<String>();
-		String propertiesString = config.getProperty(propertyName);
-		propertiesString = propertiesString.replaceAll("\\s","");
+		String propertiesString = (String) config.getProperty(propertyName);
+		propertiesString = propertiesString.replaceAll("\\s",""); // strip whitespace
 		String[] propertiesArray = propertiesString.split(",");
 		for (int i = 0; i < propertiesArray.length; i++){
 			properties.add(propertiesArray[i]);
@@ -73,7 +80,7 @@ public class Sorter {
 	}
 
 	public String resultfile() {
-		return config.getProperty("ResultFile");
+		return (String) config.getProperty("ResultFile");
 	}
 	private void read() throws IOException {		
 		for (String fileName : startFiles()){
@@ -110,8 +117,8 @@ public class Sorter {
 		ArrayList<String> finishFiles = finishFiles();
 		for (int i = 0; i < finishFiles.size(); i++){
 			new ResultWriter(racers, resultfile()).writeToFile(laps());
-			String timeStartIsOpen = config.getProperty("TimeStartIsOpen");
-			new SortResultWriter(racers, config.getProperty("SortedResultFile"), new RacerRankingComparator(), timeStartIsOpen).writeToFile(laps());
+			String timeStartIsOpen = (String) config.getProperty("TimeStartIsOpen");
+			new SortResultWriter(racers, (String) config.getProperty("SortedResultFile"), new RacerRankingComparator(), timeStartIsOpen).writeToFile(laps());
 		}
 	}
 }
