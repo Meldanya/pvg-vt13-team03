@@ -10,7 +10,7 @@ public class Distance {
 	public Distance() {
 		startTimes = new ArrayList<RacerTime>();
 		finishTimes = new ArrayList<RacerTime>();
-		minTime = "00.15.00";
+		minTime = "; " + "00.15.00";
 	}
 
 	public String toString() {
@@ -92,12 +92,12 @@ public class Distance {
 		return sb.toString();
 	}
 
-	/** @return Error message if finishTime is "--.--.--" */
+	/** @return Error message if finishTime is "" */
 	public String possibleImpossibleTotalTime() {
 		String lapTime = getLapTimeString();
 		if (lapTime.equals("")){
 			return "";
-		} else if ((lapTime).compareTo(minTime) < 0) {
+		} else if (lapTime.compareTo(minTime) < 0) {
 			return ("; Omöjlig Totaltid?");
 		}
 		return "";
