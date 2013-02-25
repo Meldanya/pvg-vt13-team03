@@ -87,28 +87,6 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 		return startNumber.compareTo(o.getStartNumber());
 	}
 
-	public ArrayList<String> getLapTimes() {
-		ArrayList<String> lapTimes = new ArrayList<String>();
-
-		if (finishTimes.size() > 0) {
-			if (startTimes.size() > 0) {
-				String lapOne = startTimes.get(0).getDifferenceTo(
-						finishTimes.get(0));
-				lapTimes.add(lapOne);
-			} else {
-				lapTimes.add("");
-			}
-			for (int i = 1; i < finishTimes.size(); i++) {
-				String lapTime = finishTimes.get(i - 1).getDifferenceTo(
-						finishTimes.get(i));
-
-				lapTimes.add(lapTime);
-			}
-		}
-
-		return lapTimes;
-	}
-
 
 	public void sortFinishTimes() {
 		Collections.sort(finishTimes);

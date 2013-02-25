@@ -20,6 +20,8 @@ public class MarathonRacer extends AbstractRacer {
 	 */
 	@Override
 	public String toString() {
+		
+		///// Skriv om - skriv rätt => Tester kommer gå igenom
 		StringBuilder sb = new StringBuilder();
 		sb.append(startNumber);
 		sb.append("; ");

@@ -11,12 +11,6 @@ public class LapRacer extends AbstractLapRacer {
 	
 	@Override
 	public String toString() {
-	
-		
-		/**
-		 * StartNr; Namn; Totaltid; #Etapper; Etapp1; Start1; Mål1
-		 *	1; Ander Asson; 01.00.00; 1; 01.00.00; 11.00.00; 12.00.00
-		 */
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append(startNumber + "; " + name + "; " + getTotalTime() + "; " + distanceList.size() + "; " + lapsToString());

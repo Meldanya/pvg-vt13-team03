@@ -48,6 +48,13 @@ public abstract class AbstractLapRacer extends AbstractRacer {
 	
 	
 	public int getNumberOfLaps(){
-		return distanceList.size();
+		int counter = 0;
+		
+		for(Distance distance : distanceList){
+			if(distance.getStartTime() == null || distance.getFinishTime() == null){
+				counter++;
+			}
+		}
+		return distanceList.size() - counter;
 	}
 }
