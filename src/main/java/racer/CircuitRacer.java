@@ -23,6 +23,7 @@ public class CircuitRacer extends AbstractRacer {
 		sb.append("; ");
 		sb.append(getTotalTime());
 
+		// Varvtider:
 		for (Distance lap: distanceList) {
 			sb.append("; ");
 			sb.append(lap.getLapTimeString());
@@ -48,11 +49,7 @@ public class CircuitRacer extends AbstractRacer {
 
 	@Override
 	public String getTotalTime() {
-		RacerTime startTime = new RacerTime(distanceList.get(0).getStartTime());
-		RacerTime finishTime = new RacerTime(distanceList.get(distanceList.size()-1).getStartTime());
-		String totalTime = finishTime.getDifferenceTo(startTime);
-		return totalTime;
-		//Vi måste lägga till funktionalitet för att jämföra 2 RacerTimes. Sista med första i detta fallet
+		return distanceList.get(0).timeFromStartToOtherStart(distanceList.get(distanceList.size()-1));
 	}
 
 	@Override
@@ -63,13 +60,13 @@ public class CircuitRacer extends AbstractRacer {
 
 	@Override
 	public void addStartTime(RacerTime racerTime) {
-		// TODO Auto-generated method stub
-		
+		distanceList.get(distanceList.size()-1).addStartTime(racerTime);
 	}
 
 	@Override
 	public void addFinishTime(RacerTime racerTime) {
-		// TODO Auto-generated method stub
-		
+		distanceList.get(distanceList.size()-1).addFinishTime(racerTime);
+		distanceList.add(new Distance());
+		addStartTime(racerTime); //"Start" the next lap immediately
 	}
 }

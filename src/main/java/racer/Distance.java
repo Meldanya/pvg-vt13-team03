@@ -101,4 +101,11 @@ public class Distance {
 		return "";
 	}
 
+	public String timeFromStartToOtherStart(Distance other) {
+		if (startTimes.size() > 0 && finishTimes.size() > 0) {
+			return startTimes.get(0).getDifferenceTo(other.startTimes.get(0));
+		} else {
+			return "--.--.--";
+		}
+	}
 }
