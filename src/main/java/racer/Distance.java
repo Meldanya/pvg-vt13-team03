@@ -30,12 +30,13 @@ public class Distance {
 		}
 	}
 	private String finishString() {
-		if (startTimes.size() == 0){
-			return "Start?";
-		} else if (startTimes.size() == 1 ){
-			return startTimes.get(0).toString();
+		int finishTimesSize = finishTimes.size();
+		if (finishTimesSize == 0){
+			return "Slut?";
+		} else if (finishTimesSize == 1 ){
+			return finishTimes.get(0).toString();
 		} else {
-			return "Flera starttider?";
+			return "Flera måltider?";
 		}
 	}
 	public void addStartTime(String string) {
