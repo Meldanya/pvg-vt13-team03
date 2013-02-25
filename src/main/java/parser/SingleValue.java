@@ -7,6 +7,8 @@ public class SingleValue implements Value {
 	
 	public SingleValue(String value) {
 		this.value = value.trim();
+		if(value.isEmpty()) throw new IllegalArgumentException();
+		
 	}
 
 	@Override
