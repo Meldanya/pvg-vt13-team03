@@ -18,8 +18,8 @@ public class TestDistance {
 	@Test
 	public void testTimeFormatting() {
 		
-		distance.setStartTime("11.00.00");
-		distance.setFinishTime("12.00.00");
+		distance.addStartTime("11.00.00");
+		distance.addFinishTime("12.00.00");
 		
 		assertEquals("Formatting is wrong", "01.00.00; 11.00.00; 12.00.00", distance.toString());
 	}
