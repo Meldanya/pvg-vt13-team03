@@ -34,6 +34,7 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 	public void setStartNumber(String startNumber) {
 		this.startNumber = startNumber;
 	}
+
 	
 	public void addStartTime(String time){
 		addStartTime(new RacerTime(time));
@@ -46,14 +47,15 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 	public abstract void addFinishTime(RacerTime racerTime);
 
 
-	public abstract String getTotalTime();
+
 	public abstract String toString();
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((startNumber == null) ? 0 : startNumber.hashCode());
+		result = prime * result
+				+ ((startNumber == null) ? 0 : startNumber.hashCode());
 		return result;
 	}
 
@@ -88,6 +90,7 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 
 	/**
 	 * Used by TreeMap in Competition.getRacers()
+	 * 
 	 * @param o
 	 * @return
 	 */
@@ -96,12 +99,20 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 		return startNumber.compareTo(o.getStartNumber());
 	}
 
-
 	public void sortFinishTimes() {
 //		TODO: fix this!
 //		Collections.sort(finishTimes);
 	}
-	
+
+	public String getTotalTime() {
+		long totalTime = distanceList.get(0).getLapTime();
+		//RacerTime totalTime = new RacerTime(0);
+		for (int i = 1; i < distanceList.size(); i++) {
+			totalTime = totalTime+(distanceList.get(i).getLapTime());
+		}
+		return new RacerTime(totalTime).toString();
+	}
+
 	public abstract int getNumberOfLaps();
 
 }

@@ -5,54 +5,70 @@ import java.util.List;
 
 public class Distance {
 	private List<RacerTime> startTimes, finishTimes;
-	private RacerTime minTime;
+	private String minTime;
 
 	public Distance() {
 		startTimes = new ArrayList<RacerTime>();
 		finishTimes = new ArrayList<RacerTime>();
-		minTime = new RacerTime("00.15.00");
+		minTime = "00.15.00";
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		String start = getStartTime();
 		String finish = getFinishTime();
-		
-		return startTimes.get(0).getDifferenceTo(finishTimes.get(0)) + "; " + start + "; " + finish;	
+
+		return startTimes.get(0).getDifferenceTo(finishTimes.get(0)) + "; "
+				+ start + "; " + finish;
 	}
 
 	public String getStartTime() {
 		int startTimesSize = startTimes.size();
-		if (startTimesSize == 0){
+		if (startTimesSize == 0) {
 			return "Start?";
 		} else {
 			return startTimes.get(0).toString();
 		}
 	}
+
 	public String getFinishTime() {
 		int finishTimesSize = finishTimes.size();
-		if (finishTimesSize == 0){
+		if (finishTimesSize == 0) {
 			return "Slut?";
 		} else {
 			return finishTimes.get(0).toString();
 		}
 	}
+
 	public void addStartTime(RacerTime racerTime) {
 		startTimes.add(racerTime);
 	}
-	
+
 	public void addFinishTime(RacerTime racerTime) {
 		finishTimes.add(racerTime);
 	}
 
-	public RacerTime getLapTime(){
-		if (startTimes.size() > 0 && finishTimes.size() > 0){
-			return startTimes.get(0).computeLapTime(finishTimes.get(0));
+	private RacerTime computeRacerTime() {
+
+		return startTimes.get(0).computeLapTime(finishTimes.get(0));
+	}
+
+	public long getLapTime() {
+		if (startTimes.size() > 0 && finishTimes.size() > 0) {
+			return computeRacerTime().getTime();
 		} else {
-			return new RacerTime();
+			return 0;
 		}
 	}
-	
-	public String possibleMultipleStartTimes(){
+
+	public String getLapTimeString() {
+		if (startTimes.size() > 0 && finishTimes.size() > 0) {
+			return computeRacerTime().toString();
+		} else {
+			return "--.--.--";
+		}
+	}
+
+	public String possibleMultipleStartTimes() {
 		StringBuilder sb = new StringBuilder();
 		if (startTimes.size() > 1) {
 			sb.append("; Flera starttider?");
@@ -63,8 +79,8 @@ public class Distance {
 		}
 		return sb.toString();
 	}
-	
-	public String possibleMultipleFinishTimes(){
+
+	public String possibleMultipleFinishTimes() {
 		StringBuilder sb = new StringBuilder();
 		if (finishTimes.size() > 1) {
 			sb.append("; Flera måltider?");
@@ -75,12 +91,14 @@ public class Distance {
 		}
 		return sb.toString();
 	}
+
 	/** @return Error message if finishTime is "--.--.--" */
-	public String possibleImpossibleTotalTime(){
-		RacerTime lapTime = getLapTime();
-		if(!lapTime.equals("--.--.--") && (lapTime).compareTo(minTime)<0){
-			return("; Omöjlig Totaltid?");
+	public String possibleImpossibleTotalTime() {
+		String lapTime = getLapTimeString();
+		if (!lapTime.equals("--.--.--") && (lapTime).compareTo(minTime) < 0) {
+			return ("; Omöjlig Totaltid?");
 		}
 		return "";
 	}
+
 }

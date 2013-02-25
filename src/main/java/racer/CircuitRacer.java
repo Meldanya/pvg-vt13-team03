@@ -25,7 +25,7 @@ public class CircuitRacer extends AbstractRacer {
 
 		for (Distance lap: distanceList) {
 			sb.append("; ");
-			sb.append(lap.getLapTime().toString());
+			sb.append(lap.getLapTimeString());
 		}
 
 		sb.append("; ");

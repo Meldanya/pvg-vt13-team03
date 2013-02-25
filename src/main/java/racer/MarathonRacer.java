@@ -45,7 +45,7 @@ public class MarathonRacer extends AbstractRacer {
 
 	@Override
 	public String getTotalTime() {
-		return firstDistance().getLapTime().toString();
+		return firstDistance().getLapTimeString();
 	}
 
 	@Override
