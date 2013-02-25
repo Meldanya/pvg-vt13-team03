@@ -13,63 +13,37 @@ public class CircuitRacer extends AbstractRacer {
 	 * @return
 	 */
 	public String toString() {
+		// Skriv om - skriv rätt => Tester kommer gå igenom
+		StringBuilder sb = new StringBuilder();
+		sb.append(startNumber);
+		sb.append("; ");
+		sb.append(name);
+		sb.append("; ");
+		sb.append(getNumberOfLaps());
+		sb.append("; ");
+		sb.append(getTotalTime());
+
+		for (Distance lap: distanceList) {
+			sb.append("; ");
+			sb.append(lap.getLapTimeString());
+		}
+
+		sb.append("; ");
+		sb.append(distanceList.get(0).getStartTime());
+
+		for (int lap=1; lap < distanceList.size(); lap++) {
+			sb.append("; ");
+			sb.append(distanceList.get(lap).getStartTime().toString());
+		}
 		
-		
-		///// Skriv om - skriv rätt => Tester kommer gå igenom
-		int laps = distanceList.size();
-		StringBuilder out = new StringBuilder();
-		ArrayList<String> lapTimes = getLapTimes();
-		boolean impossibleLapTime = false;
-
-		out.append(startNumber + "; " + name + "; " + getNumberOfLaps() + "; "
-				+ getTotalTime());
-
-		for (int i = 0; i < laps; i++) {
-			try {
-				String laptime = lapTimes.get(i);
-				RacerTime impossible = new RacerTime("00.15.00");
-
-				if (!laptime.equals("")
-						&& (new RacerTime(laptime)).compareTo(impossible) < 0) {
-					impossibleLapTime = true;
-				}
-				out.append("; " + laptime);
-
-			} catch (IndexOutOfBoundsException e) {
-				// Laptime doesn't exist, print column anyway
-				out.append("; ");
-			}
+		if (distanceList.size() == 1) {
+			sb.append("; Slut?");
 		}
+		for (Distance lap: distanceList) {
+			sb.append(lap.possibleImpossibleTotalTime());
+		}		
 
-		RacerTime startTime = distanceList.get(0).getStartTime();
-		out.append("; "
-				+ ((startTime == null) ? "Start?" : startTime.toString()));
-
-		/*
-		 * for (int i = 0; i < laps; i++) { try { RacerTime laptime =
-		 * finishTimes.get(i); out.append("; " + laptime.toString()); } catch
-		 * (IndexOutOfBoundsException e) { // Laptime doesn't exist, print
-		 * column anyway if (i == laps - 1) { out.append(";"); } else {
-		 * out.append("; "); } } }
-		 */
-
-		if (finishTimes.size() == 0) {
-			out.append("; Slut?");
-		}
-
-		if (startTimes.size() > 1) {
-			out.append("; Flera starttider?");
-			for (int i = 1; i < startTimes.size(); i++) {
-				out.append(" ");
-				out.append(startTimes.get(i));
-			}
-		}
-
-		if (impossibleLapTime) {
-			out.append("; Omöjlig varvtid?");
-		}
-
-		return out.toString();
+		return sb.toString();
 	}
 
 	@Override
@@ -83,8 +57,8 @@ public class CircuitRacer extends AbstractRacer {
 
 	@Override
 	public int getNumberOfLaps() {
-		// TODO Auto-generated method stub
-		return 0;
+		//-1 because addFinishTime should always start a new distance:
+		return distanceList.size() - 1 ; 
 	}
 
 	@Override

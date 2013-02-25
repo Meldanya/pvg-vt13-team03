@@ -3,7 +3,7 @@ package racer;
 public class MarathonRacer extends AbstractRacer {
 	public MarathonRacer(String startNumber) {
 		super(startNumber);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public String getStartTime() {
@@ -11,11 +11,7 @@ public class MarathonRacer extends AbstractRacer {
 	}
 
 	private Distance firstDistance() {
-		if (!distanceList.isEmpty()){
-			return distanceList.get(0);
-		} else {
-			return null;
-		}
+		return distanceList.get(0);
 	}
 
 	/**
@@ -24,7 +20,6 @@ public class MarathonRacer extends AbstractRacer {
 	 */
 	@Override
 	public String toString() {
-		// /// Skriv om - skriv rätt => Tester kommer gå igenom
 		StringBuilder sb = new StringBuilder();
 		sb.append(startNumber);
 		sb.append("; ");
@@ -60,7 +55,7 @@ public class MarathonRacer extends AbstractRacer {
 
 	@Override
 	public void addStartTime(RacerTime racerTime) {
-		if (firstDistance() == null){
+		if (firstDistance() == null) {
 			Distance distance = new Distance();
 			distance.addStartTime(racerTime);
 			distanceList.add(distance);
@@ -68,10 +63,10 @@ public class MarathonRacer extends AbstractRacer {
 			firstDistance().addStartTime(racerTime);
 		}
 	}
-	
+
 	@Override
 	public void addFinishTime(RacerTime racerTime) {
-		if (firstDistance() == null){
+		if (firstDistance() == null) {
 			Distance distance = new Distance();
 			distance.addFinishTime(racerTime);
 			distanceList.add(distance);

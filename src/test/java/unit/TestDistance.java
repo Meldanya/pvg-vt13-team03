@@ -72,6 +72,11 @@ public class TestDistance {
 		assertEquals("Clutter in empty finishtimes", "",distance.possibleMultipleFinishTimes());
 	}
 	
+	@Test
+	public void testPossibleImpossibleTotalTime(){
+		assertEquals("Clutter in empty impossible totatl time", "",distance.possibleImpossibleTotalTime());
+	}
+	
 	@After
 	public void tearDown(){
 		distance = null;
