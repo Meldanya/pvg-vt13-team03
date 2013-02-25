@@ -1,7 +1,6 @@
 package racer;
 
 public class LapRacer extends AbstractRacer {
-
 	public LapRacer(String startNumber) {
 		super(startNumber);
 		// TODO Auto-generated constructor stub
@@ -45,11 +44,16 @@ public class LapRacer extends AbstractRacer {
 	}
 
 
-
 	@Override
 	public void addFinishTime(RacerTime racerTime) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String getTotalTime() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
