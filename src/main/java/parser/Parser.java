@@ -1,8 +1,6 @@
 package parser;
 
 import java.util.ArrayList;
-import java.util.regex.Pattern;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
