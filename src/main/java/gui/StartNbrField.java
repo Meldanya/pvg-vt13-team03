@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import parser.Parser;
@@ -26,7 +28,7 @@ public class StartNbrField extends JTextField implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent ae) {
 		String text = this.getText();
 		text = text.trim();
 		Parser parser = new Parser();
@@ -34,7 +36,12 @@ public class StartNbrField extends JTextField implements ActionListener {
 		if (text.equals("")) {
 			new StartNbrPopup(register);
 		} else {
-			register.register(parser.parse(text));
+			try {
+				register.register(parser.parse(text));
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(new JFrame(), "Felaktig inmatning, se manualen för korrekt formatering", "Ett fel har uppstått",
+				        JOptionPane.ERROR_MESSAGE);
+			}
 		}
 	}
 
