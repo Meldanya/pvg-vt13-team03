@@ -49,7 +49,9 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 
 	public String racerString(int laps) {
 		StringBuilder sb = new StringBuilder();
-		
+		sb.append(startNumber);
+		sb.append("; ");
+		sb.append(name);
 		sb.append(racerSpecificString(laps));
 		return sb.toString();
 	}

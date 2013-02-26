@@ -10,7 +10,7 @@ public class LapRacer extends AbstractRacer {
 	public String racerSpecificString(int laps) {
 
 		StringBuilder sb = new StringBuilder();
-		sb.append(startNumber + "; " + name + "; " + getTotalTime() + "; "
+		sb.append("; " + getTotalTime() + "; "
 				+ distanceList.size() + "; " + lapsToString());
 		return sb.toString();
 	}

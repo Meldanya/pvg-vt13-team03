@@ -91,7 +91,7 @@ public class TestResultWriter {
 		competition.setNames(nameMappings);
 		
 		writer.writeToFile(1);
-		String expected = header + "\n" + r1 + "\n";
+		String expected = header + "\n" + r1.racerString(1) + "\n";
 
 		assertEquals("Result doesn't match", expected, readFile());
 	}
@@ -117,9 +117,9 @@ public class TestResultWriter {
 		nameMappings.put("3", name3);
 		
 		expected.append(header + "\n");
-		expected.append(r1 + "\n");
-		expected.append(r2 + "\n");
-		expected.append(r3 + "\n");
+		expected.append(r1.racerString(1) + "\n");
+		expected.append(r2.racerString(1) + "\n");
+		expected.append(r3.racerString(1) + "\n");
 
 
 		competition.setNames(nameMappings);

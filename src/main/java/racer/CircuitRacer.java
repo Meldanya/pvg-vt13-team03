@@ -14,9 +14,7 @@ public class CircuitRacer extends AbstractRacer {
 	public String racerSpecificString(int laps) {
 		// Skriv om - skriv rätt => Tester kommer gå igenom
 		StringBuilder sb = new StringBuilder();
-		sb.append(startNumber);
-		sb.append("; ");
-		sb.append(name);
+		
 		sb.append("; ");
 		sb.append(getNumberOfLaps());
 		sb.append("; ");
