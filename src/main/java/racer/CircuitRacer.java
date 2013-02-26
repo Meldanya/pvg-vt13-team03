@@ -10,6 +10,7 @@ public class CircuitRacer extends AbstractRacer {
 	 * @param laps
 	 * @return
 	 */
+	@Override
 	public String racerSpecificString(int laps) {
 		StringBuilder sb = new StringBuilder();
 
