@@ -20,8 +20,8 @@ public class CircuitRacer extends AbstractRacer {
 		sb.append(getTotalTime());
 
 		// Varvtider:
-		for (Distance lap: distanceList) {
-			sb.append(lap.getLapTimeString());
+		for (int lap=0; lap < laps; lap++) {
+			sb.append(distanceList.get(lap).getLapTimeString());
 		}
 		
 		//Den första starttiden:
