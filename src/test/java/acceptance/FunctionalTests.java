@@ -79,7 +79,7 @@ public class FunctionalTests {
 	private void prepareForCircuitContest(int laps) throws IOException {
 		config.setProperty("ContestType", "circuit");
 		config.setProperty("NumberOfLaps", String.valueOf(laps));
-		config.store(FileNames.CONFIG, "Test config for Enduro Sorter");
+		config.store(FileNames.CONFIG, "Test config for CircuitRacers in Enduro Sorter");
 	}
 	
 	@After
