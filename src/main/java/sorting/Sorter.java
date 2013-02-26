@@ -90,7 +90,7 @@ public class Sorter {
 			racers.setFinishTimesFromFile(fileName);
 		}
 	}
-	
+	 //TODO Detta skall bort!!!
 	private class FinishFileFilter implements FilenameFilter{
 		@Override
 		public boolean accept(File dir, String name) {
