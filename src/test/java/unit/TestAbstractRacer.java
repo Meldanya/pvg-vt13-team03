@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import racer.AbstractRacer;
 import racer.CircuitRacer;
 import racer.LapRacer;
 import racer.MarathonRacer;
@@ -11,7 +12,7 @@ import racer.MarathonRacer;
 public class TestAbstractRacer {
 	private LapRacer lapRacer;
 	private CircuitRacer circuitRacer;
-	private MarathonRacer marathonRacer;
+	private AbstractRacer marathonRacer;
 	
 	@Before
 	public void setUp() throws Exception {

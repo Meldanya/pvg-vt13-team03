@@ -6,11 +6,7 @@ public class MarathonRacer extends AbstractRacer {
 		
 	}
 
-	public String startTimeString() {
-		return firstDistance().getStartTime().toString();
-	}
-
-	private Distance firstDistance() {
+	Distance firstDistance() {
 		return distanceList.get(0);
 	}
 
