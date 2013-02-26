@@ -35,15 +35,7 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 		this.startNumber = startNumber;
 	}
 
-	public void addStartTime(String time) {
-		addStartTime(new RacerTime(time));
-	}
-
 	public abstract void addStartTime(RacerTime racerTime);
-
-	public void addFinishTime(String time) {
-		addFinishTime(new RacerTime(time));
-	}
 
 	public abstract void addFinishTime(RacerTime racerTime);
 

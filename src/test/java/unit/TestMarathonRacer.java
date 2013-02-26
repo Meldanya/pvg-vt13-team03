@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import racer.AbstractRacer;
 import racer.MarathonRacer;
+import racer.RacerTime;
 
 public class TestMarathonRacer {
 
@@ -17,13 +18,13 @@ public class TestMarathonRacer {
 	public void setUp() throws Exception {
 		andersAsson = new MarathonRacer("1");
 		andersAsson.setName("Anders Asson");
-		andersAsson.addStartTime("12.00.00");
-		andersAsson.addFinishTime("13.23.34");
+		andersAsson.addStartTime(new RacerTime("12.00.00"));
+		andersAsson.addFinishTime(new RacerTime("13.23.34"));
 		
 		bengtBsson = new MarathonRacer("2");
 		bengtBsson.setName("Bengt Bsson");
-		bengtBsson.addStartTime("12.01.00");
-		bengtBsson.addFinishTime("13.15.16");
+		bengtBsson.addStartTime(new RacerTime("12.01.00"));
+		bengtBsson.addFinishTime(new RacerTime("13.15.16"));
 	}
 
 	@Test

@@ -9,6 +9,7 @@ import org.junit.Test;
 import racer.AbstractRacer;
 import racer.RacerFactory;
 import racer.RacerPlacingComparator;
+import racer.RacerTime;
 
 public class TestRacerPlacingComparator {
 	private AbstractRacer racer1;
@@ -26,12 +27,12 @@ public class TestRacerPlacingComparator {
 	
 	@Test
 	public void testDifferentNoOfLaps() {
-		racer1.addStartTime("12.00.00");
-		racer1.addFinishTime("12.30.00");
+		racer1.addStartTime(new RacerTime("12.00.00"));
+		racer1.addFinishTime(new RacerTime("12.30.00"));
 		
-		racer2.addStartTime("12.00.00");
-		racer2.addFinishTime("12.30.00");
-		racer2.addFinishTime("13.00.00");
+		racer2.addStartTime(new RacerTime("12.00.00"));
+		racer2.addFinishTime(new RacerTime("12.30.00"));
+		racer2.addFinishTime(new RacerTime("13.00.00"));
 		
 		int compInt = comp.compare(racer1, racer2);
 		assertTrue("Racer 2 was before Racer 1, compInt was " + compInt, compInt < 0);
@@ -39,21 +40,21 @@ public class TestRacerPlacingComparator {
 	
 	@Test
 	public void testEqual() {
-		racer1.addStartTime("12.00.00");
-		racer1.addFinishTime("12.30.00");
-		racer2.addStartTime("12.00.00");
-		racer2.addFinishTime("12.30.00");
+		racer1.addStartTime(new RacerTime("12.00.00"));
+		racer1.addFinishTime(new RacerTime("12.30.00"));
+		racer2.addStartTime(new RacerTime("12.00.00"));
+		racer2.addFinishTime(new RacerTime("12.30.00"));
 		
 		assertEquals("racers not equal", 0, comp.compare(racer1, racer2));
 	}
 	
 	@Test
 	public void testSameNoOfLapsDifferentTimes() {
-		racer1.addStartTime("12.00.00");
-		racer1.addFinishTime("12.30.00");
+		racer1.addStartTime(new RacerTime("12.00.00"));
+		racer1.addFinishTime(new RacerTime("12.30.00"));
 		
-		racer2.addStartTime("12.00.00");
-		racer2.addFinishTime("12.40.00");
+		racer2.addStartTime(new RacerTime("12.00.00"));
+		racer2.addFinishTime(new RacerTime("12.40.00"));
 		
 		int compInt = comp.compare(racer1, racer2);
 		assertTrue("Racer 2 was before Racer 1, compInt was " + compInt, compInt < 0);

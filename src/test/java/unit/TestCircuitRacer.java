@@ -9,6 +9,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import racer.CircuitRacer;
+import racer.RacerTime;
 
 public class TestCircuitRacer {
 	private CircuitRacer racer1, racer2;
@@ -32,7 +33,7 @@ public class TestCircuitRacer {
 
 	@Test
 	public void testTimeFormatting() {
-		racer1.addStartTime("11.12.13");
+		racer1.addStartTime(new RacerTime("11.12.13"));
 		assertEquals("Formatting is wrong", "1; Kalle; 0; --.--.--; ; 11.12.13; Slut?", racer1.racerString(1));
 	}
 
@@ -49,16 +50,16 @@ public class TestCircuitRacer {
 
 	@Test
 	public void testAddOneLapTime() {
-		racer1.addStartTime("11.11.14");
-		racer1.addFinishTime("11.12.14");
+		racer1.addStartTime(new RacerTime("11.11.14"));
+		racer1.addFinishTime(new RacerTime("11.12.14"));
 		assertEquals(1, racer1.getNumberOfDistances());
 	}
 
 	@Test
 	public void testAddManyLapTimes() {
 		for (int i = 0; i < 10; i++) {
-			racer1.addStartTime("11.11." + i);
-			racer1.addFinishTime("11.12." + i);
+			racer1.addStartTime(new RacerTime("11.11." + i));
+			racer1.addFinishTime(new RacerTime("11.12." + i));
 		}
 		assertEquals(10, racer1.getNumberOfDistances());
 	}
@@ -67,37 +68,37 @@ public class TestCircuitRacer {
 	public void testFinishTime() {
 		for (int i = 0; i < 10; i++) {
 
-			racer1.addFinishTime("11.12." + i);
+			racer1.addFinishTime(new RacerTime("11.12." + i));
 		}
 //		assertEquals(racer1.getFinishTime(), "11.12.09");
 	}
 
 	@Test
 	public void testNumberOfLapsZero() {
-		racer1.addStartTime("12.00.00");
+		racer1.addStartTime(new RacerTime("12.00.00"));
 		assertEquals("Wrong number of laps. Should be zero.", 0, racer1.getNumberOfDistances());
 	}
 
 	@Test
 	public void testNumberOfLapsOne() {
-		racer1.addStartTime("12.00.00");
-		racer1.addFinishTime("12.15.00");
+		racer1.addStartTime(new RacerTime("12.00.00"));
+		racer1.addFinishTime(new RacerTime("12.15.00"));
 		assertEquals("Wrong number of laps. Should be one.", 1, racer1.getNumberOfDistances());
 	}
 
 	@Test
 	public void testNumberOfLapsThree() {
-		racer1.addStartTime("12.00.00");
-		racer1.addFinishTime("12.15.00");
-		racer1.addFinishTime("12.30.00");
-		racer1.addFinishTime("12.45.00");
+		racer1.addStartTime(new RacerTime("12.00.00"));
+		racer1.addFinishTime(new RacerTime("12.15.00"));
+		racer1.addFinishTime(new RacerTime("12.30.00"));
+		racer1.addFinishTime(new RacerTime("12.45.00"));
 		assertEquals("Wrong number of laps. Should be three.", 3, racer1.getNumberOfDistances());
 	}
 	
 	@Test
 	public void testGetTotalTime(){
-		racer1.addStartTime("12.00.00");
-		racer1.addFinishTime("12.30.00");
+		racer1.addStartTime(new RacerTime("12.00.00"));
+		racer1.addFinishTime(new RacerTime("12.30.00"));
 		
 		assertEquals("Total time incorrect", "00.30.00",racer1.getTotalTime());
 	}
