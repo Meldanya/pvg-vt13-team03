@@ -14,7 +14,7 @@ public class CircuitRacer extends AbstractRacer {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("; ");
-		sb.append(getNumberOfLaps());
+		sb.append(getNumberOfDistances());
 		sb.append("; ");
 		sb.append(getTotalTime());
 
@@ -60,7 +60,7 @@ public class CircuitRacer extends AbstractRacer {
 	}
 
 	@Override
-	public int getNumberOfLaps() {
+	public int getNumberOfDistances() {
 		// -1 because addFinishTime should always start a new distance:
 		return distanceList.size() - 1;
 	}

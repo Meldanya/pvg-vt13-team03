@@ -24,7 +24,7 @@ public class LapRacer extends AbstractRacer {
 
 
 	@Override
-	public int getNumberOfLaps() {
+	public int getNumberOfDistances() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

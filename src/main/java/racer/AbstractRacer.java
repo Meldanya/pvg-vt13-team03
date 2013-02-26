@@ -114,7 +114,7 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 
 	public abstract String getTotalTime();
 
-	public abstract int getNumberOfLaps();
+	public abstract int getNumberOfDistances();
 
 	public String startTimeString() {
 		return distanceList.get(0).getStartTime().toString();

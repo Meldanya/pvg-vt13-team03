@@ -47,7 +47,7 @@ public class MarathonRacer extends AbstractRacer {
 	}
 
 	@Override
-	public int getNumberOfLaps() {
+	public int getNumberOfDistances() {
 		return 1;
 	}
 

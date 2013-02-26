@@ -51,7 +51,7 @@ public class TestCircuitRacer {
 	public void testAddOneLapTime() {
 		racer1.addStartTime("11.11.14");
 		racer1.addFinishTime("11.12.14");
-		assertEquals(1, racer1.getNumberOfLaps());
+		assertEquals(1, racer1.getNumberOfDistances());
 	}
 
 	@Test
@@ -60,7 +60,7 @@ public class TestCircuitRacer {
 			racer1.addStartTime("11.11." + i);
 			racer1.addFinishTime("11.12." + i);
 		}
-		assertEquals(10, racer1.getNumberOfLaps());
+		assertEquals(10, racer1.getNumberOfDistances());
 	}
 	@Ignore
 	@Test
@@ -75,14 +75,14 @@ public class TestCircuitRacer {
 	@Test
 	public void testNumberOfLapsZero() {
 		racer1.addStartTime("12.00.00");
-		assertEquals("Wrong number of laps. Should be zero.", 0, racer1.getNumberOfLaps());
+		assertEquals("Wrong number of laps. Should be zero.", 0, racer1.getNumberOfDistances());
 	}
 
 	@Test
 	public void testNumberOfLapsOne() {
 		racer1.addStartTime("12.00.00");
 		racer1.addFinishTime("12.15.00");
-		assertEquals("Wrong number of laps. Should be one.", 1, racer1.getNumberOfLaps());
+		assertEquals("Wrong number of laps. Should be one.", 1, racer1.getNumberOfDistances());
 	}
 
 	@Test
@@ -91,7 +91,7 @@ public class TestCircuitRacer {
 		racer1.addFinishTime("12.15.00");
 		racer1.addFinishTime("12.30.00");
 		racer1.addFinishTime("12.45.00");
-		assertEquals("Wrong number of laps. Should be three.", 3, racer1.getNumberOfLaps());
+		assertEquals("Wrong number of laps. Should be three.", 3, racer1.getNumberOfDistances());
 	}
 	
 	@Test

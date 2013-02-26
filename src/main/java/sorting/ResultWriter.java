@@ -56,8 +56,8 @@ public class ResultWriter {
 		// Ser till så att den inte skriver ut fler varv än nödvändigt
 		int maxLapCount = 0;
 		for (AbstractRacer abstractRacer : abstractRacers) {
-			if (maxLapCount < abstractRacer.getNumberOfLaps()) {
-				maxLapCount = abstractRacer.getNumberOfLaps();
+			if (maxLapCount < abstractRacer.getNumberOfDistances()) {
+				maxLapCount = abstractRacer.getNumberOfDistances();
 			}
 		}
 
