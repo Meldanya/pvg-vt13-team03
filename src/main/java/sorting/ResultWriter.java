@@ -81,7 +81,7 @@ public class ResultWriter {
 			}
 
 			sb.append("Mål");
-			sb.append('\n');
+			sb.append(NEW_LINE);
 			header = sb.toString();
 		}
 		writer.write(header);
