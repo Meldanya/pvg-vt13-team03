@@ -26,6 +26,12 @@ public class TestMarathonRacer {
 		assertEquals("Formatting is wrong", "1; Anders Asson; 01.23.34; 12.00.00; 13.23.34", marathonRacer.toString());
 	}
 	
+	 @Test
+	 public void testGetTotalTime(){
+		 //TODO getTotalTime should probably not include a semicolon.
+		 assertEquals("Total time is incorrect", "; 01.23.34",marathonRacer.getTotalTime());
+	 }
+	
 	@After
 	public void tearDown(){
 		marathonRacer = null;
