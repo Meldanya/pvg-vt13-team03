@@ -12,7 +12,6 @@ public class CircuitRacer extends AbstractRacer {
 	 * @return
 	 */
 	public String racerSpecificString(int laps) {
-		// Skriv om - skriv rätt => Tester kommer gå igenom
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("; ");
