@@ -34,7 +34,7 @@ public class TestRacerPlacingComparator {
 		racer2.addFinishTime("13.00.00");
 		
 		int compInt = comp.compare(racer1, racer2);
-		assertTrue("r2 greater than r1", compInt < 0);
+		assertTrue("Racer 2 was before Racer 1, compInt was " + compInt, compInt < 0);
 	}
 	
 	@Test
@@ -56,7 +56,7 @@ public class TestRacerPlacingComparator {
 		racer2.addFinishTime("12.40.00");
 		
 		int compInt = comp.compare(racer1, racer2);
-		assertTrue("r2 not greater than r1, compInt was " + compInt, compInt < 0);
+		assertTrue("Racer 2 was before Racer 1, compInt was " + compInt, compInt < 0);
 	}
 
 }

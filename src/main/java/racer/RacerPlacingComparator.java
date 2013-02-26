@@ -13,9 +13,10 @@ public class RacerPlacingComparator implements Comparator<AbstractRacer> {
 		String o2total = o2.getTotalTime();
 		if (o1.getNumberOfLaps() == o2.getNumberOfLaps()) {
 			// samma antal varv eller maratontävling
-			return o1.getTotalTime().compareTo(o2.getTotalTime());
+			int comparedResult = o1.getTotalTime().compareTo(o2.getTotalTime());			
+			return comparedResult;
 		} else {
-			return o2.getNumberOfLaps() - o1.getNumberOfLaps();
+			return o1.getNumberOfLaps() - o2.getNumberOfLaps();
 		}
 	}
 
