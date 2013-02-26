@@ -15,7 +15,7 @@ public class MarathonRacer extends AbstractRacer {
 	 * if laps = 1
 	 */
 	@Override
-	public String toString() {
+	protected String racerSpecificString(int laps) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(startNumber);
 		sb.append("; ");
@@ -23,8 +23,8 @@ public class MarathonRacer extends AbstractRacer {
 		sb.append(getTotalTime());
 		sb.append("; ");
 
-		Distance distance = firstDistance();
 
+		Distance distance = firstDistance();
 		sb.append(distance.getStartTime());
 		sb.append("; ");
 		sb.append(distance.getFinishTime());

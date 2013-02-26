@@ -7,7 +7,7 @@ public class LapRacer extends AbstractRacer {
 	}
 
 	@Override
-	public String toString() {
+	public String racerSpecificString(int laps) {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append(startNumber + "; " + name + "; " + getTotalTime() + "; "

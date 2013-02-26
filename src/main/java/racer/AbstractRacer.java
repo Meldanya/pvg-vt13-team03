@@ -35,18 +35,26 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 		this.startNumber = startNumber;
 	}
 
-	
-	public void addStartTime(String time){
+	public void addStartTime(String time) {
 		addStartTime(new RacerTime(time));
 	}
+
 	public abstract void addStartTime(RacerTime racerTime);
-	
-	public void addFinishTime(String time){
+
+	public void addFinishTime(String time) {
 		addFinishTime(new RacerTime(time));
 	}
+
 	public abstract void addFinishTime(RacerTime racerTime);
 
-	public abstract String toString();
+	public String racerString(int laps) {
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(racerSpecificString(laps));
+		return sb.toString();
+	}
+
+	protected abstract String racerSpecificString(int laps);
 
 	@Override
 	public int hashCode() {
@@ -98,8 +106,8 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 	}
 
 	public void sortFinishTimes() {
-//		TODO: fix this!
-//		Collections.sort(finishTimes);
+		// TODO: fix this!
+		// Collections.sort(finishTimes);
 	}
 
 	public abstract String getTotalTime();
