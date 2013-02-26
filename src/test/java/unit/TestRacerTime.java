@@ -50,5 +50,21 @@ public class TestRacerTime {
 		assertTrue("racerTime not greater than time1", racerTime.compareTo(time1) > 0);
 		assertTrue("racerTime not less than time2", racerTime.compareTo(time2) < 0);
 	}
-
+	@Test
+	public void testFormat1Second() {
+		assertEquals("Time incorrectly formatted, 1 second", "00.00.01", racerTime.format(1000));
+	}
+	@Test
+	public void testFormat1Minute(){
+		assertEquals("Time incorrectly formatted, 1 minute", "00.01.00", racerTime.format(60*1000));
+	}
+	@Test
+	public void testFormat1Hour(){
+		assertEquals("Time incorrectly formatted, 1 hour", "01.00.00", racerTime.format(60*60*1000));
+	}
+	
+	@Test
+	public void testFormatArbitraryTime(){
+		assertEquals("Time incorrectly formatted, 1 hour", "25.52.28", racerTime.format(25*60*60*1000+52*60*1000+28*1000 ));
+	}
 }

@@ -3,6 +3,7 @@ package racer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class RacerTime implements Comparable<RacerTime> {
 	private Date time;
@@ -23,7 +24,7 @@ public class RacerTime implements Comparable<RacerTime> {
 		this();
 
 		if (inputTime.indexOf('.') < 0) {
-			inputTime = formatString(Long.parseLong(inputTime));
+			inputTime = format(Long.parseLong(inputTime));
 		}
 
 		try {
@@ -37,13 +38,34 @@ public class RacerTime implements Comparable<RacerTime> {
 		return format.format(time);
 	}
 
-	private String formatString(long milliseconds) {
-		int seconds = (int) (milliseconds / 1000);
-		int hours = Math.round(seconds / 3600f);
-		int minutes = (seconds - hours * 3600) / 60;
-		seconds -= hours * 3600 + minutes * 60;
+	public static String format(long duration) {
+		StringBuilder sb = new StringBuilder();
 
-		return String.format("%02d.%02d.%02d", hours, minutes, seconds);
+		long hours = TimeUnit.MILLISECONDS.toHours(duration);
+		duration -= hours * 60 * 60 * 1000;
+		if (hours < 10) {
+			sb.append('0');
+		}
+		sb.append(Long.toString(hours));
+
+		sb.append('.');
+
+		long minutes = TimeUnit.MILLISECONDS.toMinutes(duration);
+		duration -= minutes * 60 * 1000;
+		if (minutes < 10) {
+			sb.append('0');
+		}
+		sb.append(Long.toString(minutes));
+
+		sb.append('.');
+
+		long seconds = TimeUnit.MILLISECONDS.toSeconds(duration);
+		if (seconds < 10) {
+			sb.append("0");
+		}
+		sb.append(Long.toString(seconds));
+
+		return sb.toString();
 	}
 
 	public long computeLapTime(RacerTime other){
@@ -52,7 +74,7 @@ public class RacerTime implements Comparable<RacerTime> {
 	
 	public String getDifferenceTo(RacerTime other) {
 		
-		return formatString(computeLapTime(other));
+		return format(computeLapTime(other));
 	}
 
 	@Override

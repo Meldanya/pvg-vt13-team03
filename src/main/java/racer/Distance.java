@@ -61,7 +61,7 @@ public class Distance {
 
 	public String getLapTimeString() {
 		if (startTimes.size() > 0 && finishTimes.size() > 0) {
-			return "; "+computeRacerTime();
+			return "; "+RacerTime.format(computeRacerTime());
 		} else {
 			return "";
 		}
