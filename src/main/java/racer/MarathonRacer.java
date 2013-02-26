@@ -6,10 +6,6 @@ public class MarathonRacer extends AbstractRacer {
 		
 	}
 
-	Distance firstDistance() {
-		return distanceList.get(0);
-	}
-
 	/**
 	 * Returns the racer as a line in the format the Sorter wants. Is only run
 	 * if laps = 1

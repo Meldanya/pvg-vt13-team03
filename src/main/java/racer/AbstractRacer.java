@@ -119,5 +119,8 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 	public String startTimeString() {
 		return distanceList.get(0).getStartTime().toString();
 	}
-
+	
+	protected Distance firstDistance() {
+		return distanceList.get(0);
+	}
 }

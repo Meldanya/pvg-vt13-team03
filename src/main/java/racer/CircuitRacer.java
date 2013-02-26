@@ -51,10 +51,6 @@ public class CircuitRacer extends AbstractRacer {
 		return firstDistance().timeFromStartToOtherStart(lastDistance());
 	}
 
-	private Distance firstDistance() {
-		return distanceList.get(0);
-	}
-
 	private Distance lastDistance() {
 		return distanceList.get(distanceList.size() - 1);
 	}
