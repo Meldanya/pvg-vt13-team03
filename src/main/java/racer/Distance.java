@@ -105,7 +105,7 @@ public class Distance {
 	public String timeFromStartToOtherStart(Distance other) {
 		if (startTimes.size() > 0 && finishTimes.size() > 0) {
 			long lapTime = startTimes.get(0).computeLapTime(other.startTimes.get(0));
-			return RacerTimeFormatter.format(lapTime);
+			return RacerTime.format(lapTime);
 		} else {
 			return "--.--.--";
 		}
