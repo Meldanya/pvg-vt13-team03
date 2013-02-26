@@ -5,14 +5,14 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import racer.TimeUnitFormatter;
+import racer.RacerTimeFormatter;
 
 public class TestTimeUnitFormatter {
-	private TimeUnitFormatter formatter;
+	private RacerTimeFormatter formatter;
 
 	@Before
 	public void setUp() {
-		formatter = new TimeUnitFormatter();
+		formatter = new RacerTimeFormatter();
 	}
 
 	@Test

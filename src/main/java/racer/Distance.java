@@ -47,14 +47,13 @@ public class Distance {
 		finishTimes.add(racerTime);
 	}
 
-	private RacerTime computeRacerTime() {
-
+	private long computeRacerTime() {
 		return startTimes.get(0).computeLapTime(finishTimes.get(0));
 	}
 
 	public long getLapTime() {
 		if (startTimes.size() > 0 && finishTimes.size() > 0) {
-			return computeRacerTime().getTime();
+			return computeRacerTime();
 		} else {
 			return 0;
 		}
@@ -62,7 +61,7 @@ public class Distance {
 
 	public String getLapTimeString() {
 		if (startTimes.size() > 0 && finishTimes.size() > 0) {
-			return "; "+computeRacerTime().toString();
+			return "; "+computeRacerTime();
 		} else {
 			return "";
 		}
@@ -105,7 +104,8 @@ public class Distance {
 
 	public String timeFromStartToOtherStart(Distance other) {
 		if (startTimes.size() > 0 && finishTimes.size() > 0) {
-			return startTimes.get(0).getDifferenceTo(other.startTimes.get(0));
+			long lapTime = startTimes.get(0).computeLapTime(other.startTimes.get(0));
+			return RacerTimeFormatter.format(lapTime);
 		} else {
 			return "--.--.--";
 		}

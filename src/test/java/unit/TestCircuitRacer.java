@@ -93,5 +93,12 @@ public class TestCircuitRacer {
 		racer1.addFinishTime("12.45.00");
 		assertEquals("Wrong number of laps. Should be three.", 3, racer1.getNumberOfLaps());
 	}
-
+	
+	@Test
+	public void testGetTotalTime(){
+		racer1.addStartTime("12.00.00");
+		racer1.addFinishTime("12.30.00");
+		
+		assertEquals("Total time incorrect", "00.30.00",racer1.getTotalTime());
+	}
 }

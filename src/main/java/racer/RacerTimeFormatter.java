@@ -2,7 +2,7 @@ package racer;
 
 import java.util.concurrent.TimeUnit;
 
-public class TimeUnitFormatter {
+public class RacerTimeFormatter {
 	public static String format(long duration) {
 		StringBuilder sb = new StringBuilder();
 
