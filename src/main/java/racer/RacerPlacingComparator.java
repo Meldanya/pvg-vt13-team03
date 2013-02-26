@@ -11,12 +11,12 @@ public class RacerPlacingComparator implements Comparator<AbstractRacer> {
 		int o2laps = o2.getNumberOfLaps();
 		String o1total = o1.getTotalTime();
 		String o2total = o2.getTotalTime();
-		if (o1.getNumberOfLaps() == o2.getNumberOfLaps()) {
+		if (o1laps == o2laps) {
 			// samma antal varv eller maratontävling
-			int comparedResult = o1.getTotalTime().compareTo(o2.getTotalTime());			
+			int comparedResult = o1total.compareTo(o2total);			
 			return comparedResult;
 		} else {
-			return o1.getNumberOfLaps() - o2.getNumberOfLaps();
+			return o1laps - o2laps;
 		}
 	}
 
