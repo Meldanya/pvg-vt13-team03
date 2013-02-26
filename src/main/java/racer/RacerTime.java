@@ -73,7 +73,6 @@ public class RacerTime implements Comparable<RacerTime> {
 	}
 	
 	public String getDifferenceTo(RacerTime other) {
-		
 		return format(computeLapTime(other));
 	}
 

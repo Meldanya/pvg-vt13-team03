@@ -20,12 +20,8 @@ public class TestLapRacer {
 
 	@Test
 	public void testTimeFormatting() {
-		
 		lapRacer.addStartTime("11.00.00");
 		lapRacer.addFinishTime("12.00.00");
-	
-		
-		
 		assertEquals("Formatting is wrong", "1; Ander Asson; 01.00.00; 1; 01.00.00; 11.00.00; 12.00.00", lapRacer.toString());
 	}
 }
