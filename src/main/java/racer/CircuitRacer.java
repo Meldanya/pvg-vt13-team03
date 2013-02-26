@@ -1,6 +1,5 @@
 package racer;
 
-import java.util.ArrayList;
 
 public class CircuitRacer extends AbstractRacer {
 	public CircuitRacer(String startNumber) {

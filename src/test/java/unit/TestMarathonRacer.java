@@ -7,9 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import racer.AbstractRacer;
-import racer.LapRacer;
 import racer.MarathonRacer;
-import racer.RacerTime;
 
 public class TestMarathonRacer {
 

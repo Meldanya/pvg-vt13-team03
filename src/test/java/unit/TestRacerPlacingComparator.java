@@ -9,7 +9,6 @@ import org.junit.Test;
 import racer.AbstractRacer;
 import racer.RacerFactory;
 import racer.RacerPlacingComparator;
-import racer.RacerTime;
 
 public class TestRacerPlacingComparator {
 	private AbstractRacer racer1;
