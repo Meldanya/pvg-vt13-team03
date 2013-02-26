@@ -87,7 +87,7 @@ public class ResultWriter {
 		writer.write(header);
 
 		for (AbstractRacer abstractRacer : abstractRacers) {
-			writer.write(abstractRacer.racerString(1));
+			writer.write(abstractRacer.racerString(maxLapCount));
 			writer.newLine();
 		}
 	}
