@@ -21,8 +21,8 @@ public class CircuitRacer extends AbstractRacer {
 		// Varvtider:
 		for (int lap = 0; lap < laps; lap++) {
 			String lapTime = distanceList.get(lap).getLapTimeString();
+			sb.append("; ");
 			if (!lapTime.equals("")) {
-				sb.append("; ");
 				sb.append(lapTime);
 			}
 		}

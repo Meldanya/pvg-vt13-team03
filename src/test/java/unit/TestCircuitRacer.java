@@ -27,13 +27,13 @@ public class TestCircuitRacer {
 
 	@Test
 	public void testNoTimes() {
-		assertEquals("Start time exists", "1; Kalle; 0; --.--.--; Start?; Slut?", racer1.racerString(1));
+		assertEquals("Start time exists", "1; Kalle; 0; --.--.--; ; Start?; Slut?", racer1.racerString(1));
 	}
 
 	@Test
 	public void testTimeFormatting() {
 		racer1.addStartTime("11.12.13");
-		assertEquals("Formatting is wrong", "1; Kalle; 0; --.--.--; 11.12.13; Slut?", racer1.racerString(1));
+		assertEquals("Formatting is wrong", "1; Kalle; 0; --.--.--; ; 11.12.13; Slut?", racer1.racerString(1));
 	}
 
 	@Test
