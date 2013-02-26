@@ -17,6 +17,8 @@ public class MarathonRacer extends AbstractRacer {
 	@Override
 	protected String racerSpecificString(int laps) {
 		StringBuilder sb = new StringBuilder();
+		
+		sb.append("; ");
 		sb.append(getTotalTime());
 		sb.append("; ");
 
@@ -39,7 +41,7 @@ public class MarathonRacer extends AbstractRacer {
 	public String getTotalTime() {
 		String totalTime = firstDistance().getLapTimeString();
 		if (totalTime.equals("")){
-			totalTime = "; --.--.--";
+			totalTime = "--.--.--";
 		}
 		return totalTime;
 	}

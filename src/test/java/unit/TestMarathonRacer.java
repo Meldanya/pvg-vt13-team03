@@ -33,9 +33,8 @@ public class TestMarathonRacer {
 	
 	 @Test
 	 public void testGetTotalTime(){
-		 //TODO getTotalTime should probably not include a semicolon.
-		 assertEquals("Total time is incorrect for racer 1", "; 01.23.34", andersAsson.getTotalTime());
-		 assertEquals("Total time is incorrect for racer 2", "; 01.14.16", bengtBsson.getTotalTime());
+		 assertEquals("Total time is incorrect for racer 1", "01.23.34", andersAsson.getTotalTime());
+		 assertEquals("Total time is incorrect for racer 2", "01.14.16", bengtBsson.getTotalTime());
 	 }
 	
 	@After

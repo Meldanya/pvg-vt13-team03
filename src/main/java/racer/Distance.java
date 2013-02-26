@@ -10,7 +10,7 @@ public class Distance {
 	public Distance() {
 		startTimes = new ArrayList<RacerTime>();
 		finishTimes = new ArrayList<RacerTime>();
-		minTime = "; " + "00.15.00";
+		minTime = "00.15.00";
 	}
 
 	public String getStartTime() {
@@ -53,7 +53,7 @@ public class Distance {
 
 	public String getLapTimeString() {
 		if (startTimes.size() > 0 && finishTimes.size() > 0) {
-			return "; "+RacerTime.format(computeRacerTime());
+			return RacerTime.format(computeRacerTime());
 		} else {
 			return "";
 		}
