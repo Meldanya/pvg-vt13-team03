@@ -84,7 +84,7 @@ public class TestResultWriter {
 	@Test
 	public void testOneRacer() throws IOException {
 		String name = "Anders Asson";
-		AbstractRacer r1 = factory.createRacer("1");
+		AbstractRacer r1 = factory.makeRacer("1");
 		r1.setName(name);
 		Map<String, String> nameMappings = new HashMap<String, String>();
 		nameMappings.put("1", name);
@@ -105,11 +105,11 @@ public class TestResultWriter {
 		String name2 = "Bengt Bsson";
 		String name3 = "Chris Csson";
 		
-		AbstractRacer r1 = factory.createRacer("1");
+		AbstractRacer r1 = factory.makeRacer("1");
 		r1.setName(name1);
-		AbstractRacer r2 = factory.createRacer("2");
+		AbstractRacer r2 = factory.makeRacer("2");
 		r2.setName(name2);
-		AbstractRacer r3 = factory.createRacer("3");
+		AbstractRacer r3 = factory.makeRacer("3");
 		r3.setName(name3);
 		
 		nameMappings.put("1", name1);

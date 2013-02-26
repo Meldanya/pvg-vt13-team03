@@ -46,7 +46,7 @@ public class Competition {
 			if (Character.isDigit(startNumber.charAt(0))) {
 				AbstractRacer abstractRacer = abstractRacers.get(startNumber);
 				if (abstractRacer == null) {
-					abstractRacer = factory.createRacer(startNumber);
+					abstractRacer = factory.makeRacer(startNumber);
 					addRacer(abstractRacer);
 				}
 
@@ -138,7 +138,7 @@ public class Competition {
 	private AbstractRacer getReferenceToRacer(String startNumber) {
 		AbstractRacer abstractRacer = abstractRacers.get(startNumber);
 		if (abstractRacer == null) {
-			abstractRacer = factory.createRacer(startNumber);
+			abstractRacer = factory.makeRacer(startNumber);
 			addRacer(abstractRacer);
 		}
 		return abstractRacer;
