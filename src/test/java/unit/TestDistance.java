@@ -14,17 +14,34 @@ import racer.RacerTime;
 
 public class TestDistance {
 
-	private Distance distance;
+	private Distance distance, distanceNoTimes;
 
 	@Before
 	public void setUp() throws Exception {
 		distance = new Distance();
 		distance.addStartTime(new RacerTime("11.00.00"));
 		distance.addFinishTime(new RacerTime("12.00.00"));
+		
+		distanceNoTimes = new Distance();
+	}
+	
+	@Test
+	public void testGetStartTime(){
+		assertEquals("Wrong start time", "11.00.00", distance.getStartTime());
+	}
+	
+	@Test
+	public void testGetStartTimeNoStartTime(){
+		assertEquals("Wrong start time", "Start?", distanceNoTimes.getStartTime());
+	}
+	
+	@Test
+	public void testGetFinishTime(){
+		assertEquals("Wrong finish time", "12.00.00", distance.getFinishTime());
 	}
 	@Test
-	public void testTimeFormatting() {
-		assertEquals("Formatting is wrong", "01.00.00; 11.00.00; 12.00.00", distance.toString());
+	public void testGetFinishTimeNoFinishTime(){
+		assertEquals("Wrong finish time", "Slut?", distanceNoTimes.getFinishTime());
 	}
 
 	@Test

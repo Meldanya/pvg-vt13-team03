@@ -18,12 +18,6 @@ public class LapRacer extends AbstractRacer {
 	private String lapsToString() {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(distanceList.size() + "; ");
-
-		for (Distance distance : distanceList) {
-			sb.append(distance.toString());
-		}
-
 		return sb.toString();
 	}
 

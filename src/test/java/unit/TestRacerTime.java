@@ -24,13 +24,13 @@ public class TestRacerTime {
 	@Test
 	public void testBasicCompareTo() {
 		RacerTime compare = new RacerTime("11.12.14");
-		assertEquals("Diff not correct", "00.00.01", racerTime.getDifferenceTo(compare));
+		assertEquals("Diff not correct", 1000, racerTime.computeLapTime(compare));
 	}
 
 	@Test
 	public void testComplexCompareTo() {
 		RacerTime compare = new RacerTime("22.13.14");
-		assertEquals("Diff not correct", "11.01.01", racerTime.getDifferenceTo(compare));
+		assertEquals("Diff not correct", 11*60*60*1000+60*1000+1000, racerTime.computeLapTime(compare));
 	}
 	
 	@Test

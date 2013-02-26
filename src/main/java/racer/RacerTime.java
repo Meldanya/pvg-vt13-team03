@@ -71,10 +71,6 @@ public class RacerTime implements Comparable<RacerTime> {
 	public long computeLapTime(RacerTime other){
 		return other.time.getTime() - time.getTime();
 	}
-	
-	public String getDifferenceTo(RacerTime other) {
-		return format(computeLapTime(other));
-	}
 
 	@Override
 	public int compareTo(RacerTime other) {

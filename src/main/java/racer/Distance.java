@@ -13,14 +13,6 @@ public class Distance {
 		minTime = "; " + "00.15.00";
 	}
 
-	public String toString() {
-		String start = getStartTime();
-		String finish = getFinishTime();
-
-		return startTimes.get(0).getDifferenceTo(finishTimes.get(0)) + "; "
-				+ start + "; " + finish;
-	}
-
 	public String getStartTime() {
 		int startTimesSize = startTimes.size();
 		if (startTimesSize == 0) {
