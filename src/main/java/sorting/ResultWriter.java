@@ -10,6 +10,7 @@ import racer.AbstractRacer;
 import racer.RacerClass;
 
 public class ResultWriter {
+	private static final String NEW_LINE = System.getProperty("line.separator");
 	private BufferedWriter writer;
 	private Competition data;
 	private String fileName;
@@ -65,7 +66,7 @@ public class ResultWriter {
 		}
 
 		if (laps < 2) {
-			header = "StartNr; Namn; TotalTid; StartTider; Måltider\n";
+			header = "StartNr; Namn; TotalTid; StartTider; Måltider" + NEW_LINE;
 		} else {
 			StringBuilder sb = new StringBuilder();
 			sb.append("StartNr; Namn; #Varv; TotalTid; ");
