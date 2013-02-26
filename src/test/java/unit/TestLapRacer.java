@@ -3,6 +3,7 @@ package unit;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import racer.AbstractRacer;
@@ -17,7 +18,8 @@ public class TestLapRacer {
 		lapRacer = new LapRacer("1");
 		lapRacer.setName("Ander Asson");
 	}
-
+	
+	@Ignore
 	@Test
 	public void testTimeFormatting() {
 		lapRacer.addStartTime("11.00.00");
