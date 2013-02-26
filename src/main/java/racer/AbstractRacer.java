@@ -46,8 +46,6 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 	}
 	public abstract void addFinishTime(RacerTime racerTime);
 
-
-
 	public abstract String toString();
 
 	@Override
