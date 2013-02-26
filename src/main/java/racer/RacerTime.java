@@ -47,10 +47,11 @@ public class RacerTime implements Comparable<RacerTime> {
 	}
 
 	public RacerTime computeLapTime(RacerTime other){
-		return new RacerTime(String.valueOf(difference(other)));
+		return new RacerTime(difference(other));
 	}
 	
 	public String getDifferenceTo(RacerTime other) {
+		
 		return formatString(difference(other));
 	}
 	
