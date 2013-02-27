@@ -7,11 +7,11 @@ public class CircuitRacer extends AbstractRacer {
 
 	/**
 	 * 
-	 * @param laps
+	 * @param maxLapCount
 	 * @return
 	 */
 	@Override
-	public String racerSpecificString(int laps) {
+	public String racerSpecificString(int maxLapCount) {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("; ");
@@ -20,7 +20,7 @@ public class CircuitRacer extends AbstractRacer {
 		sb.append(getTotalTime());
 
 		// Varvtider:
-		for (int lap = 0; lap < laps; lap++) {
+		for (int lap = 0; lap < maxLapCount; lap++) {
 			String lapTime = distanceList.get(lap).getLapTimeString();
 			sb.append("; ");
 			if (!lapTime.equals("")) {
