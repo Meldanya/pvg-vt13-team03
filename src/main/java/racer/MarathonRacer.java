@@ -20,9 +20,9 @@ public class MarathonRacer extends AbstractRacer {
 
 
 		Distance distance = firstDistance();
-		sb.append(distance.getStartTime());
+		sb.append(distance.startTimeString());
 		sb.append("; ");
-		sb.append(distance.getFinishTime());
+		sb.append(distance.finishTimeString());
 
 		sb.append(distance.possibleMultipleFinishTimes());
 

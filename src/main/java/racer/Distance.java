@@ -13,7 +13,7 @@ public class Distance {
 		minTime = "00.15.00";
 	}
 
-	public String getStartTime() {
+	public String startTimeString() {
 		int startTimesSize = startTimes.size();
 		if (startTimesSize == 0) {
 			return "Start?";
@@ -22,7 +22,7 @@ public class Distance {
 		}
 	}
 
-	public String getFinishTime() {
+	public String finishTimeString() {
 		int finishTimesSize = finishTimes.size();
 		if (finishTimesSize == 0) {
 			return "Slut?";

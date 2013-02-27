@@ -27,21 +27,21 @@ public class TestDistance {
 	
 	@Test
 	public void testGetStartTime(){
-		assertEquals("Wrong start time", "11.00.00", distance.getStartTime());
+		assertEquals("Wrong start time", "11.00.00", distance.startTimeString());
 	}
 	
 	@Test
 	public void testGetStartTimeNoStartTime(){
-		assertEquals("Wrong start time", "Start?", distanceNoTimes.getStartTime());
+		assertEquals("Wrong start time", "Start?", distanceNoTimes.startTimeString());
 	}
 	
 	@Test
 	public void testGetFinishTime(){
-		assertEquals("Wrong finish time", "12.00.00", distance.getFinishTime());
+		assertEquals("Wrong finish time", "12.00.00", distance.finishTimeString());
 	}
 	@Test
 	public void testGetFinishTimeNoFinishTime(){
-		assertEquals("Wrong finish time", "Slut?", distanceNoTimes.getFinishTime());
+		assertEquals("Wrong finish time", "Slut?", distanceNoTimes.finishTimeString());
 	}
 
 	@Test

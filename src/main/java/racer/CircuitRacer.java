@@ -30,11 +30,11 @@ public class CircuitRacer extends AbstractRacer {
 
 		// Den första starttiden:
 		sb.append("; ");
-		sb.append(firstDistance().getStartTime());
+		sb.append(firstDistance().startTimeString());
 
 		for (int lap = 1; lap < distanceList.size(); lap++) {
 			sb.append("; ");
-			sb.append(distanceList.get(lap).getStartTime());
+			sb.append(distanceList.get(lap).startTimeString());
 		}
 
 		if (distanceList.size() == 1) {
