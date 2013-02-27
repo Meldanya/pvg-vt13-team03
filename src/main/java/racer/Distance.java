@@ -94,12 +94,11 @@ public class Distance {
 		return "";
 	}
 
-	public String timeFromStartToOtherStart(Distance other) {
+	public long timeFromStartToOtherStart(Distance other) {
 		if (startTimes.size() > 0 && finishTimes.size() > 0) {
-			long lapTime = startTimes.get(0).computeLapTime(other.startTimes.get(0));
-			return RacerTime.format(lapTime);
+			return startTimes.get(0).computeLapTime(other.startTimes.get(0));
 		} else {
-			return "--.--.--";
+			return 0;
 		}
 	}
 }

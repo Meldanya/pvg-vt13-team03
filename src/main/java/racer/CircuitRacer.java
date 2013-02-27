@@ -5,11 +5,8 @@ public class CircuitRacer extends AbstractRacer {
 		super(startNumber);
 	}
 
-	/**
-	 * 
-	 * @param maxLapCount
-	 * @return
-	 */
+	/** @param maxLapCount
+	 * @return */
 	@Override
 	public String racerSpecificString(int maxLapCount) {
 		StringBuilder sb = new StringBuilder();
@@ -20,11 +17,11 @@ public class CircuitRacer extends AbstractRacer {
 		sb.append(getTotalTime());
 
 		// Varvtider:
-		
+
 		for (int lap = 0; lap < maxLapCount; lap++) {
 			sb.append("; ");
 			String lapTime;
-			if (lap<distanceList.size()-1){
+			if (lap < distanceList.size() - 1) {
 				lapTime = distanceList.get(lap).getLapTimeString();
 				if (!lapTime.equals("")) {
 					sb.append(lapTime);
@@ -53,7 +50,8 @@ public class CircuitRacer extends AbstractRacer {
 
 	@Override
 	public String getTotalTime() {
-		return firstDistance().timeFromStartToOtherStart(lastDistance());
+		long lapTime = firstDistance().timeFromStartToOtherStart(lastDistance());
+		return RacerTime.format(lapTime);
 	}
 
 	private Distance lastDistance() {
@@ -73,7 +71,8 @@ public class CircuitRacer extends AbstractRacer {
 
 	@Override
 	public void addFinishTime(RacerTime racerTime) {
-		//TODO CircuitRacer needs to make sure it's distanceList is always in order!
+		// TODO CircuitRacer needs to make sure it's distanceList is always in
+		// order!
 		lastDistance().addFinishTime(racerTime);
 		distanceList.add(new Distance());
 		addStartTime(racerTime); // "Start" the next lap immediately
