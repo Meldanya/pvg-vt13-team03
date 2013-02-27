@@ -69,6 +69,7 @@ public class CircuitRacer extends AbstractRacer {
 
 	@Override
 	public void addFinishTime(RacerTime racerTime) {
+		//TODO CircuitRacer needs to make sure it's distanceList is always in order!
 		lastDistance().addFinishTime(racerTime);
 		distanceList.add(new Distance());
 		addStartTime(racerTime); // "Start" the next lap immediately
