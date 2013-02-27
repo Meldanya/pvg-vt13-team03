@@ -35,7 +35,7 @@ public class Distance {
 		if (startTimes.size()>0){
 		return startTimes.get(0).getTime();
 		} else {
-			return -1;
+			return 0;
 		}
 	}
 	
@@ -43,7 +43,7 @@ public class Distance {
 		if (finishTimes.size()>0){
 		return finishTimes.get(0).getTime();
 		} else {
-			return -1;
+			return 0;
 		}
 	}
 
