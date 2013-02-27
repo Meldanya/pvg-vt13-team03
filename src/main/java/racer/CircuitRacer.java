@@ -75,12 +75,24 @@ public class CircuitRacer extends AbstractRacer {
 		// order!
 		for (int lap = 0; lap < distanceList.size();lap++){
 			Distance newDistance = new Distance();;
-			long currentFinishTime = distanceList.get(lap).getFinishTime();
+			Distance currentDistance = distanceList.get(lap);
+			long currentFinishTime = currentDistance.getFinishTime();
 			long newFinishTime = racerTime.getTime();
 			if (currentFinishTime - newFinishTime < 0){
 				lastDistance().addFinishTime(racerTime);
 				newDistance.addStartTime(racerTime);
 				distanceList.add(newDistance);
+				return;
+			} else {
+				newDistance.addStartTime(new RacerTime(currentDistance.getStartTime()));
+				newDistance.addFinishTime(racerTime);
+				distanceList.add(lap,newDistance);
+				
+				//This is dangerous as it could possibly erase faulty registration!
+				Distance temp = new Distance();
+				temp.addStartTime(racerTime);
+				temp.addFinishTime(new RacerTime(currentFinishTime));
+				distanceList.set(lap +1, temp);
 				return;
 			}
 		}
