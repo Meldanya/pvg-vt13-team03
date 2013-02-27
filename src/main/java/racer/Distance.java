@@ -31,6 +31,22 @@ public class Distance {
 		}
 	}
 
+	public long getStartTime() {
+		if (startTimes.size()>0){
+		return startTimes.get(0).getTime();
+		} else {
+			return -1;
+		}
+	}
+	
+	public long getFinishTime() {
+		if (finishTimes.size()>0){
+		return finishTimes.get(0).getTime();
+		} else {
+			return -1;
+		}
+	}
+
 	public void addStartTime(RacerTime racerTime) {
 		startTimes.add(racerTime);
 	}
@@ -53,7 +69,7 @@ public class Distance {
 
 	public String getLapTimeString() {
 		if (startTimes.size() > 0 && finishTimes.size() > 0) {
-			return RacerTime.format(computeRacerTime());
+			return RacerTime.formatDuration(computeRacerTime());
 		} else {
 			return "";
 		}
@@ -86,7 +102,7 @@ public class Distance {
 	/** @return Error message if finishTime is "" */
 	public String possibleImpossibleTotalTime() {
 		String lapTime = getLapTimeString();
-		if (lapTime.equals("")){
+		if (lapTime.equals("")) {
 			return "";
 		} else if (lapTime.compareTo(minTime) < 0) {
 			return ("; Omöjlig Totaltid?");

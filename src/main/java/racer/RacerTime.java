@@ -24,7 +24,7 @@ public class RacerTime implements Comparable<RacerTime> {
 		this();
 
 		if (inputTime.indexOf('.') < 0) {
-			inputTime = format(Long.parseLong(inputTime));
+			inputTime = format.format(Long.parseLong(inputTime));
 		}
 
 		try {
@@ -38,7 +38,7 @@ public class RacerTime implements Comparable<RacerTime> {
 		return format.format(time);
 	}
 
-	public static String format(long duration) {
+	public static String formatDuration(long duration) {
 		if (duration == 0) {
 			return "--.--.--";
 		} else {

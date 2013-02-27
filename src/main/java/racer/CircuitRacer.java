@@ -51,7 +51,7 @@ public class CircuitRacer extends AbstractRacer {
 	@Override
 	public String getTotalTime() {
 		long lapTime = firstDistance().timeFromStartToOtherStart(lastDistance());
-		return RacerTime.format(lapTime);
+		return RacerTime.formatDuration(lapTime);
 	}
 
 	private Distance lastDistance() {
@@ -73,8 +73,16 @@ public class CircuitRacer extends AbstractRacer {
 	public void addFinishTime(RacerTime racerTime) {
 		// TODO CircuitRacer needs to make sure it's distanceList is always in
 		// order!
-		lastDistance().addFinishTime(racerTime);
-		distanceList.add(new Distance());
-		addStartTime(racerTime); // "Start" the next lap immediately
+		for (int lap = 0; lap < distanceList.size();lap++){
+			Distance newDistance = new Distance();;
+			long currentFinishTime = distanceList.get(lap).getFinishTime();
+			long newFinishTime = racerTime.getTime();
+			if (currentFinishTime - newFinishTime < 0){
+				lastDistance().addFinishTime(racerTime);
+				newDistance.addStartTime(racerTime);
+				distanceList.add(newDistance);
+				return;
+			}
+		}
 	}
 }
