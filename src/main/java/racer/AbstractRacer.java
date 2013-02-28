@@ -1,7 +1,5 @@
 package racer;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A class representing a racer (aka driver) with a start number, start time and
@@ -36,20 +34,22 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 
 	public abstract void addFinishTime(RacerTime racerTime);
 
-	public String racerString(int laps, boolean includeAbsoluteTimes) {
+	public String racerString(int maxLapCount, boolean includeAbsoluteTimes) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(startNumber);
 		sb.append("; ");
 		sb.append(name);
 		sb.append("; ");
-		appendRacerSpecificString(sb, laps, includeAbsoluteTimes);
+		appendRacerSpecificString(sb, maxLapCount, includeAbsoluteTimes);
+		
 		appendErrorMessages(sb);
 		return sb.toString();
 	}
 
 	protected abstract void appendRacerSpecificString(StringBuilder sb,
 			int laps, boolean includeAbsoluteTimes);
-
+	
+	protected abstract void appendAbsoluteTimes(StringBuilder sb, int maxLapCount);
 	@Override
 	public int hashCode() {
 		final int prime = 31;

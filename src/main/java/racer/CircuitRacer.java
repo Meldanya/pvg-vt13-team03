@@ -5,6 +5,7 @@ import java.util.List;
 
 public class CircuitRacer extends AbstractRacer {
 	protected List<Distance> distanceList;
+
 	public CircuitRacer(String startNumber) {
 		super(startNumber);
 		distanceList = new ArrayList<Distance>();
@@ -15,15 +16,15 @@ public class CircuitRacer extends AbstractRacer {
 	 * @param maxLapCount
 	 */
 	@Override
-	public void appendRacerSpecificString(StringBuilder sb,
-			int maxLapCount, boolean includeAbsoluteTimes) {
+	protected void appendRacerSpecificString(StringBuilder sb, int maxLapCount,
+			boolean includeAbsoluteTimes) {
 		appendStatistics(sb);
 
 		appendLapTimes(sb, maxLapCount);
-
-		if (includeAbsoluteTimes) {
+		
+		if (includeAbsoluteTimes){
 			appendAbsoluteTimes(sb, maxLapCount);
-		}		
+		}
 	}
 
 	private void appendStatistics(StringBuilder sb) {
@@ -50,7 +51,8 @@ public class CircuitRacer extends AbstractRacer {
 		}
 	}
 
-	private void appendAbsoluteTimes(StringBuilder sb, int maxLapCount) {
+	@Override
+	protected void appendAbsoluteTimes(StringBuilder sb, int maxLapCount) {
 		// Den första starttiden:
 		sb.append("; ");
 		sb.append(firstDistance().startTimeString());
@@ -133,8 +135,8 @@ public class CircuitRacer extends AbstractRacer {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	private Distance firstDistance(){
+
+	private Distance firstDistance() {
 		return distanceList.get(0);
 	}
 }
