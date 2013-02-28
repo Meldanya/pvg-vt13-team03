@@ -44,11 +44,11 @@ public class CircuitRacer extends AbstractRacer {
 				sb.append("Slut?");
 			}
 
-			// TODO this is really messy and ugly code. At better solution is
-			// needed:
-			if (sb.charAt(sb.length() - 1) == ' ') {
-				sb = new StringBuilder(sb.toString().substring(0, sb.length() - 1));
-			}
+		}
+		// TODO this is really messy and ugly code. At better solution is
+		// needed:
+		if (sb.charAt(sb.length() - 1) == ' ') {
+			sb = new StringBuilder(sb.toString().substring(0, sb.length() - 1));
 		}
 		sb.append(firstDistance().possibleMultipleStartTimes());
 

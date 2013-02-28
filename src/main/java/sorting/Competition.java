@@ -87,7 +87,7 @@ public class Competition {
 	public void writeToFile(String filename, int laps, Comparator<AbstractRacer> comp) {
 		ResultWriter writer = new ResultWriter(this, filename, comp);
 
-		writer.writeToFile(laps, true);
+		writer.writeToFile(laps);
 	}
 	/** Reads start times from a file and loads it into Racers, creates new
 	 * Racers to store the data in where necessary.
