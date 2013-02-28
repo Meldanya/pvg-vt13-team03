@@ -43,7 +43,11 @@ public class CircuitRacer extends AbstractRacer {
 		if (distanceList.size() == 1) {
 			sb.append("Slut?");
 		}
-
+		
+		//TODO this is really messy and ugly code. At better solution is needed:
+		if (sb.charAt(sb.length()-1) == ' '){
+			sb = new StringBuilder(sb.toString().substring(0, sb.length()-1));
+		}
 		sb.append(firstDistance().possibleMultipleStartTimes());
 
 		for (Distance lap : distanceList) {

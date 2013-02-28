@@ -64,10 +64,7 @@ public class ResultWriter {
 		if (maxLapCount > 0 && maxLapCount < laps) {
 			laps = maxLapCount;
 		}
-	}
 
-	protected String getHeader(int laps) {
-		String header;
 		if (laps < 2) {
 			header = "StartNr; Namn; TotalTid; StartTider; Måltider" + NEW_LINE;
 		} else {
@@ -87,6 +84,11 @@ public class ResultWriter {
 			sb.append(NEW_LINE);
 			header = sb.toString();
 		}
-		return header;
+		writer.write(header);
+
+		for (AbstractRacer abstractRacer : abstractRacers) {
+			writer.write(abstractRacer.racerString(maxLapCount));
+			writer.newLine();
+		}
 	}
 }
