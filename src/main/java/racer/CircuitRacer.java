@@ -23,9 +23,7 @@ public class CircuitRacer extends AbstractRacer {
 			String lapTime;
 			if (lap < distanceList.size() - 1) {
 				lapTime = distanceList.get(lap).getLapTimeString();
-				if (!lapTime.equals("")) {
-					sb.append(lapTime);
-				}
+				sb.append(lapTime);
 			}
 		}
 
@@ -33,16 +31,23 @@ public class CircuitRacer extends AbstractRacer {
 		sb.append("; ");
 		sb.append(firstDistance().startTimeString());
 
-		for (int lap = 1; lap < distanceList.size(); lap++) {
+		for (int lap = 0; lap < maxLapCount; lap++) {
 			sb.append("; ");
-			sb.append(distanceList.get(lap).startTimeString());
+			String finishTime;
+			if (lap < distanceList.size()-1) {
+				finishTime = distanceList.get(lap).finishTimeString();
+				sb.append(finishTime);
+			}
 		}
 
 		if (distanceList.size() == 1) {
-			sb.append("; Slut?");
+			sb.append("Slut?");
 		}
+
+		sb.append(firstDistance().possibleMultipleStartTimes());
+
 		for (Distance lap : distanceList) {
-			sb.append(lap.possibleImpossibleTotalTime());
+			sb.append(lap.possibleImpossibleTime("Omöjlig varvtid?"));
 		}
 
 		return sb.toString();
@@ -61,7 +66,11 @@ public class CircuitRacer extends AbstractRacer {
 	@Override
 	public int getNumberOfDistances() {
 		// -1 because addFinishTime should always start a new distance:
-		return distanceList.size() - 1;
+		int numberOfDistances = distanceList.size() - 1;
+		if (!firstDistance().finishTimeString().equals("Slut?"))
+			if (firstDistance().startTimeString().equals("Start?"))
+				numberOfDistances--;
+		return numberOfDistances;
 	}
 
 	@Override
@@ -71,30 +80,26 @@ public class CircuitRacer extends AbstractRacer {
 
 	@Override
 	public void addFinishTime(RacerTime racerTime) {
-		// TODO CircuitRacer needs to make sure it's distanceList is always in
-		// order!
-		for (int lap = 0; lap < distanceList.size();lap++){
-			Distance newDistance = new Distance();;
+		Distance newDistance = new Distance();
+		for (int lap = 0; lap < distanceList.size(); lap++) {
 			Distance currentDistance = distanceList.get(lap);
 			long currentFinishTime = currentDistance.getFinishTime();
 			long newFinishTime = racerTime.getTime();
-			if (currentFinishTime - newFinishTime < 0){
-				lastDistance().addFinishTime(racerTime);
-				newDistance.addStartTime(racerTime);
-				distanceList.add(newDistance);
-				return;
-			} else {
+			if (currentFinishTime > newFinishTime) {
 				newDistance.addStartTime(new RacerTime(currentDistance.getStartTime()));
 				newDistance.addFinishTime(racerTime);
-				distanceList.add(lap,newDistance);
-				
-				//This is dangerous as it could possibly erase faulty registration!
+				distanceList.add(lap, newDistance);
+
 				Distance temp = new Distance();
 				temp.addStartTime(racerTime);
 				temp.addFinishTime(new RacerTime(currentFinishTime));
-				distanceList.set(lap +1, temp);
+				distanceList.set(lap + 1, temp);
 				return;
 			}
 		}
+		// The new time should be added at the end:
+		lastDistance().addFinishTime(racerTime);
+		newDistance.addStartTime(racerTime);
+		distanceList.add(newDistance);
 	}
 }
