@@ -8,7 +8,7 @@ public class CircuitRacer extends AbstractRacer {
 	/** @param maxLapCount
 	 * @return */
 	@Override
-	public String racerSpecificString(int maxLapCount, boolean isWithSpecificTimes) {
+	public String racerSpecificString(int maxLapCount, boolean includeAbsoluteTimes) {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("; ");
@@ -26,7 +26,7 @@ public class CircuitRacer extends AbstractRacer {
 				sb.append(lapTime);
 			}
 		}
-		if (isWithSpecificTimes) {
+		if (includeAbsoluteTimes) {
 			// Den första starttiden:
 			sb.append("; ");
 			sb.append(firstDistance().startTimeString());

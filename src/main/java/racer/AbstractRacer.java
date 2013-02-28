@@ -39,16 +39,16 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 
 	public abstract void addFinishTime(RacerTime racerTime);
 
-	public String racerString(int laps, boolean isWithSpecificTimes) {
+	public String racerString(int laps, boolean includeAbsoluteTimes) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(startNumber);
 		sb.append("; ");
 		sb.append(name);
-		sb.append(racerSpecificString(laps, isWithSpecificTimes));
+		sb.append(racerSpecificString(laps, includeAbsoluteTimes));
 		return sb.toString();
 	}
 	
-	protected abstract String racerSpecificString(int laps, boolean isWithSpecificTimes);
+	protected abstract String racerSpecificString(int laps, boolean includeAbsoluteTimes);
 	
 	@Override
 	public int hashCode() {
