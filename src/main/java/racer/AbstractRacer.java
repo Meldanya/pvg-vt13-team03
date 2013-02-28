@@ -46,8 +46,7 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 		return sb.toString();
 	}
 
-	protected abstract void appendRacerSpecificString(StringBuilder sb,
-			int laps, boolean includeAbsoluteTimes);
+	protected abstract void appendRacerSpecificString(StringBuilder sb,	int laps, boolean includeAbsoluteTimes);
 	
 	protected abstract void appendAbsoluteTimes(StringBuilder sb, int maxLapCount);
 	@Override
