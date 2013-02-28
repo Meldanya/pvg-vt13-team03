@@ -45,11 +45,12 @@ public class CircuitRacer extends AbstractRacer {
 			}
 
 		}
-		// TODO this is really messy and ugly code. At better solution is
-		// needed:
-		if (sb.charAt(sb.length() - 1) == ' ') {
-			sb = new StringBuilder(sb.toString().substring(0, sb.length() - 1));
+		
+		int indexOfLastChar = sb.length() - 1;
+		if (sb.charAt(indexOfLastChar) == ' ') {
+			sb.deleteCharAt(indexOfLastChar);
 		}
+		
 		sb.append(firstDistance().possibleMultipleStartTimes());
 
 		for (Distance lap : distanceList) {
