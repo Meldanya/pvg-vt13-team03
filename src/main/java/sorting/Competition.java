@@ -148,7 +148,6 @@ public class Competition {
 				e.printStackTrace();
 			}
 		}
-		abstractRacer.sortFinishTimes();
 	}
 
 	private AbstractRacer getReferenceToRacer(String startNumber) {
