@@ -14,7 +14,7 @@ public class TestRacerTime {
 	RacerTime racerTime1, racerTime2;
 	long currentTime;
 	@Before
-	public void setUp() {
+	public void setUp() throws Exception{
 		currentTime = System.currentTimeMillis();
 		racerTime1 = new RacerTime(currentTime);
 		racerTime2 = new RacerTime("11.12.13");
@@ -32,19 +32,19 @@ public class TestRacerTime {
 	}
 	
 	@Test
-	public void testBasicCompareTo() {
+	public void testBasicCompareTo() throws Exception {
 		RacerTime compare = new RacerTime("11.12.14");
 		assertEquals("Diff not correct", 1000, racerTime2.computeLapTime(compare));
 	}
 
 	@Test
-	public void testComplexCompareTo() {
+	public void testComplexCompareTo() throws Exception {
 		RacerTime compare = new RacerTime("22.13.14");
 		assertEquals("Diff not correct", 11*60*60*1000+60*1000+1000, racerTime2.computeLapTime(compare));
 	}
 	
 	@Test
-	public void testEquals(){
+	public void testEquals() throws Exception {
 		RacerTime time1 = new RacerTime("11.11.11");
 		RacerTime time2 = new RacerTime("11.11.11");
 		
@@ -53,7 +53,7 @@ public class TestRacerTime {
 	}
 	
 	@Test
-	public void testComparable() {
+	public void testComparable() throws Exception {
 		RacerTime time1 = new RacerTime("11.11.11");
 		RacerTime time2 = new RacerTime("11.13.11");
 		

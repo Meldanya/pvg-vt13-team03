@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import javax.swing.JOptionPane;
 
 import sorting.Sorter;
-import constants.FileNames;
 
 public class SorterProgram {
 
@@ -15,9 +14,9 @@ public class SorterProgram {
 	 */
 	public static void main(String[] args) {
 	    try {
-			new Sorter();
+			Sorter sorter = new Sorter();
 
-			JOptionPane.showMessageDialog(null, "Sorteringen lyckades, resultatet skrivet till " + FileNames.OUTFILE);
+			JOptionPane.showMessageDialog(null, "Sorteringen lyckades, resultatet skrivet till " + sorter.resultfile());
 		} catch (FileNotFoundException e) {
 			JOptionPane.showMessageDialog(null, ("Kunde ej hitta filerna"));
 			e.printStackTrace();

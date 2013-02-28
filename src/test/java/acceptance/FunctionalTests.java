@@ -11,12 +11,11 @@ import java.io.InputStreamReader;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
+import registration.FileNames;
 import sorting.Sorter;
 import sorting.SorterConfig;
-import constants.FileNames;
 
 public class FunctionalTests {
 	//private static final String ACCEPTANCE_PATH = "acceptance/acceptanstest";
@@ -69,7 +68,6 @@ public class FunctionalTests {
 		simpleLapTest("16");
 	}
 
-	@Ignore
 	@Test
 	public void test18() throws IOException {
 		prepareForCircuitContest(3);
@@ -79,7 +77,7 @@ public class FunctionalTests {
 	private void prepareForCircuitContest(int laps) throws IOException {
 		config.setProperty("ContestType", "circuit");
 		config.setProperty("NumberOfLaps", String.valueOf(laps));
-		config.store(FileNames.CONFIG, "Test config for CircuitRacers in Enduro Sorter");
+		config.store("sorter.cfg", "Test config for CircuitRacers in Enduro Sorter");
 	}
 	
 	@After

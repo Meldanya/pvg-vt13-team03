@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import racer.RacerFactory;
-import racer.RacerPlacingComparator;
-import constants.FileNames;
+import racer.RacerRankingComparator;
 
 
 /**
@@ -19,6 +18,7 @@ import constants.FileNames;
 public class Sorter {
 	private Competition racers;
 	private SorterConfig config;
+	private final String CONFIGFILE = "sorter.cfg";
 
 	public Sorter() throws IOException {
 		initializeConfig();
@@ -36,9 +36,9 @@ public class Sorter {
 		this.config = new SorterConfig();
 
 		try {
-			config.load(FileNames.CONFIG);
+			config.load(CONFIGFILE);
 		} catch (FileNotFoundException e1) {
-			new SorterConfig().store(FileNames.CONFIG, "Default config for Enduro Sorter");
+			new SorterConfig().store(CONFIGFILE, "Default config for Enduro Sorter");
 			// May throw an exception. For example if the user doesn't have
 			// permission to write  
 		}
@@ -57,7 +57,7 @@ public class Sorter {
 	 * Returns a list with the filenames that the sorter will read goal times from.
 	 * @return A list with the goal times.
 	 */
-	public ArrayList<String> finishFiles(){
+	private ArrayList<String> finishFiles(){
 		return getPropertyMultipleEntries("FinishFiles");
 	}
 
@@ -76,7 +76,7 @@ public class Sorter {
 		return properties;
 	}
 
-	private String resultfile() {
+	public String resultfile() {
 		return config.getProperty("ResultFile");
 	}
 	private void read() throws IOException {		
@@ -113,8 +113,9 @@ public class Sorter {
 	private void write() {
 		ArrayList<String> finishFiles = finishFiles();
 		for (int i = 0; i < finishFiles.size(); i++){
-			racers.writeToFile(resultfile(), laps(), null);
-			racers.writeToFile(FileNames.SORTED_OUTFILE, laps(), new RacerPlacingComparator());
+			new ResultWriter(racers, resultfile(), null).writeToFile(laps());
+			String timeStartIsOpen = config.getProperty("TimeStartIsOpen");
+			new SortResultWriter(racers, config.getProperty("SortedResultFile"), new RacerRankingComparator(), timeStartIsOpen).writeToFile(laps());
 		}
 	}
 }

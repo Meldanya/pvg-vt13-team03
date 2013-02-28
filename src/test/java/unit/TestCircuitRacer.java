@@ -32,7 +32,7 @@ public class TestCircuitRacer {
 	}
 
 	@Test
-	public void testTimeFormatting() {
+	public void testTimeFormatting() throws Exception{
 		racer1.addStartTime(new RacerTime("11.12.13"));
 		assertEquals("Formatting is wrong", "1; Kalle; 0; --.--.--; ; 11.12.13; Slut?", racer1.racerString(1));
 	}
@@ -49,14 +49,14 @@ public class TestCircuitRacer {
 	}
 
 	@Test
-	public void testAddOneLapTime() {
+	public void testAddOneLapTime() throws Exception{
 		racer1.addStartTime(new RacerTime("11.11.14"));
 		racer1.addFinishTime(new RacerTime("11.12.14"));
 		assertEquals(1, racer1.getNumberOfDistances());
 	}
 
 	@Test
-	public void testAddManyLapTimes() {
+	public void testAddManyLapTimes() throws Exception{
 		for (int i = 0; i < 10; i++) {
 			racer1.addStartTime(new RacerTime("11.11." + i));
 			racer1.addFinishTime(new RacerTime("11.12." + i));
@@ -65,7 +65,7 @@ public class TestCircuitRacer {
 	}
 	@Ignore
 	@Test
-	public void testFinishTime() {
+	public void testFinishTime() throws Exception{
 		for (int i = 0; i < 10; i++) {
 
 			racer1.addFinishTime(new RacerTime("11.12." + i));
@@ -74,20 +74,20 @@ public class TestCircuitRacer {
 	}
 
 	@Test
-	public void testNumberOfLapsZero() {
+	public void testNumberOfLapsZero() throws Exception{
 		racer1.addStartTime(new RacerTime("12.00.00"));
 		assertEquals("Wrong number of laps. Should be zero.", 0, racer1.getNumberOfDistances());
 	}
 
 	@Test
-	public void testNumberOfLapsOne() {
+	public void testNumberOfLapsOne()throws Exception {
 		racer1.addStartTime(new RacerTime("12.00.00"));
 		racer1.addFinishTime(new RacerTime("12.15.00"));
 		assertEquals("Wrong number of laps. Should be one.", 1, racer1.getNumberOfDistances());
 	}
 
 	@Test
-	public void testNumberOfLapsThree() {
+	public void testNumberOfLapsThree()throws Exception {
 		racer1.addStartTime(new RacerTime("12.00.00"));
 		racer1.addFinishTime(new RacerTime("12.15.00"));
 		racer1.addFinishTime(new RacerTime("12.30.00"));
@@ -96,7 +96,7 @@ public class TestCircuitRacer {
 	}
 	
 	@Test
-	public void testGetTotalTime(){
+	public void testGetTotalTime()throws Exception{
 		racer1.addStartTime(new RacerTime("12.00.00"));
 		racer1.addFinishTime(new RacerTime("12.30.00"));
 		

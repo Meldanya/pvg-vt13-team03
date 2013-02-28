@@ -3,32 +3,35 @@ package unit;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.text.ParseException;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import racer.AbstractRacer;
 import racer.RacerFactory;
-import racer.RacerPlacingComparator;
+import racer.RacerRankingComparator;
 import racer.RacerTime;
 
 public class TestRacerPlacingComparator {
 	private AbstractRacer racer1;
 	private AbstractRacer racer2;
 	private RacerFactory factory;
-	private RacerPlacingComparator comp;
+	private RacerRankingComparator comp;
 	
 	@Before
 	public void setUp() {
 		factory = new RacerFactory("circuit");
 		racer1 = factory.makeRacer("1");
 		racer2 = factory.makeRacer("2");
-		comp = new RacerPlacingComparator();
+		comp = new RacerRankingComparator();
 	}
 	
 	@Test
-	public void testDifferentNoOfLaps() {
+	public void testDifferentNoOfLaps() throws Exception{
 		racer1.addStartTime(new RacerTime("12.00.00"));
 		racer1.addFinishTime(new RacerTime("12.30.00"));
+
 		
 		racer2.addStartTime(new RacerTime("12.00.00"));
 		racer2.addFinishTime(new RacerTime("12.30.00"));
@@ -39,7 +42,8 @@ public class TestRacerPlacingComparator {
 	}
 	
 	@Test
-	public void testEqual() {
+
+	public void testEqual() throws ParseException {
 		racer1.addStartTime(new RacerTime("12.00.00"));
 		racer1.addFinishTime(new RacerTime("12.30.00"));
 		racer2.addStartTime(new RacerTime("12.00.00"));
@@ -49,7 +53,7 @@ public class TestRacerPlacingComparator {
 	}
 	
 	@Test
-	public void testSameNoOfLapsDifferentTimes() {
+	public void testSameNoOfLapsDifferentTimes() throws Exception {
 		racer1.addStartTime(new RacerTime("12.00.00"));
 		racer1.addFinishTime(new RacerTime("12.30.00"));
 		

@@ -45,7 +45,7 @@ public class TestDistance {
 	}
 
 	@Test
-	public void testGetLapTime(){
+	public void testGetLapTime() throws Exception{
 
 		distance.addStartTime(new RacerTime("11.00.00"));
 		distance.addFinishTime(new RacerTime("12.00.00"));
@@ -53,7 +53,7 @@ public class TestDistance {
 	}
 	
 	@Test
-	public void testAdd(){
+	public void testAdd()throws Exception{
 		
 		List<Distance> distanceList = new ArrayList<Distance>();
 

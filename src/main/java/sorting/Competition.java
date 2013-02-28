@@ -1,6 +1,7 @@
 package sorting;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Map;
@@ -75,6 +76,7 @@ public class Competition {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Writes the current map to a file, passes responsibility to ResultWriter
 	 * 
 	 * @param filename
@@ -89,6 +91,10 @@ public class Competition {
 	}
 	/** Reads start times from a file and loads it into Racers, creates new
 	 * Racers to store the data in where necessary.
+=======
+	 * Reads start/finish times from a file and loads it into Racers, creates
+	 * new Racers to store the data in where necessary.
+>>>>>>> master
 	 * 
 	 * @param fileName
 	 * @throws IOException */
@@ -123,14 +129,24 @@ public class Competition {
 	private void addStartTimestoRacer(String startNumber, ArrayList<String> times) {
 		AbstractRacer abstractRacer = getReferenceToRacer(startNumber);
 		for (String time : times) {
-			abstractRacer.addStartTime(new RacerTime(time));
+			try {
+				abstractRacer.addStartTime(new RacerTime(time));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
 	private void addFinishTimestoRacer(String startNumber, ArrayList<String> times) {
 		AbstractRacer abstractRacer = getReferenceToRacer(startNumber);
 		for (String time : times) {
-			abstractRacer.addFinishTime(new RacerTime(time));
+			try {
+				abstractRacer.addFinishTime(new RacerTime(time));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		abstractRacer.sortFinishTimes();
 	}
@@ -166,7 +182,6 @@ public class Competition {
 
 		for (String key : abstractRacers.keySet()) {
 			AbstractRacer r = abstractRacers.get(key);
-
 			if (r.getClassType().equals(rc)) {
 				set.add(r);
 			}
