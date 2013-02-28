@@ -71,30 +71,25 @@ public class CircuitRacer extends AbstractRacer {
 
 	@Override
 	public void addFinishTime(RacerTime racerTime) {
-		// TODO CircuitRacer needs to make sure it's distanceList is always in
-		// order!
-		for (int lap = 0; lap < distanceList.size();lap++){
-			Distance newDistance = new Distance();;
+		Distance newDistance = new Distance();
+		for (int lap = 0; lap < distanceList.size(); lap++) {
 			Distance currentDistance = distanceList.get(lap);
 			long currentFinishTime = currentDistance.getFinishTime();
 			long newFinishTime = racerTime.getTime();
-			if (currentFinishTime - newFinishTime < 0){
-				lastDistance().addFinishTime(racerTime);
-				newDistance.addStartTime(racerTime);
-				distanceList.add(newDistance);
-				return;
-			} else {
+			if (currentFinishTime > newFinishTime) {
 				newDistance.addStartTime(new RacerTime(currentDistance.getStartTime()));
 				newDistance.addFinishTime(racerTime);
-				distanceList.add(lap,newDistance);
-				
-				//This is dangerous as it could possibly erase faulty registration!
+				distanceList.add(lap, newDistance);
+
 				Distance temp = new Distance();
 				temp.addStartTime(racerTime);
 				temp.addFinishTime(new RacerTime(currentFinishTime));
-				distanceList.set(lap +1, temp);
+				distanceList.set(lap + 1, temp);
 				return;
 			}
 		}
+		lastDistance().addFinishTime(racerTime);
+		newDistance.addStartTime(racerTime);
+		distanceList.add(newDistance);
 	}
 }
