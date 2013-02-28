@@ -34,12 +34,11 @@ public class CircuitRacer extends AbstractRacer {
 		sb.append(firstDistance().startTimeString());
 
 		for (int lap = 1; lap <= maxLapCount; lap++) {
-			sb.append(";");
+			sb.append("; ");
 			String finishTime;
 			if (lap < distanceList.size()) {
 				finishTime = distanceList.get(lap).startTimeString();
 				if (!finishTime.equals("")) {
-					sb.append(" ");
 					sb.append(finishTime);
 				}
 			}
@@ -49,7 +48,7 @@ public class CircuitRacer extends AbstractRacer {
 			sb.append("; Slut?");
 		}
 		for (Distance lap : distanceList) {
-			sb.append(lap.possibleImpossibleTotalTime());
+			sb.append(lap.possibleImpossibleTime("Omöjlig varvtid?"));
 		}
 
 		return sb.toString();

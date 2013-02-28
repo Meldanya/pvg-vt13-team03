@@ -28,7 +28,7 @@ public class MarathonRacer extends AbstractRacer {
 
 		sb.append(distance.possibleMultipleStartTimes());
 
-		sb.append(distance.possibleImpossibleTotalTime());
+		sb.append(distance.possibleImpossibleTime("Omöjlig Totaltid?"));
 
 		return sb.toString();
 	}
