@@ -47,6 +47,9 @@ public class CircuitRacer extends AbstractRacer {
 		if (distanceList.size() == 1) {
 			sb.append("; Slut?");
 		}
+		
+		sb.append(firstDistance().possibleMultipleStartTimes());
+		
 		for (Distance lap : distanceList) {
 			sb.append(lap.possibleImpossibleTime("Omöjlig varvtid?"));
 		}
