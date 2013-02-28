@@ -23,13 +23,17 @@ public class MarathonRacer extends AbstractRacer {
 		sb.append("; ");
 		sb.append(distance.finishTimeString());
 
+		appendErrorMessages(sb, distance);
+
+		return sb.toString();
+	}
+
+	private void appendErrorMessages(StringBuilder sb, Distance distance) {
 		sb.append(distance.possibleMultipleFinishTimes());
 
 		sb.append(distance.possibleMultipleStartTimes());
 
 		sb.append(distance.possibleImpossibleTime("Omöjlig Totaltid?"));
-
-		return sb.toString();
 	}
 
 	@Override
