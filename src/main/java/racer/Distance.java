@@ -100,7 +100,7 @@ public class Distance {
 	}
 
 	/** @return Error message if finishTime is "" */
-	public String possibleImpossibleTotalTime() {
+	public String possibleImpossibleTime() {
 		String lapTime = getLapTimeString();
 		if (lapTime.equals("")) {
 			return "";
