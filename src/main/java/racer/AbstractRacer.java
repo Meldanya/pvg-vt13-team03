@@ -44,6 +44,7 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 		sb.append(startNumber);
 		sb.append("; ");
 		sb.append(name);
+		sb.append("; ");
 		sb.append(racerSpecificString(laps, includeAbsoluteTimes));
 		return sb.toString();
 	}

@@ -14,7 +14,6 @@ public class MarathonRacer extends AbstractRacer {
 	protected String racerSpecificString(int laps, boolean includeAbsoluteTimes) {
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("; ");
 		sb.append(getTotalTime());
 		sb.append("; ");
 

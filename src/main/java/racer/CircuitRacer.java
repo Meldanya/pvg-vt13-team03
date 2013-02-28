@@ -30,7 +30,6 @@ public class CircuitRacer extends AbstractRacer {
 	}
 
 	private void appendStatistics(StringBuilder sb) {
-		sb.append("; ");
 		sb.append(getNumberOfDistances());
 		sb.append("; ");
 		sb.append(getTotalTime());
