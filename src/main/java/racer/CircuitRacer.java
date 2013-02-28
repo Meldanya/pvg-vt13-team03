@@ -32,13 +32,17 @@ public class CircuitRacer extends AbstractRacer {
 		
 		removeTrailingSpace(sb);
 		
+		appendErrorMessages(sb);
+
+		return sb.toString();
+	}
+
+	private void appendErrorMessages(StringBuilder sb) {
 		sb.append(firstDistance().possibleMultipleStartTimes());
 
 		for (Distance lap : distanceList) {
 			sb.append(lap.possibleImpossibleTime("Omöjlig varvtid?"));
 		}
-
-		return sb.toString();
 	}
 
 	private void appendAbsoluteTimes(StringBuilder sb, int maxLapCount) {
