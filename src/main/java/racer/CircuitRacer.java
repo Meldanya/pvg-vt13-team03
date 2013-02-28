@@ -27,29 +27,10 @@ public class CircuitRacer extends AbstractRacer {
 			}
 		}
 		if (includeAbsoluteTimes) {
-			// Den första starttiden:
-			sb.append("; ");
-			sb.append(firstDistance().startTimeString());
-
-			for (int lap = 0; lap < maxLapCount; lap++) {
-				sb.append("; ");
-				String finishTime;
-				if (lap < distanceList.size() - 1) {
-					finishTime = distanceList.get(lap).finishTimeString();
-					sb.append(finishTime);
-				}
-			}
-
-			if (distanceList.size() == 1) {
-				sb.append("Slut?");
-			}
-
+			appendAbsoluteTimes(sb, maxLapCount);
 		}
 		
-		int indexOfLastChar = sb.length() - 1;
-		if (sb.charAt(indexOfLastChar) == ' ') {
-			sb.deleteCharAt(indexOfLastChar);
-		}
+		removeTrailingSpace(sb);
 		
 		sb.append(firstDistance().possibleMultipleStartTimes());
 
@@ -58,6 +39,32 @@ public class CircuitRacer extends AbstractRacer {
 		}
 
 		return sb.toString();
+	}
+
+	private void appendAbsoluteTimes(StringBuilder sb, int maxLapCount) {
+		// Den första starttiden:
+		sb.append("; ");
+		sb.append(firstDistance().startTimeString());
+
+		for (int lap = 0; lap < maxLapCount; lap++) {
+			sb.append("; ");
+			String finishTime;
+			if (lap < distanceList.size() - 1) {
+				finishTime = distanceList.get(lap).finishTimeString();
+				sb.append(finishTime);
+			}
+		}
+
+		if (distanceList.size() == 1) {
+			sb.append("Slut?");
+		}
+	}
+
+	private void removeTrailingSpace(StringBuilder sb) {
+		int indexOfLastChar = sb.length() - 1;
+		if (sb.charAt(indexOfLastChar) == ' ') {
+			sb.deleteCharAt(indexOfLastChar);
+		}
 	}
 
 	@Override
