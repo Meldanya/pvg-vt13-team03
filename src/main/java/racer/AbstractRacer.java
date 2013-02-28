@@ -42,13 +42,13 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 		sb.append("; ");
 		sb.append(name);
 		sb.append("; ");
-		sb.append(racerSpecificString(laps, includeAbsoluteTimes));
+		appendRacerSpecificString(sb, laps, includeAbsoluteTimes);
 		appendErrorMessages(sb);
 		return sb.toString();
 	}
 
-	protected abstract String racerSpecificString(int laps,
-			boolean includeAbsoluteTimes);
+	protected abstract void appendRacerSpecificString(StringBuilder sb,
+			int laps, boolean includeAbsoluteTimes);
 
 	@Override
 	public int hashCode() {

@@ -12,17 +12,17 @@ public class MarathonRacer extends AbstractRacer {
 	 * if laps = 1
 	 */
 	@Override
-	protected String racerSpecificString(int laps, boolean includeAbsoluteTimes) {
-		StringBuilder sb = new StringBuilder();
-		
+	protected void appendRacerSpecificString(StringBuilder sb, int laps, boolean includeAbsoluteTimes) {
 		sb.append(getTotalTime());
 		sb.append("; ");
 		
+		appendAbsoluteTimes(sb);
+	}
+
+	private void appendAbsoluteTimes(StringBuilder sb) {
 		sb.append(distance.startTimeString());
 		sb.append("; ");
 		sb.append(distance.finishTimeString());
-
-		return sb.toString();
 	}
 
 	@Override
