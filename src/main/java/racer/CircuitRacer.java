@@ -25,6 +25,7 @@ public class CircuitRacer extends AbstractRacer {
 		if (includeAbsoluteTimes){
 			appendAbsoluteTimes(sb, maxLapCount);
 		}
+		removeTrailingSpace(sb);
 	}
 
 	private void appendStatistics(StringBuilder sb) {
@@ -68,7 +69,6 @@ public class CircuitRacer extends AbstractRacer {
 		if (distanceList.size() == 1) {
 			sb.append("Slut?");
 		}
-		removeTrailingSpace(sb);
 	}
 
 	private void removeTrailingSpace(StringBuilder sb) {
