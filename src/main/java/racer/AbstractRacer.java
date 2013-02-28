@@ -47,9 +47,10 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 		sb.append(racerSpecificString(laps, includeAbsoluteTimes));
 		return sb.toString();
 	}
-	
-	protected abstract String racerSpecificString(int laps, boolean includeAbsoluteTimes);
-	
+
+	protected abstract String racerSpecificString(int laps,
+			boolean includeAbsoluteTimes);
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -99,11 +100,6 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 		return startNumber.compareTo(o.getStartNumber());
 	}
 
-	public void sortFinishTimes() {
-		// TODO: fix this!
-		// Collections.sort(finishTimes);
-	}
-
 	public abstract String getTotalTime();
 
 	public abstract int getNumberOfDistances();
@@ -111,7 +107,7 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 	public String startTimeString() {
 		return distanceList.get(0).startTimeString().toString();
 	}
-	
+
 	protected Distance firstDistance() {
 		return distanceList.get(0);
 	}
