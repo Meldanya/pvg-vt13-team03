@@ -5,36 +5,45 @@ public class CircuitRacer extends AbstractRacer {
 		super(startNumber);
 	}
 
-	/** @param maxLapCount
-	 * @return */
+	/**
+	 * @param maxLapCount
+	 * @return
+	 */
 	@Override
-	public String racerSpecificString(int maxLapCount, boolean includeAbsoluteTimes) {
+	public String racerSpecificString(int maxLapCount,
+			boolean includeAbsoluteTimes) {
 		StringBuilder sb = new StringBuilder();
 
+		appendStatistics(sb);
+
+		appendLapTimes(sb, maxLapCount);
+
+		if (includeAbsoluteTimes) {
+			appendAbsoluteTimes(sb, maxLapCount);
+		}
+
+		removeTrailingSpace(sb);
+
+		appendErrorMessages(sb);
+
+		return sb.toString();
+	}
+
+	private void appendStatistics(StringBuilder sb) {
 		sb.append("; ");
 		sb.append(getNumberOfDistances());
 		sb.append("; ");
 		sb.append(getTotalTime());
+	}
 
-		// Varvtider:
-
+	private void appendLapTimes(StringBuilder sb, int maxLapCount) {
 		for (int lap = 0; lap < maxLapCount; lap++) {
 			sb.append("; ");
-			String lapTime;
 			if (lap < distanceList.size() - 1) {
-				lapTime = distanceList.get(lap).getLapTimeString();
+				String lapTime = distanceList.get(lap).getLapTimeString();
 				sb.append(lapTime);
 			}
 		}
-		if (includeAbsoluteTimes) {
-			appendAbsoluteTimes(sb, maxLapCount);
-		}
-		
-		removeTrailingSpace(sb);
-		
-		appendErrorMessages(sb);
-
-		return sb.toString();
 	}
 
 	private void appendErrorMessages(StringBuilder sb) {
@@ -52,9 +61,8 @@ public class CircuitRacer extends AbstractRacer {
 
 		for (int lap = 0; lap < maxLapCount; lap++) {
 			sb.append("; ");
-			String finishTime;
 			if (lap < distanceList.size() - 1) {
-				finishTime = distanceList.get(lap).finishTimeString();
+				String finishTime = distanceList.get(lap).finishTimeString();
 				sb.append(finishTime);
 			}
 		}
@@ -73,7 +81,8 @@ public class CircuitRacer extends AbstractRacer {
 
 	@Override
 	public String getTotalTime() {
-		long lapTime = firstDistance().timeFromStartToOtherStart(lastDistance());
+		long lapTime = firstDistance()
+				.timeFromStartToOtherStart(lastDistance());
 		return RacerTime.formatDuration(lapTime);
 	}
 
@@ -104,7 +113,8 @@ public class CircuitRacer extends AbstractRacer {
 			long currentFinishTime = currentDistance.getFinishTime();
 			long newFinishTime = racerTime.getTime();
 			if (currentFinishTime > newFinishTime) {
-				newDistance.addStartTime(new RacerTime(currentDistance.getStartTime()));
+				newDistance.addStartTime(new RacerTime(currentDistance
+						.getStartTime()));
 				newDistance.addFinishTime(racerTime);
 				distanceList.add(lap, newDistance);
 
