@@ -22,12 +22,12 @@ public class MarathonRacer extends AbstractRacer {
 		sb.append("; ");
 		sb.append(distance.finishTimeString());
 
-		appendErrorMessages(sb, distance);
+		appendErrorMessages(sb);
 
 		return sb.toString();
 	}
 
-	private void appendErrorMessages(StringBuilder sb, Distance distance) {
+	private void appendErrorMessages(StringBuilder sb) {
 		sb.append(distance.possibleMultipleFinishTimes());
 
 		sb.append(distance.possibleMultipleStartTimes());
