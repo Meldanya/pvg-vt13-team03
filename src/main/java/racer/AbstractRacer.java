@@ -12,14 +12,11 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 	private RacerClass classType;
 	protected String startNumber;
 	protected String name;
-	protected List<Distance> distanceList;
+	
 
 	public AbstractRacer(String startNumber) {
 		classType = new RacerClass("");
 		this.startNumber = startNumber;
-		distanceList = new ArrayList<Distance>();
-		Distance emptyDistance = new Distance();
-		distanceList.add(emptyDistance);
 		name = "";
 	}
 
@@ -105,11 +102,5 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 
 	public abstract int getNumberOfDistances();
 
-	public String startTimeString() {
-		return distanceList.get(0).startTimeString().toString();
-	}
-
-	protected Distance firstDistance() {
-		return distanceList.get(0);
-	}
+	public abstract String startTimeString();
 }

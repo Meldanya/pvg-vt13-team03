@@ -1,8 +1,14 @@
 package racer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CircuitRacer extends AbstractRacer {
+	protected List<Distance> distanceList;
 	public CircuitRacer(String startNumber) {
 		super(startNumber);
+		distanceList = new ArrayList<Distance>();
+		distanceList.add(new Distance());
 	}
 
 	/**
@@ -128,5 +134,15 @@ public class CircuitRacer extends AbstractRacer {
 		lastDistance().addFinishTime(racerTime);
 		newDistance.addStartTime(racerTime);
 		distanceList.add(newDistance);
+	}
+
+	@Override
+	public String startTimeString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	private Distance firstDistance(){
+		return distanceList.get(0);
 	}
 }

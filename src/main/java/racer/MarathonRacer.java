@@ -1,9 +1,10 @@
 package racer;
 
 public class MarathonRacer extends AbstractRacer {
+	private Distance distance;
 	public MarathonRacer(String startNumber) {
 		super(startNumber);
-		
+		distance = new Distance();
 	}
 
 	/**
@@ -16,9 +17,7 @@ public class MarathonRacer extends AbstractRacer {
 		
 		sb.append(getTotalTime());
 		sb.append("; ");
-
-
-		Distance distance = firstDistance();
+		
 		sb.append(distance.startTimeString());
 		sb.append("; ");
 		sb.append(distance.finishTimeString());
@@ -38,7 +37,7 @@ public class MarathonRacer extends AbstractRacer {
 
 	@Override
 	public String getTotalTime() {
-		String totalTime = firstDistance().getLapTimeString();
+		String totalTime = distance.getLapTimeString();
 		if (totalTime.equals("")){
 			totalTime = "--.--.--";
 		}
@@ -52,23 +51,16 @@ public class MarathonRacer extends AbstractRacer {
 
 	@Override
 	public void addStartTime(RacerTime racerTime) {
-		if (firstDistance() == null) {
-			Distance distance = new Distance();
-			distance.addStartTime(racerTime);
-			distanceList.add(distance);
-		} else {
-			firstDistance().addStartTime(racerTime);
-		}
+		distance.addStartTime(racerTime);
 	}
 
 	@Override
 	public void addFinishTime(RacerTime racerTime) {
-		if (firstDistance() == null) {
-			Distance distance = new Distance();
-			distance.addFinishTime(racerTime);
-			distanceList.add(distance);
-		} else {
-			firstDistance().addFinishTime(racerTime);
-		}
+		distance.addFinishTime(racerTime);
+	}
+
+	@Override
+	public String startTimeString() {
+		return distance.startTimeString();
 	}
 }
