@@ -43,6 +43,7 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 		sb.append(name);
 		sb.append("; ");
 		sb.append(racerSpecificString(laps, includeAbsoluteTimes));
+		appendErrorMessages(sb);
 		return sb.toString();
 	}
 
@@ -103,4 +104,6 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 	public abstract int getNumberOfDistances();
 
 	public abstract String startTimeString();
+	
+	protected abstract void appendErrorMessages(StringBuilder sb);
 }

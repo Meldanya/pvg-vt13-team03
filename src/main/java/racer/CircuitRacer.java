@@ -30,8 +30,6 @@ public class CircuitRacer extends AbstractRacer {
 
 		removeTrailingSpace(sb);
 
-		appendErrorMessages(sb);
-
 		return sb.toString();
 	}
 
@@ -51,7 +49,7 @@ public class CircuitRacer extends AbstractRacer {
 		}
 	}
 
-	private void appendErrorMessages(StringBuilder sb) {
+	protected void appendErrorMessages(StringBuilder sb) {
 		sb.append(firstDistance().possibleMultipleStartTimes());
 
 		for (Distance lap : distanceList) {
