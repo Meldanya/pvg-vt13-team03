@@ -94,6 +94,7 @@ public class CircuitRacer extends AbstractRacer {
 				return;
 			}
 		}
+		//The new time should be added at the end:
 		lastDistance().addFinishTime(racerTime);
 		newDistance.addStartTime(racerTime);
 		distanceList.add(newDistance);
