@@ -11,7 +11,7 @@ public class MarathonRacer extends AbstractRacer {
 	 * if laps = 1
 	 */
 	@Override
-	protected String racerSpecificString(int laps) {
+	protected String racerSpecificString(int laps, boolean isWithSpecificTimes) {
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("; ");

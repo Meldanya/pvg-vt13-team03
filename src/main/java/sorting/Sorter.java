@@ -113,7 +113,7 @@ public class Sorter {
 	private void write() {
 		ArrayList<String> finishFiles = finishFiles();
 		for (int i = 0; i < finishFiles.size(); i++){
-			new ResultWriter(racers, resultfile(), null).writeToFile(laps());
+			new ResultWriter(racers, resultfile(), null).writeToFile(laps(), true);
 			String timeStartIsOpen = config.getProperty("TimeStartIsOpen");
 			new SortResultWriter(racers, config.getProperty("SortedResultFile"), new RacerRankingComparator(), timeStartIsOpen).writeToFile(laps());
 		}

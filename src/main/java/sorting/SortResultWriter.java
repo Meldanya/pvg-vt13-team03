@@ -55,7 +55,7 @@ public class SortResultWriter extends Writer {
 				if (totalTime.compareTo(timeStartIsOpen) >= 0) {
 					sb.append(rank);
 					sb.append("; ");
-					sb.append(racer.racerString(laps));
+					sb.append(racer.racerString(laps, true));
 					sb.append('\n');
 					rank++;
 				} else {
@@ -68,7 +68,7 @@ public class SortResultWriter extends Writer {
 		}
 		for (AbstractRacer racer : unranked) {
 			sb.append("; ");
-			sb.append(racer.racerString(laps));
+			sb.append(racer.racerString(laps, true));
 			sb.append('\n');
 		}
 		return sb.toString();

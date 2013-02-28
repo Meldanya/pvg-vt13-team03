@@ -28,15 +28,16 @@ public class ResultWriter {
 	/**
 	 * Loads and sorts racers before printing them to a file. Actual formatting
 	 * is found in AbstractRacer class.
+	 * @param isWithSpecificTimes TODO
 	 */
-	public void writeToFile(int laps) {
+	public void writeToFile(int laps, boolean isWithSpecificTimes) {
 		Set<RacerClass> classes = data.getClassTypes();
 
 		try {
 			writer = new BufferedWriter(new FileWriter(fileName));
 
 			for (RacerClass racerClass : classes) {
-				writeClassTypeToFile(racerClass, laps);
+				writeClassTypeToFile(racerClass, laps, isWithSpecificTimes);
 			}
 
 			writer.close();
@@ -44,7 +45,7 @@ public class ResultWriter {
 			System.err.println("File " + fileName + " could not be written");
 		}
 	}
-	private void writeClassTypeToFile(RacerClass racerClass, int laps) throws IOException {
+	private void writeClassTypeToFile(RacerClass racerClass, int laps, boolean isWithSpecificTimes) throws IOException {
 
 		Set<AbstractRacer> abstractRacers = data.getRacers(racerClass, comparator);
 
@@ -87,7 +88,7 @@ public class ResultWriter {
 		writer.write(header);
 
 		for (AbstractRacer abstractRacer : abstractRacers) {
-			writer.write(abstractRacer.racerString(maxLapCount));
+			writer.write(abstractRacer.racerString(maxLapCount, isWithSpecificTimes));
 			writer.newLine();
 		}
 	}

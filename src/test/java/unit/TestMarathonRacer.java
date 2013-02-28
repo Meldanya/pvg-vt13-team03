@@ -29,7 +29,7 @@ public class TestMarathonRacer {
 
 	@Test
 	public void testTimeFormatting() {
-		assertEquals("Formatting is wrong", "1; Anders Asson; 01.23.34; 12.00.00; 13.23.34", andersAsson.racerString(1));
+		assertEquals("Formatting is wrong", "1; Anders Asson; 01.23.34; 12.00.00; 13.23.34", andersAsson.racerString(1, true));
 	}
 	
 	 @Test

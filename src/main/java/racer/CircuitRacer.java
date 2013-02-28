@@ -8,7 +8,7 @@ public class CircuitRacer extends AbstractRacer {
 	/** @param maxLapCount
 	 * @return */
 	@Override
-	public String racerSpecificString(int maxLapCount) {
+	public String racerSpecificString(int maxLapCount, boolean isWithSpecificTimes) {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("; ");
@@ -26,27 +26,29 @@ public class CircuitRacer extends AbstractRacer {
 				sb.append(lapTime);
 			}
 		}
-
-		// Den första starttiden:
-		sb.append("; ");
-		sb.append(firstDistance().startTimeString());
-
-		for (int lap = 0; lap < maxLapCount; lap++) {
+		if (isWithSpecificTimes) {
+			// Den första starttiden:
 			sb.append("; ");
-			String finishTime;
-			if (lap < distanceList.size()-1) {
-				finishTime = distanceList.get(lap).finishTimeString();
-				sb.append(finishTime);
-			}
-		}
+			sb.append(firstDistance().startTimeString());
 
-		if (distanceList.size() == 1) {
-			sb.append("Slut?");
-		}
-		
-		//TODO this is really messy and ugly code. At better solution is needed:
-		if (sb.charAt(sb.length()-1) == ' '){
-			sb = new StringBuilder(sb.toString().substring(0, sb.length()-1));
+			for (int lap = 0; lap < maxLapCount; lap++) {
+				sb.append("; ");
+				String finishTime;
+				if (lap < distanceList.size() - 1) {
+					finishTime = distanceList.get(lap).finishTimeString();
+					sb.append(finishTime);
+				}
+			}
+
+			if (distanceList.size() == 1) {
+				sb.append("Slut?");
+			}
+
+			// TODO this is really messy and ugly code. At better solution is
+			// needed:
+			if (sb.charAt(sb.length() - 1) == ' ') {
+				sb = new StringBuilder(sb.toString().substring(0, sb.length() - 1));
+			}
 		}
 		sb.append(firstDistance().possibleMultipleStartTimes());
 
