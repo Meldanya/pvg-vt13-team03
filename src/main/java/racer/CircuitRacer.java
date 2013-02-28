@@ -23,9 +23,7 @@ public class CircuitRacer extends AbstractRacer {
 			String lapTime;
 			if (lap < distanceList.size() - 1) {
 				lapTime = distanceList.get(lap).getLapTimeString();
-				if (!lapTime.equals("")) {
-					sb.append(lapTime);
-				}
+				sb.append(lapTime);
 			}
 		}
 
@@ -38,18 +36,16 @@ public class CircuitRacer extends AbstractRacer {
 			String finishTime;
 			if (lap < distanceList.size()) {
 				finishTime = distanceList.get(lap).startTimeString();
-				if (!finishTime.equals("")) {
-					sb.append(finishTime);
-				}
+				sb.append(finishTime);
 			}
 		}
 
 		if (distanceList.size() == 1) {
 			sb.append("; Slut?");
 		}
-		
+
 		sb.append(firstDistance().possibleMultipleStartTimes());
-		
+
 		for (Distance lap : distanceList) {
 			sb.append(lap.possibleImpossibleTime("Omöjlig varvtid?"));
 		}
@@ -70,7 +66,7 @@ public class CircuitRacer extends AbstractRacer {
 	@Override
 	public int getNumberOfDistances() {
 		// -1 because addFinishTime should always start a new distance:
-		int numberOfDistances=distanceList.size() - 1;
+		int numberOfDistances = distanceList.size() - 1;
 		if (!firstDistance().finishTimeString().equals("Slut?"))
 			if (firstDistance().startTimeString().equals("Start?"))
 				numberOfDistances--;
@@ -101,7 +97,7 @@ public class CircuitRacer extends AbstractRacer {
 				return;
 			}
 		}
-		//The new time should be added at the end:
+		// The new time should be added at the end:
 		lastDistance().addFinishTime(racerTime);
 		newDistance.addStartTime(racerTime);
 		distanceList.add(newDistance);
