@@ -12,10 +12,6 @@ public class RacerFactory {
 			return new CircuitRacer(startNumber);
 		}
 		
-		if (raceType.equals("lap")) {
-			return new LapRacer(startNumber);
-		}
-		
 		return new MarathonRacer(startNumber);
 	}
 }
