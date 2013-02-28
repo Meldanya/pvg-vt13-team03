@@ -67,7 +67,11 @@ public class CircuitRacer extends AbstractRacer {
 	@Override
 	public int getNumberOfDistances() {
 		// -1 because addFinishTime should always start a new distance:
-		return distanceList.size() - 1;
+		int numberOfDistances=distanceList.size() - 1;
+		if (!firstDistance().finishTimeString().equals("Slut?"))
+			if (firstDistance().startTimeString().equals("Start?"))
+				numberOfDistances--;
+		return numberOfDistances;
 	}
 
 	@Override
