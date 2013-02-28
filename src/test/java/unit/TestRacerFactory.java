@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import racer.AbstractRacer;
 import racer.CircuitRacer;
-import racer.LapRacer;
 import racer.MarathonRacer;
 import racer.RacerFactory;
 
@@ -21,14 +20,6 @@ public class TestRacerFactory {
 		racer = new CircuitRacer("42");
 
 		assertEquals("RacerFactory doesn't return CircuitRacer", racer, factory.makeRacer("42"));
-	}
-
-	@Test
-	public void testLapRacer() {
-		factory = new RacerFactory("lap");
-		racer = new LapRacer("42");
-
-		assertEquals("RacerFactory doesn't return LapRacer", racer, factory.makeRacer("42"));
 	}
 
 	@Test
