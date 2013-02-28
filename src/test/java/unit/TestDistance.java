@@ -91,7 +91,7 @@ public class TestDistance {
 	
 	@Test
 	public void testPossibleImpossibleTotalTimeIsEmpty(){
-		assertEquals("Clutter in empty impossible totatl time", "",distance.possibleImpossibleTime());
+		assertEquals("Clutter in empty impossible totatl time", "",distance.possibleImpossibleTime("Omöjlig Totaltid?"));
 	}
 	
 	@After

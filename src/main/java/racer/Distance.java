@@ -99,13 +99,14 @@ public class Distance {
 		return sb.toString();
 	}
 
-	/** @return Error message if finishTime is "" */
-	public String possibleImpossibleTime() {
+	/** @param errorMessage TODO
+	 * @return Error message if finishTime is "" */
+	public String possibleImpossibleTime(String errorMessage) {
 		String lapTime = getLapTimeString();
 		if (lapTime.equals("")) {
 			return "";
 		} else if (lapTime.compareTo(minTime) < 0) {
-			return ("; Omöjlig Totaltid?");
+			return ("; " + errorMessage);
 		}
 		return "";
 	}
