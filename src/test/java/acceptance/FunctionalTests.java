@@ -13,7 +13,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import registration.FileNames;
 import sorting.Sorter;
 import sorting.SorterConfig;
 
