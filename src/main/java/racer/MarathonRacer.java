@@ -7,9 +7,10 @@ public class MarathonRacer extends AbstractRacer {
 		distance = new Distance();
 	}
 
-	/**
-	 * Returns the racer as a line in the format the Sorter wants. Is only run
-	 * if laps = 1
+	
+	/* 
+	 * @see racer.AbstractRacer#appendRacerSpecificString(java.lang.StringBuilder, int, boolean)
+	 * @param includeAbsoluteTimes ignored
 	 */
 	@Override
 	protected void appendRacerSpecificString(StringBuilder sb, int maxLapCount, boolean includeAbsoluteTimes) {
