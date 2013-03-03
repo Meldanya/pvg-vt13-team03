@@ -18,10 +18,13 @@ public class SorterProgram {
 
 			JOptionPane.showMessageDialog(null, "Sorteringen lyckades, resultatet skrivet till " + sorter.resultfile());
 		} catch (FileNotFoundException e) {
-			JOptionPane.showMessageDialog(null, ("Kunde ej hitta filerna"));
+			String missingFile = e.getMessage().split(" ")[0];
+			JOptionPane.showMessageDialog(null, ("Kunde ej hitta " + missingFile));
+			System.exit(0);
 			e.printStackTrace();
 		} catch (Exception e){
 			JOptionPane.showMessageDialog(null, ("Sorteringen misslyckades"));
+			System.exit(0);
 			e.printStackTrace();
 		}
 	}

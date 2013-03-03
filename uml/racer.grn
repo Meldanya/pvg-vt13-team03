@@ -1,51 +1,51 @@
 <uml>
    <greenVersion="30500"/>
    <type>
-      <name="=pvg-vt13-team03/src<racer{Racer.java[Racer"/>
+      <name="=pvg-vt13-team03/src\/main\/java<racer{RacerClass.java[RacerClass"/>
       <height="-1"/>
       <width="-1"/>
-      <x="-1"/>
-      <y="-2"/>
+      <x="53"/>
+      <y="561"/>
    </type>
    <type>
-      <name="=pvg-vt13-team03/src<racer{RacerClass.java[RacerClass"/>
+      <name="=pvg-vt13-team03/src\/main\/java<racer{Racer.java[Racer"/>
       <height="-1"/>
       <width="-1"/>
-      <x="391"/>
-      <y="94"/>
+      <x="1"/>
+      <y="2"/>
    </type>
    <type>
-      <name="=pvg-vt13-team03/src<racer{RacerPlacingComparator.java[RacerPlacingComparator"/>
+      <name="=pvg-vt13-team03/src\/main\/java<racer{RacerTime.java[RacerTime"/>
       <height="-1"/>
       <width="-1"/>
-      <x="392"/>
-      <y="7"/>
+      <x="281"/>
+      <y="517"/>
    </type>
    <type>
-      <name="=pvg-vt13-team03/src<racer{RacerTime.java[RacerTime"/>
+      <name="=pvg-vt13-team03/src\/main\/java<racer{RacerRankingComparator.java[RacerRankingComparator"/>
       <height="-1"/>
       <width="-1"/>
-      <x="390"/>
-      <y="270"/>
+      <x="319"/>
+      <y="364"/>
    </type>
    <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
-      <sourceType="=pvg-vt13-team03/src<racer{Racer.java[Racer"/>
-      <targetType="=pvg-vt13-team03/src<racer{RacerTime.java[RacerTime"/>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
+      <sourceType="=pvg-vt13-team03/src\/main\/java<racer{Racer.java[Racer"/>
+      <targetType="=pvg-vt13-team03/src\/main\/java<racer{RacerTime.java[RacerTime"/>
       <bendpoints>
       </bendpoints>
    </relationship>
    <relationship>
       <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
-      <sourceType="=pvg-vt13-team03/src<racer{Racer.java[Racer"/>
-      <targetType="=pvg-vt13-team03/src<racer{RacerClass.java[RacerClass"/>
+      <sourceType="=pvg-vt13-team03/src\/main\/java<racer{Racer.java[Racer"/>
+      <targetType="=pvg-vt13-team03/src\/main\/java<racer{RacerClass.java[RacerClass"/>
       <bendpoints>
       </bendpoints>
    </relationship>
    <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
-      <sourceType="=pvg-vt13-team03/src<racer{Racer.java[Racer"/>
-      <targetType="=pvg-vt13-team03/src<racer{RacerTime.java[RacerTime"/>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
+      <sourceType="=pvg-vt13-team03/src\/main\/java<racer{Racer.java[Racer"/>
+      <targetType="=pvg-vt13-team03/src\/main\/java<racer{RacerTime.java[RacerTime"/>
       <bendpoints>
       </bendpoints>
    </relationship>

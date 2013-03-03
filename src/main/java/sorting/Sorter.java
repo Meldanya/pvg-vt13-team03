@@ -10,7 +10,6 @@ import java.util.Map;
 import racer.RacerFactory;
 import racer.RacerRankingComparator;
 
-
 /**
  * A class representing a sorter. It reads start.txt and finish.txt and outputs
  * result.txt but only for one driver.
@@ -18,7 +17,6 @@ import racer.RacerRankingComparator;
 public class Sorter {
 	private Competition racers;
 	private SorterConfig config;
-	private final String CONFIGFILE = "sorter.cfg";
 
 	public Sorter() throws IOException {
 		initializeConfig();
@@ -31,56 +29,72 @@ public class Sorter {
 		write();
 	}
 
-	/** @throws IOException */
+	/**
+	 * Tries to load config from file, if file cannot be found we instead load
+	 * the defaults and create a new file.
+	 * 
+	 * @throws IOException
+	 */
 	private void initializeConfig() throws IOException {
-		this.config = new SorterConfig();
+		config = new SorterConfig();
 
 		try {
-			config.load(CONFIGFILE);
+			config.load();
 		} catch (FileNotFoundException e1) {
-			new SorterConfig().store(CONFIGFILE, "Default config for Enduro Sorter");
-			// May throw an exception. For example if the user doesn't have
-			// permission to write  
+			config = new SorterConfig();
+			config.setDefaults();
+			config.store();
+		} catch (EmptyConfigurationFileException e1) {
+			config = new SorterConfig();
+			config.setDefaults();
+			config.store();
 		}
 	}
-	private String typeOfContest(){
-		return config.getProperty("ContestType");
+
+	private String typeOfContest() {
+		return (String) config.get("ContestType");
 	}
+
 	private int laps() {
-		return Integer.parseInt(config.getProperty("NumberOfLaps"));
+		return Integer.parseInt((String) config.get("NumberOfLaps"));
 	}
-	private String namefile(){
-		return config.getProperty("Namefile");
+
+	private String namefile() {
+		return (String) config.get("Namefile");
 	}
-	
+
 	/**
-	 * Returns a list with the filenames that the sorter will read goal times from.
+	 * Returns a list with the filenames that the sorter will read goal times
+	 * from.
+	 * 
 	 * @return A list with the goal times.
 	 */
-	private ArrayList<String> finishFiles(){
+	private ArrayList<String> finishFiles() {
 		return getPropertyMultipleEntries("FinishFiles");
 	}
 
 	private ArrayList<String> startFiles() {
 		return getPropertyMultipleEntries("StartFiles");
 	}
-	
-	private ArrayList<String> getPropertyMultipleEntries(String propertyName){
+
+	private ArrayList<String> getPropertyMultipleEntries(String propertyName) {
 		ArrayList<String> properties = new ArrayList<String>();
-		String propertiesString = config.getProperty(propertyName);
-		propertiesString = propertiesString.replaceAll("\\s","");
+		String propertiesString = (String) config.get(propertyName);
+		propertiesString = propertiesString.replaceAll("\\s", ""); // strip
+																	// whitespace
 		String[] propertiesArray = propertiesString.split(",");
-		for (int i = 0; i < propertiesArray.length; i++){
+		for (int i = 0; i < propertiesArray.length; i++) {
 			properties.add(propertiesArray[i]);
 		}
 		return properties;
 	}
 
 	public String resultfile() {
-		return config.getProperty("ResultFile");
+		return (String) config.get("ResultFile");
 	}
-	private void read() throws IOException {		
-		for (String fileName : startFiles()){
+
+	private void read() throws IOException {
+		for (String fileName : startFiles()) {
 			racers.setStartTimesFromFile(fileName);
 		}
 
@@ -90,11 +104,12 @@ public class Sorter {
 			racers.setFinishTimesFromFile(fileName);
 		}
 	}
-	 //TODO Detta skall bort!!!
-	private class FinishFileFilter implements FilenameFilter{
+
+	// TODO Detta skall bort!!!
+	private class FinishFileFilter implements FilenameFilter {
 		@Override
 		public boolean accept(File dir, String name) {
-			 return name.startsWith("finish") && name.endsWith(".txt");
+			return name.startsWith("finish") && name.endsWith(".txt");
 		}
 	}
 
@@ -103,8 +118,8 @@ public class Sorter {
 	 * @todo skicka in en Map<id, namn> till RacerMap istället
 	 */
 	private void readNames() throws IOException {
-		Map<String, String> names = new NameReader().readFromNameFile(namefile());
-
+		Map<String, String> names = new NameReader()
+				.readFromNameFile(namefile());
 
 		names.remove("StartNr");
 		racers.setNames(names);
@@ -114,8 +129,8 @@ public class Sorter {
 		ArrayList<String> finishFiles = finishFiles();
 		for (int i = 0; i < finishFiles.size(); i++){
 			new ResultWriter(racers, resultfile(), null).writeToFile(laps());
-			String timeStartIsOpen = config.getProperty("TimeStartIsOpen");
-			new SortResultWriter(racers, config.getProperty("SortedResultFile"), new RacerRankingComparator(), timeStartIsOpen).writeToFile(laps());
+			String timeStartIsOpen = (String) config.get("TimeStartIsOpen");
+			new SortResultWriter(racers, (String) config.get("SortedResultFile"), new RacerRankingComparator(), timeStartIsOpen).writeToFile(laps());
 		}
 	}
 }

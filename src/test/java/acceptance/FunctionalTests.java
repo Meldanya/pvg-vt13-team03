@@ -26,6 +26,7 @@ public class FunctionalTests {
 	public void setUp() {
 		cleanUp();
 		config = new SorterConfig();
+		config.setDefaults();
 	}
 
 	@Test
@@ -73,11 +74,11 @@ public class FunctionalTests {
 		prepareForCircuitContest(3);
 		sortedTwoFinishLapTest("18");
 	}
-
+	
 	private void prepareForCircuitContest(int laps) throws IOException {
-		config.setProperty("ContestType", "circuit");
-		config.setProperty("NumberOfLaps", String.valueOf(laps));
-		config.store("sorter.cfg", "Test config for CircuitRacers in Enduro Sorter");
+		config.set("ContestType", "circuit");
+		config.set("NumberOfLaps", Integer.toString(laps));
+		config.store();
 	}
 	
 	@After
@@ -99,8 +100,8 @@ public class FunctionalTests {
 		file.delete();
 		file = new File("namnfil.txt");
 		file.delete();
-		file = new File("sorter.cfg");
-		file.delete();
+//		file = new File("sorter.cfg");
+//		file.delete();
 	}
 
     /**

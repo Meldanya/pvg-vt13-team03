@@ -25,7 +25,15 @@ public class PopupStartNbrField extends JTextField implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(!getText().trim().equals("")){
+		String s = getText().trim();
+		if(!s.equals("")){
+			for (int i = 0; i < s.length(); i++) {
+				if (!Character.isDigit(s.charAt(i))) {
+					setText("");
+					requestFocus();
+					return;
+				}
+			}
 			register.register(getText(), time);
 			dialog.dispose();
 			return;

@@ -63,36 +63,39 @@
 <body>
 	<h1>Installation</h1>
 	<div>
-		<p>Om hur programmet installeras och konfigureras</p>
-		<h2>Förkrav</h2>
+		<h2>Systemkrav</h2>
 		<ul>
 			<li>En dator</li>
 			<li>Java Runtime</li>
 		</ul>
 		<h2>Formatering av filer</h2>
 		<p>Filerna är formaterade som CSV med semikolon som separator. Exempel på en fil med deltagare:</p>
-		<pre>1; Anders Andersson
-	2; Bengt Bengtsson</pre>
+		<pre>
+StartNo; Namn
+1; Anders Andersson
+2; Bengt Bengtsson
+</pre>
 	</div>
 	<h1>Registrering</h1>
 	<div>
-		<p>Registreringsprogrammet används för att registrera deltagares start- och måltider. Tiderna lagras i separata filer (starttider.txt respektive maltider.txt) i hemkatalogen för senare bearbetning.</p>
+		<p>Registreringsprogrammet används för att registrera deltagares start- och måltider. Tiderna lagras i separata filer (<code>start.txt</code> respektive <code>finish.txt</code>) i hemkatalogen för senare bearbetning.</p>
 		<h2>Starta programmet</h2>
-		<p>Dubbelklicka på programfilen (EnduroRegister.jar). Ett fönster visas som låter användaren välja programläge.</p>
-		<h2>Välja programläge</h2>
-		<p>När programmet startas så öppnas ett fönster med tre alternativ. Välj det alternativ som ska användas. Vid registrering av start- och måltider ändras programmets gränssnitt för att visa ett fönster där startnummer kan matas in. För att byta läge; starta om programmet.</p>
+		<p>Dubbelklicka på programfilen (<code>EnduroRegister.jar</code>). Ett fönster visas som låter användaren välja mellan att registrera start- eller måltider.</p>
+		<p>När ett av alternativen väljs ändras programmets gränssnitt till att ett som låter användaren mata in tider och startnummer. Detta beskrivs nedan. För att byta läge måste programmet startas om.</p>
 		<img src="bilder/setupframe.png" />
-		<h3>Masstart</h3>
-		<p>Alternativet masstart ber användaren bekräfta starten. När man klickar på "Ja" börjar tiden räknas. Därefter registreras aktuell tid för alla deltagare i en fil och programmet stängs ner. Information om deltagarnanam lagras i filen namnfil.txt i hemkatalogen. <b>En fil med deltagare måste finnas och heta namnfil.txt och ligga i hemkatalogen.</b> Detta eftersom startnumren läses därifrån.</p>
-		<img src="bilder/masstart.png" />
-		<h2>Gränssnittets utseende och layout</h2>
-		<p>Gränssnittet består av ett fält för att mata in ett startnummer och en knapp för att registrera tiden. Underst i fönstret visas ett statusfält med information om de senast sparade tiderna.</p>
+		<h2>Registrering av tider</h2>
+		<p>Gränssnittet består av ett fält för att mata in startnummer och en knapp för att registrera tiden. Underst i fönstret visas ett statusfält med information om de senast sparade tiderna. Gränssnittet fungerar likadant för att registrera start- och måltider.</p>
 		<figure>
 			<img src="bilder/starttider.png" />
-			<figcaption><p><i>Deltagare 1 har registrerats med tid 14:00:32. Deltagare 2 håller på att registreras.</i></p></figcaption>
+			<figcaption><p><i>Deltagare 2 har registrerats vid tidpunkten 21.53.10. Deltagare 4 håller på att registreras.</i></p></figcaption>
 		</figure>
-		<h2>Registrera tid</h2>
-		<p>Fyll i förarens startnummer i fältet och tryck på "registrera", även enter-tangenten kan användas. Det ser likadant ut oavsett läge. Den registrerade tiden syns i det nedre fältet. </p>
+		<p>Fyll i förarens startnummer i fältet och välj Registrera. Även enter-tangenten kan användas. Den registrerade tiden syns i det nedre fältet.</p>
+		<p>Flera startnummer kan anges separerade med kommatecken, eller som ett intervall (ex. 1-5). Alla dessa kommer då att registreras vid samma tidpunkt.</p>
+		<p>Om användaren klickar på Registrera utan att ange ett startnummer så stoppas klockan och programmet frågar sedan efter ett startnummer. Detta kan utnyttjas för att registrera målgången av en förare med oläsligt startnummer.</p>
+		<figure>
+		  <img src="bilder/start-sen.png" />
+		  <figcaption><p><i>Deltagare 2 och 4 har registrerats. Systemet väntar på ett nytt startnummer som kommer att registreras med tidpunkten 21.53.26.</i></p></figcaption>
+		</figure>
 		<h2>Spara tider</h2>
 		<p>Tiderna sparas kontinuerligt under programmets användning och behöver inte sparas manuellt.</p>
 		<h2>Avsluta programmet</h2>
@@ -100,12 +103,33 @@
 	</div>
 	<h1>Sortering av resultat</h1>
 	<div>
-		<p>Sortering av resultatet görs av ett separat program. Resultatet sparas i filen result.txt i hemkatalogen.</p>
+		<p>Sortering av resultatet görs av ett separat program. Resultatet sparas sorterat efter både startnummer och placering i separata filer som anges i konfigurationen, se nedan.</p>
 		<h2>Starta programmet</h2>
-		<p>Dubbelklicka på programfilen (EnduroSorter.jar). Programmet frågar efter antalet varv i tävlingen. Därefter beräknas och sparas resultatet och sorteringsprogrammet avslutas.</p>
+		<p>Dubbelklicka på programfilen (<code>EnduroSorter.jar</code>). Sorteringsprogrammet är inte interaktivt och avslutas direkt med ett meddelande om sorteringen lyckades eller inte. Alla inställningar görs i konfigurationsfilen som beskrivs närmare under Konfiguration nedan.
 		<h2>Resultat</h2>
-		<p>Programmet läser in start- och måltider från filerna starttider.txt och maltider.txt. Baserat på informationen i dessa och antalet varv inmatade av användaren beräknas total- och varvtider och sparas i resultatfilen. Om en totaltid inte kan beräknas för att antingen start- eller måltid saknas skrivs istället --.--.-- ut.</p>
-		<p>Om en starttid eller sluttid saknas så skrivs istället "Start?" respektive "Slut?" ut. Då flera start- eller måltider registrerats så skrivs en notering ut tillsammans med alla överflödiga registeringar på formen "Flera starttider? 12.12.00 12.13.30". En totaltid kortare än 15 minuter anses vara orimlig och "Omöjlig Totaltid?" skrivs då ut.</p>
+		<p>Programmet läser in start- och måltider och namn från filer som angivits i konfigurationen. Om en totaltid inte kan beräknas för att antingen start- eller måltid saknas skrivs istället --.--.-- ut.</p>
+		<p>Om en starttid eller sluttid saknas så skrivs istället <code>Start?</code> respektive <code>Slut?</code> ut. Då flera start- eller måltider registrerats så skrivs en notering ut tillsammans med alla överflödiga registeringar på formen <code>Flera starttider? 12.12.00 12.13.30</code>. Om en totaltid anses vara orimlig skrivs <code>Omöjlig Totaltid?</code> ut.</p>
+		<h2>Konfiguration</h2>
+		<p>Sorteringsprogrammet konfigureras med hjälp av filen <code>sorter.cfg</code> placerad i hemkatalogen. Filen är JSON-formatterad. Värdena avskiljs med kolon. Ett exempel som tilldelar NumberOfLaps värdet 1:
+		  <pre>{<br>"NumberOfLaps":"1",<br>"StartFiles":"start.txt"<br>}</pre>
+		Alla filnamn anges relativt från användarens hemkatalog.
+		  <h3>Inställningsvärden</h3>
+		  <dl>
+		    <dt>Namefile</dt>
+		    <dd>Fil som innehåller deltagares namn och startnummer</dd>
+		    <dt>StartFiles</dt>
+		    <dd>Lista över filer med starttider, separerade av mellanslag (TODO: kolla).</dd>
+		    <dt>FinishFiles</dt>
+		    <dd>Lista över filer med måltider, separerade av mellanslag (TODO: kolla).</dd>
+		    <dt>ResultFile</dt>
+		    <dd>Fil att skriva startnummerordnade resultat till.</dd>
+		    <dt>SortedResultFile</dt>
+		    <dd>Fil att skriva placeringsordnade resultat till.</dd>
+		    <dt>NumberOfLaps</dt>
+		    <dd>Antal varv att skriva ut i resultatfilen då varvlopp körs.</dd>
+		    <dt>TimeStartIsOpen</dt>
+		    <dd>Lägsta tillåtna totaltiden då varvlopp körs. Deltagare med lägre totaltid får ingen placering vid sorteringen.</dd>
+		  </dl>
 	</div>
 </body>
 </html>
