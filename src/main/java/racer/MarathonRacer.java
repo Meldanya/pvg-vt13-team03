@@ -6,7 +6,6 @@ public class MarathonRacer extends AbstractRacer {
 		super(startNumber);
 		distance = new Distance();
 	}
-
 	
 	/* 
 	 * @see racer.AbstractRacer#appendRacerSpecificString(java.lang.StringBuilder, int, boolean)
