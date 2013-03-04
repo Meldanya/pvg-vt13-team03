@@ -96,7 +96,7 @@ public class TestSortResultWriter {
 		competition.setNames(nameMappings);
 		
 		writer.writeToFile(1, true);
-		String expected = header + "\n; " + r1.racerString(1, true) + "\n";
+		String expected = header + "\n; " + r1.racerString(1, false) + "\n";
 		assertEquals("Result doesn't match", expected, readFile());
 	}
 
@@ -127,9 +127,9 @@ public class TestSortResultWriter {
 		nameMappings.put("3", name3);
 		
 		expected.append(header + "\n");
-		expected.append("1; " + r3.racerString(1, true) + "\n");
-		expected.append("2; " + r2.racerString(1, true) + "\n");
-		expected.append("3; " + r1.racerString(1, true) + "\n");
+		expected.append("1; " + r3.racerString(1, false) + "\n");
+		expected.append("2; " + r2.racerString(1, false) + "\n");
+		expected.append("3; " + r1.racerString(1, false) + "\n");
 
 		competition.setNames(nameMappings);
 		Set<AbstractRacer> racers = competition.getRacers(new RacerClass(""), null);
