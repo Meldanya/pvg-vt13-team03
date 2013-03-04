@@ -1,6 +1,5 @@
 package racer;
 
-import sorting.SorterConfig;
 
 public class MarathonRacer extends AbstractRacer {
 	private Distance distance;
