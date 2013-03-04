@@ -8,12 +8,12 @@ public class Distance {
 	private transient List<RacerTime> startTimes, finishTimes;
 	private String minTime;
 
-	public Distance(String minTime){
+	public Distance(String minTime) {
 		startTimes = new ArrayList<RacerTime>();
 		finishTimes = new ArrayList<RacerTime>();
 		this.minTime = minTime;
 	}
-		
+
 	public String startTimeString() {
 		int startTimesSize = startTimes.size();
 		if (startTimesSize == 0) {
@@ -33,16 +33,16 @@ public class Distance {
 	}
 
 	public long getStartTime() {
-		if (startTimes.size()>0){
-		return startTimes.get(0).getTime();
+		if (startTimes.size() > 0) {
+			return startTimes.get(0).getTime();
 		} else {
 			return 0;
 		}
 	}
-	
+
 	public long getFinishTime() {
-		if (finishTimes.size()>0){
-		return finishTimes.get(0).getTime();
+		if (finishTimes.size() > 0) {
+			return finishTimes.get(0).getTime();
 		} else {
 			return 0;
 		}
@@ -100,8 +100,11 @@ public class Distance {
 		return sb.toString();
 	}
 
-	/** @param errorMessage TODO
-	 * @return Error message if finishTime is "" */
+	/**
+	 * @param errorMessage
+	 *            TODO
+	 * @return Error message if finishTime is ""
+	 */
 	public String possibleImpossibleTime(String errorMessage) {
 		String lapTime = getLapTimeString();
 		if (lapTime.equals("")) {
@@ -125,31 +128,31 @@ public class Distance {
 			return "--.--.--";
 		} else {
 			StringBuilder sb = new StringBuilder();
-	
+
 			long hours = TimeUnit.MILLISECONDS.toHours(duration);
 			duration -= hours * 60 * 60 * 1000;
 			if (hours < 10) {
 				sb.append('0');
 			}
 			sb.append(Long.toString(hours));
-	
+
 			sb.append('.');
-	
+
 			long minutes = TimeUnit.MILLISECONDS.toMinutes(duration);
 			duration -= minutes * 60 * 1000;
 			if (minutes < 10) {
 				sb.append('0');
 			}
 			sb.append(Long.toString(minutes));
-	
+
 			sb.append('.');
-	
+
 			long seconds = TimeUnit.MILLISECONDS.toSeconds(duration);
 			if (seconds < 10) {
 				sb.append("0");
 			}
 			sb.append(Long.toString(seconds));
-	
+
 			return sb.toString();
 		}
 	}

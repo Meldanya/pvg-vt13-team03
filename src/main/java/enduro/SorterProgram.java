@@ -10,18 +10,25 @@ public class SorterProgram {
 
 	/**
 	 * Launches the sorting application
-	 * @param args Unused
+	 * 
+	 * @param args
+	 *            Unused
 	 */
 	public static void main(String[] args) {
-	    try {
+		try {
 			Sorter sorter = new Sorter();
 
-			JOptionPane.showMessageDialog(null, "Sorteringen lyckades, resultatet skrivet till " + sorter.resultfile());
+			JOptionPane.showMessageDialog(
+					null,
+					"Sorteringen lyckades, resultatet skrivet till "
+							+ sorter.resultfile());
 		} catch (FileNotFoundException e) {
 			String missingFile = e.getMessage().split(" ")[0];
-			JOptionPane.showMessageDialog(null, "Kunde ej hitta " + missingFile);
+			JOptionPane
+					.showMessageDialog(null, "Kunde ej hitta " + missingFile);
 		} catch (NullPointerException e) {
-			JOptionPane.showMessageDialog(null, "Konfigurationsfilen gick inte att läsa");
+			JOptionPane.showMessageDialog(null,
+					"Konfigurationsfilen gick inte att läsa");
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Sorteringen misslyckades");
 			e.printStackTrace();
