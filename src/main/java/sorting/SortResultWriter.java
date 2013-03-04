@@ -45,7 +45,8 @@ public class SortResultWriter extends Writer {
 	}
 
 	@Override
-	protected String formatRacers(Set<AbstractRacer> racers, int laps, boolean includeAbsoluteTimes) {
+	protected String formatRacers(Set<AbstractRacer> racers, int laps,
+			boolean includeAbsoluteTimes) {
 		StringBuilder sb = new StringBuilder();
 		int rank = 1;
 		ArrayList<AbstractRacer> unranked = new ArrayList<AbstractRacer>();
@@ -64,7 +65,7 @@ public class SortResultWriter extends Writer {
 			} catch (ParseException e) {
 				unranked.add(racer);
 			}
-			
+
 		}
 		for (AbstractRacer racer : unranked) {
 			sb.append("; ");
