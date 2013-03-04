@@ -7,8 +7,6 @@ import java.io.PrintWriter;
 import java.util.Map;
 import java.util.TreeMap;
 
-import racer.Distance;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
