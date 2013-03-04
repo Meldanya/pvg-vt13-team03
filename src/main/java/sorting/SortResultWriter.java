@@ -26,7 +26,7 @@ public class SortResultWriter extends Writer {
 	protected String getHeader(int laps) {
 		String header;
 		if (laps < 2) {
-			header = "Plac; StartNr; Namn; TotalTid\n";
+			header = "Plac; StartNr; Namn; TotalTid; Starttid; Måltid\n";
 		} else {
 			StringBuilder sb = new StringBuilder();
 			sb.append("Plac; StartNr; Namn; #Varv; TotalTid; ");

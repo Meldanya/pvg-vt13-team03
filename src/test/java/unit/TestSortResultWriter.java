@@ -43,7 +43,7 @@ public class TestSortResultWriter {
 	@Before
 	public void setUp() throws Exception {
 		filename = "resultat.txt";
-		header = "Plac; StartNr; Namn; TotalTid";
+		header = "Plac; StartNr; Namn; TotalTid; Starttid; Måltid";
 		competition = new Competition(new RacerFactory("marathon", "00.15.00"));
 		writer = new SortResultWriter(competition, filename, comp, "01.00.00");
 		
