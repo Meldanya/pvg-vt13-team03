@@ -3,8 +3,6 @@ package racer;
 import java.util.ArrayList;
 import java.util.List;
 
-import sorting.SorterConfig;
-
 public class CircuitRacer extends AbstractRacer {
 	protected List<Distance> distanceList;
 	private String minTime;
