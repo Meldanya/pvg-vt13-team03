@@ -44,7 +44,7 @@ public class TestSortResultWriter {
 	public void setUp() throws Exception {
 		filename = "resultat.txt";
 		header = "Plac; StartNr; Namn; TotalTid";
-		competition = new Competition(new RacerFactory("marathon"));
+		competition = new Competition(new RacerFactory("marathon", "00.15.00"));
 		writer = new SortResultWriter(competition, filename, comp, "01.00.00");
 		
 		deleteTestFile();
@@ -89,7 +89,7 @@ public class TestSortResultWriter {
 	@Test
 	public void testOneRacer() throws IOException {
 		String name = "Anders Asson";
-		AbstractRacer r1 = new MarathonRacer("1");
+		AbstractRacer r1 = new MarathonRacer("1", "00.15.00");
 		r1.setName(name);
 		Map<String, String> nameMappings = new HashMap<String, String>();
 		nameMappings.put("1", name);
@@ -109,15 +109,15 @@ public class TestSortResultWriter {
 		String name2 = "Bengt Bsson";
 		String name3 = "Chris Csson";
 		
-		AbstractRacer r1 = new MarathonRacer("1");
+		AbstractRacer r1 = new MarathonRacer("1", "00.15.00");
 		r1.setName(name1);
 		r1.addStartTime(new RacerTime("12.00.00"));
 		r1.addFinishTime(new RacerTime("15.00.00"));
-		AbstractRacer r2 = new MarathonRacer("2");
+		AbstractRacer r2 = new MarathonRacer("2", "00.15.00");
 		r2.setName(name2);
 		r2.addStartTime(new RacerTime("12.00.00"));
 		r2.addFinishTime(new RacerTime("14.00.00"));
-		AbstractRacer r3 = new MarathonRacer("3");
+		AbstractRacer r3 = new MarathonRacer("3", "00.15.00");
 		r3.setName(name3);
 		r3.addStartTime(new RacerTime("12.00.00"));
 		r3.addFinishTime(new RacerTime("13.00.00"));

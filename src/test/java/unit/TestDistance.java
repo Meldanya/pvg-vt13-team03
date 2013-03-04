@@ -18,11 +18,11 @@ public class TestDistance {
 
 	@Before
 	public void setUp() throws Exception {
-		distance = new Distance();
+		distance = new Distance("00.15.00");
 		distance.addStartTime(new RacerTime("11.00.00"));
 		distance.addFinishTime(new RacerTime("12.00.00"));
 		
-		distanceNoTimes = new Distance();
+		distanceNoTimes = new Distance("00.15.00");
 	}
 	
 	@Test
@@ -59,7 +59,7 @@ public class TestDistance {
 
 		
 		for(int i = 0;	i < 12; i++){
-			Distance distance1 = new Distance();
+			Distance distance1 = new Distance("00.15.00");
 			distance1.addStartTime(new RacerTime("00.00.00"));
 			distance1.addFinishTime(new RacerTime("00.05.00"));
 			distanceList.add(distance1);
@@ -70,7 +70,7 @@ public class TestDistance {
 			sum += distanceList.get(i).getLapTime();
 		}
 			
-		Distance distance3 = new Distance();
+		Distance distance3 = new Distance("00.15.00");
 		distance3.addStartTime(new RacerTime("00.05.00"));
 		distance3.addFinishTime(new RacerTime("01.05.00"));
 		

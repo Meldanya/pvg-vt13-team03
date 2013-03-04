@@ -24,7 +24,7 @@ public class TestCompetition {
 
 	@Before
 	public void setUp() throws Exception {
-		competition = new Competition(new RacerFactory("marathon"));
+		competition = new Competition(new RacerFactory("marathon", "00.15.00"));
 		nameMappings = new HashMap<String, String>();
 	}
 

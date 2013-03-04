@@ -1,11 +1,13 @@
 package racer;
 
+import sorting.SorterConfig;
+
 public class MarathonRacer extends AbstractRacer {
 	private Distance distance;
 
-	public MarathonRacer(String startNumber) {
+	public MarathonRacer(String startNumber, String minTime) {
 		super(startNumber);
-		distance = new Distance();
+		distance = new Distance(minTime);
 	}
 
 	/* @see

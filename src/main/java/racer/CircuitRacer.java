@@ -3,13 +3,17 @@ package racer;
 import java.util.ArrayList;
 import java.util.List;
 
+import sorting.SorterConfig;
+
 public class CircuitRacer extends AbstractRacer {
 	protected List<Distance> distanceList;
+	private String minTime;
 
-	public CircuitRacer(String startNumber) {
+	public CircuitRacer(String startNumber, String minTime) {
 		super(startNumber);
+		this.minTime = minTime;
 		distanceList = new ArrayList<Distance>();
-		distanceList.add(new Distance());
+		distanceList.add(new Distance(minTime));
 	}
 
 	/**
@@ -93,7 +97,7 @@ public class CircuitRacer extends AbstractRacer {
 
 	@Override
 	public void addFinishTime(RacerTime racerTime) {
-		Distance newDistance = new Distance();
+		Distance newDistance = new Distance(minTime);
 		
 		//TODO The search algorithm uses is O(n), O(log n) if possible if binary search is used
 		for (int lap = 0; lap < distanceList.size(); lap++) {
@@ -106,7 +110,7 @@ public class CircuitRacer extends AbstractRacer {
 				newDistance.addFinishTime(racerTime);
 				distanceList.add(lap, newDistance);
 
-				Distance temp = new Distance();
+				Distance temp = new Distance(minTime);
 				temp.addStartTime(racerTime);
 				temp.addFinishTime(new RacerTime(currentFinishTime));
 				distanceList.set(lap + 1, temp);

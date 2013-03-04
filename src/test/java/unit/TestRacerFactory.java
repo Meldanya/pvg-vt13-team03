@@ -16,16 +16,16 @@ public class TestRacerFactory {
 
 	@Test
 	public void testCircuitRacer() {
-		factory = new RacerFactory("circuit");
-		racer = new CircuitRacer("42");
+		factory = new RacerFactory("circuit", "00.15.00");
+		racer = new CircuitRacer("42", "00.15.00");
 
 		assertEquals("RacerFactory doesn't return CircuitRacer", racer, factory.makeRacer("42"));
 	}
 
 	@Test
 	public void testMarathonRacer() {
-		factory = new RacerFactory("marathon");
-		racer = new MarathonRacer("42");
+		factory = new RacerFactory("marathon", "00.15.00");
+		racer = new MarathonRacer("42", "00.15.00");
 
 		assertEquals("RacerFactory doesn't return MarathonRacer", racer, factory.makeRacer("42"));
 	}
