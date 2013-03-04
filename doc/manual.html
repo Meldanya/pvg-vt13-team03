@@ -110,9 +110,46 @@ StartNo; Namn
 		<p>Programmet läser in start- och måltider och namn från filer som angivits i konfigurationen. Om en totaltid inte kan beräknas för att antingen start- eller måltid saknas skrivs istället --.--.-- ut.</p>
 		<p>Om en starttid eller sluttid saknas så skrivs istället <code>Start?</code> respektive <code>Slut?</code> ut. Då flera start- eller måltider registrerats så skrivs en notering ut tillsammans med alla överflödiga registeringar på formen <code>Flera starttider? 12.12.00 12.13.30</code>. Om en totaltid anses vara orimlig skrivs <code>Omöjlig Totaltid?</code> ut.</p>
 		<h2>Konfiguration</h2>
-		<p>Sorteringsprogrammet konfigureras med hjälp av filen <code>sorter.cfg</code> placerad i hemkatalogen. Filen är JSON-formatterad. Värdena avskiljs med kolon. Ett exempel som tilldelar NumberOfLaps värdet 1:
-		  <pre>{<br>"NumberOfLaps":"1",<br>"StartFiles":"start.txt"<br>}</pre>
-		Alla filnamn anges relativt från användarens hemkatalog.
+		<p>Sorteringsprogrammet konfigureras med hjälp av filen <code>sorter.cfg</code> placerad i hemkatalogen. Filen är JSON-formatterad. Värdena avskiljs med kolon. 
+		Här är ett exempel som sätter filnamnet på måltider till finish.txt, sätter två olika etappers specialvärden (nummer på etapp, faktor för multiplicering av tid, minimum antal minuter för tid), 
+		filnamnet på namnfilen till namnfil.txt, antalet varv till 1, filnamnet på resultatsfilen till result.txt, filnamnet på den sorterade resultatsfilen till sortresult.txt, filnamnet på starttider till start.txt samt TimeStartIsOpen(?) till 1 timme.
+		  <pre>
+{
+  "FinishFiles": "finish.txt",
+  "Laps": [
+    {
+      "number": 1,
+      "factor": 5,
+      "minimumMinutes": 13
+    },
+    {
+      "number": 2,
+      "factor": 8,
+      "minimumMinutes": 6
+    }
+  ],
+  "Namefile": "namnfil.txt",
+  "NumberOfLaps": "1",
+  "ResultFile": "result.txt",
+  "SortedResultFile": "sortresultat.txt",
+  "StartFiles": "start.txt",
+  "TimeStartIsOpen": "01.00.00"
+}
+		  </pre>
+		Alla filnamn anges relativt från användarens hemkatalog.<br>
+		<br>
+		<strong>Exempel:</strong>
+		<dl>
+			<dt>"StartFiles": "start.txt"</dt>
+				<dd>Innebär att startfilen placeras i:<br> %hemkatalog%/start.txt (/Users/bendix/start.txt)</dd>
+				<br>
+			<dt>"ResultFile": "/bendixRoligaFiler/hemligt/topsecret/result.txt"</dt>
+				<dd>Innebär att startfilen placeras i:<br> %hemkatalog%/bendixRoligaFiler/hemligt/topsecret/result.txt (/Users/bendix/bendixRoligaFiler/hemligt/topsecret/result.txt)</dd>
+		</dl>
+		
+		
+		
+		
 		  <h3>Inställningsvärden</h3>
 		  <dl>
 		    <dt>Namefile</dt>
