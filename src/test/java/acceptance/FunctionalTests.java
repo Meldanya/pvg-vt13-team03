@@ -138,8 +138,8 @@ public class FunctionalTests {
 	private void symlink(String target, String linkName) throws IOException,
 			InterruptedException {
 		String[] command = new String[] { "ln", "-s", target, linkName };
-
 		int error = runSystemCommand(command);
+		
 		if (error != 0) {
 			throw new RuntimeException("Failed to create symbolic link " + linkName);
 		}
