@@ -22,11 +22,13 @@ public class RacerTime implements Comparable<RacerTime> {
 	public RacerTime(String inputTime) throws ParseException {
 		this();
 
-		if (inputTime.indexOf('.') < 0) {
-			inputTime = format.format(Long.parseLong(inputTime));
-		}
+		if (!inputTime.equals("")) {
+			if (inputTime.indexOf('.') < 0) {
+				inputTime = format.format(Long.parseLong(inputTime));
+			}
 
-		time = format.parse(inputTime);
+			time = format.parse(inputTime);
+		}
 	}
 
 	public String toString() {

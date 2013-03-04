@@ -76,7 +76,7 @@ public class FunctionalTests {
 		prepareForCircuitContest(3);
 		sortedTwoFinishLapTest("18");
 	}
-
+	
 	@Ignore
 	@Test
 	public void fullCircuitRacerTest() throws IOException {
@@ -119,8 +119,10 @@ public class FunctionalTests {
 		file.delete();
 		file = new File("namnfil.txt");
 		file.delete();
-		// file = new File("sorter.cfg");
-		// file.delete();
+		file = new File("resultat.txt");
+		file.delete();
+		file = new File("sortresultat.txt");
+		file.delete();
 	}
 
 	/** Creates a symbolic link linkName->target by spawning a subprocess.
