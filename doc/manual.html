@@ -110,7 +110,7 @@ StartNr; Namn
 		<p>Programmet läser in start- och måltider och namn från filer som angivits i konfigurationen. Om en totaltid inte kan beräknas för att antingen start- eller måltid saknas skrivs istället --.--.-- ut.</p>
 		<p>Om en starttid eller sluttid saknas så skrivs istället <code>Start?</code> respektive <code>Slut?</code> ut. Då flera start- eller måltider registrerats så skrivs en notering ut tillsammans med alla överflödiga registeringar på formen <code>Flera starttider? 12.12.00 12.13.30</code>. Om en totaltid anses vara orimlig skrivs <code>Omöjlig Totaltid?</code> ut.</p>
 		<h2>Konfiguration</h2>
-		<p>Sorteringsprogrammet konfigureras med hjälp av filen <code>sorter.cfg</code> placerad i hemkatalogen. Filen är JSON-formatterad. Värdena avskiljs med kolon. Alla filnamn i konfigurationsfilen anges relativt från användarens hemkatalog.</p>
+		<p>Sorteringsprogrammet konfigureras med hjälp av filen <code>sorter.cfg</code> placerad i hemkatalogen. Filen är JSON-formatterad. Värdena avskiljs med kolon. Alla filnamn i konfigurationsfilen anges relativt från användarens hemkatalog (undantaget Mac, se ovan).</p>
 		<h3>Standardkonfiguration</h3>
 		  <pre>
 {
@@ -162,6 +162,13 @@ StartNr; Namn
 		    <dt>TimeStartIsOpen</dt>
 		    <dd>Lägsta tillåtna totaltiden då varvlopp körs. Deltagare med lägre totaltid får ingen placering vid sorteringen.</dd>
 		  </dl>
+		<h3>Scenarion</h3>
+			<p>Standardkonfigurationen fungerar för maratonlopp. För varvlopp:</p>
+			<ul>
+				<li>Ändra ContestType till "circuit"</li>
+				<li>Ändra NumberOfLaps till önskat antal varv som ska skrivas ut</li>
+				<li>Ändra TimeStartIsOpen till tiden som varvloppet ska pågå</li>
+			</ul>
 	</div>
 </body>
 </html>
