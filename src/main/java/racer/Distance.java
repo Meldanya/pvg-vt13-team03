@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Distance {
-	private List<RacerTime> startTimes, finishTimes;
+	private transient List<RacerTime> startTimes, finishTimes;
 	private String minTime;
 
 	public Distance() {
