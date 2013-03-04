@@ -8,6 +8,7 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
+import racer.Distance;
 import racer.RacerTime;
 
 public class TestRacerTime {
@@ -62,19 +63,19 @@ public class TestRacerTime {
 	}
 	@Test
 	public void testFormat1Second() {
-		assertEquals("Time incorrectly formatted, 1 second", "00.00.01", RacerTime.formatDuration(1000));
+		assertEquals("Time incorrectly formatted, 1 second", "00.00.01", Distance.formatDuration(1000));
 	}
 	@Test
 	public void testFormat1Minute(){
-		assertEquals("Time incorrectly formatted, 1 minute", "00.01.00", RacerTime.formatDuration(60*1000));
+		assertEquals("Time incorrectly formatted, 1 minute", "00.01.00", Distance.formatDuration(60*1000));
 	}
 	@Test
 	public void testFormat1Hour(){
-		assertEquals("Time incorrectly formatted, 1 hour", "01.00.00", RacerTime.formatDuration(60*60*1000));
+		assertEquals("Time incorrectly formatted, 1 hour", "01.00.00", Distance.formatDuration(60*60*1000));
 	}
 	
 	@Test
 	public void testFormatArbitraryTime(){
-		assertEquals("Time incorrectly formatted, 1 hour", "25.52.28", RacerTime.formatDuration(25*60*60*1000+52*60*1000+28*1000 ));
+		assertEquals("Time incorrectly formatted, 1 hour", "25.52.28", Distance.formatDuration(25*60*60*1000+52*60*1000+28*1000 ));
 	}
 }
