@@ -40,15 +40,21 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 		sb.append("; ");
 		sb.append(name);
 		sb.append("; ");
-		appendRacerSpecificString(sb, maxLapCount, includeAbsoluteTimes);
+		appendRacerSpecificString(sb, maxLapCount);
+		
+		if (includeAbsoluteTimes) {
+			appendAbsoluteTimes(sb, maxLapCount);
+		}
+		removeTrailingSpace(sb);
 		
 		appendErrorMessages(sb);
 		return sb.toString();
 	}
 
-	protected abstract void appendRacerSpecificString(StringBuilder sb,	int laps, boolean includeAbsoluteTimes);
+	protected abstract void appendRacerSpecificString(StringBuilder sb,	int laps);
 	
 	protected abstract void appendAbsoluteTimes(StringBuilder sb, int maxLapCount);
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -105,4 +111,11 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 	public abstract String startTimeString();
 	
 	protected abstract void appendErrorMessages(StringBuilder sb);
+
+	protected void removeTrailingSpace(StringBuilder sb) {
+		int indexOfLastChar = sb.length() - 1;
+		if (sb.charAt(indexOfLastChar) == ' ') {
+			sb.deleteCharAt(indexOfLastChar);
+		}
+	}
 }

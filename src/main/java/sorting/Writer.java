@@ -26,15 +26,16 @@ public abstract class Writer {
 	/**
 	 * Loads and sorts racers before printing them to a file. Actual formatting
 	 * is found in Racer class.
+	 * @param includeAbsoluteTimes TODO
 	 */
-	public void writeToFile(int laps) {
+	public void writeToFile(int laps, boolean includeAbsoluteTimes) {
 		Set<RacerClass> classes = data.getClassTypes();
 
 		try {
 			writer = new BufferedWriter(new FileWriter(fileName));
 
 			for (RacerClass racerClass : classes) {
-				writeClassTypeToFile(racerClass, laps);
+				writeClassTypeToFile(racerClass, laps, includeAbsoluteTimes);
 			}
 
 			writer.close();
@@ -43,7 +44,7 @@ public abstract class Writer {
 		}
 	}
 
-	private void writeClassTypeToFile(RacerClass racerClass, int laps)
+	private void writeClassTypeToFile(RacerClass racerClass, int laps, boolean includeAbsoluteTimes)
 			throws IOException {
 		Set<AbstractRacer> racers = data.getRacers(racerClass, comparator);
 
@@ -65,11 +66,11 @@ public abstract class Writer {
 		}
 
 		writer.write(getHeader(laps));
-		writer.write(formatRacers(racers, laps));
+		writer.write(formatRacers(racers, laps, includeAbsoluteTimes));
 		
 	}
 	
 	protected abstract String getHeader(int laps);
 
-	protected abstract String formatRacers(Set<AbstractRacer> racers, int laps);
+	protected abstract String formatRacers(Set<AbstractRacer> racers, int laps, boolean includeAbsoluteTimes);
 }

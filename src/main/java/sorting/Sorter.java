@@ -10,10 +10,8 @@ import java.util.Map;
 import racer.RacerFactory;
 import racer.RacerRankingComparator;
 
-/**
- * A class representing a sorter. It reads start.txt and finish.txt and outputs
- * result.txt but only for one driver.
- */
+/** A class representing a sorter. It reads start.txt and finish.txt and outputs
+ * result.txt but only for one driver. */
 public class Sorter {
 	private Competition racers;
 	private SorterConfig config;
@@ -29,12 +27,10 @@ public class Sorter {
 		write();
 	}
 
-	/**
-	 * Tries to load config from file, if file cannot be found we instead load
+	/** Tries to load config from file, if file cannot be found we instead load
 	 * the defaults and create a new file.
 	 * 
-	 * @throws IOException
-	 */
+	 * @throws IOException */
 	private void initializeConfig() throws IOException {
 		config = new SorterConfig();
 
@@ -51,6 +47,10 @@ public class Sorter {
 		}
 	}
 
+	public boolean includeAbsoluteTimes() {
+		return Boolean.parseBoolean((String) config.get("IncludeAbsoluteTimes"));
+	}
+
 	private String typeOfContest() {
 		return (String) config.get("ContestType");
 	}
@@ -63,12 +63,10 @@ public class Sorter {
 		return (String) config.get("Namefile");
 	}
 
-	/**
-	 * Returns a list with the filenames that the sorter will read goal times
+	/** Returns a list with the filenames that the sorter will read goal times
 	 * from.
 	 * 
-	 * @return A list with the goal times.
-	 */
+	 * @return A list with the goal times. */
 	private ArrayList<String> finishFiles() {
 		return getPropertyMultipleEntries("FinishFilePrefix");
 	}
@@ -116,10 +114,8 @@ public class Sorter {
 		}
 	}
 
-	/**
-	 * @todo kolla vad första raden innehåller istället.
-	 * @todo skicka in en Map<id, namn> till RacerMap istället
-	 */
+	/** @todo kolla vad första raden innehåller istället.
+	 * @todo skicka in en Map<id, namn> till RacerMap istället */
 	private void readNames() throws IOException {
 		Map<String, String> names = new NameReader()
 				.readFromNameFile(namefile());
@@ -130,10 +126,10 @@ public class Sorter {
 
 	private void write() {
 		ArrayList<String> finishFiles = finishFiles();
-		for (int i = 0; i < finishFiles.size(); i++){
+		for (int i = 0; i < finishFiles.size(); i++) {
 			new ResultWriter(racers, resultfile(), null).writeToFile(laps());
 			String timeStartIsOpen = (String) config.get("TimeStartIsOpen");
-			new SortResultWriter(racers, (String) config.get("SortedResultFile"), new RacerRankingComparator(), timeStartIsOpen).writeToFile(laps());
+			new SortResultWriter(racers, (String) config.get("SortedResultFile"), new RacerRankingComparator(), timeStartIsOpen).writeToFile(laps(), includeAbsoluteTimes());
 		}
 	}
 }

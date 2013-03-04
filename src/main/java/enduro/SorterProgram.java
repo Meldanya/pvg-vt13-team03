@@ -20,13 +20,10 @@ public class SorterProgram {
 		} catch (FileNotFoundException e) {
 			String missingFile = e.getMessage().split(" ")[0];
 			JOptionPane.showMessageDialog(null, ("Kunde ej hitta " + missingFile));
-			e.printStackTrace();
 		} catch (NullPointerException e) {
 			JOptionPane.showMessageDialog(null, ("Konfigurationsfilen gick inte att läsa"));
-			e.printStackTrace();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, ("Sorteringen misslyckades av okänd anledning"));
-			e.printStackTrace();
 		}
 	}
 }

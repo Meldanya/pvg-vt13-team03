@@ -2,23 +2,23 @@ package racer;
 
 public class MarathonRacer extends AbstractRacer {
 	private Distance distance;
+
 	public MarathonRacer(String startNumber) {
 		super(startNumber);
 		distance = new Distance();
 	}
-	
-	/* 
-	 * @see racer.AbstractRacer#appendRacerSpecificString(java.lang.StringBuilder, int, boolean)
-	 * @param includeAbsoluteTimes ignored
+
+	/* @see
+	 * racer.AbstractRacer#appendRacerSpecificString(java.lang.StringBuilder,
+	 * int, boolean)
 	 */
 	@Override
-	protected void appendRacerSpecificString(StringBuilder sb, int maxLapCount, boolean includeAbsoluteTimes) {
-		//TODO includeAbsoluteTimes shouldn't be ignored. Remember to update the comment. 
+	protected void appendRacerSpecificString(StringBuilder sb, int maxLapCount) {
 		sb.append(getTotalTime());
 		sb.append("; ");
-		appendAbsoluteTimes(sb, maxLapCount);
+		
 	}
-	
+
 	@Override
 	protected void appendAbsoluteTimes(StringBuilder sb, int maxLapCount) {
 		sb.append(distance.startTimeString());
@@ -38,7 +38,7 @@ public class MarathonRacer extends AbstractRacer {
 	@Override
 	public String getTotalTime() {
 		String totalTime = distance.getLapTimeString();
-		if (totalTime.equals("")){
+		if (totalTime.equals("")) {
 			totalTime = "--.--.--";
 		}
 		return totalTime;
