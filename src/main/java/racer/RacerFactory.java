@@ -1,21 +1,19 @@
 package racer;
 
-import sorting.SorterConfig;
-
 public class RacerFactory {
 	private String raceType;
 	private String minTime;
-	
+
 	public RacerFactory(String raceType, String minTime) {
 		this.minTime = minTime;
-		this.raceType = raceType.toLowerCase();
+		this.raceType = raceType;
 	}
-	
+
 	public AbstractRacer makeRacer(String startNumber) {
-		if (raceType.equals("circuit")) {
+		if (raceType.equalsIgnoreCase("circuit")) {
 			return new CircuitRacer(startNumber, minTime);
+		} else {
+			return new MarathonRacer(startNumber, minTime);
 		}
-		
-		return new MarathonRacer(startNumber, minTime);
 	}
 }
