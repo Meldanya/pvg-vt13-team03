@@ -33,7 +33,7 @@ public class SorterConfig {
 		set("SortedResultFile", "sortresultat.txt");
 		set("ContestType", "marathon");
 		set("NumberOfLaps", "1");
-		set("TimeStartIsOpen", "01.00.00");
+		set("TimeStartIsOpen", "00.00.00");
 		set("IncludeAbsoluteTimes", "true");
 		set("MinTime", "00.15.00");
 	}

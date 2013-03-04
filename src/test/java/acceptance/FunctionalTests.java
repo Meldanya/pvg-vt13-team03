@@ -74,6 +74,7 @@ public class FunctionalTests {
 	@Test
 	public void test18() throws IOException {
 		config.set("IncludeAbsoluteTimes", "false");
+		config.set("TimeStartIsOpen", "01.00.00");
 		prepareForCircuitContest(3);
 		sortedTwoFinishLapTest("18");
 	}
