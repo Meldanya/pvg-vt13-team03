@@ -1,7 +1,5 @@
 package racer;
 
-import sorting.SorterConfig;
-
 public class MarathonRacer extends AbstractRacer {
 	private Distance distance;
 
@@ -10,7 +8,8 @@ public class MarathonRacer extends AbstractRacer {
 		distance = new Distance(minTime);
 	}
 
-	/* @see
+	/*
+	 * @see
 	 * racer.AbstractRacer#appendRacerSpecificString(java.lang.StringBuilder,
 	 * int, boolean)
 	 */
@@ -18,7 +17,7 @@ public class MarathonRacer extends AbstractRacer {
 	protected void appendRacerSpecificString(StringBuilder sb, int maxLapCount) {
 		sb.append(getTotalTime());
 		sb.append("; ");
-		
+
 	}
 
 	@Override

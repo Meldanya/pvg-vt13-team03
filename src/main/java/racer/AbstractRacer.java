@@ -1,6 +1,5 @@
 package racer;
 
-
 /**
  * A class representing a racer (aka driver) with a start number, start time and
  * finish time.
@@ -10,7 +9,6 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 	private RacerClass classType;
 	protected String startNumber;
 	protected String name;
-	
 
 	public AbstractRacer(String startNumber) {
 		classType = new RacerClass("");
@@ -41,20 +39,21 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 		sb.append(name);
 		sb.append("; ");
 		appendRacerSpecificString(sb, maxLapCount);
-		
+
 		if (includeAbsoluteTimes) {
 			appendAbsoluteTimes(sb, maxLapCount);
 		}
 		removeTrailingSpace(sb);
-		
+
 		appendErrorMessages(sb);
 		return sb.toString();
 	}
 
-	protected abstract void appendRacerSpecificString(StringBuilder sb,	int laps);
-	
-	protected abstract void appendAbsoluteTimes(StringBuilder sb, int maxLapCount);
-	
+	protected abstract void appendRacerSpecificString(StringBuilder sb, int laps);
+
+	protected abstract void appendAbsoluteTimes(StringBuilder sb,
+			int maxLapCount);
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -101,7 +100,8 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 	 */
 	@Override
 	public int compareTo(AbstractRacer o) {
-		return Integer.parseInt(startNumber) - Integer.parseInt(o.getStartNumber());
+		return Integer.parseInt(startNumber)
+				- Integer.parseInt(o.getStartNumber());
 	}
 
 	public abstract String getTotalTime();
@@ -109,7 +109,7 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 	public abstract int getNumberOfDistances();
 
 	public abstract String startTimeString();
-	
+
 	protected abstract void appendErrorMessages(StringBuilder sb);
 
 	protected void removeTrailingSpace(StringBuilder sb) {

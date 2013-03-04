@@ -7,13 +7,12 @@ import java.io.PrintWriter;
 import java.util.Map;
 import java.util.TreeMap;
 
-import racer.Distance;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class SorterConfig {
-	public static final String CONFIG_FILE = System.getProperty("user.home") + "/sorter.cfg";
+	public static final String CONFIG_FILE = System.getProperty("user.home")
+			+ "/sorter.cfg";
 
 	private Gson gson;
 	private Map<String, Object> config;
@@ -81,7 +80,7 @@ public class SorterConfig {
 			sb.append(line);
 			line = reader.readLine();
 		}
-		
+
 		config = gson.fromJson(sb.toString(), Map.class);
 
 		if (config == null) {

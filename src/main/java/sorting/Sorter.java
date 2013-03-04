@@ -10,8 +10,10 @@ import java.util.Map;
 import racer.RacerFactory;
 import racer.RacerRankingComparator;
 
-/** A class representing a sorter. It reads start.txt and finish.txt and outputs
- * result.txt but only for one driver. */
+/**
+ * A class representing a sorter. It reads start.txt and finish.txt and outputs
+ * result.txt but only for one driver.
+ */
 public class Sorter {
 	private Competition racers;
 	private SorterConfig config;
@@ -19,7 +21,8 @@ public class Sorter {
 	public Sorter() throws IOException {
 		initializeConfig();
 
-		racers = new Competition(new RacerFactory(typeOfContest(), (String)config.get("MinTime")));
+		racers = new Competition(new RacerFactory(typeOfContest(),
+				(String) config.get("MinTime")));
 
 		read();
 		readNames();
@@ -27,10 +30,12 @@ public class Sorter {
 		write();
 	}
 
-	/** Tries to load config from file, if file cannot be found we instead load
+	/**
+	 * Tries to load config from file, if file cannot be found we instead load
 	 * the defaults and create a new file.
 	 * 
-	 * @throws IOException */
+	 * @throws IOException
+	 */
 	private void initializeConfig() throws IOException {
 		config = new SorterConfig();
 
@@ -48,7 +53,8 @@ public class Sorter {
 	}
 
 	public boolean includeAbsoluteTimes() {
-		return Boolean.parseBoolean((String) config.get("IncludeAbsoluteTimes"));
+		return Boolean
+				.parseBoolean((String) config.get("IncludeAbsoluteTimes"));
 	}
 
 	private String typeOfContest() {
@@ -63,10 +69,12 @@ public class Sorter {
 		return (String) config.get("Namefile");
 	}
 
-	/** Returns a list with the filenames that the sorter will read goal times
+	/**
+	 * Returns a list with the filenames that the sorter will read goal times
 	 * from.
 	 * 
-	 * @return A list with the goal times. */
+	 * @return A list with the goal times.
+	 */
 	private ArrayList<String> finishFiles() {
 		return getPropertyMultipleEntries("FinishFilePrefix");
 	}
@@ -98,8 +106,9 @@ public class Sorter {
 
 		File directory = new File(".");
 		String[] finishFiles = directory.list(new FinishFileFilter());
-		if(finishFiles.length== 0){
-			throw new FileNotFoundException(config.get("FinishFilePrefix") + ".txt" + " not found");
+		if (finishFiles.length == 0) {
+			throw new FileNotFoundException(config.get("FinishFilePrefix")
+					+ ".txt" + " not found");
 		}
 		for (String fileName : finishFiles) {
 			racers.setFinishTimesFromFile(fileName);
@@ -114,8 +123,10 @@ public class Sorter {
 		}
 	}
 
-	/** @todo kolla vad första raden innehåller istället.
-	 * @todo skicka in en Map<id, namn> till RacerMap istället */
+	/**
+	 * @todo kolla vad första raden innehåller istället.
+	 * @todo skicka in en Map<id, namn> till RacerMap istället
+	 */
 	private void readNames() throws IOException {
 		Map<String, String> names = new NameReader()
 				.readFromNameFile(namefile());
@@ -129,7 +140,10 @@ public class Sorter {
 		for (int i = 0; i < finishFiles.size(); i++) {
 			new ResultWriter(racers, resultfile(), null).writeToFile(laps());
 			String timeStartIsOpen = (String) config.get("TimeStartIsOpen");
-			new SortResultWriter(racers, (String) config.get("SortedResultFile"), new RacerRankingComparator(), timeStartIsOpen).writeToFile(laps(), includeAbsoluteTimes());
+			new SortResultWriter(racers,
+					(String) config.get("SortedResultFile"),
+					new RacerRankingComparator(), timeStartIsOpen).writeToFile(
+					laps(), includeAbsoluteTimes());
 		}
 	}
 

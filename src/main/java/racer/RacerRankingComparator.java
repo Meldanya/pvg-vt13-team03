@@ -16,7 +16,7 @@ public class RacerRankingComparator implements Comparator<AbstractRacer> {
 			int comparedResult = o1total.compareTo(o2total);			
 			return comparedResult == 0 ? 1 : comparedResult;
 		} else {
-			return o1laps - o2laps;
+			return o2laps - o1laps;
 		}
 	}
 
