@@ -99,7 +99,7 @@ public class Sorter {
 		File directory = new File(".");
 		String[] finishFiles = directory.list(new FinishFileFilter());
 		if(finishFiles.length== 0){
-			throw new FileNotFoundException(config.get("FinishFiles") + " not found");
+			throw new FileNotFoundException(config.get("FinishFilePrefix") + ".txt" + " not found");
 		}
 		for (String fileName : finishFiles) {
 			racers.setFinishTimesFromFile(fileName);

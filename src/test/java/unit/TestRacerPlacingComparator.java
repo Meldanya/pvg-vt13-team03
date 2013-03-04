@@ -40,18 +40,7 @@ public class TestRacerPlacingComparator {
 		int compInt = comp.compare(racer1, racer2);
 		assertTrue("Racer 2 was before Racer 1, compInt was " + compInt, compInt < 0);
 	}
-	
-	@Test
 
-	public void testEqual() throws ParseException {
-		racer1.addStartTime(new RacerTime("12.00.00"));
-		racer1.addFinishTime(new RacerTime("12.30.00"));
-		racer2.addStartTime(new RacerTime("12.00.00"));
-		racer2.addFinishTime(new RacerTime("12.30.00"));
-		
-		assertEquals("racers not equal", 0, comp.compare(racer1, racer2));
-	}
-	
 	@Test
 	public void testSameNoOfLapsDifferentTimes() throws Exception {
 		racer1.addStartTime(new RacerTime("12.00.00"));
