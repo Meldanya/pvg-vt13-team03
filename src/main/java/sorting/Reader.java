@@ -19,7 +19,13 @@ public abstract class Reader {
 			//TODO Det behövs kollas så att line inte är null
 			if (line.contains(";")) {
 				String[] tempArray = line.split(";");
-				op(tempArray[0].trim(), tempArray[1].trim());
+				
+				String first = tempArray[0].trim();
+				try{
+					first = String.valueOf(Integer.parseInt(first));
+				} catch(Exception e){}
+				
+				op(first, tempArray[1].trim());
 			}
 			else {
 				op(line, "");
