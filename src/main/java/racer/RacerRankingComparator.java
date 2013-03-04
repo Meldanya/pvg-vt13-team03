@@ -14,7 +14,7 @@ public class RacerRankingComparator implements Comparator<AbstractRacer> {
 		if (o1laps == o2laps) {
 			// samma antal varv eller maratontävling
 			int comparedResult = o1total.compareTo(o2total);			
-			return comparedResult;
+			return comparedResult == 0 ? 1 : comparedResult;
 		} else {
 			return o1laps - o2laps;
 		}
