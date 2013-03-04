@@ -155,12 +155,12 @@ public class FunctionalTests {
 	private int compareFiles(String result, String expected)
 			throws IOException, InterruptedException {
 		String[] command = new String[] { "diff", "--unified", result, expected };
-
 		int error = runSystemCommand(command);
+		
 		if (error != 0) {
-			// prettify
 			System.out.println();
 		}
+		
 		return error;
 	}
 
