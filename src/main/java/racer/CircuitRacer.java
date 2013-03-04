@@ -69,7 +69,7 @@ public class CircuitRacer extends AbstractRacer {
 	public String getTotalTime() {
 		long lapTime = firstDistance()
 				.timeFromStartToOtherStart(lastDistance());
-		return RacerTime.formatDuration(lapTime);
+		return Distance.formatDuration(lapTime);
 	}
 
 	private Distance lastDistance() {
