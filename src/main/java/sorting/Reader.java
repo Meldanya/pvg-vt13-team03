@@ -18,8 +18,8 @@ public abstract class Reader {
 			String line = reader.readLine();
 			//TODO Det behövs kollas så att line inte är null
 			if (line.contains(";")) {
-				String[] tempArray = line.split("; ");
-				op(tempArray[0], tempArray[1]);
+				String[] tempArray = line.split(";");
+				op(tempArray[0].trim(), tempArray[1].trim());
 			}
 			else {
 				op(line, "");

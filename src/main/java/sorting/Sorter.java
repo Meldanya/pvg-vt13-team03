@@ -68,7 +68,7 @@ public class Sorter {
 	 * 
 	 * @return A list with the goal times. */
 	private ArrayList<String> finishFiles() {
-		return getPropertyMultipleEntries("FinishFiles");
+		return getPropertyMultipleEntries("FinishFilePrefix");
 	}
 
 	private ArrayList<String> startFiles() {
@@ -98,16 +98,19 @@ public class Sorter {
 
 		File directory = new File(".");
 		String[] finishFiles = directory.list(new FinishFileFilter());
+		if(finishFiles.length== 0){
+			throw new FileNotFoundException(config.get("FinishFiles") + " not found");
+		}
 		for (String fileName : finishFiles) {
 			racers.setFinishTimesFromFile(fileName);
 		}
 	}
 
-	// TODO Detta skall bort!!!
 	private class FinishFileFilter implements FilenameFilter {
 		@Override
 		public boolean accept(File dir, String name) {
-			return name.startsWith("finish") && name.endsWith(".txt");
+			String finishPrefix = (String) config.get("FinishFilePrefix");
+			return name.startsWith(finishPrefix);
 		}
 	}
 

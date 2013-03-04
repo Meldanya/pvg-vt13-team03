@@ -63,15 +63,6 @@ public class TestCircuitRacer {
 		}
 		assertEquals(10, racer1.getNumberOfDistances());
 	}
-	@Ignore
-	@Test
-	public void testFinishTime() throws Exception{
-		for (int i = 0; i < 10; i++) {
-
-			racer1.addFinishTime(new RacerTime("11.12." + i));
-		}
-//		assertEquals(racer1.getFinishTime(), "11.12.09");
-	}
 
 	@Test
 	public void testNumberOfLapsZero() throws Exception{
