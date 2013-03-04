@@ -90,7 +90,7 @@ StartNo; Namn
 			<figcaption><p><i>Deltagare 2 har registrerats vid tidpunkten 21.53.10. Deltagare 4 håller på att registreras.</i></p></figcaption>
 		</figure>
 		<p>Fyll i förarens startnummer i fältet och välj Registrera. Även enter-tangenten kan användas. Den registrerade tiden syns i det nedre fältet.</p>
-		<p>Flera startnummer kan anges separerade med kommatecken, eller som ett intervall (ex. 1-5). Alla dessa kommer då att registreras vid samma tidpunkt.</p>
+		<p>Flera startnummer kan anges separerade med kommatecken, eller som ett intervall (ex. 1-5). Talet till vänster om bindessträcket måste vara mindre än talet till höger. Alla dessa kommer då att registreras vid samma tidpunkt.</p>
 		<p>Om användaren klickar på Registrera utan att ange ett startnummer så stoppas klockan och programmet frågar sedan efter ett startnummer. Detta kan utnyttjas för att registrera målgången av en förare med oläsligt startnummer.</p>
 		<figure>
 		  <img src="bilder/start-sen.png" />
@@ -105,7 +105,7 @@ StartNo; Namn
 	<div>
 		<p>Sortering av resultatet görs av ett separat program. Resultatet sparas sorterat efter både startnummer och placering i separata filer som anges i konfigurationen, se nedan.</p>
 		<h2>Starta programmet</h2>
-		<p>Dubbelklicka på programfilen (<code>EnduroSorter.jar</code>). Sorteringsprogrammet är inte interaktivt och avslutas direkt med ett meddelande om sorteringen lyckades eller inte. Alla inställningar görs i konfigurationsfilen som beskrivs närmare under Konfiguration nedan.
+		<p>Dubbelklicka på programfilen (<code>EnduroSorter.jar</code>). Sorteringsprogrammet är inte interaktivt och avslutas direkt med ett meddelande om sorteringen lyckades eller inte. Alla inställningar görs i konfigurationsfilen som beskrivs närmare under Konfiguration nedan. Notera att på macdatorer, med en defaultconfigfil, hamnar start.txt och finish.txt i hemmappen, samtidigt som sorteringsprogrammet vill att de ska ligga i samma mapp som programmet. Flytta dem till rätt mapp innan programmet startas (configfilen ska ligga i hemmappen). 
 		<h2>Resultat</h2>
 		<p>Programmet läser in start- och måltider och namn från filer som angivits i konfigurationen. Om en totaltid inte kan beräknas för att antingen start- eller måltid saknas skrivs istället --.--.-- ut.</p>
 		<p>Om en starttid eller sluttid saknas så skrivs istället <code>Start?</code> respektive <code>Slut?</code> ut. Då flera start- eller måltider registrerats så skrivs en notering ut tillsammans med alla överflödiga registeringar på formen <code>Flera starttider? 12.12.00 12.13.30</code>. Om en totaltid anses vara orimlig skrivs <code>Omöjlig Totaltid?</code> ut.</p>
