@@ -101,7 +101,7 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 	 */
 	@Override
 	public int compareTo(AbstractRacer o) {
-		return startNumber.compareTo(o.getStartNumber());
+		return Integer.parseInt(startNumber) - Integer.parseInt(o.getStartNumber());
 	}
 
 	public abstract String getTotalTime();
