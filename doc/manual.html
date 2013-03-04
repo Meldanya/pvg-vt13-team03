@@ -116,11 +116,8 @@ StartNr; Namn
 {
   "ContestType": "marathon",
   "FinishFilePrefix": "finish",
-  "Laps": [
-    {
-      "minTime": "00.15.00"
-    }
-  ],
+  "IncludeAbsoluteTimes": "true",
+  "MinTime": "00.15.00",
   "Namefile": "namnfil.txt",
   "NumberOfLaps": "1",
   "ResultFile": "result.txt",
@@ -147,8 +144,8 @@ StartNr; Namn
 			<dd>Typ av tävling. För närvarande stöds "marathon" (maratonlopp) och "circuit" (varvlopp).</dd>
 			<dt>FinishFilePrefix</dt>
 			<dd>Anger vad filnamnen med måltider börjar med. Med FinishFilePrefix satt till "finish" exempelvis kommer sorteringsprogrammet att läsa måltider från filerna finish1, finish2, finishabc, etc.</dd>
-			<dt>Laps:minTime</dt>
-			<dd>Varvtider som understiger detta värde markeras som osannolika i resultatfilen</dd>
+			<dt>MinTime</dt>
+			<dd>Varvtid som understiger detta värde markeras som osannolikt i resultatfilen</dd>
 		    <dt>Namefile</dt>
 		    <dd>Fil som innehåller deltagares namn och startnummer</dd>
 		    <dt>NumberOfLaps</dt>
