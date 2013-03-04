@@ -13,7 +13,6 @@ public class NameReader extends Reader {
 
 	protected void op(String key, String value) {
 		map.put(key, value);
-
 	}
 
 	public Map<String, String> readFromNameFile(String fileName)
