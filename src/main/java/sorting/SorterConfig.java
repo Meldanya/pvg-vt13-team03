@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.util.Map;
 import java.util.TreeMap;
 
+import racer.Distance;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -33,7 +35,7 @@ public class SorterConfig {
 		set("ContestType", "marathon");
 		set("NumberOfLaps", "1");
 		set("TimeStartIsOpen", "01.00.00");
-		set("Laps", new Lap[] { new Lap() });
+		set("Laps", new Distance[] { new Distance() });
 	}
 
 	/**
