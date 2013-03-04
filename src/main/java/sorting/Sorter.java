@@ -146,4 +146,9 @@ public class Sorter {
 					laps(), includeAbsoluteTimes());
 		}
 	}
+
+	public String sortedresultfile() {
+		
+		return (String) config.get("SortedResultFile");
+	}
 }
