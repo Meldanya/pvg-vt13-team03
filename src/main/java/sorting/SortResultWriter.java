@@ -45,7 +45,7 @@ public class SortResultWriter extends Writer {
 	}
 
 	@Override
-	protected String formatRacers(Set<AbstractRacer> racers, int laps) {
+	protected String formatRacers(Set<AbstractRacer> racers, int laps, boolean includeAbsoluteTimes) {
 		StringBuilder sb = new StringBuilder();
 		int rank = 1;
 		ArrayList<AbstractRacer> unranked = new ArrayList<AbstractRacer>();
@@ -55,7 +55,7 @@ public class SortResultWriter extends Writer {
 				if (totalTime.compareTo(timeStartIsOpen) >= 0) {
 					sb.append(rank);
 					sb.append("; ");
-					sb.append(racer.racerString(laps, false));
+					sb.append(racer.racerString(laps, includeAbsoluteTimes));
 					sb.append('\n');
 					rank++;
 				} else {
@@ -68,7 +68,7 @@ public class SortResultWriter extends Writer {
 		}
 		for (AbstractRacer racer : unranked) {
 			sb.append("; ");
-			sb.append(racer.racerString(laps, false));
+			sb.append(racer.racerString(laps, includeAbsoluteTimes));
 			sb.append('\n');
 		}
 		return sb.toString();

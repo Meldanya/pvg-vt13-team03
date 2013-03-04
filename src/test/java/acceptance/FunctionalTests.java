@@ -26,6 +26,7 @@ public class FunctionalTests {
 		cleanUp();
 		config = new SorterConfig();
 		config.setDefaults();
+		config.set("IncludeAbsoluteTimes","true");
 	}
 
 	@Test
@@ -70,6 +71,7 @@ public class FunctionalTests {
 
 	@Test
 	public void test18() throws IOException {
+		config.set("IncludeAbsoluteTimes", "false");
 		prepareForCircuitContest(3);
 		sortedTwoFinishLapTest("18");
 	}

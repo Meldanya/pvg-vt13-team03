@@ -49,6 +49,7 @@ public abstract class AbstractRacer implements Comparable<AbstractRacer> {
 	protected abstract void appendRacerSpecificString(StringBuilder sb,	int laps, boolean includeAbsoluteTimes);
 	
 	protected abstract void appendAbsoluteTimes(StringBuilder sb, int maxLapCount);
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

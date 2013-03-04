@@ -35,6 +35,7 @@ public class SorterConfig {
 		set("ContestType", "marathon");
 		set("NumberOfLaps", "1");
 		set("TimeStartIsOpen", "01.00.00");
+		set("IncludeAbsoluteTimes", "true");
 		set("Laps", new Distance[] { new Distance() });
 	}
 
