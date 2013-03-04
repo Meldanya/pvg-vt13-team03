@@ -96,8 +96,9 @@ public class CircuitRacer extends AbstractRacer {
 	@Override
 	public void addFinishTime(RacerTime racerTime) {
 		Distance newDistance = new Distance(minTime);
-		
-		//TODO The search algorithm uses is O(n), O(log n) if possible if binary search is used
+
+		// TODO The search algorithm uses is O(n), O(log n) if possible if
+		// binary search is used
 		for (int lap = 0; lap < distanceList.size(); lap++) {
 			Distance currentDistance = distanceList.get(lap);
 			long currentFinishTime = currentDistance.getFinishTime();
