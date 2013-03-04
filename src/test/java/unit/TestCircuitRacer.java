@@ -8,11 +8,12 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import racer.AbstractRacer;
 import racer.CircuitRacer;
 import racer.RacerTime;
 
 public class TestCircuitRacer {
-	private CircuitRacer racer1, racer2;
+	private AbstractRacer racer1, racer2;
 
 	@Before
 	public void setUp() throws Exception {

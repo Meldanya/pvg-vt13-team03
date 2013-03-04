@@ -13,12 +13,10 @@ public class MarathonRacer extends AbstractRacer {
 	 * int, boolean)
 	 */
 	@Override
-	protected void appendRacerSpecificString(StringBuilder sb, int maxLapCount, boolean includeAbsoluteTimes) {
+	protected void appendRacerSpecificString(StringBuilder sb, int maxLapCount) {
 		sb.append(getTotalTime());
 		sb.append("; ");
-		if (includeAbsoluteTimes) {
-			appendAbsoluteTimes(sb, maxLapCount);
-		}
+		
 	}
 
 	@Override

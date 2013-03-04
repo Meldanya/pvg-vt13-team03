@@ -16,16 +16,10 @@ public class CircuitRacer extends AbstractRacer {
 	 * @param maxLapCount
 	 */
 	@Override
-	protected void appendRacerSpecificString(StringBuilder sb, int maxLapCount,
-			boolean includeAbsoluteTimes) {
+	protected void appendRacerSpecificString(StringBuilder sb, int maxLapCount) {
 		appendStatistics(sb);
 
 		appendLapTimes(sb, maxLapCount);
-		
-		if (includeAbsoluteTimes){
-			appendAbsoluteTimes(sb, maxLapCount);
-		}
-		removeTrailingSpace(sb);
 	}
 
 	private void appendStatistics(StringBuilder sb) {
@@ -68,13 +62,6 @@ public class CircuitRacer extends AbstractRacer {
 
 		if (distanceList.size() == 1) {
 			sb.append("Slut?");
-		}
-	}
-
-	private void removeTrailingSpace(StringBuilder sb) {
-		int indexOfLastChar = sb.length() - 1;
-		if (sb.charAt(indexOfLastChar) == ' ') {
-			sb.deleteCharAt(indexOfLastChar);
 		}
 	}
 
