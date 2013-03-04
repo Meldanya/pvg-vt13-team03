@@ -23,7 +23,9 @@ public class Competition {
 
 	/**
 	 * Creates a new TreeMap
-	 * @param factory TODO
+	 * 
+	 * @param factory
+	 *            TODO
 	 */
 	public Competition(RacerFactory factory) {
 		this.factory = factory;
@@ -43,19 +45,22 @@ public class Competition {
 		String currentClass = "";
 
 		for (String startNumber : names.keySet()) {
-			// Kontrollerar att raden är ett startnummer
-			if (Character.isDigit(startNumber.charAt(0))) {
-				AbstractRacer abstractRacer = abstractRacers.get(startNumber);
-				if (abstractRacer == null) {
-					abstractRacer = factory.makeRacer(startNumber);
-					addRacer(abstractRacer);
-				}
+			if (startNumber.length() > 0) {
+				// Kontrollerar att raden är ett startnummer
+				if (Character.isDigit(startNumber.charAt(0))) {
+					AbstractRacer abstractRacer = abstractRacers
+							.get(startNumber);
+					if (abstractRacer == null) {
+						abstractRacer = factory.makeRacer(startNumber);
+						addRacer(abstractRacer);
+					}
 
-				abstractRacer.setName(names.get(startNumber));
-				abstractRacer.setClassType(currentClass);
-			} else {
-				// In this case the start number is the class name
-				currentClass = startNumber;
+					abstractRacer.setName(names.get(startNumber));
+					abstractRacer.setClassType(currentClass);
+				} else {
+					// In this case the start number is the class name
+					currentClass = startNumber;
+				}
 			}
 		}
 		identifyNonExistingRacers(names);
@@ -76,7 +81,6 @@ public class Competition {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Writes the current map to a file, passes responsibility to ResultWriter
 	 * 
 	 * @param filename
@@ -84,20 +88,20 @@ public class Competition {
 	 * @param laps
 	 *            Amount of specified laps
 	 */
-	public void writeToFile(String filename, int laps, Comparator<AbstractRacer> comp) {
+	public void writeToFile(String filename, int laps,
+			Comparator<AbstractRacer> comp) {
 		ResultWriter writer = new ResultWriter(this, filename, comp);
 
 		writer.writeToFile(laps);
 	}
-	/** Reads start times from a file and loads it into Racers, creates new
-	 * Racers to store the data in where necessary.
-=======
+
+	/**
 	 * Reads start/finish times from a file and loads it into Racers, creates
 	 * new Racers to store the data in where necessary.
->>>>>>> master
 	 * 
 	 * @param fileName
-	 * @throws IOException */
+	 * @throws IOException
+	 */
 	public void setStartTimesFromFile(String fileName) throws IOException {
 		Map<String, ArrayList<String>> timesMap = readTimesFromFile(fileName);
 		for (String startNumber : timesMap.keySet()) {
@@ -107,11 +111,13 @@ public class Competition {
 		}
 	}
 
-	/** Reads finish times from a file and loads it into Racers, creates new
+	/**
+	 * Reads finish times from a file and loads it into Racers, creates new
 	 * Racers to store the data in where necessary.
 	 * 
 	 * @param fileName
-	 * @throws IOException */
+	 * @throws IOException
+	 */
 	public void setFinishTimesFromFile(String fileName) throws IOException {
 		Map<String, ArrayList<String>> timesMap = readTimesFromFile(fileName);
 		for (String startNumber : timesMap.keySet()) {
@@ -121,12 +127,14 @@ public class Competition {
 		}
 	}
 
-	private Map<String, ArrayList<String>> readTimesFromFile(String fileName) throws IOException {
+	private Map<String, ArrayList<String>> readTimesFromFile(String fileName)
+			throws IOException {
 		TimeReader reader = new TimeReader();
 		return reader.readFromTimeFile(fileName);
 	}
 
-	private void addStartTimestoRacer(String startNumber, ArrayList<String> times) {
+	private void addStartTimestoRacer(String startNumber,
+			ArrayList<String> times) {
 		AbstractRacer abstractRacer = getReferenceToRacer(startNumber);
 		for (String time : times) {
 			try {
@@ -138,7 +146,8 @@ public class Competition {
 		}
 	}
 
-	private void addFinishTimestoRacer(String startNumber, ArrayList<String> times) {
+	private void addFinishTimestoRacer(String startNumber,
+			ArrayList<String> times) {
 		AbstractRacer abstractRacer = getReferenceToRacer(startNumber);
 		for (String time : times) {
 			try {
@@ -176,7 +185,8 @@ public class Competition {
 		return set;
 	}
 
-	public Set<AbstractRacer> getRacers(RacerClass rc, Comparator<AbstractRacer> comp) {
+	public Set<AbstractRacer> getRacers(RacerClass rc,
+			Comparator<AbstractRacer> comp) {
 		TreeSet<AbstractRacer> set = new TreeSet<AbstractRacer>(comp);
 
 		for (String key : abstractRacers.keySet()) {
@@ -185,7 +195,7 @@ public class Competition {
 				set.add(r);
 			}
 		}
-		
+
 		return set;
 	}
 }
