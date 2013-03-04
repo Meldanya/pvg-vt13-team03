@@ -3,7 +3,6 @@ package racer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 public class RacerTime implements Comparable<RacerTime> {
 	private Date time;
@@ -32,40 +31,6 @@ public class RacerTime implements Comparable<RacerTime> {
 
 	public String toString() {
 		return format.format(time);
-	}
-
-	public static String formatDuration(long duration) {
-		if (duration == 0) {
-			return "--.--.--";
-		} else {
-			StringBuilder sb = new StringBuilder();
-
-			long hours = TimeUnit.MILLISECONDS.toHours(duration);
-			duration -= hours * 60 * 60 * 1000;
-			if (hours < 10) {
-				sb.append('0');
-			}
-			sb.append(Long.toString(hours));
-
-			sb.append('.');
-
-			long minutes = TimeUnit.MILLISECONDS.toMinutes(duration);
-			duration -= minutes * 60 * 1000;
-			if (minutes < 10) {
-				sb.append('0');
-			}
-			sb.append(Long.toString(minutes));
-
-			sb.append('.');
-
-			long seconds = TimeUnit.MILLISECONDS.toSeconds(duration);
-			if (seconds < 10) {
-				sb.append("0");
-			}
-			sb.append(Long.toString(seconds));
-
-			return sb.toString();
-		}
 	}
 
 	public long computeLapTime(RacerTime other) {

@@ -2,6 +2,7 @@ package racer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Distance {
 	private transient List<RacerTime> startTimes, finishTimes;
@@ -77,7 +78,7 @@ public class Distance {
 
 	public String getLapTimeString() {
 		if (startTimes.size() > 0 && finishTimes.size() > 0) {
-			return RacerTime.formatDuration(computeRacerTime());
+			return Distance.formatDuration(computeRacerTime());
 		} else {
 			return "";
 		}
@@ -124,6 +125,40 @@ public class Distance {
 			return startTimes.get(0).computeLapTime(other.startTimes.get(0));
 		} else {
 			return 0;
+		}
+	}
+
+	public static String formatDuration(long duration) {
+		if (duration == 0) {
+			return "--.--.--";
+		} else {
+			StringBuilder sb = new StringBuilder();
+	
+			long hours = TimeUnit.MILLISECONDS.toHours(duration);
+			duration -= hours * 60 * 60 * 1000;
+			if (hours < 10) {
+				sb.append('0');
+			}
+			sb.append(Long.toString(hours));
+	
+			sb.append('.');
+	
+			long minutes = TimeUnit.MILLISECONDS.toMinutes(duration);
+			duration -= minutes * 60 * 1000;
+			if (minutes < 10) {
+				sb.append('0');
+			}
+			sb.append(Long.toString(minutes));
+	
+			sb.append('.');
+	
+			long seconds = TimeUnit.MILLISECONDS.toSeconds(duration);
+			if (seconds < 10) {
+				sb.append("0");
+			}
+			sb.append(Long.toString(seconds));
+	
+			return sb.toString();
 		}
 	}
 }
