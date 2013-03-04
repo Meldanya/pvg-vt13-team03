@@ -19,7 +19,8 @@ import sorting.SorterConfig;
 
 public class FunctionalTests {
 	private static final String ACCEPTANCE_PATH1 = "src/test/resources/acceptance/";
-	private static final String ACCEPTANCE_PATH2 = ACCEPTANCE_PATH1 + "acceptanstest";
+	private static final String ACCEPTANCE_PATH2 = ACCEPTANCE_PATH1
+			+ "acceptanstest";
 	SorterConfig config;
 
 	@Before
@@ -76,7 +77,7 @@ public class FunctionalTests {
 		prepareForCircuitContest(3);
 		sortedTwoFinishLapTest("18");
 	}
-	
+
 	@Ignore
 	@Test
 	public void fullCircuitRacerTest() throws IOException {
@@ -90,7 +91,8 @@ public class FunctionalTests {
 		String namnfil = path + "namnfil.txt";
 		String result = path + "resultat.txt";
 		String sortresultat = path + "sortresultat.txt";
-		sortedTwoFinishLapTest(start, finish, finish2, namnfil, result, sortresultat);
+		sortedTwoFinishLapTest(start, finish, finish2, namnfil, result,
+				sortresultat);
 
 	}
 
@@ -125,52 +127,63 @@ public class FunctionalTests {
 		file.delete();
 	}
 
-	/** Creates a symbolic link linkName->target by spawning a subprocess.
+	/**
+	 * Creates a symbolic link linkName->target by spawning a subprocess.
 	 * 
 	 * This method only works on Unix-like systems.
 	 * 
-	 * @param target path to linked file
-	 * @param linkName name of the new symbolic link
-	 * @throws RuntimeException if the symbolic link could probably not be
-	 *             created
+	 * @param target
+	 *            path to linked file
+	 * @param linkName
+	 *            name of the new symbolic link
+	 * @throws RuntimeException
+	 *             if the symbolic link could probably not be created
 	 * @throws IOException
-	 * @throws InterruptedException */
+	 * @throws InterruptedException
+	 */
 	private void symlink(String target, String linkName) throws IOException,
 			InterruptedException {
 		String[] command = new String[] { "ln", "-s", target, linkName };
 		int error = runSystemCommand(command);
-		
+
 		if (error != 0) {
-			throw new RuntimeException("Failed to create symbolic link " + linkName);
+			throw new RuntimeException("Failed to create symbolic link "
+					+ linkName);
 		}
 	}
 
-	/** Runs `diff -u` on to files and prints the result to System.out.
+	/**
+	 * Runs `diff -u` on to files and prints the result to System.out.
 	 * 
-	 * @param result name of the file to test
-	 * @param expected name of the file with expected content
+	 * @param result
+	 *            name of the file to test
+	 * @param expected
+	 *            name of the file with expected content
 	 * @return 0 if the files are equal, >0 otherwise
 	 * @throws InterruptedException
-	 * @throws IOException */
+	 * @throws IOException
+	 */
 	private int compareFiles(String result, String expected)
 			throws IOException, InterruptedException {
 		String[] command = new String[] { "diff", "--unified", result, expected };
 		int error = runSystemCommand(command);
-		
+
 		if (error != 0) {
 			System.out.println();
 		}
-		
+
 		return error;
 	}
 
-	/** Spawns a subprocess specified by the command line `command`. Prints the
+	/**
+	 * Spawns a subprocess specified by the command line `command`. Prints the
 	 * subprocess' stdout to System.out and stderr to System.err.
 	 * 
 	 * @param command
 	 * @return subprocess exit value (0 if successful, >0 otherwise)
 	 * @throws IOException
-	 * @throws InterruptedException */
+	 * @throws InterruptedException
+	 */
 	private int runSystemCommand(String[] command) throws IOException,
 			InterruptedException {
 
@@ -196,15 +209,21 @@ public class FunctionalTests {
 		return exitValue;
 	}
 
-	/** Sets up symbolic links, runs Sorter as a lap race and compares the
+	/**
+	 * Sets up symbolic links, runs Sorter as a lap race and compares the
 	 * resulting file with an expected one.
 	 * 
-	 * @param start path to start file
-	 * @param finish path to finish file
-	 * @param namnfil path to namnfil
-	 * @param result path to expected result file */
-	private void singleFilesLapTest(String start, String finish, String namnfil,
-			String result) {
+	 * @param start
+	 *            path to start file
+	 * @param finish
+	 *            path to finish file
+	 * @param namnfil
+	 *            path to namnfil
+	 * @param result
+	 *            path to expected result file
+	 */
+	private void singleFilesLapTest(String start, String finish,
+			String namnfil, String result) {
 		try { // catch exceptions here to decrease the amount of boilerplate
 				// code in the tests
 			symlink(start, "start.txt");
@@ -239,8 +258,8 @@ public class FunctionalTests {
 		assertEquals("resultatfiler inte identiska", 0, error);
 	}
 
-	private void twoFinishLapTest(String start, String finish1, String finish2, String namnfil,
-			String result) {
+	private void twoFinishLapTest(String start, String finish1, String finish2,
+			String namnfil, String result) {
 		try { // catch exceptions here to decrease the amount of boilerplate
 				// code in the tests
 			symlink(start, "start.txt");
@@ -276,8 +295,8 @@ public class FunctionalTests {
 		assertEquals("resultatfiler inte identiska", 0, error);
 	}
 
-	private void sortedTwoFinishLapTest(String start, String finish1, String finish2, String namnfil,
-			String result, String sortresultat) {
+	private void sortedTwoFinishLapTest(String start, String finish1,
+			String finish2, String namnfil, String result, String sortresultat) {
 		try { // catch exceptions here to decrease the amount of boilerplate
 				// code in the tests
 			symlink(start, "start.txt");
@@ -318,25 +337,25 @@ public class FunctionalTests {
 
 	private void simpleLapTest(String number) {
 		singleFilesLapTest(ACCEPTANCE_PATH2 + number + "/starttider.txt",
-				ACCEPTANCE_PATH2 + number + "/maltider.txt",
-				ACCEPTANCE_PATH2 + number + "/namnfil.txt",
-				ACCEPTANCE_PATH2 + number + "/resultat.txt");
+				ACCEPTANCE_PATH2 + number + "/maltider.txt", ACCEPTANCE_PATH2
+						+ number + "/namnfil.txt", ACCEPTANCE_PATH2 + number
+						+ "/resultat.txt");
 	}
 
 	private void twoFinishLapTest(String number) {
 		twoFinishLapTest(ACCEPTANCE_PATH2 + number + "/starttider.txt",
-				ACCEPTANCE_PATH2 + number + "/maltider1.txt",
-				ACCEPTANCE_PATH2 + number + "/maltider2.txt",
-				ACCEPTANCE_PATH2 + number + "/namnfil.txt",
-				ACCEPTANCE_PATH2 + number + "/resultat.txt");
+				ACCEPTANCE_PATH2 + number + "/maltider1.txt", ACCEPTANCE_PATH2
+						+ number + "/maltider2.txt", ACCEPTANCE_PATH2 + number
+						+ "/namnfil.txt", ACCEPTANCE_PATH2 + number
+						+ "/resultat.txt");
 	}
 
 	private void sortedTwoFinishLapTest(String number) {
 		sortedTwoFinishLapTest(ACCEPTANCE_PATH2 + number + "/starttider.txt",
-				ACCEPTANCE_PATH2 + number + "/maltider1.txt",
-				ACCEPTANCE_PATH2 + number + "/maltider2.txt",
-				ACCEPTANCE_PATH2 + number + "/namnfil.txt",
-				ACCEPTANCE_PATH2 + number + "/resultat.txt",
-				ACCEPTANCE_PATH2 + number + "/sortresultat.txt");
+				ACCEPTANCE_PATH2 + number + "/maltider1.txt", ACCEPTANCE_PATH2
+						+ number + "/maltider2.txt", ACCEPTANCE_PATH2 + number
+						+ "/namnfil.txt", ACCEPTANCE_PATH2 + number
+						+ "/resultat.txt", ACCEPTANCE_PATH2 + number
+						+ "/sortresultat.txt");
 	}
 }
