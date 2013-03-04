@@ -16,7 +16,7 @@ public class SorterProgram {
 	    try {
 			Sorter sorter = new Sorter();
 
-			JOptionPane.showMessageDialog(null, "Sorteringen lyckades, resultatet skrivet till " + sorter.resultfile());
+			JOptionPane.showMessageDialog(null, "Sorteringen lyckades, resultatet skrivet till " + sorter.resultfile() + " och " + sorter.sortedresultfile());
 		} catch (FileNotFoundException e) {
 			String missingFile = e.getMessage().split(" ")[0];
 			JOptionPane.showMessageDialog(null, "Kunde ej hitta " + missingFile);

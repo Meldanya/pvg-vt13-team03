@@ -132,4 +132,9 @@ public class Sorter {
 			new SortResultWriter(racers, (String) config.get("SortedResultFile"), new RacerRankingComparator(), timeStartIsOpen).writeToFile(laps(), includeAbsoluteTimes());
 		}
 	}
+
+	public String sortedresultfile() {
+		
+		return (String) config.get("SortedResultFile");
+	}
 }
