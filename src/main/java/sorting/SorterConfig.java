@@ -29,7 +29,7 @@ public class SorterConfig {
 	public void setDefaults() {
 		set("Namefile", "namnfil.txt");
 		set("StartFiles", "start.txt");
-		set("FinishFiles", "finish.txt");
+		set("FinishFilePrefix", "finish");
 		set("ResultFile", "result.txt");
 		set("SortedResultFile", "sortresultat.txt");
 		set("ContestType", "marathon");
