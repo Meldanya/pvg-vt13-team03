@@ -19,7 +19,7 @@ public class Sorter {
 	public Sorter() throws IOException {
 		initializeConfig();
 
-		racers = new Competition(new RacerFactory(typeOfContest()));
+		racers = new Competition(new RacerFactory(typeOfContest(), (String)config.get("MinTime")));
 
 		read();
 		readNames();

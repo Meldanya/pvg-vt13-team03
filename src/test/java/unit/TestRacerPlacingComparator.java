@@ -21,7 +21,7 @@ public class TestRacerPlacingComparator {
 	
 	@Before
 	public void setUp() {
-		factory = new RacerFactory("circuit");
+		factory = new RacerFactory("circuit", "00.15.00");
 		racer1 = factory.makeRacer("1");
 		racer2 = factory.makeRacer("2");
 		comp = new RacerRankingComparator();

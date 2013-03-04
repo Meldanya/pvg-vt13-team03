@@ -36,7 +36,7 @@ public class SorterConfig {
 		set("NumberOfLaps", "1");
 		set("TimeStartIsOpen", "01.00.00");
 		set("IncludeAbsoluteTimes", "true");
-		set("Laps", new Distance[] { new Distance() });
+		set("MinTime", "00.15.00");
 	}
 
 	/**

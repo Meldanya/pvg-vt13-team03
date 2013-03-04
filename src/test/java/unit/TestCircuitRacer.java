@@ -16,9 +16,9 @@ public class TestCircuitRacer {
 
 	@Before
 	public void setUp() throws Exception {
-		racer1 = new CircuitRacer("1");
+		racer1 = new CircuitRacer("1", "00.15.00");
 		racer1.setName("Kalle");
-		racer2 = new CircuitRacer("2");
+		racer2 = new CircuitRacer("2", "00.15.00");
 	}
 
 	@After
@@ -39,7 +39,7 @@ public class TestCircuitRacer {
 
 	@Test
 	public void testEquals() {
-		racer2 = new CircuitRacer("1");
+		racer2 = new CircuitRacer("1", "00.15.00");
 		assertEquals("Racers not equal", racer1, racer2);
 	}
 

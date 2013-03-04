@@ -16,12 +16,12 @@ public class TestMarathonRacer {
 
 	@Before
 	public void setUp() throws Exception {
-		andersAsson = new MarathonRacer("1");
+		andersAsson = new MarathonRacer("1", "00.15.00");
 		andersAsson.setName("Anders Asson");
 		andersAsson.addStartTime(new RacerTime("12.00.00"));
 		andersAsson.addFinishTime(new RacerTime("13.23.34"));
 		
-		bengtBsson = new MarathonRacer("2");
+		bengtBsson = new MarathonRacer("2", "00.15.00");
 		bengtBsson.setName("Bengt Bsson");
 		bengtBsson.addStartTime(new RacerTime("12.01.00"));
 		bengtBsson.addFinishTime(new RacerTime("13.15.16"));

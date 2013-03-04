@@ -8,20 +8,12 @@ public class Distance {
 	private transient List<RacerTime> startTimes, finishTimes;
 	private String minTime;
 
-	public Distance() {
-		this("00.15.00");
-	}
-	
 	public Distance(String minTime){
 		startTimes = new ArrayList<RacerTime>();
 		finishTimes = new ArrayList<RacerTime>();
 		this.minTime = minTime;
 	}
-	
-	public void setMinTime(String minTime){
-		this.minTime = minTime;
-	}
-	
+		
 	public String startTimeString() {
 		int startTimesSize = startTimes.size();
 		if (startTimesSize == 0) {

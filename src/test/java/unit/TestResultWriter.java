@@ -38,7 +38,7 @@ public class TestResultWriter {
 	public void setUp() throws Exception {
 		filename = "resultat.txt";
 		header = "StartNr; Namn; TotalTid; StartTider; Måltider";
-		factory = new RacerFactory("marathon");
+		factory = new RacerFactory("marathon", "00.15.00");
 		competition = new Competition(factory);
 		writer = new ResultWriter(competition, filename, null);
 		
